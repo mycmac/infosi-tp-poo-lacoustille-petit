@@ -16,7 +16,7 @@ public class World {
     Paysan peon;
     Lapin bugs;
     Lapin bunny;
-
+    Archer guillaumeT;
     /**
      * Monde avec personnages par défaut
      */
