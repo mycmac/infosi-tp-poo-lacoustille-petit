@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * Super-classe générique pour les créatures diverses de WoE
  *
- * @author hanss
+ * @author Ulysse
  */
 public class Creature {
 

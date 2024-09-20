@@ -6,7 +6,7 @@ package org.centrale.objet.WoE;
 
 /**
  *
- * @author hanss
+ * @author Ulysse
  */
 public class Personnage extends Creature {
 

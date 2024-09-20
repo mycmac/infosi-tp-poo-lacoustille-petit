@@ -6,7 +6,7 @@ package org.centrale.objet.WoE;
 
 /**
  * Classe archer : personnage disposant de flèches
- * @author hanss
+ * @author Ulysse
  */
 public class Archer extends Personnage {
 
