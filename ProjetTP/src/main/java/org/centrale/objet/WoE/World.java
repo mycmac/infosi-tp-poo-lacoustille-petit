@@ -8,7 +8,7 @@ import java.util.Random;
 
 /**
  *
- * @author hanss
+ * @author Ulysse
  */
 public class World {
 
