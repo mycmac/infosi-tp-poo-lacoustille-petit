@@ -34,4 +34,10 @@ public class Loup extends Monstre {
     public void combattre(Creature c) {
     System.out.println("Grrr");
     }
+    
+    @Override
+    public void affiche() {
+        super.affiche();
+        System.out.print("C'est un loup terrifiant !");
+    }
 }
