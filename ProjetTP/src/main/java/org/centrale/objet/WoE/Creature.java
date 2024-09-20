@@ -66,7 +66,7 @@ public class Creature {
         r = new Random();
         ptVie = r.nextInt(80) + 21;
         degAtt = r.nextInt(10) + 1;
-        ptPar = r.nextInt(20);
+        ptPar = r.nextInt(10) + 1;
         pageAtt = r.nextInt(99) + 1;
         pagePar = r.nextInt(99) + 1;
     }
@@ -199,6 +199,7 @@ public class Creature {
 
     /**
      * Renvoie un nombre aléatoire depuis le générateur aléatoire du personnage
+     *
      * @param n Borne supérieure (non incluse)
      * @return Nombre aléatoire entre 0 et n
      */
