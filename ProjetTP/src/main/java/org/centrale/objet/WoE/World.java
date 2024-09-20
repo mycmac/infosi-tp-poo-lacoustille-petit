@@ -17,6 +17,8 @@ public class World {
     Lapin bugs;
     Lapin bunny;
     Archer guillaumeT;
+    Guerrier grosBill;
+    Loup wolfie;
     /**
      * Monde avec personnages par défaut
      */
@@ -59,5 +61,18 @@ public class World {
         }
         
     }
-
+    
+    /**
+     * Gestion d'un tour de jeu
+     */
+    public void tourDeJeu() {
+        
+    }
+    
+    /**
+     * Affichage du monde
+     */
+    public void afficheWorld(){
+        
+    }
 }

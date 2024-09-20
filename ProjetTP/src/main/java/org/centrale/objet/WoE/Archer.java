@@ -45,7 +45,7 @@ public class Archer extends Personnage {
         super();
         nbFleches = getRandom(17);
     }
-
+    
     /**
      * 
      * @return nombre de flèches

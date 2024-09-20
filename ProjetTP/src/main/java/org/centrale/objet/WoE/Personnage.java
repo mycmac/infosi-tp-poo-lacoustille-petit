@@ -23,10 +23,10 @@ public class Personnage extends Creature {
      * @param paAtt
      * @param paPar
      * @param dMax
-     * @param p
+     * @param pt
      */
-    public Personnage(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, Point2D p) {
-        super(pV, dA, pPar, paAtt, paPar, p);
+    public Personnage(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, Point2D pt) {
+        super(pV, dA, pPar, paAtt, paPar, pt);
         nom = n;
         distAttMax = dMax;
     }
@@ -49,7 +49,7 @@ public class Personnage extends Creature {
         nom = noms[getRandom(9)];
         distAttMax = getRandom(8);
     }
-
+    
     /**
      *
      * @return
