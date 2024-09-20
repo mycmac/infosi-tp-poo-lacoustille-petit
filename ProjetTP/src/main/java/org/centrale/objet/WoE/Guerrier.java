@@ -6,30 +6,38 @@ package org.centrale.objet.WoE;
 
 /**
  *
- * @author Ulysse
+ * @author Ulysse, timot
  */
 public class Guerrier extends Personnage {
 
     /**
-     *
-     * @param n
-     * @param pV
-     * @param dA
-     * @param pPar
-     * @param paAtt
-     * @param paPar
-     * @param dMax
-     * @param p
+     * Initialise un guerrier
+     * @param n nom
+     * @param pV points de vie
+     * @param dA distance d'attaque
+     * @param pPar points de parade
+     * @param paAtt probabilité de réussir une attaque
+     * @param paPar probabilité de réussir une parade
+     * @param dMax distance d'attaque maximale
+     * @param p position (Point2D)
      */
     public Guerrier(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, Point2D p) {
         super(n, pV, dA, pPar, paAtt, paPar, dMax, p);
     }
-
+    
+    /**
+     * Crée un guerrier identique au guerrier p
+     * @param p Guerrier à copier
+     */
     public Guerrier(Personnage p) {
         super(p);
     }
-
+    
+    /**
+     * Génère un guerrier aléatoire
+     */
     public Guerrier() {
+        super();
     }
     
 }
