@@ -31,7 +31,7 @@ public class Loup extends Monstre {
     public Loup() {
     }
     
-    public void combattre() {
+    public void combattre(Creature c) {
     System.out.println("Grrr");
     }
 }
