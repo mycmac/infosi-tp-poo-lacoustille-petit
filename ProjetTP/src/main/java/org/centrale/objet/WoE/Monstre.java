@@ -82,6 +82,9 @@ public class Monstre extends Creature{
 
     }
     
+    /**
+     *
+     */
     @Override
     public void affiche() {
         super.affiche();

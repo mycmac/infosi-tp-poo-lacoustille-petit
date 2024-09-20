@@ -36,7 +36,7 @@ public class Lapin extends Monstre {
     }
 
     /**
-     * Génère un lapin aléatoire (voir {@link org.centrale.objet.WoE.Creature#Creature()}
+     * Génère un lapin aléatoire (voir {@link org.centrale.objet.WoE.Creature#Creature()} )
      */
     public Lapin() {
         super();
