@@ -70,4 +70,13 @@ public class Archer extends Personnage {
         super.affiche();
         System.out.print(this.getNom()+" maîtrise l'archerie et a " + getNbFleches() + " flèches. ");
     }
+    
+    /**
+     * Combattre une créature désignée
+     * @param c 
+     */
+    public void combattre(Creature c) {
+        System.out.println("Piew");
+    }
+    
 }

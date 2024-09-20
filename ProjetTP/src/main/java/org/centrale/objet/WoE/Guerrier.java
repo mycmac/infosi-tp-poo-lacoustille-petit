@@ -40,4 +40,12 @@ public class Guerrier extends Personnage {
         super();
     }
     
+    /**
+     * Combattre une créature désignée
+     * @param c 
+     */
+    public void combattre(Creature c) {
+        System.out.println("Aiyah");
+    }
+    
 }

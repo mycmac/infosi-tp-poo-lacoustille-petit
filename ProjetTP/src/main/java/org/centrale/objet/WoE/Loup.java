@@ -31,7 +31,11 @@ public class Loup extends Monstre {
     public Loup() {
     }
     
-    public void combattre() {
-    System.out.println("Grrr");
+    /**
+     * Combattre une créature désignée
+     * @param c 
+     */
+    public void combattre(Creature c) {
+        System.out.println("Grrr");
     }
 }
