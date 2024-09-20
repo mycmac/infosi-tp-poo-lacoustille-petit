@@ -17,6 +17,8 @@ public class World {
     Lapin bugs;
     Lapin bunny;
     Archer guillaumeT;
+    Guerrier grosBill;
+    Loup wolfie;
     /**
      * Monde avec personnages par défaut
      */
@@ -25,6 +27,8 @@ public class World {
         peon = new Paysan();
         bugs = new Lapin();
         bunny = new Lapin();
+        grosBill = new Guerrier();
+        wolfie = new Loup();
     }
 
     /**
@@ -32,14 +36,14 @@ public class World {
      */
     public void creeMondeAlea() {
         Random r = new Random();
-        Creature[] gens = new Creature[4];
+        Creature[] gens = new Creature[6];
         gens[0] = robin;
         gens[1] = peon;
         gens[2] = bugs;
         gens[3] = bunny;
-        int[] coox = new int[4];
-        int[] cooy = new int[4];
-        for (int i = 0; i < 4;i++) {
+        gens[4] = grosBill;
+        gens[5] = wolfie;
+        for (int i = 0; i < 6;i++) {
             int x = 0;
             int y = 0;
             boolean pris = true;
@@ -48,7 +52,7 @@ public class World {
                 x = r.nextInt(15);
                 y = r.nextInt(15);
                 for (int j = 0; j < i;j++) {
-                    if (coox[j] == x && cooy[j] == y) {
+                    if (gens[j].getPos().getX() == x && gens[j].getPos().getY() == y) {
                         pris = true;
                     }
                 }
