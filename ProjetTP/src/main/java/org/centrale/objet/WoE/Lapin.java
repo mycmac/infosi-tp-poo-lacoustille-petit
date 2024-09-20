@@ -14,7 +14,6 @@ public class Lapin extends Monstre {
     /**
      * Créé un lapin
      *
-     * @param n nom
      * @param pV points de vie
      * @param dA dégats d'attaque
      * @param pPar points de parade
