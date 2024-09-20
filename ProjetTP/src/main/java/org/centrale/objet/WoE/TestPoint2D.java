@@ -6,7 +6,7 @@ package org.centrale.objet.WoE;
 
 /**
  *
- * @author Ulysse
+ * @author hanss
  */
 public class TestPoint2D {
     public static void main(String[] args){

@@ -6,7 +6,7 @@ package org.centrale.objet.WoE;
 
 /**
  *
- * @author Ulysse
+ * @author hanss
  */
 public class Paysan extends Personnage {
 

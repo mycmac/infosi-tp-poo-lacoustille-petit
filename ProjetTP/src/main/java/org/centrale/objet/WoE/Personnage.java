@@ -6,9 +6,9 @@ package org.centrale.objet.WoE;
 
 /**
  *
- * @author Ulysse
+ * @author hanss
  */
-public class Personnage extends Creature {
+public class Personnage extends Entite {
 
     private String nom;
     private int distAttMax;
@@ -42,7 +42,7 @@ public class Personnage extends Creature {
     }
 
     /**
-     * Initialise un personnage aléatoire
+     *
      */
     public Personnage() {
         super();

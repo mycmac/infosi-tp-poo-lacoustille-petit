@@ -5,43 +5,22 @@
 package org.centrale.objet.WoE;
 
 /**
- * Un Lapin (Monstre)
  *
- * @author Ulysse
+ * @author hanss
  */
 public class Lapin extends Monstre {
 
-    /**
-     * Créé un lapin
-     *
-     * @param n nom
-     * @param pV points de vie
-     * @param dA dégats d'attaque
-     * @param pPar points de parade
-     * @param paAtt probabilité de réussite d'une attaque
-     * @param paPar probabilité de parer une attaque
-     * @param p position
-     */
-    public Lapin(String n, int pV, int dA, int pPar, int paAtt, int paPar, Point2D p) {
+    public Lapin(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, Point2D p) {
         super(pV, dA, pPar, paAtt, paPar, p);
     }
 
-    /**
-     * Copie un lapin
-     *
-     * @param p
-     */
     public Lapin(Lapin p) {
         super(p);
     }
 
-    /**
-     * Génère un lapin aléatoire (voir {@link org.centrale.objet.WoE.Creature#Creature()} )
-     */
     public Lapin() {
         super();
     }
-
     @Override
     public void affiche() {
         super.affiche();
