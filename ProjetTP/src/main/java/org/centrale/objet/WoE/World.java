@@ -26,7 +26,7 @@ public class World {
 
     public void creeMondeAlea() {
         Random r = new Random();
-        Entite[] gens = new Entite[4];
+        Creature[] gens = new Creature[4];
         gens[0] = robin;
         gens[1] = peon;
         gens[2] = bugs;

@@ -9,7 +9,7 @@ import java.util.Random;
  *
  * @author hanss
  */
-public class Entite {
+public class Creature {
     private int ptVie;
     private int degAtt;
     private int ptPar;
@@ -18,7 +18,7 @@ public class Entite {
     protected Point2D pos;
     private Random r;
     
-    public Entite(int pV, int dA, int pPar, int paAtt, int paPar, Point2D p){
+    public Creature(int pV, int dA, int pPar, int paAtt, int paPar, Point2D p){
         ptVie = pV;
         degAtt = dA;
         ptPar = pPar;
@@ -27,7 +27,7 @@ public class Entite {
         pos = new Point2D(p);
         r = new Random();
     }
-    public Entite(Entite p){
+    public Creature(Creature p){
         ptVie = p.getPtVie();
         degAtt = p.getDegAtt();
         ptPar = p.getPtPar();
@@ -37,7 +37,7 @@ public class Entite {
         r = new Random();
     }
     
-    public Entite(){
+    public Creature(){
         r = new Random();
         ptVie = r.nextInt(80)+21;
         degAtt = r.nextInt(10)+1;

@@ -8,7 +8,7 @@ package org.centrale.objet.WoE;
  *
  * @author hanss
  */
-public class Personnage extends Entite {
+public class Personnage extends Creature {
 
     private String nom;
     private int distAttMax;
