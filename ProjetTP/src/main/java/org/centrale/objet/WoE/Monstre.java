@@ -38,9 +38,48 @@ public class Monstre extends Creature{
         super();
     }
     
+    /**
+     * 
+     * Déplace aléatoirement le personnage selon l'une des 8 directions 
+     *    7   0   1
+     *     \  |  /
+     *      \ | /
+     *  6---- + ----2
+     *      / | \
+     *     /  |  \
+     *    5   4   3
+     */
     @Override
     public void deplace() {
-        
+        int dir = getRandom(8);
+        switch (dir) {
+            case 0:
+                this.pos.translate(0, 1);
+                break;
+            case 1:
+                this.pos.translate(1, 1);
+                break;
+            case 2:
+                this.pos.translate(1, 0);
+                break;
+            case 3:
+                this.pos.translate(1, -1);
+                break;
+            case 4:
+                this.pos.translate(0, -1);
+                break;
+            case 5:
+                this.pos.translate(-1, -1);
+                break;
+            case 6:
+                this.pos.translate(-1, 0);
+                break;
+            case 7:
+                this.pos.translate(-1, 1);
+                break;
+
+        }
+
     }
     
     @Override
