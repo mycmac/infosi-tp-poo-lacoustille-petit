@@ -58,9 +58,14 @@ public class Creature {
 
     /**
      * Créé une créature aléatoire sans type précisé avec les paramètres
-     * aléatoires suivants : Points de vie entre 20 et 100 Dégats d'attaque
-     * entre 1 et 10 Points de parade entre 1 et 10 Pourcentage de réussite
-     * d'attaque entre 1 et 100 Pourcentage de réussite de parade entre 1 et 100
+     * aléatoires suivants : 
+     * Points de vie entre 20 et 100 
+     * Dégats d'attaque
+     * entre 1 et 10 
+     * Points de parade entre 1 et 10 
+     * Pourcentage de réussite
+     * d'attaque entre 1 et 100 
+     * Pourcentage de réussite de parade entre 1 et 100
      */
     public Creature() {
         r = new Random();
@@ -82,7 +87,7 @@ public class Creature {
     /**
      * Modifie le nombre de points de vie
      *
-     * @param ptVie
+     * @param ptVie Points de vie
      */
     public void setPtVie(int ptVie) {
         this.ptVie = ptVie;
