@@ -32,5 +32,9 @@ public class TestWOE{
         WoE.robin.deplace();
         WoE.guillaumeT.affiche();
         WoE.robin.affiche();
+        System.out.println("\n Combat !");
+        WoE.grosBill.combattre(WoE.wolfie);
+        WoE.wolfie.combattre(WoE.grosBill);
+        
     }
 }
