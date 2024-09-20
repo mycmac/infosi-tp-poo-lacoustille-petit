@@ -6,12 +6,14 @@ package org.centrale.objet.WoE;
 
 /**
  * Un Lapin (Monstre)
+ *
  * @author hanss
  */
 public class Lapin extends Monstre {
 
     /**
      * Créé un lapin
+     *
      * @param n nom
      * @param pV points de vie
      * @param dA dégats d'attaque
@@ -26,6 +28,7 @@ public class Lapin extends Monstre {
 
     /**
      * Copie un lapin
+     *
      * @param p
      */
     public Lapin(Lapin p) {
@@ -33,15 +36,12 @@ public class Lapin extends Monstre {
     }
 
     /**
-     * Génère un lapin aléatoire (voir org.centrale.objet.WoE.Creature.Creature())
+     * Génère un lapin aléatoire (voir {@link org.centrale.objet.WoE.Creature#Creature()}
      */
     public Lapin() {
         super();
     }
 
-    /**
-     * Voir org.centrale.objet.WoE.Monstre.affiche
-     */
     @Override
     public void affiche() {
         super.affiche();

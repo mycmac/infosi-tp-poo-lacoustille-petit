@@ -42,7 +42,7 @@ public class Personnage extends Creature {
     }
 
     /**
-     *
+     * Initialise un personnage aléatoire
      */
     public Personnage() {
         super();
