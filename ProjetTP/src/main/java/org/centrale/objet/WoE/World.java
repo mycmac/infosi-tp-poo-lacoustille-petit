@@ -17,6 +17,9 @@ public class World {
     Lapin bugs;
     Lapin bunny;
 
+    /**
+     * Monde avec personnages par défaut
+     */
     public World() {
         robin = new Archer();
         peon = new Paysan();
@@ -24,6 +27,9 @@ public class World {
         bunny = new Lapin();
     }
 
+    /**
+     * Création d'un monde aléatoire
+     */
     public void creeMondeAlea() {
         Random r = new Random();
         Creature[] gens = new Creature[4];
