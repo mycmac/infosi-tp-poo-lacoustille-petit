@@ -16,9 +16,10 @@ public class Creature {
      * Limites hautes et basses (incluses) des stats de départ des créatures
      */
     /**
-     * Points de vie : entre 20 et 99
+     * Points de vie de départ : entre 20 et 99
      */
     private final int ptVieBaseMin = 20;
+    /** @see #ptVieBaseMin */
     private final int ptVieBaseMax = 99;
     /**
      * Dégats d'attaque : entre 1 et 10
