@@ -50,8 +50,8 @@ public class Point2D {
         System.out.println("["+x+" ; "+y+"]");
     }
     public double distance(Point2D p2){
-        int dx = Math.abs(this.x - p2.getX());
-        int dy = Math.abs(this.y - p2.getY());
+        int dx = this.x - p2.getX();
+        int dy = this.y - p2.getY();
         int dz2 = dx*dx + dy*dy;
         return Math.sqrt(dz2);
     }
