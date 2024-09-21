@@ -48,7 +48,4 @@ public class Guerrier extends Personnage {
         System.out.println("Aiyah");
     }
     
-    public void combattre(Creature c) {
-        System.out.println("Paf !");
-    }
 }
