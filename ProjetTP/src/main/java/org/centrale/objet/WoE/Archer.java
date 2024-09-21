@@ -45,7 +45,7 @@ public class Archer extends Personnage {
         super();
         nbFleches = getRandom(17);
     }
-
+    
     /**
      * 
      * @return nombre de flèches
@@ -71,6 +71,12 @@ public class Archer extends Personnage {
         System.out.print(this.getNom()+" maîtrise l'archerie et a " + getNbFleches() + " flèches. ");
     }
     
+    /**
+     * Combattre une créature désignée
+     * @param c 
+     */
     public void combattre(Creature c) {
+        System.out.println("Piew");
     }
+    
 }

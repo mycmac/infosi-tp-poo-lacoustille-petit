@@ -12,17 +12,46 @@ import java.util.Random;
  * @author Ulysse
  */
 public class Creature {
-
-    private int ptVie;
-    private int degAtt;
-    private int ptPar;
-    private int pageAtt;
-    private int pagePar;
-    protected Point2D pos;
-    private final Random r;
+    /**
+     * Limites hautes et basses (incluses) des stats de départ des créatures
+     */
+    /**
+     * Points de vie : entre 20 et 99
+     */
+    private final int ptVieBaseMin = 20;
+    private final int ptVieBaseMax = 99;
+    /**
+     * Dégats d'attaque : entre 1 et 10
+     */
+    private final int degAttBaseMin = 1;
+    private final int degAttBaseMax = 10;
+    /**
+     * Points de parade : entre 1 et 10
+     */
+    private final int ptParBaseMin = 1;
+    private final int ptParBaseMax = 10;
+    /**
+     * Pourcentage de chance de réussite d'une attaque : entre 1 et 99 (%)
+     */
+    private final int pageAttBaseMin = 1;
+    private final int pageAttBaseMax = 99;
+    /**
+     * Pourcentage de chance de réussite d'une parade : entre 1 et 99 (%)
+     */
+    private final int pageParBaseMin = 1;
+    private final int pageParBaseMax = 99;
+    
+    private int ptVie; // Points de vie
+    private int ptVieMax; // Maximum de points de vie
+    private int degAtt; // Dégats d'attaque
+    private int ptPar; // Points de parade
+    private int pageAtt; // Porcentage d'attaque
+    private int pagePar; // Pourcentage de parade
+    protected Point2D pos; // Position
+    private final Random r; // Seed aléatoire
 
     /**
-     * Génère une créature à partir de paramètres donnés
+     * Initialise une Creature à partir d'attributs spécifiés
      *
      * @param pV points de vie
      * @param dA dégats d'attaque
@@ -32,7 +61,8 @@ public class Creature {
      * @param p position
      */
     public Creature(int pV, int dA, int pPar, int paAtt, int paPar, Point2D p) {
-        ptVie = pV;
+        ptVieMax = pV;
+        ptVie = ptVieMax;
         degAtt = dA;
         ptPar = pPar;
         pageAtt = paAtt;
@@ -42,12 +72,13 @@ public class Creature {
     }
 
     /**
-     * Recopie une créature
+     * Initialise une créature en copiant les attributs d'une Creature donnée
      *
      * @param p créature à copier
      */
     public Creature(Creature p) {
-        ptVie = p.getPtVie();
+        ptVieMax = p.getPtVie();
+        ptVie = ptVieMax;
         degAtt = p.getDegAtt();
         ptPar = p.getPtPar();
         pageAtt = p.getPageAtt();
@@ -57,27 +88,36 @@ public class Creature {
     }
 
     /**
-     * Créé une créature aléatoire sans type précisé avec les paramètres
-     * aléatoires suivants : 
-     * Points de vie entre 20 et 100 
-     * Dégats d'attaque
-     * entre 1 et 10 
-     * Points de parade entre 1 et 10 
-     * Pourcentage de réussite
-     * d'attaque entre 1 et 100 
-     * Pourcentage de réussite de parade entre 1 et 100
+     * Initialise une Créature aléatoire avec des attributs aléatoires, au sein des limites fixées
      */
     public Creature() {
         r = new Random();
-        ptVie = r.nextInt(80) + 21;
-        degAtt = r.nextInt(10) + 1;
-        ptPar = r.nextInt(10) + 1;
-        pageAtt = r.nextInt(99) + 1;
-        pagePar = r.nextInt(99) + 1;
+        ptVieMax = r.nextInt(ptVieBaseMax - ptVieBaseMin + 1) + ptVieBaseMin;
+        ptVie = ptVieMax;
+        degAtt = r.nextInt(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
+        ptPar = r.nextInt(ptParBaseMax - ptParBaseMin + 1) + ptParBaseMin;
+        pageAtt = r.nextInt(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
+        pagePar = r.nextInt(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
     }
-
+    
     /**
-     *
+     * Récupère le nombre maximum de points de vie
+     * @return Points de vie max
+     */
+    public int getPtVieMax() {
+        return ptVieMax;
+    }
+    
+    /**
+     * Redéfinit le nombre maximum de points de vie
+     * @param ptVieMax
+     */
+    public void setPtVieMax(int ptVieMax) {
+        this.ptVieMax = ptVieMax;
+    }
+    
+    /**
+     * Récupère le nombre de points de vie actuel
      * @return Points de vie
      */
     public int getPtVie() {
@@ -94,7 +134,7 @@ public class Creature {
     }
 
     /**
-     *
+     * Récupère les dégats d'attaque
      * @return Dégats d'attaque
      */
     public int getDegAtt() {
@@ -102,8 +142,7 @@ public class Creature {
     }
 
     /**
-     * Modifie le nombre de dégats d'attaque
-     *
+     * Redéfinit le nombre de dégats d'attaque
      * @param degAtt
      */
     public void setDegAtt(int degAtt) {
@@ -111,7 +150,7 @@ public class Creature {
     }
 
     /**
-     *
+     *Récupère le nombre de points de parade
      * @return Nombre de points de parade
      */
     public int getPtPar() {
@@ -119,8 +158,7 @@ public class Creature {
     }
 
     /**
-     * Modifie le nombre de points de parade
-     *
+     * Redéfinit le nombre de points de parade
      * @param ptPar
      */
     public void setPtPar(int ptPar) {
@@ -128,7 +166,7 @@ public class Creature {
     }
 
     /**
-     *
+     * Récupère le taux de réussite d'attaque
      * @return Pourcentage de réussite d'attaque
      */
     public int getPageAtt() {
@@ -136,8 +174,7 @@ public class Creature {
     }
 
     /**
-     * Modifie le pourcentage de réussite d'attaque
-     *
+     * Redéfinit le pourcentage de réussite d'attaque
      * @param pageAtt
      */
     public void setPageAtt(int pageAtt) {
@@ -145,7 +182,7 @@ public class Creature {
     }
 
     /**
-     *
+     * Récupère le taux de parade
      * @return pourcentage de parade
      */
     public int getPagePar() {
@@ -153,8 +190,7 @@ public class Creature {
     }
 
     /**
-     * Renvoie le pourcentage de réussite de parade
-     *
+     * Redéfinit le pourcentage de réussite de parade
      * @param pagePar
      */
     public void setPagePar(int pagePar) {
@@ -162,7 +198,7 @@ public class Creature {
     }
 
     /**
-     *
+     * Récupère la position
      * @return position
      */
     public Point2D getPos() {
@@ -170,8 +206,7 @@ public class Creature {
     }
 
     /**
-     * Définit la position
-     *
+     * Redéfinit la position avec un Point2D donné
      * @param pos Point2D
      */
     public void setPos(Point2D pos) {
@@ -179,8 +214,7 @@ public class Creature {
     }
 
     /**
-     * Définit la position
-     *
+     * Redéfinit la position avec des coordonnées données
      * @param x coordonnée x
      * @param y coordonnée y
      */

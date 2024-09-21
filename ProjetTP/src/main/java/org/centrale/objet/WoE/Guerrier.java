@@ -6,37 +6,46 @@ package org.centrale.objet.WoE;
 
 /**
  *
- * @author Ulysse
+ * @author Ulysse, timot
  */
 public class Guerrier extends Personnage {
 
     /**
-     * Créé un guerrier
+     * Initialise un guerrier
      * @param n nom
      * @param pV points de vie
-     * @param dA dégats d'attaque
-     * @param pPar dégats parés
-     * @param paAtt pourcentage de réussite d'attaque
-     * @param paPar pourcentage de réussite de parade
-     * @param dMax distance attaque maximale
-     * @param p Position
+     * @param dA distance d'attaque
+     * @param pPar points de parade
+     * @param paAtt probabilité de réussir une attaque
+     * @param paPar probabilité de réussir une parade
+     * @param dMax distance d'attaque maximale
+     * @param p position (Point2D)
      */
     public Guerrier(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, Point2D p) {
         super(n, pV, dA, pPar, paAtt, paPar, dMax, p);
     }
-
+    
     /**
-     * Copie le guerrier p
-     * @param p
+     * Crée un guerrier identique au guerrier p
+     * @param p Guerrier à copier
      */
     public Guerrier(Personnage p) {
         super(p);
     }
-
+    
     /**
-     * Guerrier aléatoire
+     * Génère un guerrier aléatoire
      */
     public Guerrier() {
+        super();
+    }
+    
+    /**
+     * Combattre une créature désignée
+     * @param c 
+     */
+    public void combattre(Creature c) {
+        System.out.println("Aiyah");
     }
     
     public void combattre(Creature c) {

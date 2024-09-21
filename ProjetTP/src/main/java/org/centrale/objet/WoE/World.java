@@ -63,5 +63,18 @@ public class World {
         }
         
     }
-
+    
+    /**
+     * Gestion d'un tour de jeu
+     */
+    public void tourDeJeu() {
+        
+    }
+    
+    /**
+     * Affichage du monde
+     */
+    public void afficheWorld(){
+        
+    }
 }
