@@ -8,7 +8,7 @@ package org.centrale.objet.WoE;
  *
  * @author hanss
  */
-public class Loup extends Monstre {
+public class Loup extends Monstre implements Combatif{
     
     /**
      * Créé un loup
