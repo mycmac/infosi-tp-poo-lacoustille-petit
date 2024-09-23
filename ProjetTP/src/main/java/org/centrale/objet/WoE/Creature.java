@@ -262,4 +262,8 @@ public class Creature extends Entite {
     public void affiche() {
         System.out.print("\nCette créature a " + ptVie + " points de vie et se situe en " + pos + ". ");
     }
+    
+    public boolean lanceDe(int pageReussite){
+        return (this.getRandom(100)+1)<=pageReussite;
+    }
 }
