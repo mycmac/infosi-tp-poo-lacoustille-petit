@@ -12,14 +12,19 @@ public abstract class Entite {
     private boolean bloquant;
     private final Random r = new Random();
 
+    public Entite(Entite e) {
+        this.pos = new Point2D(e.getPos());
+        this.bloquant = e.isBloquant();
+    }
+
     public Entite(Point2D pt, boolean blq) {
         this.pos = new Point2D(pt);
         this.bloquant = blq;
     }
-
-    public Entite(Entite e) {
-        this.pos = new Point2D(e.getPos());
-        this.bloquant = e.isBloquant();
+    
+    public Entite(boolean blq) {
+        this.pos = new Point2D();
+        this.bloquant = blq;
     }
 
     public Point2D getPos() {
