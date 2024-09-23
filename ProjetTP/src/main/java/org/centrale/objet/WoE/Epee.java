@@ -35,15 +35,9 @@ public class Epee extends Objet {
     private int ptPar; // Points de parade
     private int pageAtt; // Porcentage d'attaque
     private int pagePar; // Pourcentage de parade
-
-    public Epee(int dA, int pPar, int paAtt, int paPar, Point2D pos) {
-        degAtt = dA;
-        ptPar = pPar;
-        pageAtt = paAtt;
-        pagePar = paPar;
-    }
-
+    
     public Epee(Epee e) {
+        super(e);
         degAtt = e.getDegAtt();
         ptPar = e.getPtPar();
         pageAtt = e.getPageAtt();
@@ -51,12 +45,36 @@ public class Epee extends Objet {
         this.setPos(e.getPos());
     }
 
+    public Epee(int dA, int pPar, int paAtt, int paPar, Point2D pos) {
+        super(pos);
+        degAtt = dA;
+        ptPar = pPar;
+        pageAtt = paAtt;
+        pagePar = paPar;
+    }
+    
+    public Epee(int dA, int pPar, int paAtt, int paPar) {
+        super();
+        degAtt = dA;
+        ptPar = pPar;
+        pageAtt = paAtt;
+        pagePar = paPar;
+    }
+    
+    public Epee(Point2D pos) {
+        super(pos);
+        degAtt = getRandom(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
+        ptPar = getRandom(ptParBaseMax - ptParBaseMin + 1) + ptParBaseMin;
+        pageAtt = getRandom(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
+        pagePar = getRandom(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
+    }
+
     public Epee() {
-        Random r = new Random();
-        degAtt = r.nextInt(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
-        ptPar = r.nextInt(ptParBaseMax - ptParBaseMin + 1) + ptParBaseMin;
-        pageAtt = r.nextInt(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
-        pagePar = r.nextInt(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
+        super();
+        degAtt = getRandom(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
+        ptPar = getRandom(ptParBaseMax - ptParBaseMin + 1) + ptParBaseMin;
+        pageAtt = getRandom(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
+        pagePar = getRandom(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
     }
 
     /**
