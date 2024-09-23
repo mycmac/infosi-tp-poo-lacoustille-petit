@@ -92,5 +92,9 @@ public class Personnage extends Creature {
     public void setArme(Epee arme) {
         this.arme = new Epee(arme);
     }
-
+    
+    @Override
+    public String toString() {
+        return this.getNom();
+    }
 }

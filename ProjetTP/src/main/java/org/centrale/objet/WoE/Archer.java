@@ -68,7 +68,7 @@ public class Archer extends Personnage implements Combatif {
     @Override
     public void affiche() {
         super.affiche();
-        System.out.print(this.getNom() + " maîtrise l'archerie et a " + getNbFleches() + " flèches. ");
+        System.out.print(this.getNom() + " maîtrise l'archerie et a " + getNbFleches() + " flèches.\n");
     }
 
     /**
