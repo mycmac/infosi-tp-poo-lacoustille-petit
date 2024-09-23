@@ -100,7 +100,7 @@ public class Archer extends Personnage implements Combatif {
                 int dAtt = this.getDegAtt();
                 
                 if (arme != null) {
-                    dAtt *= (5+arme.getDegAtt())/10.;
+                    dAtt *= (5+arme.getDegAtt())/10.; // Calcul des dégats avec arme
                 }
                 
                 int pPar = c.getPagePar();
@@ -117,7 +117,7 @@ public class Archer extends Personnage implements Combatif {
                     if (cIsPerso) {
                         Epee cArme = ((Personnage) c).getArme();
                         if (cArme != null) {
-                            dPar *= (5+cArme.getPtPar())/10.;
+                            dPar *= (5+cArme.getPtPar())/10.; 
                         }
                     }
                     dgts = Math.max(0, dAtt-dPar);
