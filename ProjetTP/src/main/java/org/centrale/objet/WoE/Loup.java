@@ -37,7 +37,7 @@ public class Loup extends Monstre implements Combatif {
 
     @Override
     public void combattre(Creature c) {
-        if (distance(c) <= 1) {
+        if (distance(c) <= this.getDistAttMax()) {
             if (lanceDe(this.getPageAtt())) {
                 if (c.lanceDe(c.getPagePar())) {
                     int pertes = Math.max(0, this.getDegAtt() - c.getPtPar());
