@@ -32,7 +32,7 @@ public class World {
         PotionSoin potion = new PotionSoin(12);
         PotionSoin potion2 = new PotionSoin(8);
         PotionSoin potion3 = new PotionSoin(11);
-        Epee epee = new Epee();
+        Epee epee = new Epee(7,7,7,7);
         objets = new LinkedList<>();
         objets.add(potion);
         objets.add(potion2);
