@@ -202,12 +202,46 @@ public class Creature extends Entite {
     public void setPagePar(int pagePar) {
         this.pagePar = pagePar;
     }
-
+    
     /**
-     * Déplace aléatoirement sur une case adjacente
+     *
+     * Déplace aléatoirement selon l'une des 8 directions
+     *   7   0   1
+     *    \  |  / 
+     *     \ | / 
+     * 6---- + ----2 
+     *     / | \ 
+     *    /  |  \ 
+     *   5   4   3
      */
     public void deplace() {
-        this.pos.translate(getRandom(2) - 1, getRandom(2) - 1);
+        int dir = getRandom(8);
+        switch (dir) {
+            case 0:
+                this.pos.translate(0, 1);
+                break;
+            case 1:
+                this.pos.translate(1, 1);
+                break;
+            case 2:
+                this.pos.translate(1, 0);
+                break;
+            case 3:
+                this.pos.translate(1, -1);
+                break;
+            case 4:
+                this.pos.translate(0, -1);
+                break;
+            case 5:
+                this.pos.translate(-1, -1);
+                break;
+            case 6:
+                this.pos.translate(-1, 0);
+                break;
+            case 7:
+                this.pos.translate(-1, 1);
+                break;
+        }
     }
 
     /**
