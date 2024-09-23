@@ -77,7 +77,7 @@ public class World {
      * Gestion d'un tour de jeu
      */
     public void tourDeJeu() {
-
+        cleanObjets();
     }
 
     /**
