@@ -79,6 +79,7 @@ public class Archer extends Personnage implements Combatif {
     @Override
     public void combattre(Creature c) {
         String msg = new String();
+        int dgts = 0;
         if (this.distance(c) <= 1) {
             int pAtt = this.getDegAtt();
             Epee arme = this.getArme();
@@ -111,9 +112,33 @@ public class Archer extends Personnage implements Combatif {
                             dPar *= (5+cArme.getPtPar())/10.;
                         }
                     }
-                    
-                    msg = "Touché mais bloqué";
-                    
+                    dgts = Math.max(0, dAtt-dPar);
+                    if (dgts == 0) {
+                        msg = "Le coup atteint sa cible mais est complètement bloqué.";
+                    } else {
+                        msg = "Le coup est bloqué mais inflige tout de même " + dgts + " dégats !";
+                        c.setPtVie(Math.max(0, c.getPtVie()-dgts));
+                    }
+                } else {
+                    dgts = dAtt;
+                    msg = "Le coup touche et inflige " + dgts + " dégats !";
+                    c.setPtVie(Math.max(0, c.getPtVie()-dgts));
+                }
+            } else {
+                msg = "Le coup a raté.";
+            }
+        } else {
+            if (this.getNbFleches() == 0) {
+                msg = "Vous n'avez plus de flèches !";
+            } else {
+                int pAtt = this.getPageAtt();
+                this.utilFleche();
+                if (this.lanceDe(pAtt)) {
+                    dgts = this.getDegAtt();
+                    c.setPtVie(Math.max(0, c.getPtVie()-dgts));
+                    msg = "La flèche touche et inflige " + dgts + " dégats !";
+                } else {
+                    msg = "La flèche a raté.";
                 }
             }
         }
