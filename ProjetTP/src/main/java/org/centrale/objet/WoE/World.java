@@ -1,5 +1,6 @@
 package org.centrale.objet.WoE;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 /**
@@ -15,7 +16,7 @@ public class World {
     Archer guillaumeT;
     Guerrier grosBill;
     Loup wolfie;
-
+    LinkedList<Objet> objets;
     /**
      * Monde avec personnages par défaut
      */
@@ -26,6 +27,15 @@ public class World {
         bunny = new Lapin();
         grosBill = new Guerrier();
         wolfie = new Loup();
+        PotionSoin potion = new PotionSoin(12);
+        PotionSoin potion2 = new PotionSoin(8);
+        PotionSoin potion3 = new PotionSoin(11);
+        Epee epee = new Epee();
+        objets = new LinkedList<Objet>();
+        objets.add(potion);
+        objets.add(potion2);
+        objets.add(potion3);
+        objets.add(epee);
     }
 
     /**
