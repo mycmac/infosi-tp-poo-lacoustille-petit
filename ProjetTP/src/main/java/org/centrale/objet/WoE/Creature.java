@@ -33,6 +33,7 @@ public class Creature extends Entite {
      */
     private final int pageAttBaseMin = 1;
     private final int pageAttBaseMax = 100;
+    
     /**
      * Pourcentage de chance de réussite d'une parade : entre 1 et 100 (%)
      */
@@ -71,6 +72,7 @@ public class Creature extends Entite {
      * @param pPar points de parade
      * @param paAtt probabilité de réussite d'une attaque
      * @param paPar probabilité de parer une attaque
+     * @param dAtkMax Distance attaque max
      * @param p position
      */
     public Creature(int pV, int dA, int pPar, int paAtt, int paPar, int dAtkMax, Point2D p) {
@@ -207,10 +209,18 @@ public class Creature extends Entite {
         this.pagePar = pagePar;
     }
 
+    /**
+     * Renvoie la distance d'attaque maximale
+     * @return Distance d'attaque maximale
+     */
     public int getDistAttMax() {
         return distAttMax;
     }
 
+    /**
+     * Redéfinit la distance d'attaque maximale
+     * @param distAttMax
+     */
     public void setDistAttMax(int distAttMax) {
         this.distAttMax = distAttMax;
     }

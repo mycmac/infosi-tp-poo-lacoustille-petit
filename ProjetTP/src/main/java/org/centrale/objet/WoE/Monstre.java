@@ -16,6 +16,7 @@ public class Monstre extends Creature {
      * @param pPar
      * @param paAtt
      * @param paPar
+     * @param dMax
      * @param p
      */
     public Monstre(int pV, int dA, int pPar, int paAtt, int paPar, int dMax, Point2D p) {
@@ -38,9 +39,7 @@ public class Monstre extends Creature {
         super();
     }
     
-    /**
-     *
-     */
+    
     @Override
     public void affiche() {
         super.affiche();

@@ -70,7 +70,14 @@ public class Archer extends Personnage implements Combatif {
         super.affiche();
         System.out.print(this.getNom() + " maîtrise l'archerie et a " + getNbFleches() + " flèches.\n");
     }
-
+    
+    /**
+     * Utilise une flèche
+     */
+    public void utilFleche(){
+    setNbFleches(getNbFleches() - 1);
+    }
+    
     /**
      * Combattre une créature désignée
      *
@@ -85,7 +92,7 @@ public class Archer extends Personnage implements Combatif {
             Epee arme = this.getArme();
             
             if (arme != null) {
-                pAtt += (int) (100-pAtt)*arme.getPageAtt();
+                pAtt += (int) (100-pAtt)*arme.getPageAtt(); // Calcul des stats d'attaque avec arme
             }
             
             if (this.lanceDe(pAtt)) {

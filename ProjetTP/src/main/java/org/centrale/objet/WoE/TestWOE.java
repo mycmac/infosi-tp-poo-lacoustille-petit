@@ -33,8 +33,6 @@ public class TestWOE {
         WoE.grosBill.setPtVie(100);
         WoE.wolfie.setDegAtt(10);
         WoE.grosBill.setPtPar(5);
-        WoE.wolfie.setPageAtt(100);
-        WoE.grosBill.setPagePar(0);
         System.out.println("Attaque du loup " + WoE.wolfie.getDegAtt());
         System.out.println("Défense de GB " + WoE.grosBill.getPtPar());
         WoE.grosBill.setNom("Gros Bill");

@@ -20,18 +20,22 @@ public class Loup extends Monstre implements Combatif {
         super(pV, dA, pPar, paAtt, paPar, 1, p);
     }
 
+    /**
+     * Recopie un loup
+     * @param p Loup à recopier
+     */
     public Loup(Monstre p) {
         super(p);
     }
 
+    /**
+     * Créé un loup aléatoire
+     */
     public Loup() {
+        super();
     }
 
-    /**
-     * Combattre une créature désignée
-     *
-     * @param c
-     */
+    @Override
     public void combattre(Creature c) {
         if (distance(c) <= 1) {
             if (lanceDe(this.getPageAtt())) {

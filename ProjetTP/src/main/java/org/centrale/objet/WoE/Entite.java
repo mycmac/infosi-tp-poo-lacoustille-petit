@@ -101,10 +101,20 @@ public abstract class Entite {
         return r.nextInt(n);
     }
     
+    /**
+     * Calcule la distance à un endroit
+     * @param pt Point sur la carte
+     * @return Distance entre l'entité et le point pt
+     */
     public double distance(Point2D pt) {
         return this.pos.distance(pt);
     }
     
+    /**
+     * Calcule la distance à une autre entité
+     * @param e entité
+     * @return Distance avec l'entité e
+     */
     public double distance(Entite e) {
         return this.pos.distance(e.pos);
     }
