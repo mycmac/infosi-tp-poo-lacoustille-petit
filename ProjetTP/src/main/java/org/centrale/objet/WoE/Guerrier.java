@@ -9,6 +9,15 @@ public class Guerrier extends Personnage implements Combatif {
     private int rage;
 
     /**
+     * Crée un guerrier identique au guerrier p
+     *
+     * @param p Guerrier à copier
+     */
+    public Guerrier(Guerrier p) {
+        super(p);
+    }
+    
+    /**
      * Initialise un guerrier
      *
      * @param n nom
@@ -23,16 +32,7 @@ public class Guerrier extends Personnage implements Combatif {
     public Guerrier(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, Point2D p) {
         super(n, pV, dA, pPar, paAtt, paPar, dMax, p);
     }
-
-    /**
-     * Crée un guerrier identique au guerrier p
-     *
-     * @param p Guerrier à copier
-     */
-    public Guerrier(Personnage p) {
-        super(p);
-    }
-
+    
     /**
      * Génère un guerrier aléatoire
      */
