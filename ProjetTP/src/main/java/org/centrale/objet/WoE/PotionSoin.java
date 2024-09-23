@@ -51,6 +51,6 @@ public class PotionSoin extends Objet {
     @Override
     public void recuperer(Personnage p) {
         p.setPtVie(Math.min(p.getPtVieMax(), p.getPtVie() + ptVie));
-        this.setPos(null);
+        this.pos = null;
     }
 }

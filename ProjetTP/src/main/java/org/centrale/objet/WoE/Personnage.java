@@ -89,8 +89,8 @@ public class Personnage extends Creature {
         return arme;
     }
 
-    public void setArme(Objet arme) {
-        this.arme = arme;
+    public void setArme(Epee arme) {
+        this.arme = new Epee(arme);
     }
 
 }

@@ -1,5 +1,7 @@
 package org.centrale.objet.WoE;
 
+import java.util.Iterator;
+
 /**
  *
  * @author Ulysse
@@ -30,7 +32,33 @@ public class TestWOE {
         WoE.robin.affiche();
         System.out.println("\n Combat !");
         WoE.grosBill.combattre(WoE.wolfie);
-        WoE.wolfie.combattre(WoE.grosBill);
-
+        WoE.wolfie.combattre(WoE.robin);
+        WoE.robin.setPtVie(30);
+        WoE.robin.affiche();
+        System.out.println("Positions objets : ");
+        for (Objet o : WoE.objets){
+        System.out.println(o.getPos());
+        }
+        WoE.robin.setPos(WoE.objets.get(1).getPos());
+        WoE.objets.get(1).recuperer(WoE.robin);
+        WoE.robin.setPos(WoE.objets.get(2).getPos());
+        WoE.objets.get(2).recuperer(WoE.robin);
+        WoE.robin.affiche();
+        System.out.println("Positions objets récupérés : ");
+        System.out.println(WoE.objets.get(1).getPos());
+        System.out.println(WoE.objets.get(2).getPos());
+        // Parcours de la liste pour supprimer les objets récupérés.
+        Iterator<Objet> listIt = WoE.objets.iterator();
+        
+        while(listIt.hasNext()){
+            Objet p = listIt.next();
+            if (p.getPos()==null){
+               listIt.remove();
+            }
+        }
+        System.out.println("Positions objets : ");
+        for (Objet o : WoE.objets){
+        System.out.println(o.getPos());
+        }
     }
 }
