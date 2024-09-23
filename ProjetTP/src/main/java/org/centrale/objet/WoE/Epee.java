@@ -11,24 +11,28 @@ public class Epee extends Objet {
     // TODO : Modifier bases aléatoires
     /**
      * Dégats d'attaque : entre 1 et 10
+     * Modificateur appliqué aux dgts d'atk du porteur : (dAttArme+5)/10
      */
     private final int degAttBaseMin = 1;
     private final int degAttBaseMax = 10;
     /**
      * Points de parade : entre 1 et 10
+     * Modificateur appliqué aux pts de parade du porteur : (ptParArme+5)/10
      */
     private final int ptParBaseMin = 1;
     private final int ptParBaseMax = 10;
     /**
-     * Pourcentage de chance de réussite d'une attaque : entre 1 et 99 (%)
+     * Pourcentage de chance de réussite d'une attaque : entre 1 et 100 (%)
+     * Calcul du pourcentage modifié par l'arme : pAtt += (100-pAtt)*pAttArme
      */
     private final int pageAttBaseMin = 1;
-    private final int pageAttBaseMax = 99;
+    private final int pageAttBaseMax = 100;
     /**
-     * Pourcentage de chance de réussite d'une parade : entre 1 et 99 (%)
+     * Pourcentage de chance de réussite d'une parade : entre 1 et 100 (%)
+     * Calcul du pourcentage modifié par l'arme : pPar += (100-pPar)*pParArme
      */
     private final int pageParBaseMin = 1;
-    private final int pageParBaseMax = 99;
+    private final int pageParBaseMax = 100;
 
     private int degAtt; // Dégats d'attaque
     private int ptPar; // Points de parade

@@ -87,7 +87,8 @@ public class Archer extends Personnage implements Combatif {
     public void combattre(Creature c) {
         String msg = new String(); //Message d'attaque
         int dgts = 0; // dégats
-        if (this.distance(c) <= 1) {
+        double d = this.distance(c);
+        if (d <= 1) {
             int pAtt = this.getDegAtt();
             Epee arme = this.getArme();
             
@@ -99,7 +100,7 @@ public class Archer extends Personnage implements Combatif {
                 int dAtt = this.getDegAtt();
                 
                 if (arme != null) {
-                    dAtt *= (5+arme.getDegAtt())/10.;
+                    dAtt *= (5+arme.getDegAtt())/10.; // Calcul des dégats avec arme
                 }
                 
                 int pPar = c.getPagePar();
@@ -116,7 +117,7 @@ public class Archer extends Personnage implements Combatif {
                     if (cIsPerso) {
                         Epee cArme = ((Personnage) c).getArme();
                         if (cArme != null) {
-                            dPar *= (5+cArme.getPtPar())/10.;
+                            dPar *= (5+cArme.getPtPar())/10.; 
                         }
                     }
                     dgts = Math.max(0, dAtt-dPar);
@@ -134,7 +135,7 @@ public class Archer extends Personnage implements Combatif {
             } else {
                 msg = "Le coup a raté.";
             }
-        } else {
+        } else if (d <= this.getDistAttMax()) {
             if (this.getNbFleches() == 0) {
                 msg = "Vous n'avez plus de flèches !";
             } else {
@@ -148,6 +149,8 @@ public class Archer extends Personnage implements Combatif {
                     msg = "La flèche a raté.";
                 }
             }
+        } else {
+            msg = "La cible est trop loin.";
         }
         System.out.println(msg);
     }
