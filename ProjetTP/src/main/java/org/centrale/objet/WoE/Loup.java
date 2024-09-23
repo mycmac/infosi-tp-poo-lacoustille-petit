@@ -43,15 +43,15 @@ public class Loup extends Monstre implements Combatif {
                     c.setPtVie(c.getPtVie() - this.getDegAtt());
                     System.out.println("Le loup attaque "+c+" qui ne parvient pas à parer !");
                 }
-                if (c.getPtVie() < 0) {
+                if (c.getPtVie() <= 0) {
                     c.setPtVie(0);
                     System.out.println(c + " est mort!");
                 }
             } else {
-                System.out.print("Grrr ! Le Loup s'éloigne.");
+                System.out.println("Grrr ! Le Loup s'éloigne.");
             }
         } else {
-            System.out.print("Un Loup grogne dans le lointain.");
+            System.out.println("Un Loup grogne dans le lointain.");
         }
     }
 
