@@ -45,6 +45,7 @@ public class Creature extends Entite {
     private int ptPar; // Points de parade
     private int pageAtt; // Porcentage d'attaque
     private int pagePar; // Pourcentage de parade
+    private int distAttMax; // Distance maximale d'attaque
     
     /**
      * Initialise une créature en copiant les attributs d'une Creature donnée
@@ -59,6 +60,7 @@ public class Creature extends Entite {
         this.ptPar = p.getPtPar();
         this.pageAtt = p.getPageAtt();
         this.pagePar = p.getPagePar();
+        this.distAttMax = p.getDistAttMax();
     }
 
     /**
@@ -71,7 +73,7 @@ public class Creature extends Entite {
      * @param paPar probabilité de parer une attaque
      * @param p position
      */
-    public Creature(int pV, int dA, int pPar, int paAtt, int paPar, Point2D p) {
+    public Creature(int pV, int dA, int pPar, int paAtt, int paPar, int dAtkMax, Point2D p) {
         super(p, true);
         this.ptVieMax = pV;
         this.ptVie = this.ptVieMax;
@@ -79,8 +81,9 @@ public class Creature extends Entite {
         this.ptPar = pPar;
         this.pageAtt = paAtt;
         this.pagePar = paPar;
+        this.distAttMax = dAtkMax;
     }
-
+    
     /**
      * Initialise une Créature aléatoire avec des attributs aléatoires, au sein
      * des limites fixées
@@ -93,6 +96,7 @@ public class Creature extends Entite {
         this.ptPar = getRandom(ptParBaseMax - ptParBaseMin + 1) + ptParBaseMin;
         this.pageAtt = getRandom(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
         this.pagePar = getRandom(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
+        this.distAttMax = 1;
     }
 
     /**
@@ -201,6 +205,14 @@ public class Creature extends Entite {
      */
     public void setPagePar(int pagePar) {
         this.pagePar = pagePar;
+    }
+
+    public int getDistAttMax() {
+        return distAttMax;
+    }
+
+    public void setDistAttMax(int distAttMax) {
+        this.distAttMax = distAttMax;
     }
     
     /**
