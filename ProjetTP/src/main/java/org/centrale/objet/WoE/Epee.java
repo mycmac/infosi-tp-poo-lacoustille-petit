@@ -39,7 +39,7 @@ public class Epee extends Objet {
     private int pageAtt; // Porcentage d'attaque
     private int pagePar; // Pourcentage de parade
     
-    public Epee(int dA, int pPar, int paAtt, int paPar){
+    public Epee(int dA, int pPar, int paAtt, int paPar, Point2D pos){
         degAtt = dA;
         ptPar = pPar;
         pageAtt = paAtt;
@@ -51,6 +51,7 @@ public class Epee extends Objet {
         ptPar = e.getPtPar();
         pageAtt = e.getPageAtt();
         pagePar = e.getPagePar();
+        this.setPos(e.getPos());
     }
     
     public Epee(){
@@ -127,6 +128,7 @@ public class Epee extends Objet {
     
     @Override
     public void recuperer(Personnage p) {
-        // TODO
+        p.setArme(this);
     }
+    
 }

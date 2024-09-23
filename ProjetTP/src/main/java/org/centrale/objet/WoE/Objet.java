@@ -11,9 +11,20 @@ package org.centrale.objet.WoE;
  */
 public abstract class Objet {
    
+    private Point2D pos;
+    
     public Objet() {
         
     }
     
     public abstract void recuperer(Personnage p);
+
+    public Point2D getPos() {
+        return pos;
+    }
+
+    public void setPos(Point2D pos) {
+        this.pos = pos;
+    }
+    
 }
