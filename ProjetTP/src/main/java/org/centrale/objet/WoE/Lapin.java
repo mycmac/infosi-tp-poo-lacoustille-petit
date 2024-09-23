@@ -18,7 +18,7 @@ public class Lapin extends Monstre {
      * @param p position
      */
     public Lapin(int pV, int dA, int pPar, int paAtt, int paPar, Point2D p) {
-        super(pV, dA, pPar, paAtt, paPar, p);
+        super(pV, dA, pPar, paAtt, paPar, 1, p);
     }
 
     /**

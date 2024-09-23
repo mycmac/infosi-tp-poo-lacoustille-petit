@@ -17,7 +17,7 @@ public class Loup extends Monstre implements Combatif {
      * @param p position
      */
     public Loup(int pV, int dA, int pPar, int paAtt, int paPar, Point2D p) {
-        super(pV, dA, pPar, paAtt, paPar, p);
+        super(pV, dA, pPar, paAtt, paPar, 1, p);
     }
 
     public Loup(Monstre p) {
