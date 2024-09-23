@@ -33,6 +33,11 @@ public class TestWOE {
         WoE.grosBill.setPtVie(100);
         WoE.wolfie.setDegAtt(10);
         WoE.grosBill.setPtPar(5);
+        WoE.grosBill.setDegAtt(10);
+        WoE.wolfie.setPtPar(4);
+        WoE.grosBill.setPageAtt(50);
+        WoE.wolfie.setPageAtt(50);
+        WoE.objets.get(3).recuperer(WoE.grosBill);
         System.out.println("Attaque du loup " + WoE.wolfie.getDegAtt());
         System.out.println("Défense de GB " + WoE.grosBill.getPtPar());
         WoE.grosBill.setNom("Gros Bill");
@@ -42,8 +47,13 @@ public class TestWOE {
         WoE.grosBill.deplace(1,0);
         for (int i = 1; i < 11; i++) {
             WoE.grosBill.affiche();
+            WoE.wolfie.affiche();
             WoE.wolfie.combattre(WoE.grosBill);
+            WoE.grosBill.combattre(WoE.wolfie);
         }
+        WoE.wolfie.combattre(WoE.grosBill);
+        WoE.grosBill.setPos(WoE.wolfie.getPos());
+        WoE.grosBill.deplace(1,0);
         WoE.grosBill.affiche();
         WoE.robin.setPtVie(30);
         WoE.robin.affiche();
