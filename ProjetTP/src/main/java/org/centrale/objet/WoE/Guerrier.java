@@ -6,7 +6,6 @@ package org.centrale.objet.WoE;
  */
 public class Guerrier extends Personnage implements Combatif {
 
-    private int rage;
 
     /**
      * Crée un guerrier identique au guerrier p
