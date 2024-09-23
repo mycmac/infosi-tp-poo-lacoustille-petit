@@ -28,8 +28,7 @@ public class PotionSoin extends Objet {
     }
 
     public PotionSoin() {
-        Random r = new Random();
-        ptVie = r.nextInt(ptVieBaseMax - ptVieBaseMin + 1) + ptVieBaseMin;
+        ptVie = getRandom(ptVieBaseMax - ptVieBaseMin + 1) + ptVieBaseMin;
     }
 
     public int getPtVie() {
