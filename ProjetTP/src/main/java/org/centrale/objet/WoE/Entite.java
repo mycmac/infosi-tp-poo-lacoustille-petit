@@ -1,8 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.centrale.objet.WoE;
+
 import java.util.Random;
 
 /**
@@ -10,17 +7,17 @@ import java.util.Random;
  * @author timot
  */
 public abstract class Entite {
-    
+
     protected Point2D pos;
     private boolean bloquant;
     private final Random r = new Random();
-    
-    public Entite(Point2D pt, boolean blq){
+
+    public Entite(Point2D pt, boolean blq) {
         pos = new Point2D(pt);
         bloquant = blq;
     }
-    
-    public Entite(Entite e){
+
+    public Entite(Entite e) {
         pos = new Point2D(e.getPos());
         bloquant = e.isBloquant();
     }
@@ -32,7 +29,7 @@ public abstract class Entite {
     public void setPos(Point2D pos) {
         this.pos = new Point2D(pos);
     }
-    
+
     public void setPos(int x, int y) {
         this.pos = new Point2D(x, y);
     }
@@ -44,7 +41,7 @@ public abstract class Entite {
     public void setBloquant(boolean bloquant) {
         this.bloquant = bloquant;
     }
-    
+
     /**
      * Renvoie un nombre aléatoire depuis le générateur aléatoire de la créature
      *

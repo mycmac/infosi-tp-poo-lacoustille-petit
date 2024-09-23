@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.centrale.objet.WoE;
 
 /**
@@ -9,7 +5,8 @@ package org.centrale.objet.WoE;
  *
  * @author Ulysse
  */
-public class Creature extends Entite{
+public class Creature extends Entite {
+
     /**
      * Limites hautes et basses (incluses) des stats de départ des créatures
      */
@@ -17,7 +14,9 @@ public class Creature extends Entite{
      * Points de vie de départ : entre 20 et 99
      */
     private final int ptVieBaseMin = 20;
-    /** @see #ptVieBaseMin */
+    /**
+     * @see #ptVieBaseMin
+     */
     private final int ptVieBaseMax = 99;
     /**
      * Dégats d'attaque : entre 1 et 10
@@ -39,7 +38,7 @@ public class Creature extends Entite{
      */
     private final int pageParBaseMin = 1;
     private final int pageParBaseMax = 99;
-    
+
     private int ptVie; // Points de vie
     private int ptVieMax; // Maximum de points de vie
     private int degAtt; // Dégats d'attaque
@@ -83,7 +82,8 @@ public class Creature extends Entite{
     }
 
     /**
-     * Initialise une Créature aléatoire avec des attributs aléatoires, au sein des limites fixées
+     * Initialise une Créature aléatoire avec des attributs aléatoires, au sein
+     * des limites fixées
      */
     public Creature() {
         super(new Point2D(), true);
@@ -94,25 +94,28 @@ public class Creature extends Entite{
         pageAtt = getRandom(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
         pagePar = getRandom(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
     }
-    
+
     /**
      * Récupère le nombre maximum de points de vie
+     *
      * @return Points de vie max
      */
     public int getPtVieMax() {
         return ptVieMax;
     }
-    
+
     /**
      * Redéfinit le nombre maximum de points de vie
+     *
      * @param ptVieMax
      */
     public void setPtVieMax(int ptVieMax) {
         this.ptVieMax = ptVieMax;
     }
-    
+
     /**
      * Récupère le nombre de points de vie actuel
+     *
      * @return Points de vie
      */
     public int getPtVie() {
@@ -130,6 +133,7 @@ public class Creature extends Entite{
 
     /**
      * Récupère les dégats d'attaque
+     *
      * @return Dégats d'attaque
      */
     public int getDegAtt() {
@@ -138,6 +142,7 @@ public class Creature extends Entite{
 
     /**
      * Redéfinit le nombre de dégats d'attaque
+     *
      * @param degAtt
      */
     public void setDegAtt(int degAtt) {
@@ -145,7 +150,8 @@ public class Creature extends Entite{
     }
 
     /**
-     *Récupère le nombre de points de parade
+     * Récupère le nombre de points de parade
+     *
      * @return Nombre de points de parade
      */
     public int getPtPar() {
@@ -154,6 +160,7 @@ public class Creature extends Entite{
 
     /**
      * Redéfinit le nombre de points de parade
+     *
      * @param ptPar
      */
     public void setPtPar(int ptPar) {
@@ -162,6 +169,7 @@ public class Creature extends Entite{
 
     /**
      * Récupère le taux de réussite d'attaque
+     *
      * @return Pourcentage de réussite d'attaque
      */
     public int getPageAtt() {
@@ -170,6 +178,7 @@ public class Creature extends Entite{
 
     /**
      * Redéfinit le pourcentage de réussite d'attaque
+     *
      * @param pageAtt
      */
     public void setPageAtt(int pageAtt) {
@@ -178,6 +187,7 @@ public class Creature extends Entite{
 
     /**
      * Récupère le taux de parade
+     *
      * @return pourcentage de parade
      */
     public int getPagePar() {
@@ -186,6 +196,7 @@ public class Creature extends Entite{
 
     /**
      * Redéfinit le pourcentage de réussite de parade
+     *
      * @param pagePar
      */
     public void setPagePar(int pagePar) {

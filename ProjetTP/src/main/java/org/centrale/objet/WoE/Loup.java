@@ -1,15 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.centrale.objet.WoE;
 
 /**
  *
  * @author hanss
  */
-public class Loup extends Monstre implements Combatif{
-    
+public class Loup extends Monstre implements Combatif {
+
     /**
      * Créé un loup
      *
@@ -30,15 +26,16 @@ public class Loup extends Monstre implements Combatif{
 
     public Loup() {
     }
-    
+
     /**
      * Combattre une créature désignée
-     * @param c 
+     *
+     * @param c
      */
     public void combattre(Creature c) {
         System.out.println("Grrr");
     }
-    
+
     @Override
     public void affiche() {
         super.affiche();

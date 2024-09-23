@@ -1,14 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.centrale.objet.WoE;
 
 /**
  *
  * @author Ulysse, timot
  */
-public class Guerrier extends Personnage implements Combatif{
+public class Guerrier extends Personnage implements Combatif {
 
     private int rage;
 

@@ -1,17 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.centrale.objet.WoE;
 
 /**
  * Creature de type monstre
+ *
  * @author Ulysse
  */
-public class Monstre extends Creature{
+public class Monstre extends Creature {
 
     /**
-     * Créé un monstre à partir de paramètres donnés (voir org.centrale.objet.WoE.Creature.Creature())
+     * Créé un monstre à partir de paramètres donnés (voir
+     * org.centrale.objet.WoE.Creature.Creature())
+     *
      * @param pV
      * @param dA
      * @param pPar
@@ -25,6 +24,7 @@ public class Monstre extends Creature{
 
     /**
      * Recopie le monstre p
+     *
      * @param p
      */
     public Monstre(Monstre p) {
@@ -37,17 +37,11 @@ public class Monstre extends Creature{
     public Monstre() {
         super();
     }
-    
+
     /**
-     * 
-     * Déplace aléatoirement le personnage selon l'une des 8 directions 
-     *    7   0   1
-     *     \  |  /
-     *      \ | /
-     *  6---- + ----2
-     *      / | \
-     *     /  |  \
-     *    5   4   3
+     *
+     * Déplace aléatoirement le personnage selon l'une des 8 directions 7 0 1 \
+     * | / \ | / 6---- + ----2 / | \ / | \ 5 4 3
      */
     @Override
     public void deplace() {
@@ -81,7 +75,7 @@ public class Monstre extends Creature{
         }
 
     }
-    
+
     /**
      *
      */

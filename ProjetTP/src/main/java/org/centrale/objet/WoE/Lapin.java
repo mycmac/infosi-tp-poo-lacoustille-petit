@@ -1,11 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.centrale.objet.WoE;
 
 /**
  * Un Lapin (Monstre)
+ *
  * @author Ulysse
  */
 public class Lapin extends Monstre {
@@ -34,7 +31,8 @@ public class Lapin extends Monstre {
     }
 
     /**
-     * Génère un lapin aléatoire (voir {@link org.centrale.objet.WoE.Creature#Creature()} )
+     * Génère un lapin aléatoire (voir
+     * {@link org.centrale.objet.WoE.Creature#Creature()} )
      */
     public Lapin() {
         super();

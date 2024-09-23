@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.centrale.objet.WoE;
 
 import java.util.Random;
@@ -19,6 +15,7 @@ public class World {
     Archer guillaumeT;
     Guerrier grosBill;
     Loup wolfie;
+
     /**
      * Monde avec personnages par défaut
      */
@@ -43,7 +40,7 @@ public class World {
         gens[3] = bunny;
         gens[4] = grosBill;
         gens[5] = wolfie;
-        for (int i = 0; i < 6;i++) {
+        for (int i = 0; i < 6; i++) {
             int x = 0;
             int y = 0;
             boolean pris = true;
@@ -51,7 +48,7 @@ public class World {
                 pris = false;
                 x = r.nextInt(15);
                 y = r.nextInt(15);
-                for (int j = 0; j < i;j++) {
+                for (int j = 0; j < i; j++) {
                     if (gens[j].getPos().getX() == x && gens[j].getPos().getY() == y) {
                         pris = true;
                     }
@@ -59,22 +56,22 @@ public class World {
             }
             gens[i].setPos(x, y);
             gens[i].affiche();
-            
+
         }
-        
+
     }
-    
+
     /**
      * Gestion d'un tour de jeu
      */
     public void tourDeJeu() {
-        
+
     }
-    
+
     /**
      * Affichage du monde
      */
-    public void afficheWorld(){
-        
+    public void afficheWorld() {
+
     }
 }

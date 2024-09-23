@@ -1,19 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.centrale.objet.WoE;
 
 /**
  * Classe archer : personnage disposant de flèches
+ *
  * @author Ulysse
  */
-public class Archer extends Personnage implements Combatif{
+public class Archer extends Personnage implements Combatif {
 
     private int nbFleches;
 
     /**
      * Initialise un archer
+     *
      * @param n nom
      * @param pV points de vie
      * @param dA distance d'attaque
@@ -31,6 +29,7 @@ public class Archer extends Personnage implements Combatif{
 
     /**
      * Crée un archer identique à l'archer a
+     *
      * @param a Archer à copier
      */
     public Archer(Archer a) {
@@ -45,9 +44,9 @@ public class Archer extends Personnage implements Combatif{
         super();
         nbFleches = getRandom(17);
     }
-    
+
     /**
-     * 
+     *
      * @return nombre de flèches
      */
     public int getNbFleches() {
@@ -56,6 +55,7 @@ public class Archer extends Personnage implements Combatif{
 
     /**
      * Modifie le nombre de flèches d'un archer
+     *
      * @param nbFleches nombre de fleches
      */
     public void setNbFleches(int nbFleches) {
@@ -68,15 +68,16 @@ public class Archer extends Personnage implements Combatif{
     @Override
     public void affiche() {
         super.affiche();
-        System.out.print(this.getNom()+" maîtrise l'archerie et a " + getNbFleches() + " flèches. ");
+        System.out.print(this.getNom() + " maîtrise l'archerie et a " + getNbFleches() + " flèches. ");
     }
-    
+
     /**
      * Combattre une créature désignée
-     * @param c 
+     *
+     * @param c
      */
     public void combattre(Creature c) {
         System.out.println("Piew");
     }
-    
+
 }

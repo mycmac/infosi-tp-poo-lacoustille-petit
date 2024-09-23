@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.centrale.objet.WoE;
 
 /**
@@ -20,9 +16,10 @@ public class Paysan extends Personnage {
 
     public Paysan() {
     }
+
     @Override
     public void affiche() {
         super.affiche();
-        System.out.print(this.getNom()+" travaille dans sa ferme.");
+        System.out.print(this.getNom() + " travaille dans sa ferme.");
     }
 }
