@@ -43,4 +43,9 @@ public class Lapin extends Monstre {
         super.affiche();
         System.out.print("Et non, c'est un lapin.");
     }
+    
+    @Override
+    public String toString() {
+        return "Lapin";
+    }
 }
