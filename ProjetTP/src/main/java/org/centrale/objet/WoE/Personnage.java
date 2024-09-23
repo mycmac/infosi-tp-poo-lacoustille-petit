@@ -8,7 +8,7 @@ public class Personnage extends Creature {
 
     private String nom;
     private final static String[] noms = new String[]{"Alphonse", "Clovis", "Aude", "Hubert", "Bertille", "Paulin", "Rainier", "Isaure", "Enguerrand", "Neven"};
-    private Objet arme;
+    private Epee arme;
 
     /**
      *
@@ -85,7 +85,7 @@ public class Personnage extends Creature {
         System.out.print("Il s'agit de " + nom + ". ");
     }
 
-    public Objet getArme() {
+    public Epee getArme() {
         return arme;
     }
 
