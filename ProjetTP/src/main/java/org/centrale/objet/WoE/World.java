@@ -1,5 +1,6 @@
 package org.centrale.objet.WoE;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -17,6 +18,7 @@ public class World {
     Guerrier grosBill;
     Loup wolfie;
     LinkedList<Objet> objets;
+
     /**
      * Monde avec personnages par défaut
      */
@@ -31,7 +33,7 @@ public class World {
         PotionSoin potion2 = new PotionSoin(8);
         PotionSoin potion3 = new PotionSoin(11);
         Epee epee = new Epee();
-        objets = new LinkedList<Objet>();
+        objets = new LinkedList<>();
         objets.add(potion);
         objets.add(potion2);
         objets.add(potion3);
@@ -83,5 +85,19 @@ public class World {
      */
     public void afficheWorld() {
 
+    }
+
+    /**
+     * Retire les objets utilisés
+     */
+    public void cleanObjets() {
+        Iterator<Objet> listIt = objets.iterator();
+
+        while (listIt.hasNext()) {
+            Objet p = listIt.next();
+            if (p.getPos() == null) {
+                listIt.remove();
+            }
+        }
     }
 }
