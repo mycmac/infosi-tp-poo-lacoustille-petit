@@ -11,13 +11,13 @@ public class Creature extends Entite {
      * Limites hautes et basses (incluses) des stats de départ des créatures
      */
     /**
-     * Points de vie de départ : entre 20 et 99
+     * Points de vie de départ : entre 20 et 100
      */
     private final int ptVieBaseMin = 20;
     /**
      * @see #ptVieBaseMin
      */
-    private final int ptVieBaseMax = 99;
+    private final int ptVieBaseMax = 100;
     /**
      * Dégats d'attaque : entre 1 et 10
      */
@@ -29,15 +29,15 @@ public class Creature extends Entite {
     private final int ptParBaseMin = 1;
     private final int ptParBaseMax = 10;
     /**
-     * Pourcentage de chance de réussite d'une attaque : entre 1 et 99 (%)
+     * Pourcentage de chance de réussite d'une attaque : entre 1 et 100 (%)
      */
     private final int pageAttBaseMin = 1;
-    private final int pageAttBaseMax = 99;
+    private final int pageAttBaseMax = 100;
     /**
-     * Pourcentage de chance de réussite d'une parade : entre 1 et 99 (%)
+     * Pourcentage de chance de réussite d'une parade : entre 1 et 100 (%)
      */
     private final int pageParBaseMin = 1;
-    private final int pageParBaseMax = 99;
+    private final int pageParBaseMax = 100;
 
     private int ptVie; // Points de vie
     private int ptVieMax; // Maximum de points de vie
