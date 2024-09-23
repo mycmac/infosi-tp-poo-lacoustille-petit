@@ -11,7 +11,7 @@ import java.util.Random;
  *
  * @author Ulysse
  */
-public class Creature {
+public class Creature extends Entite{
     /**
      * Limites hautes et basses (incluses) des stats de départ des créatures
      */
@@ -48,8 +48,6 @@ public class Creature {
     private int ptPar; // Points de parade
     private int pageAtt; // Porcentage d'attaque
     private int pagePar; // Pourcentage de parade
-    protected Point2D pos; // Position
-    private final Random r; // Seed aléatoire
 
     /**
      * Initialise une Creature à partir d'attributs spécifiés
@@ -62,14 +60,13 @@ public class Creature {
      * @param p position
      */
     public Creature(int pV, int dA, int pPar, int paAtt, int paPar, Point2D p) {
+        super(p, true);
         ptVieMax = pV;
         ptVie = ptVieMax;
         degAtt = dA;
         ptPar = pPar;
         pageAtt = paAtt;
         pagePar = paPar;
-        pos = new Point2D(p);
-        r = new Random();
     }
 
     /**
@@ -78,21 +75,20 @@ public class Creature {
      * @param p créature à copier
      */
     public Creature(Creature p) {
+        super(p.getPos(), true);
         ptVieMax = p.getPtVie();
         ptVie = ptVieMax;
         degAtt = p.getDegAtt();
         ptPar = p.getPtPar();
         pageAtt = p.getPageAtt();
         pagePar = p.getPagePar();
-        pos = new Point2D(p.getPos());
-        r = new Random();
     }
 
     /**
      * Initialise une Créature aléatoire avec des attributs aléatoires, au sein des limites fixées
      */
     public Creature() {
-        r = new Random();
+        super(new Point2D(), true);
         ptVieMax = r.nextInt(ptVieBaseMax - ptVieBaseMin + 1) + ptVieBaseMin;
         ptVie = ptVieMax;
         degAtt = r.nextInt(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
@@ -196,31 +192,6 @@ public class Creature {
      */
     public void setPagePar(int pagePar) {
         this.pagePar = pagePar;
-    }
-
-    /**
-     * Récupère la position
-     * @return position
-     */
-    public Point2D getPos() {
-        return pos;
-    }
-
-    /**
-     * Redéfinit la position avec un Point2D donné
-     * @param pos Point2D
-     */
-    public void setPos(Point2D pos) {
-        this.pos = new Point2D(pos);
-    }
-
-    /**
-     * Redéfinit la position avec des coordonnées données
-     * @param x coordonnée x
-     * @param y coordonnée y
-     */
-    public void setPos(int x, int y) {
-        this.pos = new Point2D(x, y);
     }
 
     /**
