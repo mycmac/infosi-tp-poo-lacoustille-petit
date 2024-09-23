@@ -7,5 +7,9 @@ package org.centrale.objet.WoE;
  */
 public interface Combatif {
 
+    /**
+     * Attaque une autre créature
+     * @param c Créature à attaquer
+     */
     public void combattre(Creature c);
 }
