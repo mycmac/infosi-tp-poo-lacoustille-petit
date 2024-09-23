@@ -100,4 +100,12 @@ public abstract class Entite {
     public int getRandom(int n) {
         return r.nextInt(n);
     }
+    
+    public double distance(Point2D pt) {
+        return this.pos.distance(pt);
+    }
+    
+    public double distance(Entite e) {
+        return this.pos.distance(e.pos);
+    }
 }

@@ -263,7 +263,12 @@ public class Creature extends Entite {
         System.out.print("\nCette créature a " + ptVie + " points de vie et se situe en " + pos + ". ");
     }
     
+    /**
+     * Effectue le lancé d'un dé de 100 pour le comparer à un pourcentage de réussite
+     * @param pageReussite Pourcentage de réussite
+     * @return Lancé réussi ou non
+     */
     public boolean lanceDe(int pageReussite){
-        return (this.getRandom(100)+1)<=pageReussite;
+        return (this.getRandom(100)+1) <= pageReussite;
     }
 }
