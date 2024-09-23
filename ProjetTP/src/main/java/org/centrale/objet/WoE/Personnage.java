@@ -12,9 +12,9 @@ public class Personnage extends Creature {
 
     private String nom;
     private int distAttMax;
-    private static String[] noms = new String[] {"Alphonse", "Clovis", "Aude", "Hubert", "Bertille", "Paulin", "Rainier", "Isaure", "Enguerrand", "Neven"};
+    private final static String[] noms = new String[]{"Alphonse", "Clovis", "Aude", "Hubert", "Bertille", "Paulin", "Rainier", "Isaure", "Enguerrand", "Neven"};
     private Objet arme;
-    
+
     /**
      *
      * @param n
@@ -50,7 +50,7 @@ public class Personnage extends Creature {
         nom = noms[getRandom(9)];
         distAttMax = getRandom(8);
     }
-    
+
     /**
      *
      * @return
@@ -77,6 +77,7 @@ public class Personnage extends Creature {
 
     /**
      * Définit la distance d'attaque maximale
+     *
      * @param distAttMax
      */
     public void setDistAttMax(int distAttMax) {
@@ -84,8 +85,9 @@ public class Personnage extends Creature {
     }
 
     /**
-     * 
+     *
      * Déplace le personnage de manière déterminée.
+     *
      * @param dx
      * @param dy
      */
@@ -94,15 +96,9 @@ public class Personnage extends Creature {
     }
 
     /**
-     * 
-     * Déplace aléatoirement le personnage selon l'une des 8 directions 
-     *    7   0   1
-     *     \  |  /
-     *      \ | /
-     *  6---- + ----2
-     *      / | \
-     *     /  |  \
-     *    5   4   3
+     *
+     * Déplace aléatoirement le personnage selon l'une des 8 directions 7 0 1 \
+     * | / \ | / 6---- + ----2 / | \ / | \ 5 4 3
      */
     @Override
     public void deplace() {
@@ -143,7 +139,7 @@ public class Personnage extends Creature {
     @Override
     public void affiche() {
         super.affiche();
-        System.out.print("Il s'agit de "+nom+". ");
+        System.out.print("Il s'agit de " + nom + ". ");
     }
 
     public Objet getArme() {
@@ -153,5 +149,5 @@ public class Personnage extends Creature {
     public void setArme(Objet arme) {
         this.arme = arme;
     }
-    
+
 }
