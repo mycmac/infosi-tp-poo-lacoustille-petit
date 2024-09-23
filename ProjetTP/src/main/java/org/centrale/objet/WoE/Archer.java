@@ -85,8 +85,8 @@ public class Archer extends Personnage implements Combatif {
      */
     @Override
     public void combattre(Creature c) {
-        String msg = new String();
-        int dgts = 0;
+        String msg = new String(); //Message d'attaque
+        int dgts = 0; // dégats
         if (this.distance(c) <= 1) {
             int pAtt = this.getDegAtt();
             Epee arme = this.getArme();
@@ -149,5 +149,6 @@ public class Archer extends Personnage implements Combatif {
                 }
             }
         }
+        System.out.println(msg);
     }
 }
