@@ -33,7 +33,17 @@ public class Loup extends Monstre implements Combatif {
      * @param c
      */
     public void combattre(Creature c) {
-        System.out.println("Grrr");
+        if (distance(c)<=1){
+        if (lanceDe(this.getPageAtt())){
+            if (c.lanceDe(c.getPagePar())){
+                int pertes = Math.max(0, this.getDegAtt()-c.getPtPar());
+                c.setPtVie(c.getPtVie()-pertes);}
+            else{c.setPtVie(c.getPtVie()-this.getDegAtt());}
+            if (c.getPtVie()<0){c.setPtVie(0);}
+        }else{
+        System.out.print("Grrr ! Le Loup s'éloigne.");
+        }
+        }
     }
 
     @Override
