@@ -9,7 +9,6 @@ import java.util.Random;
 public class Epee extends Objet {
 
     // TODO : Modifier bases aléatoires
-    // TODO : Méthode recuperer
     /**
      * Dégats d'attaque : entre 1 et 10
      */
@@ -36,6 +35,10 @@ public class Epee extends Objet {
     private int pageAtt; // Porcentage d'attaque
     private int pagePar; // Pourcentage de parade
     
+    /**
+     * Copie une épée e
+     * @param e
+     */
     public Epee(Epee e) {
         super(e);
         this.degAtt = e.getDegAtt();
@@ -44,6 +47,14 @@ public class Epee extends Objet {
         this.pagePar = e.getPagePar();
     }
 
+    /**
+     * Initialise une épée avec les paramètres suivants :
+     * @param dA dégats d'attaque supplémentaires
+     * @param pPar points d'attaque supplémentaires
+     * @param paAtt pourcentage d'attaque supplémentaires
+     * @param paPar pourcentage de parade supplémentaires
+     * @param pos position de l'épée
+     */
     public Epee(int dA, int pPar, int paAtt, int paPar, Point2D pos) {
         super(pos);
         this.degAtt = dA;
@@ -52,6 +63,14 @@ public class Epee extends Objet {
         this.pagePar = paPar;
     }
     
+    /**
+     * Créé une épée donnée à un endroit aléatoire
+     * @param dA
+     * @param pPar
+     * @param paAtt
+     * @param paPar
+     * @see #Epee(int, int, int, int, org.centrale.objet.WoE.Point2D)
+     */
     public Epee(int dA, int pPar, int paAtt, int paPar) {
         super();
         this.degAtt = dA;
@@ -60,6 +79,11 @@ public class Epee extends Objet {
         this.pagePar = paPar;
     }
     
+    /**
+     * Créé une épée aléatoire à un endroit donné
+     * @param pos position de l'épée
+     * @see #Epee(int, int, int, int, org.centrale.objet.WoE.Point2D) 
+     */
     public Epee(Point2D pos) {
         super(pos);
         this.degAtt = getRandom(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
@@ -68,6 +92,10 @@ public class Epee extends Objet {
         this.pagePar = getRandom(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
     }
 
+    /**
+     * Créé une épée entièrement aléatoire
+     * @see #Epee(int, int, int, int, org.centrale.objet.WoE.Point2D)
+     */
     public Epee() {
         super();
         this.degAtt = getRandom(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
