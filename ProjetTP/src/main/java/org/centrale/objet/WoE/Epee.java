@@ -38,43 +38,42 @@ public class Epee extends Objet {
     
     public Epee(Epee e) {
         super(e);
-        degAtt = e.getDegAtt();
-        ptPar = e.getPtPar();
-        pageAtt = e.getPageAtt();
-        pagePar = e.getPagePar();
-        this.setPos(e.getPos());
+        this.degAtt = e.getDegAtt();
+        this.ptPar = e.getPtPar();
+        this.pageAtt = e.getPageAtt();
+        this.pagePar = e.getPagePar();
     }
 
     public Epee(int dA, int pPar, int paAtt, int paPar, Point2D pos) {
         super(pos);
-        degAtt = dA;
-        ptPar = pPar;
-        pageAtt = paAtt;
-        pagePar = paPar;
+        this.degAtt = dA;
+        this.ptPar = pPar;
+        this.pageAtt = paAtt;
+        this.pagePar = paPar;
     }
     
     public Epee(int dA, int pPar, int paAtt, int paPar) {
         super();
-        degAtt = dA;
-        ptPar = pPar;
-        pageAtt = paAtt;
-        pagePar = paPar;
+        this.degAtt = dA;
+        this.ptPar = pPar;
+        this.pageAtt = paAtt;
+        this.pagePar = paPar;
     }
     
     public Epee(Point2D pos) {
         super(pos);
-        degAtt = getRandom(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
-        ptPar = getRandom(ptParBaseMax - ptParBaseMin + 1) + ptParBaseMin;
-        pageAtt = getRandom(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
-        pagePar = getRandom(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
+        this.degAtt = getRandom(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
+        this.ptPar = getRandom(ptParBaseMax - ptParBaseMin + 1) + ptParBaseMin;
+        this.pageAtt = getRandom(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
+        this.pagePar = getRandom(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
     }
 
     public Epee() {
         super();
-        degAtt = getRandom(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
-        ptPar = getRandom(ptParBaseMax - ptParBaseMin + 1) + ptParBaseMin;
-        pageAtt = getRandom(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
-        pagePar = getRandom(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
+        this.degAtt = getRandom(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
+        this.ptPar = getRandom(ptParBaseMax - ptParBaseMin + 1) + ptParBaseMin;
+        this.pageAtt = getRandom(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
+        this.pagePar = getRandom(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
     }
 
     /**
@@ -83,7 +82,7 @@ public class Epee extends Objet {
      * @return Dégats d'attaque
      */
     public int getDegAtt() {
-        return degAtt;
+        return this.degAtt;
     }
 
     /**
@@ -101,7 +100,7 @@ public class Epee extends Objet {
      * @return Nombre de points de parade
      */
     public int getPtPar() {
-        return ptPar;
+        return this.ptPar;
     }
 
     /**
@@ -119,7 +118,7 @@ public class Epee extends Objet {
      * @return Pourcentage de réussite d'attaque
      */
     public int getPageAtt() {
-        return pageAtt;
+        return this.pageAtt;
     }
 
     /**
@@ -137,7 +136,7 @@ public class Epee extends Objet {
      * @return pourcentage de parade
      */
     public int getPagePar() {
-        return pagePar;
+        return this.pagePar;
     }
 
     /**

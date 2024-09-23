@@ -24,7 +24,7 @@ public class Archer extends Personnage implements Combatif {
      */
     public Archer(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, Point2D p, int nbFl) {
         super(n, pV, dA, pPar, paAtt, paPar, dMax, p);
-        nbFleches = nbFl;
+        this.nbFleches = nbFl;
     }
 
     /**
@@ -34,7 +34,7 @@ public class Archer extends Personnage implements Combatif {
      */
     public Archer(Archer a) {
         super(a);
-        nbFleches = a.getNbFleches();
+        this.nbFleches = a.getNbFleches();
     }
 
     /**
@@ -42,7 +42,7 @@ public class Archer extends Personnage implements Combatif {
      */
     public Archer() {
         super();
-        nbFleches = getRandom(17);
+        this.nbFleches = getRandom(17);
     }
 
     /**
@@ -50,7 +50,7 @@ public class Archer extends Personnage implements Combatif {
      * @return nombre de flèches
      */
     public int getNbFleches() {
-        return nbFleches;
+        return this.nbFleches;
     }
 
     /**

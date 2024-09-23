@@ -45,6 +45,21 @@ public class Creature extends Entite {
     private int ptPar; // Points de parade
     private int pageAtt; // Porcentage d'attaque
     private int pagePar; // Pourcentage de parade
+    
+    /**
+     * Initialise une créature en copiant les attributs d'une Creature donnée
+     *
+     * @param p créature à copier
+     */
+    public Creature(Creature p) {
+        super(p.pos, true);
+        this.ptVieMax = p.getPtVie();
+        this.ptVie = this.ptVieMax;
+        this.degAtt = p.getDegAtt();
+        this.ptPar = p.getPtPar();
+        this.pageAtt = p.getPageAtt();
+        this.pagePar = p.getPagePar();
+    }
 
     /**
      * Initialise une Creature à partir d'attributs spécifiés
@@ -58,27 +73,12 @@ public class Creature extends Entite {
      */
     public Creature(int pV, int dA, int pPar, int paAtt, int paPar, Point2D p) {
         super(p, true);
-        ptVieMax = pV;
-        ptVie = ptVieMax;
-        degAtt = dA;
-        ptPar = pPar;
-        pageAtt = paAtt;
-        pagePar = paPar;
-    }
-
-    /**
-     * Initialise une créature en copiant les attributs d'une Creature donnée
-     *
-     * @param p créature à copier
-     */
-    public Creature(Creature p) {
-        super(p.getPos(), true);
-        ptVieMax = p.getPtVie();
-        ptVie = ptVieMax;
-        degAtt = p.getDegAtt();
-        ptPar = p.getPtPar();
-        pageAtt = p.getPageAtt();
-        pagePar = p.getPagePar();
+        this.ptVieMax = pV;
+        this.ptVie = this.ptVieMax;
+        this.degAtt = dA;
+        this.ptPar = pPar;
+        this.pageAtt = paAtt;
+        this.pagePar = paPar;
     }
 
     /**
@@ -87,12 +87,12 @@ public class Creature extends Entite {
      */
     public Creature() {
         super(new Point2D(), true);
-        ptVieMax = getRandom(ptVieBaseMax - ptVieBaseMin + 1) + ptVieBaseMin;
-        ptVie = ptVieMax;
-        degAtt = getRandom(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
-        ptPar = getRandom(ptParBaseMax - ptParBaseMin + 1) + ptParBaseMin;
-        pageAtt = getRandom(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
-        pagePar = getRandom(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
+        this.ptVieMax = getRandom(ptVieBaseMax - ptVieBaseMin + 1) + ptVieBaseMin;
+        this.ptVie = this.ptVieMax;
+        this.degAtt = getRandom(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
+        this.ptPar = getRandom(ptParBaseMax - ptParBaseMin + 1) + ptParBaseMin;
+        this.pageAtt = getRandom(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
+        this.pagePar = getRandom(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
     }
 
     /**
@@ -101,7 +101,7 @@ public class Creature extends Entite {
      * @return Points de vie max
      */
     public int getPtVieMax() {
-        return ptVieMax;
+        return this.ptVieMax;
     }
 
     /**
@@ -119,7 +119,7 @@ public class Creature extends Entite {
      * @return Points de vie
      */
     public int getPtVie() {
-        return ptVie;
+        return this.ptVie;
     }
 
     /**
@@ -137,7 +137,7 @@ public class Creature extends Entite {
      * @return Dégats d'attaque
      */
     public int getDegAtt() {
-        return degAtt;
+        return this.degAtt;
     }
 
     /**
@@ -155,7 +155,7 @@ public class Creature extends Entite {
      * @return Nombre de points de parade
      */
     public int getPtPar() {
-        return ptPar;
+        return this.ptPar;
     }
 
     /**
@@ -173,7 +173,7 @@ public class Creature extends Entite {
      * @return Pourcentage de réussite d'attaque
      */
     public int getPageAtt() {
-        return pageAtt;
+        return this.pageAtt;
     }
 
     /**
@@ -191,7 +191,7 @@ public class Creature extends Entite {
      * @return pourcentage de parade
      */
     public int getPagePar() {
-        return pagePar;
+        return this.pagePar;
     }
 
     /**
@@ -207,7 +207,7 @@ public class Creature extends Entite {
      * Déplace aléatoirement sur une case adjacente
      */
     public void deplace() {
-        pos.translate(getRandom(2) - 1, getRandom(2) - 1);
+        this.pos.translate(getRandom(2) - 1, getRandom(2) - 1);
     }
 
     /**

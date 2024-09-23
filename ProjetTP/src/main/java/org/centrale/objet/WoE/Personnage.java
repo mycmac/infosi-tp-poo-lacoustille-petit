@@ -24,8 +24,8 @@ public class Personnage extends Creature {
      */
     public Personnage(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, Point2D pt) {
         super(pV, dA, pPar, paAtt, paPar, pt);
-        nom = n;
-        distAttMax = dMax;
+        this.nom = n;
+        this.distAttMax = dMax;
     }
 
     /**
@@ -34,8 +34,8 @@ public class Personnage extends Creature {
      */
     public Personnage(Personnage p) {
         super(p);
-        nom = p.getNom();
-        distAttMax = p.getDistAttMax();
+        this.nom = p.getNom();
+        this.distAttMax = p.getDistAttMax();
     }
 
     /**
@@ -43,8 +43,8 @@ public class Personnage extends Creature {
      */
     public Personnage() {
         super();
-        nom = noms[getRandom(9)];
-        distAttMax = getRandom(8);
+        this.nom = noms[getRandom(9)];
+        this.distAttMax = getRandom(8);
     }
 
     /**
@@ -52,7 +52,7 @@ public class Personnage extends Creature {
      * @return
      */
     public String getNom() {
-        return nom;
+        return this.nom;
     }
 
     /**
@@ -68,7 +68,7 @@ public class Personnage extends Creature {
      * @return distance maximale d'attaque
      */
     public int getDistAttMax() {
-        return distAttMax;
+        return this.distAttMax;
     }
 
     /**
