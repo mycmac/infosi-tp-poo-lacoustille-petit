@@ -16,13 +16,4 @@ public abstract class Objet extends Entite{
     }
     
     public abstract void recuperer(Personnage p);
-
-    public Point2D getPos() {
-        return pos;
-    }
-
-    public void setPos(Point2D pos) {
-        this.pos = pos;
-    }
-    
 }

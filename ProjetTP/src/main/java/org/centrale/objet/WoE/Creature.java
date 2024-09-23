@@ -4,8 +4,6 @@
  */
 package org.centrale.objet.WoE;
 
-import java.util.Random;
-
 /**
  * Super-classe générique pour les créatures diverses de WoE
  *
@@ -89,12 +87,12 @@ public class Creature extends Entite{
      */
     public Creature() {
         super(new Point2D(), true);
-        ptVieMax = r.nextInt(ptVieBaseMax - ptVieBaseMin + 1) + ptVieBaseMin;
+        ptVieMax = getRandom(ptVieBaseMax - ptVieBaseMin + 1) + ptVieBaseMin;
         ptVie = ptVieMax;
-        degAtt = r.nextInt(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
-        ptPar = r.nextInt(ptParBaseMax - ptParBaseMin + 1) + ptParBaseMin;
-        pageAtt = r.nextInt(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
-        pagePar = r.nextInt(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
+        degAtt = getRandom(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
+        ptPar = getRandom(ptParBaseMax - ptParBaseMin + 1) + ptParBaseMin;
+        pageAtt = getRandom(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
+        pagePar = getRandom(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
     }
     
     /**
@@ -198,7 +196,7 @@ public class Creature extends Entite{
      * Déplace aléatoirement sur une case adjacente
      */
     public void deplace() {
-        pos.translate(r.nextInt(2) - 1, r.nextInt(2) - 1);
+        pos.translate(getRandom(2) - 1, getRandom(2) - 1);
     }
 
     /**
@@ -206,15 +204,5 @@ public class Creature extends Entite{
      */
     public void affiche() {
         System.out.print("\nCette créature a " + ptVie + " points de vie et se situe en " + pos + ". ");
-    }
-
-    /**
-     * Renvoie un nombre aléatoire depuis le générateur aléatoire de la créature
-     *
-     * @param n Borne supérieure (non incluse)
-     * @return Nombre aléatoire entre 0 et n
-     */
-    public int getRandom(int n) {
-        return r.nextInt(n);
     }
 }

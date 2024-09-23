@@ -13,7 +13,7 @@ public abstract class Entite {
     
     protected Point2D pos;
     private boolean bloquant;
-    protected final Random r = new Random();
+    private final Random r = new Random();
     
     public Entite(Point2D pt, boolean blq){
         pos = new Point2D(pt);
@@ -43,5 +43,15 @@ public abstract class Entite {
 
     public void setBloquant(boolean bloquant) {
         this.bloquant = bloquant;
+    }
+    
+    /**
+     * Renvoie un nombre aléatoire depuis le générateur aléatoire de la créature
+     *
+     * @param n Borne supérieure (non incluse)
+     * @return Nombre aléatoire entre 0 et n
+     */
+    public int getRandom(int n) {
+        return r.nextInt(n);
     }
 }
