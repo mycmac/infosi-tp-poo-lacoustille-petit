@@ -9,10 +9,10 @@ package org.centrale.objet.WoE;
  * 
  * @author timot
  */
-public abstract class Objet {
+public abstract class Objet extends Entite{
    
-    public Objet() {
-        
+    public Objet(){
+        super(new Point2D(), false);
     }
     
     public abstract void recuperer(Personnage p);
