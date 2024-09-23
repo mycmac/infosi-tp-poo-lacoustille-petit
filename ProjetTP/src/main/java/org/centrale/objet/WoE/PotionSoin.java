@@ -20,14 +20,17 @@ public class PotionSoin extends Objet {
     private int ptVie;
 
     public PotionSoin(int pv) {
+        super();
         ptVie = pv;
     }
 
     public PotionSoin(PotionSoin p) {
+        super();
         ptVie = p.getPtVie();
     }
 
     public PotionSoin() {
+        super();
         ptVie = getRandom(ptVieBaseMax - ptVieBaseMin + 1) + ptVieBaseMin;
     }
 
