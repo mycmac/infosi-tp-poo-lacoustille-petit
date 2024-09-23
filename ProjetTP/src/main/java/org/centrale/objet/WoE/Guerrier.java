@@ -6,7 +6,7 @@ package org.centrale.objet.WoE;
  */
 public class Guerrier extends Personnage implements Combatif {
 
-
+    
     /**
      * Crée un guerrier identique au guerrier p
      *
@@ -43,7 +43,8 @@ public class Guerrier extends Personnage implements Combatif {
      * Combattre une créature désignée
      *
      * @param c
-     */
+ */
+    @Override
     public void combattre(Creature c) {
         System.out.println("Aiyah");
     }
