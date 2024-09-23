@@ -238,7 +238,7 @@ public class Creature {
     }
 
     /**
-     * Renvoie un nombre aléatoire depuis le générateur aléatoire du personnage
+     * Renvoie un nombre aléatoire depuis le générateur aléatoire de la créature
      *
      * @param n Borne supérieure (non incluse)
      * @return Nombre aléatoire entre 0 et n
