@@ -13,7 +13,8 @@ public class Personnage extends Creature {
     private String nom;
     private int distAttMax;
     private static String[] noms = new String[] {"Alphonse", "Clovis", "Aude", "Hubert", "Bertille", "Paulin", "Rainier", "Isaure", "Enguerrand", "Neven"};
-
+    private Objet arme;
+    
     /**
      *
      * @param n
@@ -144,4 +145,13 @@ public class Personnage extends Creature {
         super.affiche();
         System.out.print("Il s'agit de "+nom+". ");
     }
+
+    public Objet getArme() {
+        return arme;
+    }
+
+    public void setArme(Objet arme) {
+        this.arme = arme;
+    }
+    
 }
