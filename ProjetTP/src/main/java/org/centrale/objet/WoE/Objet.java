@@ -9,6 +9,11 @@ package org.centrale.objet.WoE;
  * 
  * @author timot
  */
-public class Objet {
+public abstract class Objet {
+   
+    public Objet() {
+        
+    }
     
+    public abstract void recuperer(Personnage p);
 }
