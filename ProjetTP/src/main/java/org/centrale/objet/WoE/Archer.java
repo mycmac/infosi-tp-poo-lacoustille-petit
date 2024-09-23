@@ -71,6 +71,9 @@ public class Archer extends Personnage implements Combatif {
         System.out.print(this.getNom() + " maîtrise l'archerie et a " + getNbFleches() + " flèches.\n");
     }
     
+    /**
+     * Utilise une flèche
+     */
     public void utilFleche(){
     setNbFleches(getNbFleches() - 1);
     }
