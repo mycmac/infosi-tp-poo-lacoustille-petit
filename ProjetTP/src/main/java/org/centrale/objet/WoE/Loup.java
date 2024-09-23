@@ -51,4 +51,9 @@ public class Loup extends Monstre implements Combatif {
         super.affiche();
         System.out.print("C'est un loup terrifiant !");
     }
+    
+    @Override
+    public String toString() {
+        return "Loup";
+    }
 }
