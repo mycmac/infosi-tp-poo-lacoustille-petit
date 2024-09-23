@@ -43,7 +43,7 @@ public class Loup extends Monstre implements Combatif {
         }else{
         System.out.print("Grrr ! Le Loup s'éloigne.");
         }
-        }
+        }else{System.out.print("Un Loup grogne dans le lointain.");}
     }
 
     @Override
