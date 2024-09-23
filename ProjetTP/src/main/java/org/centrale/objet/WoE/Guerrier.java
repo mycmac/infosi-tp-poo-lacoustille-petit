@@ -48,5 +48,12 @@ public class Guerrier extends Personnage implements Combatif {
     public void combattre(Creature c) {
         System.out.println("Aiyah");
     }
+
+    @Override
+    public void affiche() {
+        super.affiche();
+        System.out.print("\n");
+    }
+    
     
 }

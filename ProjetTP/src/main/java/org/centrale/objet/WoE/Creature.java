@@ -260,7 +260,7 @@ public class Creature extends Entite {
      * Affiche les détails de base de la créature (points de vie et position)
      */
     public void affiche() {
-        System.out.print("\nCette créature a " + ptVie + " points de vie et se situe en " + pos + ". ");
+        System.out.print("Cette créature a " + ptVie + " points de vie et se situe en " + pos + ". ");
     }
     
     /**

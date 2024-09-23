@@ -20,6 +20,6 @@ public class Paysan extends Personnage {
     @Override
     public void affiche() {
         super.affiche();
-        System.out.print(this.getNom() + " travaille dans sa ferme.");
+        System.out.print(this.getNom() + " travaille dans sa ferme.\n");
     }
 }
