@@ -129,6 +129,7 @@ public class Epee extends Objet {
     @Override
     public void recuperer(Personnage p) {
         p.setArme(this);
+        p.setPos(null);
     }
     
 }
