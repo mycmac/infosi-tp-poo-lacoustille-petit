@@ -31,8 +31,8 @@ public class Personnage extends Creature {
      * @param dMax
      * @param pt
      */
-    public Personnage(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, int dAtkMax, Point2D pt) {
-        super(pV, dA, pPar, paAtt, paPar, dAtkMax, pt);
+    public Personnage(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, Point2D pt) {
+        super(pV, dA, pPar, paAtt, paPar, dMax, pt);
         this.nom = n;
     }
     
