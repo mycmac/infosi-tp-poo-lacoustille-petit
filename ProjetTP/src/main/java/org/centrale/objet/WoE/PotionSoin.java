@@ -17,16 +17,26 @@ public class PotionSoin extends Objet {
      */
     private final int ptVieBaseMax = 99;
 
-    private int ptVie;
+    private final int ptVie;
+    
+    public PotionSoin(PotionSoin p) {
+        super(p);
+        ptVie = p.getPtVie();
+    }
 
+    public PotionSoin(int pv, Point2D pos) {
+        super(pos);
+        ptVie = pv;
+    }
+    
+    public PotionSoin(Point2D pos) {
+        super(pos);
+        ptVie = getRandom(ptVieBaseMax - ptVieBaseMin + 1) + ptVieBaseMin;
+    }
+    
     public PotionSoin(int pv) {
         super();
         ptVie = pv;
-    }
-
-    public PotionSoin(PotionSoin p) {
-        super();
-        ptVie = p.getPtVie();
     }
 
     public PotionSoin() {

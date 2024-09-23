@@ -44,12 +44,12 @@ public class World {
     public void creeMondeAlea() {
         Random r = new Random();
         Creature[] gens = new Creature[6];
-        gens[0] = robin;
-        gens[1] = peon;
-        gens[2] = bugs;
-        gens[3] = bunny;
-        gens[4] = grosBill;
-        gens[5] = wolfie;
+        gens[0] = this.robin;
+        gens[1] = this.peon;
+        gens[2] = this.bugs;
+        gens[3] = this.bunny;
+        gens[4] = this.grosBill;
+        gens[5] = this.wolfie;
         for (int i = 0; i < 6; i++) {
             int x = 0;
             int y = 0;

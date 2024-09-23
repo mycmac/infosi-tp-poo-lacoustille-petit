@@ -7,10 +7,19 @@ package org.centrale.objet.WoE;
 public class Personnage extends Creature {
 
     private String nom;
-    private int distAttMax;
     private final static String[] noms = new String[]{"Alphonse", "Clovis", "Aude", "Hubert", "Bertille", "Paulin", "Rainier", "Isaure", "Enguerrand", "Neven"};
     private Objet arme;
 
+    /**
+     *
+     * @param p
+     */
+    public Personnage(Personnage p) {
+        super(p);
+        this.nom = p.getNom();
+        this.arme = p.getArme();
+    }
+    
     /**
      *
      * @param n
@@ -23,28 +32,21 @@ public class Personnage extends Creature {
      * @param pt
      */
     public Personnage(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, Point2D pt) {
-        super(pV, dA, pPar, paAtt, paPar, pt);
-        nom = n;
-        distAttMax = dMax;
+        super(pV, dA, pPar, paAtt, paPar, dMax, pt);
+        this.nom = n;
     }
-
-    /**
-     *
-     * @param p
-     */
-    public Personnage(Personnage p) {
-        super(p);
-        nom = p.getNom();
-        distAttMax = p.getDistAttMax();
+    
+    public Personnage(String n) {
+        super();
+        this.nom = n;
     }
-
+    
     /**
      * Initialise un personnage aléatoire
      */
     public Personnage() {
         super();
-        nom = noms[getRandom(9)];
-        distAttMax = getRandom(8);
+        this.nom = noms[getRandom(9)];
     }
 
     /**
@@ -52,7 +54,7 @@ public class Personnage extends Creature {
      * @return
      */
     public String getNom() {
-        return nom;
+        return this.nom;
     }
 
     /**
@@ -65,23 +67,6 @@ public class Personnage extends Creature {
 
     /**
      *
-     * @return distance maximale d'attaque
-     */
-    public int getDistAttMax() {
-        return distAttMax;
-    }
-
-    /**
-     * Définit la distance d'attaque maximale
-     *
-     * @param distAttMax
-     */
-    public void setDistAttMax(int distAttMax) {
-        this.distAttMax = distAttMax;
-    }
-
-    /**
-     *
      * Déplace le personnage de manière déterminée.
      *
      * @param dx
@@ -89,44 +74,6 @@ public class Personnage extends Creature {
      */
     public void deplace(int dx, int dy) {
         this.pos.translate(dx, dy);
-    }
-
-    /**
-     *
-     * Déplace aléatoirement le personnage selon l'une des 8 directions 7 0 1 \
-     * | / \ | / 6---- + ----2 / | \ / | \ 5 4 3
-     */
-    @Override
-    public void deplace() {
-        int dir = getRandom(8);
-        switch (dir) {
-            case 0:
-                this.pos.translate(0, 1);
-                break;
-            case 1:
-                this.pos.translate(1, 1);
-                break;
-            case 2:
-                this.pos.translate(1, 0);
-                break;
-            case 3:
-                this.pos.translate(1, -1);
-                break;
-            case 4:
-                this.pos.translate(0, -1);
-                break;
-            case 5:
-                this.pos.translate(-1, -1);
-                break;
-            case 6:
-                this.pos.translate(-1, 0);
-                break;
-            case 7:
-                this.pos.translate(-1, 1);
-                break;
-
-        }
-
     }
 
     /**
