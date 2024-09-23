@@ -76,8 +76,46 @@ public class Archer extends Personnage implements Combatif {
      *
      * @param c
      */
+    @Override
     public void combattre(Creature c) {
-        System.out.println("Piew");
+        String msg = new String();
+        if (this.distance(c) <= 1) {
+            int pAtt = this.getDegAtt();
+            Epee arme = this.getArme();
+            
+            if (arme != null) {
+                pAtt += (int) (100-pAtt)*arme.getPageAtt();
+            }
+            
+            if (this.lanceDe(pAtt)) {
+                int dAtt = this.getDegAtt();
+                
+                if (arme != null) {
+                    dAtt *= (5+arme.getDegAtt())/10.;
+                }
+                
+                int pPar = c.getPagePar();
+                boolean cIsPerso = c instanceof Personnage;
+                if (cIsPerso) {
+                    Epee cArme = ((Personnage) c).getArme();
+                    if (cArme != null) {
+                        pPar += (int) (100-pAtt)*this.getArme().getPagePar();
+                    }
+                }
+                
+                if (c.lanceDe(pPar)) {
+                    int dPar = c.getPtPar();
+                    if (cIsPerso) {
+                        Epee cArme = ((Personnage) c).getArme();
+                        if (cArme != null) {
+                            dPar *= (5+cArme.getPtPar())/10.;
+                        }
+                    }
+                    
+                    msg = "Touché mais bloqué";
+                    
+                }
+            }
+        }
     }
-
 }
