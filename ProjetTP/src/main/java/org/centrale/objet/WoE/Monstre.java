@@ -34,6 +34,7 @@ public class Monstre extends Creature {
 
     /**
      * Créé aléatoirement un monstre (voir Creature)
+     * 
      */
     public Monstre() {
         super();
