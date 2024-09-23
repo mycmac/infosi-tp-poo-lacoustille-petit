@@ -7,10 +7,19 @@ package org.centrale.objet.WoE;
 public class Personnage extends Creature {
 
     private String nom;
-    private int distAttMax;
     private final static String[] noms = new String[]{"Alphonse", "Clovis", "Aude", "Hubert", "Bertille", "Paulin", "Rainier", "Isaure", "Enguerrand", "Neven"};
     private Objet arme;
 
+    /**
+     *
+     * @param p
+     */
+    public Personnage(Personnage p) {
+        super(p);
+        this.nom = p.getNom();
+        this.arme = p.getArme();
+    }
+    
     /**
      *
      * @param n
@@ -22,29 +31,22 @@ public class Personnage extends Creature {
      * @param dMax
      * @param pt
      */
-    public Personnage(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, Point2D pt) {
-        super(pV, dA, pPar, paAtt, paPar, pt);
+    public Personnage(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, int dAtkMax, Point2D pt) {
+        super(pV, dA, pPar, paAtt, paPar, dAtkMax, pt);
         this.nom = n;
-        this.distAttMax = dMax;
     }
-
-    /**
-     *
-     * @param p
-     */
-    public Personnage(Personnage p) {
-        super(p);
-        this.nom = p.getNom();
-        this.distAttMax = p.getDistAttMax();
+    
+    public Personnage(String n) {
+        super();
+        this.nom = n;
     }
-
+    
     /**
      * Initialise un personnage aléatoire
      */
     public Personnage() {
         super();
         this.nom = noms[getRandom(9)];
-        this.distAttMax = getRandom(8);
     }
 
     /**
@@ -61,23 +63,6 @@ public class Personnage extends Creature {
      */
     public void setNom(String nom) {
         this.nom = nom;
-    }
-
-    /**
-     *
-     * @return distance maximale d'attaque
-     */
-    public int getDistAttMax() {
-        return this.distAttMax;
-    }
-
-    /**
-     * Définit la distance d'attaque maximale
-     *
-     * @param distAttMax
-     */
-    public void setDistAttMax(int distAttMax) {
-        this.distAttMax = distAttMax;
     }
 
     /**
