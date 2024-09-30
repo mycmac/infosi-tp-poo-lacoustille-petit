@@ -21,11 +21,31 @@ public class Loup extends Monstre implements Combatif {
     }
 
     /**
-     * Recopie un loup
-     * @param p Loup à recopier
+     * Initialise un Loup comme copie d'un autre
+     * 
+     * @param p Loup initial
      */
     public Loup(Monstre p) {
         super(p);
+    }
+    
+    /**
+     * Génère un Loup au point (x, y)
+     * 
+     * @param x abscisse
+     * @param y ordonnée
+     */
+    public Loup(int x, int y) {
+        super(x, y);
+    }
+    
+    /**
+     * Génère un Loup au point pt
+     * 
+     * @param pt point
+     */
+    public Loup(Point2D pt) {
+        super(pt);
     }
 
     /**

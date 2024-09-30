@@ -12,34 +12,59 @@ public class Epee extends Objet {
      * Modificateur appliqué aux dgts d'atk du porteur : (dAttArme+5)/10
      */
     private final int degAttBaseMin = 1;
+    /**
+     * @see #degAttBaseMin
+     */
     private final int degAttBaseMax = 10;
     /**
      * Points de parade : entre 1 et 10
      * Modificateur appliqué aux pts de parade du porteur : (ptParArme+5)/10
      */
     private final int ptParBaseMin = 1;
+    /**
+     * @see #ptParBaseMin
+     */
     private final int ptParBaseMax = 10;
     /**
      * Pourcentage de chance de réussite d'une attaque : entre 1 et 100 (%)
      * Calcul du pourcentage modifié par l'arme : pAtt += (100-pAtt)*pAttArme
      */
     private final int pageAttBaseMin = 1;
+    /**
+     * @see #pageAttBaseMin
+     */
     private final int pageAttBaseMax = 100;
     /**
      * Pourcentage de chance de réussite d'une parade : entre 1 et 100 (%)
      * Calcul du pourcentage modifié par l'arme : pPar += (100-pPar)*pParArme
      */
     private final int pageParBaseMin = 1;
+    /**
+     * @see #pageParBaseMin
+     */
     private final int pageParBaseMax = 100;
-
-    private int degAtt; // Dégats d'attaque
-    private int ptPar; // Points de parade
-    private int pageAtt; // Porcentage d'attaque
-    private int pagePar; // Pourcentage de parade
+    
+    /**
+     * Dégâts d'attaque
+     */
+    private int degAtt;
+    /**
+     * Points de parade
+     */
+    private int ptPar;
+    /**
+     * Pourcentage d'attaque
+     */
+    private int pageAtt;
+    /**
+     * Pourcentage de parade
+     */
+    private int pagePar;
     
     /**
      * Copie une épée e
-     * @param e
+     * 
+     * @param e Epee initiale
      */
     public Epee(Epee e) {
         super(e);
@@ -50,7 +75,7 @@ public class Epee extends Objet {
     }
 
     /**
-     * Initialise une épée avec les paramètres suivants :
+     * Initialise une épée avec les attributs suivants :
      * @param dA dégats d'attaque supplémentaires
      * @param pPar points d'attaque supplémentaires
      * @param paAtt pourcentage d'attaque supplémentaires
@@ -79,6 +104,19 @@ public class Epee extends Objet {
         this.ptPar = pPar;
         this.pageAtt = paAtt;
         this.pagePar = paPar;
+    }
+    
+    /**
+     * Crée une épée aléatoire au point (x, y) 
+     * @param x abscisse
+     * @param y ordonnée
+     */
+    public Epee(int x, int y) {
+        super(x, y);
+        this.degAtt = getRandom(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
+        this.ptPar = getRandom(ptParBaseMax - ptParBaseMin + 1) + ptParBaseMin;
+        this.pageAtt = getRandom(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
+        this.pagePar = getRandom(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
     }
     
     /**
@@ -178,6 +216,11 @@ public class Epee extends Objet {
         this.pagePar = pagePar;
     }
 
+    /**
+     * Comportement d'une épée récupérée par un personnage
+     * 
+     * @param p Personnage
+     */
     @Override
     public void recuperer(Personnage p) {
         p.setArme(this);
