@@ -127,7 +127,7 @@ public class World {
                     this.objets.add(new PotionSoin());
                     break;
             }
-        }
+        
         
         
         // Création de nbObjetsBase objets dans le monde, répartis
@@ -149,6 +149,7 @@ public class World {
             // o1.affiche(); TODO
         }
 
+    }
     }
 
     /**
