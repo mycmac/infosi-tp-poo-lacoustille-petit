@@ -134,4 +134,17 @@ public class World {
             }
         }
     }
+
+    public Creature[][] getGrille_creatures() {
+        return grille_creatures;
+    }
+
+    public Objet[][] getGrille_objets() {
+        return grille_objets;
+    }
+
+    public LinkedList<Creature> getCreatures() {
+        return creatures;
+    }
+    
 }
