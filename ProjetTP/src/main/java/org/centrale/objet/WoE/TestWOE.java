@@ -14,5 +14,6 @@ public class TestWOE {
         long debut = System.nanoTime();
         WoE.creeMondeAlea();
         long fin = System.nanoTime();
+        System.out.print("Temps de création : "+(fin-debut)+" ns");
     }
 }
