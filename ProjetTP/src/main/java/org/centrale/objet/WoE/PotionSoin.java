@@ -1,7 +1,7 @@
 package org.centrale.objet.WoE;
 
 /**
- *
+ * Objet permettant de soigner des points de vie
  * @author timot
  */
 public class PotionSoin extends Objet {
