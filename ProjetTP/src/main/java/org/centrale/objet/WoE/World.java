@@ -21,7 +21,9 @@ public class World {
     Objet[][] grille_objets;
 
     /**
-     * Monde avec personnages par défaut
+     * Initialisation d'un monde vide de taille prédéfinie
+     * 
+     * @param t taille du monde
      */
     public World(int t) {
         this.seed = new Random();
@@ -31,9 +33,8 @@ public class World {
     }
 
     /**
-     * Création d'un monde aléatoire
+     * Remplissage aléatoire d'un monde
      *
-     * @param taille Taille du monde
      */
     public void creeMondeAlea() {
         int t = this.taille;
@@ -84,9 +85,9 @@ public class World {
         while (ObjIt1.hasNext()) {
             o1 = ObjIt1.next();
             pris = true;
-            p = new Point2D();
+            p = new Point2D(t);
             while (pris) {
-                p = new Point2D();
+                p = new Point2D(t);
                 pris = (this.grille_creatures[p.getX()][p.getY()] != null
                         && this.grille_objets[p.getX()][p.getY()] != null);
             }

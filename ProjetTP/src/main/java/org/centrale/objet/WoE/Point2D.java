@@ -14,10 +14,10 @@ public class Point2D {
      * /!\ Ces valeurs ne sont pas (encore) testées comme conditions de
      * création
      */
-    private final int xmin = 0;
-    private final int xmax = 49;
-    private final int ymin = 0;
-    private final int ymax = 49;
+    private final int xmin = -25;
+    private final int xmax = 25;
+    private final int ymin = -25;
+    private final int ymax = 25;
 
     /**
      * Abscisse
@@ -27,6 +27,16 @@ public class Point2D {
      * Ordonnée
      */
     int y;
+    
+    /**
+     * Initialise un Point2D en copiant les coordonnées d'un Point2D donné
+     *
+     * @param p
+     */
+    public Point2D(Point2D p) {
+        this.x = p.getX();
+        this.y = p.getY();
+    }
 
     /**
      * Initialise un Point2D en spécifiant son abscisse et son ordonnée
@@ -43,16 +53,6 @@ public class Point2D {
         Random r = new Random();
         this.x = r.nextInt(t);
         this.y = r.nextInt(t);
-    }
-
-    /**
-     * Initialise un Point2D en copiant les coordonnées d'un Point2D donné
-     *
-     * @param p
-     */
-    public Point2D(Point2D p) {
-        this.x = p.getX();
-        this.y = p.getY();
     }
 
     /**
