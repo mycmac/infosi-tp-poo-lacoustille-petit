@@ -18,7 +18,7 @@ public class TestWOE {
         //Creature[][] creature = new Creature[12][12];
         //System.out.println(creature[5][5]);
         //creature[6][3].affiche();
-        
+        System.out.println("Nombre de créatures : "+WoE.getCreatures().size());
         // Parcours de la liste de creatures par index
         int totalPV = 0;
         long debutIn = System.nanoTime();
