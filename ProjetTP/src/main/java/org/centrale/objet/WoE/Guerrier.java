@@ -1,7 +1,8 @@
 package org.centrale.objet.WoE;
 
 /**
- *
+ * Un Personnage belliqueux
+ * 
  * @author Ulysse, timot
  */
 public class Guerrier extends Personnage implements Combatif {
