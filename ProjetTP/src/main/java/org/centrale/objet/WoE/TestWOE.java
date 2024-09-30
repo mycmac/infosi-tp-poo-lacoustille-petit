@@ -1,7 +1,5 @@
 package org.centrale.objet.WoE;
 
-import java.util.Iterator;
-
 /**
  *
  * @author Ulysse
