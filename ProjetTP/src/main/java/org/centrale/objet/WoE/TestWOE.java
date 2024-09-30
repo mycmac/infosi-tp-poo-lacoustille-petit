@@ -59,6 +59,7 @@ public class TestWOE {
                 +obj_crees[1]+" PotionSoins !\n");
         
         /*
+        System.out.println("Nombre de créatures : "+WoE.getCreatures().size());
         // Parcours de la liste de creatures par index
         int totalPV = 0;
         long debutIn = System.nanoTime();
