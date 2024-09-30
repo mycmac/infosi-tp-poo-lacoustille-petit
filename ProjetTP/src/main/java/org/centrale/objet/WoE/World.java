@@ -36,6 +36,9 @@ public class World {
         int y;
         boolean pris;
         this.grille = new boolean[taille][taille];
+        for (int i=0;i<100000;i++){
+        creatures.add(new Archer());
+        }
         Iterator<Creature> CreaIt1 = this.creatures.iterator();
         Iterator<Creature> CreaIt2;
         Creature c1;
