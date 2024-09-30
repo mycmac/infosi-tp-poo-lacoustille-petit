@@ -8,7 +8,7 @@ public class TestWOE {
 
     public static void main(String[] args) {
         World WoE;
-        WoE = new World();
+        WoE = new World(50);
         long debut = System.nanoTime();
         WoE.creeMondeAlea();
         long fin = System.nanoTime();
