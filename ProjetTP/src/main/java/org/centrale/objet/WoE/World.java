@@ -24,13 +24,12 @@ public class World {
         this.creatures = new LinkedList<Creature>();
         this.objets = new LinkedList<Objet>();
         this.seed = new Random();
-        this.grille = new ArrayList<ArrayList<Boolean>>(taille);
     }
 
     /**
      * Création d'un monde aléatoire
      */
-    public void creeMondeAlea() {
+    public void creeMondeAlea(int taille) {
         int x;
         int y;
         boolean pris;
