@@ -14,7 +14,7 @@ public class World {
     LinkedList<Creature> creatures;
     LinkedList<Objet> objets;
     Random seed;
-    ArrayList<ArrayList<Boolean>> grille;
+    boolean[][] grille;
     int taille;
     
     /**
@@ -33,7 +33,8 @@ public class World {
         int x;
         int y;
         boolean pris;
-        
+        this.grille = new boolean[taille][taille];
+        System.out.print(grille);
         Iterator<Creature> CreaIt1 = this.creatures.iterator();
         Iterator<Creature> CreaIt2;
         Creature c1;
@@ -46,8 +47,8 @@ public class World {
             
             while (pris) {
                 pris = false;
-                x = this.seed.nextInt(15);
-                y = this.seed.nextInt(15);
+                x = this.seed.nextInt(taille);
+                y = this.seed.nextInt(taille);
                 CreaIt2 = this.creatures.iterator();
                 c2 = CreaIt2.next();
                 while (c2 != c1) {
@@ -58,6 +59,7 @@ public class World {
                 }
             }
             c1.setPos(x, y);
+            this.grille[x][y] = true;
             c1.affiche();
         }
         
@@ -74,8 +76,8 @@ public class World {
             
             while (pris) {
                 pris = false;
-                x = this.seed.nextInt(15);
-                y = this.seed.nextInt(15);
+                x = this.seed.nextInt(taille);
+                y = this.seed.nextInt(taille);
                 ObjIt2 = this.objets.iterator();
                 o2 = ObjIt2.next();
                 while (o2 != o1 && !pris) {
