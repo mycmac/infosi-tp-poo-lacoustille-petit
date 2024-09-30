@@ -114,10 +114,18 @@ public class World {
     }
 
     /**
-     * Gestion d'un tour de jeu
+     * Gestion d'un tour de jeu : on affiche le nom ou le type de la créature
+     * qui joue, la déplace puis l'affiche.
      */
     public void tourDeJeu() {
-        cleanObjets();
+        cleanEntites(creatures);
+        cleanEntites(objets);
+        for (Creature creature : creatures) {
+            System.out.println("C'est au tour de "+creature+" de jouer.");
+            creature.deplace();
+            creature.affiche();
+        }
+        System.out.println("Fin du tour de jeu");
     }
 
     /**
@@ -128,13 +136,14 @@ public class World {
     }
 
     /**
-     * Retire les objets utilisés
+     * Retire les objets utilisés (sans position)
+     * @param Liste
      */
-    public void cleanObjets() {
-        Iterator<Objet> listIt = objets.iterator();
+    public void cleanEntites(LinkedList Liste) {
+        Iterator<Entite> listIt = Liste.iterator();
 
         while (listIt.hasNext()) {
-            Objet p = listIt.next();
+            Entite p = listIt.next();
             if (p.getPos() == null) {
                 listIt.remove();
             }
