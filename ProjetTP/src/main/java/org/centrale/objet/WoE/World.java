@@ -10,8 +10,8 @@ import java.util.Random;
  */
 public class World {
     
-    int nbCreaturesBase = 1000;
-    int nbObjetsBase = 1000;
+    private final int nbCreaturesBase = 1000;
+    private final int nbObjetsBase = 1000;
     
     Random seed;
     int taille;
@@ -42,7 +42,7 @@ public class World {
         boolean pris;
         
         for (int i=0;i<this.nbCreaturesBase;i++){
-            switch (seed.nextInt(3)) {
+            switch (seed.nextInt(5)) {
                 case 0:
                     this.creatures.add(new Archer());
                     break;
@@ -51,6 +51,12 @@ public class World {
                     break;
                 case 2:
                     this.creatures.add(new Paysan());
+                    break;
+                case 3:
+                    this.creatures.add(new Lapin());
+                    break;
+                case 4:
+                    this.creatures.add(new Loup());
                     break;
             }
         }
@@ -146,6 +152,10 @@ public class World {
 
     public LinkedList<Creature> getCreatures() {
         return creatures;
+    }
+    
+    public LinkedList<Objet> getObjets() {
+        return objets;
     }
     
 }
