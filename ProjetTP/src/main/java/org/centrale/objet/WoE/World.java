@@ -26,8 +26,8 @@ public class World {
     public World(int t) {
         this.seed = new Random();
         this.taille = t;
-        this.creatures = new Creature[t][t];
-        this.objets = new Objet[t][t];
+        this.grille_creatures = new Creature[t][t];
+        this.grille_objets = new Objet[t][t];
     }
 
     /**
@@ -58,7 +58,7 @@ public class World {
         while (CreaIt1.hasNext()) {
             c1 = CreaIt1.next();
             pris = true;
-
+            p = new Point2D(t);
             while (pris) {
                 p = new Point2D(t);
                 pris = (this.grille_creatures[p.getX()][p.getY()] != null);
@@ -84,7 +84,7 @@ public class World {
         while (ObjIt1.hasNext()) {
             o1 = ObjIt1.next();
             pris = true;
-
+            p = new Point2D();
             while (pris) {
                 p = new Point2D();
                 pris = (this.grille_creatures[p.getX()][p.getY()] != null
