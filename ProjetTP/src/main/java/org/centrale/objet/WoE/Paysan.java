@@ -1,7 +1,7 @@
 package org.centrale.objet.WoE;
 
 /**
- *
+ * Un personnage paisible
  * @author Ulysse
  */
 public class Paysan extends Personnage {
