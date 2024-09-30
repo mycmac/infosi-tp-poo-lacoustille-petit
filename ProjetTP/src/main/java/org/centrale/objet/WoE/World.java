@@ -2,6 +2,7 @@ package org.centrale.objet.WoE;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -13,7 +14,9 @@ public class World {
     LinkedList<Creature> creatures;
     LinkedList<Objet> objets;
     Random seed;
-
+    ArrayList<ArrayList<Boolean>> grille;
+    int taille;
+    
     /**
      * Monde avec personnages par défaut
      */
@@ -21,7 +24,7 @@ public class World {
         this.creatures = new LinkedList<Creature>();
         this.objets = new LinkedList<Objet>();
         this.seed = new Random();
-
+        this.grille = new ArrayList<ArrayList<Boolean>>(taille);
     }
 
     /**
