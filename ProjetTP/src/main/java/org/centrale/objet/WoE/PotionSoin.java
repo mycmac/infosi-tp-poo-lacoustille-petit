@@ -42,6 +42,17 @@ public class PotionSoin extends Objet {
     }
     
     /**
+     * Génère une PotionSoin au point (x, y)
+     * 
+     * @param x abscisse
+     * @param y ordonnée
+     */
+    public PotionSoin(int x, int y) {
+        super(x, y);
+        ptVie = getRandom(ptVieBaseMax - ptVieBaseMin + 1) + ptVieBaseMin;
+    }
+    
+    /**
      * Génère une PotionSoin au point pos
      * 
      * @param pos point
@@ -52,24 +63,36 @@ public class PotionSoin extends Objet {
     }
     
     /**
+     * Initialise une PotionSoin à une position aléatoire
      * 
-     * 
-     * @param pv 
+     * @param pv points de vie rendus
      */
     public PotionSoin(int pv) {
         super();
         ptVie = pv;
     }
-
+    
+    /**
+     * Génère une PotionSoin aléatoire
+     */
     public PotionSoin() {
         super();
         ptVie = getRandom(ptVieBaseMax - ptVieBaseMin + 1) + ptVieBaseMin;
     }
-
+    
+    /**
+     * Récupère les points de vie rendus de la PotionSoin
+     * @return ptVie
+     */
     public int getPtVie() {
         return ptVie;
     }
-
+    
+    /**
+     * Comportement d'une PotionSoin lorsqu'elle est récupérée par le personnage
+     * 
+     * @param p Personnage
+     */
     @Override
     public void recuperer(Personnage p) {
         p.setPtVie(Math.min(p.getPtVieMax(), p.getPtVie() + ptVie));
