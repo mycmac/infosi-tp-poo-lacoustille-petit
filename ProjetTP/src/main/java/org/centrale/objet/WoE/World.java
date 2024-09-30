@@ -164,7 +164,7 @@ public class World {
         cleanEntites(objets);
         for (Creature creature : creatures) {
             System.out.println("C'est au tour de " + creature + " de jouer.");
-            creature.deplace();
+            creature.deplace(this.grille_creatures);
             creature.affiche();
         }
         System.out.println("Fin du tour de jeu");
