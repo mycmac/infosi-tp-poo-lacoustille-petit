@@ -81,6 +81,14 @@ public class World {
     public void tourDeJeu() {
         cleanEntites(creatures);
         cleanEntites(objets);
+        Iterator<Creature> tourIt = creatures.iterator();
+        while (tourIt.hasNext()){
+            Creature creature = tourIt.next();
+            System.out.println("C'est au tour de "+creature+" de jouer.");
+            creature.deplace();
+            creature.affiche();
+        }
+        System.out.println("Fin du tour de jeu");
     }
 
     /**
