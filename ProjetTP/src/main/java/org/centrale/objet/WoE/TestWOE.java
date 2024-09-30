@@ -20,7 +20,6 @@ public class TestWOE {
         //creature[6][3].affiche();
         
         WoE.afficheWorld();
-        */
         
         WoE = new World(5);
         WoE.addCreature(new Archer(), 0, 0);
@@ -28,6 +27,9 @@ public class TestWOE {
         WoE.addCreature(new Paysan(), 0, 2);
         WoE.addCreature(new Lapin(), 0, 3);
         WoE.addCreature(new Loup(), 0, 4);
+        WoE.afficheWorld();
+        
+        WoE.addCreature(new Archer(1, 0));
         WoE.afficheWorld();
         
         // Test de la génération aléatoire d'entites
