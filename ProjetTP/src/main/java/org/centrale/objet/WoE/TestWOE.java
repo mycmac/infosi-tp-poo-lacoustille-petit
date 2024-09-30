@@ -12,6 +12,9 @@ public class TestWOE {
         long debut = System.nanoTime();
         WoE.creeMondeAlea(50);
         long fin = System.nanoTime();
-        System.out.print("Temps de création : "+(fin-debut)+" ns");
+        System.out.println("Temps de création : "+(fin-debut)+" ns");
+        Creature[][] creature = new Creature[12][12];
+        System.out.println(creature[5][5]);
+        //creature[6][3].affiche();
     }
 }
