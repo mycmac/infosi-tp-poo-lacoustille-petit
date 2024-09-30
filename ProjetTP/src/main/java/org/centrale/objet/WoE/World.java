@@ -10,14 +10,43 @@ import java.util.Random;
  */
 public class World {
     
-    private final int nbCreaturesBase = 1000;
-    private final int nbObjetsBase = 1000;
+    /**
+     * Taille de monde par défaut
+     */
+    private final int tailleBase = 50;
+    /**
+     * Nombre de créature par défaut à la génération d'un monde
+     */
+    private final int nbCreaturesBase = tailleBase*tailleBase/5;
+    /**
+     * Nombre d'objets par défaut à la génération d'un monde
+     */
+    private final int nbObjetsBase = nbCreaturesBase;
     
+    
+    /**
+     * Générateur de nombres aléatoires associé au monde
+     */
     Random seed;
+    /**
+     * Taille du monde
+     */
     int taille;
-    LinkedList<Creature> creatures = new LinkedList<Creature>();
-    LinkedList<Objet> objets = new LinkedList<Objet>();
+    /**
+     * Liste des créatures du monde
+     */
+    LinkedList<Creature> creatures = new LinkedList<>();
+    /**
+     * Liste des objets du monde
+     */
+    LinkedList<Objet> objets = new LinkedList<>();
+    /**
+     * Tableau donnant les positions des créatures du monde, et null en l'absence de créature
+     */
     Creature[][] grille_creatures;
+    /**
+     * Tableau donnant les positions des objets du monde, et null en l'absence d'objet
+     */
     Objet[][] grille_objets;
 
     /**
@@ -31,6 +60,17 @@ public class World {
         this.grille_creatures = new Creature[t][t];
         this.grille_objets = new Objet[t][t];
     }
+    
+    /**
+     * Initialisation d'un monde vide à la taille de base définie
+     * 
+     */
+    public World() {
+        this.seed = new Random();
+        this.taille = this.tailleBase;
+        this.grille_creatures = new Creature[this.taille][this.taille];
+        this.grille_objets = new Objet[this.taille][this.taille];
+    }
 
     /**
      * Remplissage aléatoire d'un monde
@@ -41,6 +81,8 @@ public class World {
         Point2D p;
         boolean pris;
         
+        // Création de nbCreaturesBase créatures dans le monde, réparties
+        // aléatoirement entre les différents types existants
         for (int i=0;i<this.nbCreaturesBase;i++){
             switch (seed.nextInt(5)) {
                 case 0:
@@ -60,6 +102,9 @@ public class World {
                     break;
             }
         }
+        
+        // Assignation des positions initiales de chaque créature, 
+        // pour assurer leur unicité
         Iterator<Creature> CreaIt1 = this.creatures.iterator();
         Creature c1;
         while (CreaIt1.hasNext()) {
@@ -75,6 +120,9 @@ public class World {
             //c1.affiche();
         }
         
+        
+        // Création de nbObjetsBase objets dans le monde, répartis
+        // aléatoirement entre les différents types existants
         for (int i=0;i<this.nbObjetsBase;i++){
             switch (seed.nextInt(2)) {
                 case 0:
@@ -86,6 +134,9 @@ public class World {
             }
         }
         
+        // Assignation des positions de chaque objet,
+        // pour assurer qu'aucun objet n'est intialement sous une créature ou
+        // avec un autre objet
         Iterator<Objet> ObjIt1 = this.objets.iterator();
         Objet o1;
         while (ObjIt1.hasNext()) {
@@ -106,7 +157,7 @@ public class World {
 
     /**
      * Gestion d'un tour de jeu : on affiche le nom ou le type de la créature
-     * qui joue, la déplace puis l'affiche.
+     * qui joue, la déplace puis l'affiche à nouveau.
      */
     public void tourDeJeu() {
         cleanEntites(creatures);
@@ -120,14 +171,14 @@ public class World {
     }
 
     /**
-     * Affichage du monde
+     * Affichage du monde : TODO
      */
     public void afficheWorld() {
 
     }
 
     /**
-     * Retire les objets utilisés (sans position)
+     * Retire les entites à détruire : objets utilisés et créatures mortes
      *
      * @param Liste
      */
@@ -141,21 +192,36 @@ public class World {
             }
         }
     }
-
+    
+    /**
+     * Getter de grille_creatures
+     * @return 
+     */
     public Creature[][] getGrille_creatures() {
         return grille_creatures;
     }
-
+    
+    /**
+     * Getter de grille_objets
+     * @return 
+     */
     public Objet[][] getGrille_objets() {
         return grille_objets;
     }
-
+    
+    /**
+     * Getter de creatures
+     * @return 
+     */
     public LinkedList<Creature> getCreatures() {
         return creatures;
     }
     
+    /**
+     * Getter de objets
+     * @return 
+     */
     public LinkedList<Objet> getObjets() {
         return objets;
-    }
-    
+    }  
 }
