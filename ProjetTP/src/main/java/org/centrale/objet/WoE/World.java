@@ -9,10 +9,10 @@ import java.util.Random;
  * @author Ulysse
  */
 public class World {
-    
+
     private final int nbCreaturesBase = 10000;
     private final int nbObjetsBase = 10000;
-    
+
     Random seed;
     int taille;
     LinkedList<Creature> creatures = new LinkedList<>();
@@ -22,7 +22,7 @@ public class World {
 
     /**
      * Initialisation d'un monde vide de taille prédéfinie
-     * 
+     *
      * @param t taille du monde
      */
     public World(int t) {
@@ -40,8 +40,8 @@ public class World {
         int t = this.taille;
         Point2D p;
         boolean pris;
-        
-        for (int i=0;i<this.nbCreaturesBase;i++){
+
+        for (int i = 0; i < this.nbCreaturesBase; i++) {
             switch (seed.nextInt(5)) {
                 case 0:
                     this.creatures.add(new Archer());
@@ -74,8 +74,8 @@ public class World {
             this.grille_creatures[p.getX()][p.getY()] = c1;
             //c1.affiche();
         }
-        
-        for (int i=0;i<this.nbObjetsBase;i++){
+
+        for (int i = 0; i < this.nbObjetsBase; i++) {
             switch (seed.nextInt(2)) {
                 case 0:
                     this.objets.add(new Epee());
@@ -85,7 +85,7 @@ public class World {
                     break;
             }
         }
-        
+
         Iterator<Objet> ObjIt1 = this.objets.iterator();
         Objet o1;
         while (ObjIt1.hasNext()) {
@@ -153,9 +153,9 @@ public class World {
     public LinkedList<Creature> getCreatures() {
         return creatures;
     }
-    
+
     public LinkedList<Objet> getObjets() {
         return objets;
     }
-    
+
 }
