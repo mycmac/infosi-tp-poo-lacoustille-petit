@@ -79,7 +79,8 @@ public class World {
      * Gestion d'un tour de jeu
      */
     public void tourDeJeu() {
-        cleanObjets();
+        cleanEntites(creatures);
+        cleanEntites(objets);
     }
 
     /**
@@ -90,13 +91,14 @@ public class World {
     }
 
     /**
-     * Retire les objets utilisés
+     * Retire les objets utilisés (sans position)
+     * @param Liste
      */
-    public void cleanObjets() {
-        Iterator<Objet> listIt = objets.iterator();
+    public void cleanEntites(LinkedList Liste) {
+        Iterator<Entite> listIt = Liste.iterator();
 
         while (listIt.hasNext()) {
-            Objet p = listIt.next();
+            Entite p = listIt.next();
             if (p.getPos() == null) {
                 listIt.remove();
             }
