@@ -55,7 +55,15 @@ public abstract class Entite {
      * @return 
      */
     public Point2D getPos() {
-        return pos;
+        return this.pos;
+    }
+
+    public int getX() {
+        return this.pos.getX();
+    }
+
+    public int getY() {
+        return this.pos.getY();
     }
     
     /**
@@ -73,6 +81,14 @@ public abstract class Entite {
      */
     public void setPos(int x, int y) {
         this.pos = new Point2D(x, y);
+    }
+
+    public void setX(int x) {
+        this.pos.setX(x);
+    }
+
+    public void setY(int y) {
+        this.pos.setY(y);
     }
     
     /**
