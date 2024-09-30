@@ -1,7 +1,7 @@
 package org.centrale.objet.WoE;
 
 /**
- *
+ * Objet de combat
  * @author timot
  */
 public class Epee extends Objet {
