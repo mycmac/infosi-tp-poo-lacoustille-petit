@@ -3,7 +3,7 @@ package org.centrale.objet.WoE;
 import java.util.Random;
 
 /**
- *
+ * Implémente un point sur une grille en 2 dimensions
  * @author Ulysse
  */
 public class Point2D {
