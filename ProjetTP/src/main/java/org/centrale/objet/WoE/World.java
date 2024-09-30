@@ -119,6 +119,11 @@ public class World {
             this.grille_creatures[p.getX()][p.getY()] = c1;
             //c1.affiche();
         }
+        
+        
+        // Création de nbObjetsBase objets dans le monde, répartis
+        // aléatoirement entre les différents types existants
+        for (int i=0;i<this.nbObjetsBase;i++){
             switch (seed.nextInt(2)) {
                 case 0:
                     this.objets.add(new Epee());
@@ -127,12 +132,11 @@ public class World {
                     this.objets.add(new PotionSoin());
                     break;
             }
+        }
         
-        
-        
-        // Création de nbObjetsBase objets dans le monde, répartis
-        // aléatoirement entre les différents types existants
-        for (int i=0;i<this.nbObjetsBase;i++){
+        // Assignation des positions de chaque objet,
+        // pour assurer qu'aucun objet n'est intialement sous une créature ou
+        // avec un autre objet
         Iterator<Objet> ObjIt1 = this.objets.iterator();
         Objet o1;
         while (ObjIt1.hasNext()) {
@@ -149,7 +153,6 @@ public class World {
             // o1.affiche(); TODO
         }
 
-    }
     }
 
     /**
@@ -278,5 +281,38 @@ public class World {
         return objets;
     }
     
+    public void addCreature(Creature c, int x, int y) {
+        c.setPos(x, y);
+        Objet o = this.grille_objets[x][y];
+        if (this.grille_creatures[x][y] != null) {
+            System.out.println("Une créature se trouve déjà ici. Tu n'as pas le droit d'apparaître !");
+        } else if (o != null && c instanceof Personnage) {
+            o.recuperer((Personnage) c);
+            System.out.println("Oh ! Quel bel objet que voilà !");
     
+            this.objets.remove(o);
+            this.grille_objets[x][y] = null;
+        } else {
+            this.grille_creatures[x][y] = c;
+            this.creatures.add(c);
+}
+    }
+    
+    public void addCreature(Creature c) {
+        int x = c.getX();
+        int y = c.getY();
+        Objet o = this.grille_objets[x][y];
+        if (this.grille_creatures[x][y] != null) {
+            System.out.println("Une créature se trouve déjà ici. Tu n'as pas le droit d'apparaître !");
+        } else if (o != null && c instanceof Personnage) {
+            o.recuperer((Personnage) c);
+            System.out.println("Oh ! Quel bel objet que voilà !");
+
+            this.objets.remove(o);
+            this.grille_objets[x][y] = null;
+        } else {
+            this.grille_creatures[x][y] = c;
+            this.creatures.add(c);
+        }
+    }
 }
