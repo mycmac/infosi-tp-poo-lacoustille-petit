@@ -36,6 +36,27 @@ public class Archer extends Personnage implements Combatif {
         super(a);
         this.nbFleches = a.getNbFleches();
     }
+    
+    /**
+     * Crée un Archer aléatoire au point (x, y) donné
+     * 
+     * @param x abscisse
+     * @param y ordonnée
+     */
+    public Archer(int x, int y) {
+        super(x, y);
+        this.nbFleches = getRandom(17);
+    }
+    
+    /**
+     * Crée un Archer aléatoire au point p donné
+     * 
+     * @param p point
+     */
+    public Archer(Point2D p) {
+        super(p);
+        this.nbFleches = getRandom(17);
+    }
 
     /**
      * Génère un archer aléatoire
@@ -81,12 +102,12 @@ public class Archer extends Personnage implements Combatif {
     /**
      * Combattre une créature désignée
      *
-     * @param c
+     * @param c Créature désignée
      */
     @Override
     public void combattre(Creature c) {
-        String msg = new String(); //Message d'attaque
-        int dgts = 0; // dégats
+        String msg; //Message d'attaque
+        int dgts; // dégats
         double d = this.distance(c);
         if (d <= 1) {
             int pAtt = this.getDegAtt();

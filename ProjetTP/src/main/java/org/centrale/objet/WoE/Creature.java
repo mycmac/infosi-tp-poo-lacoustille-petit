@@ -89,8 +89,41 @@ public class Creature extends Entite {
     }
     
     /**
+     * Initialise une Creature aléatoire en un point donné
+     * 
+     * @param x abscisse
+     * @param y ordonnée
+     */
+    public Creature(int x, int y) {
+        super(new Point2D(x, y), true);
+        this.ptVieMax = getRandom(ptVieBaseMax - ptVieBaseMin + 1) + ptVieBaseMin;
+        this.ptVie = this.ptVieMax;
+        this.degAtt = getRandom(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
+        this.ptPar = getRandom(ptParBaseMax - ptParBaseMin + 1) + ptParBaseMin;
+        this.pageAtt = getRandom(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
+        this.pagePar = getRandom(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
+        this.distAttMax = 1;
+    }
+    
+    /**
+     * Initialise une Creature aléatoire en un point donné
+     * 
+     * @param p point
+     */
+    public Creature(Point2D p) {
+        super(p, true);
+        this.ptVieMax = getRandom(ptVieBaseMax - ptVieBaseMin + 1) + ptVieBaseMin;
+        this.ptVie = this.ptVieMax;
+        this.degAtt = getRandom(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
+        this.ptPar = getRandom(ptParBaseMax - ptParBaseMin + 1) + ptParBaseMin;
+        this.pageAtt = getRandom(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
+        this.pagePar = getRandom(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
+        this.distAttMax = 1;
+    }
+    
+    /**
      * Initialise une Créature aléatoire avec des attributs aléatoires, au sein
-     * des limites fixées
+     * des limites fixées dans Point2D
      */
     public Creature() {
         super(new Point2D(), true);
