@@ -39,6 +39,7 @@ public class Epee extends Objet {
     
     /**
      * Copie une épée e
+     * 
      * @param e
      */
     public Epee(Epee e) {
@@ -50,7 +51,7 @@ public class Epee extends Objet {
     }
 
     /**
-     * Initialise une épée avec les paramètres suivants :
+     * Initialise une épée avec les attributs suivants :
      * @param dA dégats d'attaque supplémentaires
      * @param pPar points d'attaque supplémentaires
      * @param paAtt pourcentage d'attaque supplémentaires
@@ -79,6 +80,19 @@ public class Epee extends Objet {
         this.ptPar = pPar;
         this.pageAtt = paAtt;
         this.pagePar = paPar;
+    }
+    
+    /**
+     * Crée une épée aléatoire au point (x, y) 
+     * @param x abscisse
+     * @param y ordonnée
+     */
+    public Epee(int x, int y) {
+        super(x, y);
+        this.degAtt = getRandom(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
+        this.ptPar = getRandom(ptParBaseMax - ptParBaseMin + 1) + ptParBaseMin;
+        this.pageAtt = getRandom(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
+        this.pagePar = getRandom(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
     }
     
     /**
@@ -178,6 +192,11 @@ public class Epee extends Objet {
         this.pagePar = pagePar;
     }
 
+    /**
+     * Comportement d'une épée récupérée par un personnage
+     * 
+     * @param p Personnage
+     */
     @Override
     public void recuperer(Personnage p) {
         p.setArme(this);
