@@ -276,5 +276,40 @@ public class World {
      */
     public LinkedList<Objet> getObjets() {
         return objets;
-    }  
+    }
+    
+    public void addCreature(Creature c, int x, int y) {
+        c.setPos(x, y);
+        Objet o = this.grille_objets[x][y];
+        if (this.grille_creatures[x][y] != null) {
+            System.out.println("Une créature se trouve déjà ici. Tu n'as pas le droit d'apparaître !");
+        } else if (o != null && c instanceof Personnage) {
+            o.recuperer((Personnage) c);
+            System.out.println("Oh ! Quel bel objet que voilà !");
+
+            this.objets.remove(o);
+            this.grille_objets[x][y] = null;
+        } else {
+            this.grille_creatures[x][y] = c;
+            this.creatures.add(c);
+        }
+    }
+    
+    public void addCreature(Creature c) {
+        int x = c.getX();
+        int y = c.getY();
+        Objet o = this.grille_objets[x][y];
+        if (this.grille_creatures[x][y] != null) {
+            System.out.println("Une créature se trouve déjà ici. Tu n'as pas le droit d'apparaître !");
+        } else if (o != null && c instanceof Personnage) {
+            o.recuperer((Personnage) c);
+            System.out.println("Oh ! Quel bel objet que voilà !");
+
+            this.objets.remove(o);
+            this.grille_objets[x][y] = null;
+        } else {
+            this.grille_creatures[x][y] = c;
+            this.creatures.add(c);
+        }
+    }
 }
