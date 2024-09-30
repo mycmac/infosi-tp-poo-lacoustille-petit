@@ -58,7 +58,7 @@ public class TestWOE {
                 +obj_crees[0]+" Epees et "
                 +obj_crees[1]+" PotionSoins !\n");
         
-        /*
+        
         System.out.println("Nombre de créatures : "+WoE.getCreatures().size());
         // Parcours de la liste de creatures par index
         int totalPV = 0;
@@ -76,6 +76,6 @@ public class TestWOE {
             totalPV2 += creatureP.next().getPtVie();
         }
         long finIt = System.nanoTime();
-        System.out.println("Total de PV "+totalPV2+" en "+(finIt-debutIt)+" nanosecondes par itérateur");*/
+        System.out.println("Total de PV "+totalPV2+" en "+(finIt-debutIt)+" nanosecondes par itérateur");
     }
 }
