@@ -10,7 +10,7 @@ public class TestWOE {
         World WoE;
         WoE = new World();
         long debut = System.nanoTime();
-        WoE.creeMondeAlea(50);
+        WoE.creeMondeAlea();
         long fin = System.nanoTime();
         System.out.print("Temps de création : "+(fin-debut)+" ns");
     }

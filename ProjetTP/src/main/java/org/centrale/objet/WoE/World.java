@@ -9,20 +9,25 @@ import java.util.Random;
  * @author Ulysse
  */
 public class World {
-
-    LinkedList<Creature> creatures;
-    LinkedList<Objet> objets;
+    
+    int nbCreaturesBase = 1000;
+    int nbObjetsBase = 1000;
+    
     Random seed;
-    boolean[][] grille;
     int taille;
+    LinkedList<Creature> creatures = new LinkedList<Creature>();
+    LinkedList<Objet> objets = new LinkedList<Objet>();
+    Creature[][] grille_creatures;
+    Objet[][] grille_objets;
 
     /**
      * Monde avec personnages par défaut
      */
-    public World() {
-        this.creatures = new LinkedList<>();
-        this.objets = new LinkedList<>();
+    public World(int t) {
         this.seed = new Random();
+        this.taille = t;
+        this.creatures = new Creature[t][t];
+        this.objets = new Objet[t][t];
     }
 
     /**
@@ -30,67 +35,63 @@ public class World {
      *
      * @param taille Taille du monde
      */
-    public void creeMondeAlea(int taille) {
-        this.taille = taille;
-        int x;
-        int y;
+    public void creeMondeAlea() {
+        int t = this.taille;
+        Point2D p;
         boolean pris;
-        this.grille = new boolean[taille][taille];
-        for (int i=0;i<100000;i++){
-        creatures.add(new Archer());
+        
+        for (int i=0;i<this.nbCreaturesBase;i++){
+            switch (seed.nextInt(3)) {
+                case 0:
+                    this.creatures.add(new Archer());
+                    break;
+                case 1:
+                    this.creatures.add(new Guerrier());
+                    break;
+                case 2:
+                    this.creatures.add(new Paysan());
+                    break;
+            }
         }
         Iterator<Creature> CreaIt1 = this.creatures.iterator();
-        Iterator<Creature> CreaIt2;
         Creature c1;
-        Creature c2;
         while (CreaIt1.hasNext()) {
             c1 = CreaIt1.next();
-            x = 0;
-            y = 0;
             pris = true;
 
             while (pris) {
-                x = this.seed.nextInt(this.taille);
-                y = this.seed.nextInt(this.taille);
-                pris = this.grille[x][y];
+                p = new Point2D(t);
+                pris = (this.grille_creatures[p.getX()][p.getY()] != null);
             }
-            c1.setPos(x, y);
-            this.grille[x][y] = true;
+            c1.setPos(p);
+            this.grille_creatures[p.getX()][p.getY()] = c1;
             //c1.affiche();
         }
-
+        
+        for (int i=0;i<this.nbObjetsBase;i++){
+            switch (seed.nextInt(2)) {
+                case 0:
+                    this.objets.add(new Epee());
+                    break;
+                case 1:
+                    this.objets.add(new PotionSoin());
+                    break;
+            }
+        }
+        
         Iterator<Objet> ObjIt1 = this.objets.iterator();
-        Iterator<Objet> ObjIt2;
         Objet o1;
-        Objet o2;
         while (ObjIt1.hasNext()) {
             o1 = ObjIt1.next();
-            x = 0;
-            y = 0;
             pris = true;
 
             while (pris) {
-                pris = false;
-                x = this.seed.nextInt(taille);
-                y = this.seed.nextInt(taille);
-                ObjIt2 = this.objets.iterator();
-                o2 = ObjIt2.next();
-                while (o2 != o1 && !pris) {
-                    if (o2.getX() == x && o2.getY() == y) {
-                        pris = true;
-                    }
-                    o2 = ObjIt2.next();
-                }
-
-                CreaIt2 = this.creatures.iterator();
-                while (CreaIt2.hasNext() && !pris) {
-                    c2 = CreaIt2.next();
-                    if (c2.getX() == x && c2.getY() == y) {
-                        pris = true;
-                    }
-                }
+                p = new Point2D();
+                pris = (this.grille_creatures[p.getX()][p.getY()] != null
+                        && this.grille_objets[p.getX()][p.getY()] != null);
             }
-            o1.setPos(x, y);
+            o1.setPos(p);
+            this.grille_objets[p.getX()][p.getY()] = o1;
             // o1.affiche(); TODO
         }
 

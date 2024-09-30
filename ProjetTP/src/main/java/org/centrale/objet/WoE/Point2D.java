@@ -38,6 +38,12 @@ public class Point2D {
         this.x = x;
         this.y = y;
     }
+    
+    public Point2D(int t) {
+        Random r = new Random();
+        this.x = r.nextInt(t);
+        this.y = r.nextInt(t);
+    }
 
     /**
      * Initialise un Point2D en copiant les coordonnées d'un Point2D donné
