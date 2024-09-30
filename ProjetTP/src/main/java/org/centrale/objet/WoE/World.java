@@ -28,22 +28,6 @@ public class World {
      * Création d'un monde aléatoire
      */
     public void creeMondeAlea() {
-        Guerrier g = new Guerrier();
-        Archer a = new Archer();
-        Paysan p = new Paysan();
-        Lapin l = new Lapin();
-        Loup lp = new Loup();
-        this.creatures.add(g);
-        this.creatures.add(a);
-        this.creatures.add(p);
-        this.creatures.add(l);
-        this.creatures.add(lp);
-        
-        PotionSoin pot = new PotionSoin();
-        Epee e = new Epee();
-        this.objets.add(pot);
-        this.objets.add(e);
-        
         int x;
         int y;
         boolean pris;
