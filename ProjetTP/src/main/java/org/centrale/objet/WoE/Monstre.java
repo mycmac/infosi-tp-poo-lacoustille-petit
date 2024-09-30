@@ -24,16 +24,35 @@ public class Monstre extends Creature {
     }
 
     /**
-     * Recopie le monstre p
+     * Initialise un Monstre comme copie d'un autre
      *
-     * @param p
+     * @param m
      */
-    public Monstre(Monstre p) {
-        super(p);
+    public Monstre(Monstre m) {
+        super(m);
     }
-
+    
     /**
-     * Créé aléatoirement un monstre (voir Creature)
+     * Génère un Monstre au point (x, y)
+     * 
+     * @param x abscisse
+     * @param y ordonnée
+     */
+    public Monstre(int x, int y) {
+        super(x, y);
+    }
+    
+    /**
+     * Génère un Monstre au point pt
+     * 
+     * @param pt point
+     */
+    public Monstre(Point2D pt) {
+        super(pt);
+    }
+    
+    /**
+     * Génère aléatoirement un monstre (voir Creature)
      * 
      */
     public Monstre() {
