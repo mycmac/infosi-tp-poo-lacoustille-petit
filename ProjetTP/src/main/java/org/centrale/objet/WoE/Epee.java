@@ -13,7 +13,7 @@ public class Epee extends Objet {
      */
     private final int degAttBaseMin = 1;
     /**
-     * @see degAttBaseMin
+     * @see #degAttBaseMin
      */
     private final int degAttBaseMax = 10;
     /**
@@ -22,7 +22,7 @@ public class Epee extends Objet {
      */
     private final int ptParBaseMin = 1;
     /**
-     * @see ptParBaseMin
+     * @see #ptParBaseMin
      */
     private final int ptParBaseMax = 10;
     /**
@@ -31,7 +31,7 @@ public class Epee extends Objet {
      */
     private final int pageAttBaseMin = 1;
     /**
-     * @see pageAttBaseMin
+     * @see #pageAttBaseMin
      */
     private final int pageAttBaseMax = 100;
     /**
@@ -40,7 +40,7 @@ public class Epee extends Objet {
      */
     private final int pageParBaseMin = 1;
     /**
-     * @see pageParBaseMin
+     * @see #pageParBaseMin
      */
     private final int pageParBaseMax = 100;
     
