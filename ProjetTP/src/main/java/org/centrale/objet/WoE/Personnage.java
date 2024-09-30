@@ -1,7 +1,7 @@
 package org.centrale.objet.WoE;
 
 /**
- *
+ * Classe générique pour les personnages humains
  * @author Ulysse
  */
 public class Personnage extends Creature {
