@@ -1,7 +1,7 @@
 package org.centrale.objet.WoE;
 
 /**
- *
+ * Un Loup (Monstre)
  * @author hanss
  */
 public class Loup extends Monstre implements Combatif {
