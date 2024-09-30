@@ -290,7 +290,9 @@ public class Creature extends Entite {
         ArrayList<int[]> deplacementsPossibles = new ArrayList<>();
         for (int i = -1; i<2; i++) {
             for (int j = -1; j<2; j++) {
-                deplacementsPossibles.add(new int[] {i, j});
+                if (grille[i][j] == null) {
+                    deplacementsPossibles.add(new int[] {i, j});
+                }
             }
         }
         
