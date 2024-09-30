@@ -225,6 +225,18 @@ public class Creature extends Entite {
         this.distAttMax = distAttMax;
     }
     
+    
+    /**
+     *
+     * Déplace la créature de manière déterminée.
+     *
+     * @param dx
+     * @param dy
+     */
+    public void deplace(int dx, int dy) {
+        this.pos.translate(dx, dy);
+    }
+    
     /**
      *
      * Déplace aléatoirement selon l'une des 8 directions
