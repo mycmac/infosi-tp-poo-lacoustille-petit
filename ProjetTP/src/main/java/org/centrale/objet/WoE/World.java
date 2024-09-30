@@ -10,13 +10,13 @@ import java.util.Random;
  */
 public class World {
     
-    private final int nbCreaturesBase = 1000;
-    private final int nbObjetsBase = 1000;
+    private final int nbCreaturesBase = 10000;
+    private final int nbObjetsBase = 10000;
     
     Random seed;
     int taille;
-    LinkedList<Creature> creatures = new LinkedList<Creature>();
-    LinkedList<Objet> objets = new LinkedList<Objet>();
+    LinkedList<Creature> creatures = new LinkedList<>();
+    LinkedList<Objet> objets = new LinkedList<>();
     Creature[][] grille_creatures;
     Objet[][] grille_objets;
 
