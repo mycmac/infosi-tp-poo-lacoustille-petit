@@ -13,7 +13,7 @@ public class World {
     /**
      * Taille de monde par défaut
      */
-    private final int tailleBase = 50;
+    private final int tailleBase = 100;
     /**
      * Nombre de créature par défaut à la génération d'un monde
      */
