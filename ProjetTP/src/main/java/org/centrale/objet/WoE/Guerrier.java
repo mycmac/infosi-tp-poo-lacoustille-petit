@@ -33,6 +33,25 @@ public class Guerrier extends Personnage implements Combatif {
     }
     
     /**
+     * Génère un guerrier au point (x, y)
+     * 
+     * @param x abscisse
+     * @param y ordonnée
+     */
+    public Guerrier(int x, int y) {
+        super(x, y);
+    }
+    
+    /**
+     * Génère un guerrier au point p
+     * 
+     * @param p point
+     */
+    public Guerrier(Point2D p) {
+        super(p);
+    }
+    
+    /**
      * Génère un guerrier aléatoire
      */
     public Guerrier() {
@@ -42,12 +61,12 @@ public class Guerrier extends Personnage implements Combatif {
     /**
      * Combattre une créature désignée
      *
-     * @param c
+     * @param c Créature désignée
      */
     @Override
     public void combattre(Creature c) {
-        String msg = new String();
-        int dgts = 0;
+        String msg;
+        int dgts;
         if (this.distance(c) <= 1) {
             int pAtt = this.getDegAtt();
             Epee arme = this.getArme();

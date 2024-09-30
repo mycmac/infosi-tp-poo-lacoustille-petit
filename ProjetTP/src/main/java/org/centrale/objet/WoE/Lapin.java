@@ -29,6 +29,25 @@ public class Lapin extends Monstre {
     public Lapin(Lapin p) {
         super(p);
     }
+    
+    /**
+     * Génère un Lapin au point (x, y)
+     * 
+     * @param x
+     * @param y 
+     */
+    public Lapin(int x, int y) {
+        super(x, y);
+    }
+    
+    /**
+     * Génère un Lapin au point pt
+     * 
+     * @param pt 
+     */
+    public Lapin(Point2D pt) {
+        super(pt);
+    }
 
     /**
      * Génère un lapin aléatoire (voir
