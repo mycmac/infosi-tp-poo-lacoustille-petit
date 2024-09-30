@@ -76,7 +76,8 @@ public class World {
     }
 
     /**
-     * Gestion d'un tour de jeu
+     * Gestion d'un tour de jeu : on affiche le nom ou le type de la créature
+     * qui joue, la déplace puis l'affiche.
      */
     public void tourDeJeu() {
         cleanEntites(creatures);
