@@ -23,7 +23,7 @@ public abstract class Objet extends Entite {
      * @param y ordonnée
      */
     public Objet(int x, int y) {
-        super(new Point2D(x, y), false);
+        super(x, y, false);
     }
     
     /**

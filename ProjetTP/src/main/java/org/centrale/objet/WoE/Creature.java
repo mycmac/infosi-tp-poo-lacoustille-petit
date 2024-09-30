@@ -95,7 +95,7 @@ public class Creature extends Entite {
      * @param y ordonnée
      */
     public Creature(int x, int y) {
-        super(new Point2D(x, y), true);
+        super(x, y, true);
         this.ptVieMax = getRandom(ptVieBaseMax - ptVieBaseMin + 1) + ptVieBaseMin;
         this.ptVie = this.ptVieMax;
         this.degAtt = getRandom(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;

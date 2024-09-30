@@ -263,7 +263,7 @@ public class World {
     }
     
     /**
-     * Getter de creatures
+     * Getter de creatures 
      * @return 
      */
     public LinkedList<Creature> getCreatures() {

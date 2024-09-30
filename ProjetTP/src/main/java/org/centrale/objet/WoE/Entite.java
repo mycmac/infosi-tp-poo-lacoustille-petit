@@ -42,6 +42,17 @@ public abstract class Entite {
     }
     
     /**
+     * Initialise une Entite à partir d'attributs donnés
+     * @param x abscisse
+     * @param y ordonnée
+     * @param blq Bloquant ou non
+     */
+    public Entite(int x, int y, boolean blq) {
+        this.pos = new Point2D(x, y);
+        this.bloquant = blq;
+    }
+    
+    /**
      * Initialise une Entite à une position aléatoire, sachant seulement si elle est bloquante ou non
      * @param blq Bloquant ou non
      */
