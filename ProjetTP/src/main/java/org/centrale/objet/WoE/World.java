@@ -28,49 +28,87 @@ public class World {
      * Création d'un monde aléatoire
      */
     public void creeMondeAlea() {
-        int n;
-        int i;
-        int j;
+        Guerrier g = new Guerrier();
+        Archer a = new Archer();
+        Paysan p = new Paysan();
+        Lapin l = new Lapin();
+        Loup lp = new Loup();
+        this.creatures.add(g);
+        this.creatures.add(a);
+        this.creatures.add(p);
+        this.creatures.add(l);
+        this.creatures.add(lp);
+        
+        PotionSoin pot = new PotionSoin();
+        Epee e = new Epee();
+        this.objets.add(pot);
+        this.objets.add(e);
+        
         int x;
         int y;
         boolean pris;
-
-        n = this.creatures.size();
-        for (i = 0; i < n; i++) {
+        
+        Iterator<Creature> CreaIt1 = this.creatures.iterator();
+        Iterator<Creature> CreaIt2;
+        Creature c1;
+        Creature c2;
+        while(CreaIt1.hasNext()) {
+            c1 = CreaIt1.next();
             x = 0;
             y = 0;
             pris = true;
+            
             while (pris) {
                 pris = false;
                 x = this.seed.nextInt(15);
                 y = this.seed.nextInt(15);
-                for (j = 0; j < i; j++) {
-                    if (this.creatures.get(j).getX() == x && this.creatures.get(j).getY() == y) {
+                CreaIt2 = this.creatures.iterator();
+                c2 = CreaIt2.next();
+                while (c2 != c1) {
+                    if (c2.getX() == x && c2.getY() == y) {
                         pris = true;
                     }
+                    c2 = CreaIt2.next();
                 }
             }
-            this.creatures.get(i).setPos(x, y);
-            this.creatures.get(i).affiche();
+            c1.setPos(x, y);
+            c1.affiche();
         }
+        
 
-        n = this.objets.size();
-        for (i = 0; i < n; i++) {
+        Iterator<Objet> ObjIt1 = this.objets.iterator();
+        Iterator<Objet> ObjIt2;
+        Objet o1;
+        Objet o2;
+        while(ObjIt1.hasNext()) {
+            o1 = ObjIt1.next();
             x = 0;
             y = 0;
             pris = true;
+            
             while (pris) {
                 pris = false;
                 x = this.seed.nextInt(15);
                 y = this.seed.nextInt(15);
-                for (j = 0; j < i; j++) {
-                    if (this.objets.get(j).getX() == x && this.objets.get(j).getY() == y) {
+                ObjIt2 = this.objets.iterator();
+                o2 = ObjIt2.next();
+                while (o2 != o1 && !pris) {
+                    if (o2.getX() == x && o2.getY() == y) {
+                        pris = true;
+                    }
+                    o2 = ObjIt2.next();
+                }
+                
+                CreaIt2 = this.creatures.iterator();
+                while (CreaIt2.hasNext() && !pris) {
+                    c2 = CreaIt2.next();
+                    if (c2.getX() == x && c2.getY() == y) {
                         pris = true;
                     }
                 }
             }
-            this.objets.get(i).setPos(x, y);
-            // this.objets.get(i).affiche(); TODO
+            o1.setPos(x, y);
+            // o1.affiche(); TODO
         }
 
     }
