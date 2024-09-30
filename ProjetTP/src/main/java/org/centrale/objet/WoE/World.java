@@ -10,65 +10,67 @@ import java.util.Random;
  */
 public class World {
 
-    Archer robin;
-    Paysan peon;
-    Lapin bugs;
-    Lapin bunny;
-    Archer guillaumeT;
-    Guerrier grosBill;
-    Loup wolfie;
+    LinkedList<Creature> creatures;
     LinkedList<Objet> objets;
+    Random seed;
 
     /**
      * Monde avec personnages par défaut
      */
     public World() {
-        robin = new Archer();
-        peon = new Paysan();
-        bugs = new Lapin();
-        bunny = new Lapin();
-        grosBill = new Guerrier();
-        wolfie = new Loup();
-        PotionSoin potion = new PotionSoin(12);
-        PotionSoin potion2 = new PotionSoin(8);
-        PotionSoin potion3 = new PotionSoin(11);
-        Epee epee = new Epee();
-        objets = new LinkedList<>();
-        objets.add(potion);
-        objets.add(potion2);
-        objets.add(potion3);
-        objets.add(epee);
+        this.creatures = new LinkedList<Creature>();
+        this.objets = new LinkedList<Objet>();
+        this.seed = new Random();
+
     }
 
     /**
      * Création d'un monde aléatoire
      */
     public void creeMondeAlea() {
-        Random r = new Random();
-        Creature[] gens = new Creature[6];
-        gens[0] = this.robin;
-        gens[1] = this.peon;
-        gens[2] = this.bugs;
-        gens[3] = this.bunny;
-        gens[4] = this.grosBill;
-        gens[5] = this.wolfie;
-        for (int i = 0; i < 6; i++) {
-            int x = 0;
-            int y = 0;
-            boolean pris = true;
+        int n;
+        int i;
+        int j;
+        int x;
+        int y;
+        boolean pris;
+
+        n = this.creatures.size();
+        for (i = 0; i < n; i++) {
+            x = 0;
+            y = 0;
+            pris = true;
             while (pris) {
                 pris = false;
-                x = r.nextInt(15);
-                y = r.nextInt(15);
-                for (int j = 0; j < i; j++) {
-                    if (gens[j].getPos().getX() == x && gens[j].getPos().getY() == y) {
+                x = this.seed.nextInt(15);
+                y = this.seed.nextInt(15);
+                for (j = 0; j < i; j++) {
+                    if (this.creatures.get(j).getX() == x && this.creatures.get(j).getY() == y) {
                         pris = true;
                     }
                 }
             }
-            gens[i].setPos(x, y);
-            gens[i].affiche();
+            this.creatures.get(i).setPos(x, y);
+            this.creatures.get(i).affiche();
+        }
 
+        n = this.objets.size();
+        for (i = 0; i < n; i++) {
+            x = 0;
+            y = 0;
+            pris = true;
+            while (pris) {
+                pris = false;
+                x = this.seed.nextInt(15);
+                y = this.seed.nextInt(15);
+                for (j = 0; j < i; j++) {
+                    if (this.objets.get(j).getX() == x && this.objets.get(j).getY() == y) {
+                        pris = true;
+                    }
+                }
+            }
+            this.objets.get(i).setPos(x, y);
+            // this.objets.get(i).affiche(); TODO
         }
 
     }
