@@ -1,7 +1,7 @@
 package org.centrale.objet.WoE;
 
 /**
- *
+ * Test de la classe {@link org.centrale.objet.WoE.Point2D}
  * @author Ulysse
  */
 public class TestPoint2D {
