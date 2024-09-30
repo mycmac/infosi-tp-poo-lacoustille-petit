@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 /**
- *
+ * Test de la classe {@link org.centrale.objet.WoE.Point2D}
  * @author Ulysse
  */
 public class World {
