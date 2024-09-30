@@ -56,7 +56,7 @@ public class World {
             }
             c1.setPos(x, y);
             this.grille[x][y] = true;
-            c1.affiche();
+            //c1.affiche();
         }
 
         Iterator<Objet> ObjIt1 = this.objets.iterator();
