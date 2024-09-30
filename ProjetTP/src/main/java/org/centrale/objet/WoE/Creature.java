@@ -1,5 +1,7 @@
 package org.centrale.objet.WoE;
 
+import java.util.ArrayList;
+
 /**
  * Super-classe générique pour les créatures diverses de WoE
  *
@@ -87,8 +89,41 @@ public class Creature extends Entite {
     }
     
     /**
+     * Initialise une Creature aléatoire en un point donné
+     * 
+     * @param x abscisse
+     * @param y ordonnée
+     */
+    public Creature(int x, int y) {
+        super(new Point2D(x, y), true);
+        this.ptVieMax = getRandom(ptVieBaseMax - ptVieBaseMin + 1) + ptVieBaseMin;
+        this.ptVie = this.ptVieMax;
+        this.degAtt = getRandom(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
+        this.ptPar = getRandom(ptParBaseMax - ptParBaseMin + 1) + ptParBaseMin;
+        this.pageAtt = getRandom(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
+        this.pagePar = getRandom(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
+        this.distAttMax = 1;
+    }
+    
+    /**
+     * Initialise une Creature aléatoire en un point donné
+     * 
+     * @param p point
+     */
+    public Creature(Point2D p) {
+        super(p, true);
+        this.ptVieMax = getRandom(ptVieBaseMax - ptVieBaseMin + 1) + ptVieBaseMin;
+        this.ptVie = this.ptVieMax;
+        this.degAtt = getRandom(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
+        this.ptPar = getRandom(ptParBaseMax - ptParBaseMin + 1) + ptParBaseMin;
+        this.pageAtt = getRandom(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
+        this.pagePar = getRandom(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
+        this.distAttMax = 1;
+    }
+    
+    /**
      * Initialise une Créature aléatoire avec des attributs aléatoires, au sein
-     * des limites fixées
+     * des limites fixées dans Point2D
      */
     public Creature() {
         super(new Point2D(), true);
@@ -239,7 +274,8 @@ public class Creature extends Entite {
     
     /**
      *
-     * Déplace aléatoirement selon l'une des 8 directions
+     * Déplace aléatoirement selon l'une des 8 directions, en tenant compte des
+     * autres créatures présentes.
      *   7   0   1
      *    \  |  / 
      *     \ | / 
@@ -247,35 +283,24 @@ public class Creature extends Entite {
      *     / | \ 
      *    /  |  \ 
      *   5   4   3
+     * @param grille Grille des créatures du monde concerné
+     * /!\ PAS DE MOYEN DE TESTER LA PRÉSENCE EFFECTIVE DE LA CREATURE DANS CE MONDE
      */
-    public void deplace() {
-        int dir = getRandom(8);
-        switch (dir) {
-            case 0:
-                this.pos.translate(0, 1);
-                break;
-            case 1:
-                this.pos.translate(1, 1);
-                break;
-            case 2:
-                this.pos.translate(1, 0);
-                break;
-            case 3:
-                this.pos.translate(1, -1);
-                break;
-            case 4:
-                this.pos.translate(0, -1);
-                break;
-            case 5:
-                this.pos.translate(-1, -1);
-                break;
-            case 6:
-                this.pos.translate(-1, 0);
-                break;
-            case 7:
-                this.pos.translate(-1, 1);
-                break;
+    public void deplace(Creature[][] grille) {
+        ArrayList<int[]> deplacementsPossibles = new ArrayList<>();
+        for (int i = -1; i<2; i++) {
+            for (int j = -1; j<2; j++) {
+                deplacementsPossibles.add(new int[] {i, j});
+            }
         }
+        
+        int dir = getRandom(deplacementsPossibles.size());
+        if (dir != 0) {
+            this.pos.translate(deplacementsPossibles.get(dir)[0], deplacementsPossibles.get(dir)[1]);
+        } else {
+            System.out.println("Cette créature n'a nulle part où aller ! Elle reste donc à sa position initiale.");
+        }
+        
     }
 
     /**

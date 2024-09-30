@@ -19,6 +19,18 @@ public class TestWOE {
         //System.out.println(creature[5][5]);
         //creature[6][3].affiche();
         
+        WoE.afficheWorld();
+        */
+        
+        WoE = new World(5);
+        WoE.addCreature(new Archer(), 0, 0);
+        WoE.addCreature(new Guerrier(), 0, 1);
+        WoE.addCreature(new Paysan(), 0, 2);
+        WoE.addCreature(new Lapin(), 0, 3);
+        WoE.addCreature(new Loup(), 0, 4);
+        WoE.afficheWorld();
+        
+        // Test de la génération aléatoire d'entites
         Iterator<Creature> creatureP = WoE.getCreatures().iterator();
         int[] crea_crees = {0, 0, 0, 0, 0};
         Creature c;
@@ -57,6 +69,7 @@ public class TestWOE {
         System.out.print("Il contient aussi "
                 +obj_crees[0]+" Epees et "
                 +obj_crees[1]+" PotionSoins !\n");
+        
         
         
         System.out.println("Nombre de créatures : "+WoE.getCreatures().size());

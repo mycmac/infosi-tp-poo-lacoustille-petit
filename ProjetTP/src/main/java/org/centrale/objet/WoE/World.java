@@ -9,15 +9,44 @@ import java.util.Random;
  * @author Ulysse
  */
 public class World {
-
-    private final int nbCreaturesBase = 10000;
-    private final int nbObjetsBase = 10000;
-
+    
+    /**
+     * Taille de monde par défaut
+     */
+    private final int tailleBase = 50;
+    /**
+     * Nombre de créature par défaut à la génération d'un monde
+     */
+    private final int nbCreaturesBase = tailleBase*tailleBase/5;
+    /**
+     * Nombre d'objets par défaut à la génération d'un monde
+     */
+    private final int nbObjetsBase = nbCreaturesBase;
+    
+    
+    /**
+     * Générateur de nombres aléatoires associé au monde
+     */
     Random seed;
+    /**
+     * Taille du monde
+     */
     int taille;
+    /**
+     * Liste des créatures du monde
+     */
     LinkedList<Creature> creatures = new LinkedList<>();
+    /**
+     * Liste des objets du monde
+     */
     LinkedList<Objet> objets = new LinkedList<>();
+    /**
+     * Tableau donnant les positions des créatures du monde, et null en l'absence de créature
+     */
     Creature[][] grille_creatures;
+    /**
+     * Tableau donnant les positions des objets du monde, et null en l'absence d'objet
+     */
     Objet[][] grille_objets;
 
     /**
@@ -31,6 +60,17 @@ public class World {
         this.grille_creatures = new Creature[t][t];
         this.grille_objets = new Objet[t][t];
     }
+    
+    /**
+     * Initialisation d'un monde vide à la taille de base définie
+     * 
+     */
+    public World() {
+        this.seed = new Random();
+        this.taille = this.tailleBase;
+        this.grille_creatures = new Creature[this.taille][this.taille];
+        this.grille_objets = new Objet[this.taille][this.taille];
+    }
 
     /**
      * Remplissage aléatoire d'un monde
@@ -40,8 +80,10 @@ public class World {
         int t = this.taille;
         Point2D p;
         boolean pris;
-
-        for (int i = 0; i < this.nbCreaturesBase; i++) {
+        
+        // Création de nbCreaturesBase créatures dans le monde, réparties
+        // aléatoirement entre les différents types existants
+        for (int i=0;i<this.nbCreaturesBase;i++){
             switch (seed.nextInt(5)) {
                 case 0:
                     this.creatures.add(new Archer());
@@ -60,6 +102,9 @@ public class World {
                     break;
             }
         }
+        
+        // Assignation des positions initiales de chaque créature, 
+        // pour assurer leur unicité
         Iterator<Creature> CreaIt1 = this.creatures.iterator();
         Creature c1;
         while (CreaIt1.hasNext()) {
@@ -74,8 +119,6 @@ public class World {
             this.grille_creatures[p.getX()][p.getY()] = c1;
             //c1.affiche();
         }
-
-        for (int i = 0; i < this.nbObjetsBase; i++) {
             switch (seed.nextInt(2)) {
                 case 0:
                     this.objets.add(new Epee());
@@ -85,7 +128,11 @@ public class World {
                     break;
             }
         }
-
+        
+        
+        // Création de nbObjetsBase objets dans le monde, répartis
+        // aléatoirement entre les différents types existants
+        for (int i=0;i<this.nbObjetsBase;i++){
         Iterator<Objet> ObjIt1 = this.objets.iterator();
         Objet o1;
         while (ObjIt1.hasNext()) {
@@ -106,28 +153,81 @@ public class World {
 
     /**
      * Gestion d'un tour de jeu : on affiche le nom ou le type de la créature
-     * qui joue, la déplace puis l'affiche.
+     * qui joue, la déplace puis l'affiche à nouveau.
      */
     public void tourDeJeu() {
         cleanEntites(creatures);
         cleanEntites(objets);
         for (Creature creature : creatures) {
             System.out.println("C'est au tour de " + creature + " de jouer.");
-            creature.deplace();
+            creature.deplace(this.grille_creatures);
             creature.affiche();
         }
         System.out.println("Fin du tour de jeu");
     }
 
     /**
-     * Affichage du monde
+     * Affichage du monde : TODO
+     * ===========
+     * | . O . M |
+     * | M . . O |
+     * | . . . . |
+     * | . P . . |
+     * ===========
      */
     public void afficheWorld() {
-
+        String carte = new String();
+        int i;
+        int j;
+        Creature c;
+        Objet o;
+        
+        for (i = 0; i < 1+2*this.taille+2; i++) {
+            carte += "=";
+        }
+        carte += "\n";
+        
+        for (i = 0; i < this.taille; i++) {
+            carte += "|";
+            for (j = 0; j < this.taille; j++) {
+                carte += " ";
+                c = this.grille_creatures[i][j];
+                o = this.grille_objets[i][j];
+                if (c != null) {
+                    if (c instanceof Archer) {
+                        carte += "A";
+                    } else if (c instanceof Guerrier) {
+                        carte += "G";
+                    } else if (c instanceof Paysan) {
+                        carte += "p";
+                    } else if (c instanceof Lapin) {
+                        carte += "l";
+                    } else if (c instanceof Loup) {
+                        carte += "L";
+                    } 
+                } else if (o != null) {
+                    if (o instanceof Epee) {
+                        carte += "E";
+                    } else if (o instanceof PotionSoin) {
+                        carte += "S";
+                    }
+                } else {
+                    carte += ".";
+                }
+            }
+            carte += " |\n";
+        }
+        
+        for (i = 0; i < 1+2*this.taille+2; i++) {
+            carte += "=";
+        }
+        carte += "\n";
+        
+        System.out.print(carte);
     }
 
     /**
-     * Retire les objets utilisés (sans position)
+     * Retire les entites à détruire : objets utilisés et créatures mortes
      *
      * @param Liste
      */
@@ -141,21 +241,41 @@ public class World {
             }
         }
     }
-
+    
+    /**
+     * Getter de grille_creatures
+     * @return 
+     */
     public Creature[][] getGrille_creatures() {
         return grille_creatures;
     }
-
+    
+    /**
+     * Getter de grille_objets
+     * @return 
+     */
     public Objet[][] getGrille_objets() {
         return grille_objets;
     }
-
+    
+    /**
+     * Getter de creatures
+     * @return 
+     */
     public LinkedList<Creature> getCreatures() {
         return creatures;
     }
-
+        
+        // Assignation des positions de chaque objet,
+        // pour assurer qu'aucun objet n'est intialement sous une créature ou
+        // avec un autre objet
+    /**
+     * Getter de objets
+     * @return 
+     */
     public LinkedList<Objet> getObjets() {
         return objets;
     }
-
+    
+    
 }
