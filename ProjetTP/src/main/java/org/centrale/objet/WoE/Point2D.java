@@ -14,10 +14,10 @@ public class Point2D {
      * /!\ Ces valeurs ne sont pas (encore) testées comme conditions de
      * création
      */
-    private final int xmin = -20;
-    private final int xmax = 20;
-    private final int ymin = -20;
-    private final int ymax = 20;
+    private final int xmin = 0;
+    private final int xmax = 49;
+    private final int ymin = 0;
+    private final int ymax = 49;
 
     /**
      * Abscisse
