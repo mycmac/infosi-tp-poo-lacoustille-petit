@@ -30,6 +30,9 @@ public class TestWOE {
         WoE.addCreature(new Lapin(), 0, 3);
         WoE.addCreature(new Loup(), 0, 4);
         WoE.afficheWorld();
+        
+        WoE.addCreature(new Archer(1, 0));
+        WoE.afficheWorld();
         /*
         // Test de la génération aléatoire d'entites
         Iterator<Creature> creatureP = WoE.getCreatures().iterator();
