@@ -11,6 +11,7 @@ public class TestWOE {
 
     public static void main(String[] args) {
         World WoE;
+        /*
         WoE = new World(50);
         long debut = System.nanoTime();
         WoE.creeMondeAlea();
@@ -21,18 +22,44 @@ public class TestWOE {
         //creature[6][3].affiche();
         
         WoE.afficheWorld();
+        */
         
         WoE = new World(5);
         WoE.addCreature(new Archer(), 0, 0);
-        WoE.addCreature(new Guerrier(), 0, 1);
-        WoE.addCreature(new Paysan(), 0, 2);
-        WoE.addCreature(new Lapin(), 0, 3);
-        WoE.addCreature(new Loup(), 0, 4);
+        WoE.addCreature(new Lapin(), 0, 1);
+        WoE.addObjet(new Epee(), 1, 0);
+        WoE.addObjet(new PotionSoin(), 1, 1);
         WoE.afficheWorld();
         
-        WoE.addCreature(new Archer(1, 0));
+        WoE.addCreature(new Guerrier(), 0, 0);
         WoE.afficheWorld();
         
+        WoE.addCreature(new Guerrier(), 1, 0);
+        WoE.afficheWorld();
+        
+        WoE.addCreature(new Loup(), 0, 1);
+        WoE.afficheWorld();
+        
+        WoE.addCreature(new Loup(), 1, 1);
+        WoE.afficheWorld();
+        
+        WoE.grille_creatures[1][1].deplace(WoE.grille_creatures);
+        // TODO : 'L' ne s'est pas déplacé
+        WoE.afficheWorld();
+        
+        WoE.addObjet(new Epee(), 1, 1);
+        WoE.afficheWorld();
+        
+        WoE.addObjet(new Epee(), 0, 0);
+        WoE.afficheWorld();
+        
+        WoE.addObjet(new Epee(), 2, 1);
+        WoE.afficheWorld();
+        WoE.grille_creatures[2][1].deplace(WoE.grille_creatures);
+        // TODO : 'L' ne s'est pas déplacé
+        WoE.afficheWorld();
+        
+        /*
         // Test de la génération aléatoire d'entites
         Iterator<Creature> creatureP = WoE.getCreatures().iterator();
         int[] crea_crees = {0, 0, 0, 0, 0};
@@ -72,7 +99,7 @@ public class TestWOE {
         System.out.print("Il contient aussi "
                 +obj_crees[0]+" Epees et "
                 +obj_crees[1]+" PotionSoins !\n");
-        
+        */
         /*
         
         

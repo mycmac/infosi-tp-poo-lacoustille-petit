@@ -262,7 +262,7 @@ public class Creature extends Entite {
     
     
     /**
-     *
+     * TODO : n'actualise pas le monde
      * Déplace la créature de manière déterminée.
      *
      * @param dx
@@ -273,7 +273,7 @@ public class Creature extends Entite {
     }
     
     /**
-     *
+     * TODO : n'actualise pas le monde
      * Déplace aléatoirement selon l'une des 8 directions, en tenant compte des
      * autres créatures présentes.
      *   7   0   1
@@ -290,8 +290,12 @@ public class Creature extends Entite {
         ArrayList<int[]> deplacementsPossibles = new ArrayList<>();
         for (int i = -1; i<2; i++) {
             for (int j = -1; j<2; j++) {
-                if (grille[i][j] == null) {
-                    deplacementsPossibles.add(new int[] {i, j});
+                int ix = this.getX() + i;
+                int jy = this.getY() + j;
+                if (ix >= 0 && jy >= 0 && ix < grille.length && jy < grille.length) {
+                    if(grille[ix][jy] == null) {
+                        deplacementsPossibles.add(new int[] {i, j});
+                    }
                 }
             }
         }

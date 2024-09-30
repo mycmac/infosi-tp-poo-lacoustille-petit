@@ -291,6 +291,8 @@ public class World {
     
             this.objets.remove(o);
             this.grille_objets[x][y] = null;
+            this.grille_creatures[x][y] = c;
+            this.creatures.add(c);
         } else {
             this.grille_creatures[x][y] = c;
             this.creatures.add(c);
@@ -306,5 +308,31 @@ public class World {
         int x = c.getX();
         int y = c.getY();
         addCreature_aux(c, x, y);
+    }
+    
+    private void addObjet_aux(Objet o, int x, int y) {
+        Creature c = this.grille_creatures[x][y];
+        if (this.grille_objets[x][y] != null) {
+            System.out.println("Un objet se trouve déjà ici. Tu n'as pas le droit d'apparaître !");
+        } else if (c != null && c instanceof Personnage) {
+            o.recuperer((Personnage) c);
+            System.out.println("Oh ! Quel bel objet que voilà !");
+            this.grille_objets[x][y] = o;
+            this.objets.add(o);
+        } else {
+            this.grille_objets[x][y] = o;
+            this.objets.add(o);
+        }
+    }
+    
+    public void addObjet(Objet o, int x, int y) {
+        o.setPos(x, y);
+        addObjet_aux(o, x, y);
+    }
+    
+    public void addObjet(Objet o) {
+        int x = o.getX();
+        int y = o.getY();
+        addObjet_aux(o, x, y);
     }
 }
