@@ -76,15 +76,6 @@ public class TestWOE {
         */
         
         /*
-        System.out.println("Nombre de créatures : "+WoE.getCreatures().size());
-        // Parcours de la liste de creatures par index
-        int totalPV = 0;
-        long debutIn = System.nanoTime();
-        for (int i = 0;i<WoE.getCreatures().size();i++){
-            totalPV += WoE.getCreatures().get(i).getPtVie();
-        }
-        long finIn = System.nanoTime();
-        System.out.println("Total de PV "+totalPV+" en "+(finIn-debutIn)+" nanosecondes par index");
         // Parcours par itérateurs
         int totalPV2 = 0;
         long debutIt = System.nanoTime();
@@ -93,6 +84,15 @@ public class TestWOE {
             totalPV2 += creatureP.next().getPtVie();
         }
         long finIt = System.nanoTime();
-        System.out.println("Total de PV "+totalPV2+" en "+(finIt-debutIt)+" nanosecondes par itérateur");*/
+        System.out.println("Total de PV "+totalPV2+" en "+(finIt-debutIt)+" nanosecondes par itérateur");
+        // Parcours de la liste de creatures par index
+        int totalPV = 0;
+        long debutIn = System.nanoTime();
+        for (int i = 0;i<WoE.getCreatures().size();i++){
+            totalPV += WoE.getCreatures().get(i).getPtVie();
+        }
+        long finIn = System.nanoTime();
+        System.out.println("Total de PV "+totalPV+" en "+(finIn-debutIn)+" nanosecondes par index");
+        */
     }
 }
