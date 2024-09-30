@@ -172,9 +172,62 @@ public class World {
 
     /**
      * Affichage du monde : TODO
+     * ===========
+     * | . O . M |
+     * | M . . O |
+     * | . . . . |
+     * | . P . . |
+     * ===========
      */
     public void afficheWorld() {
-
+        String carte = new String();
+        int i;
+        int j;
+        Creature c;
+        Objet o;
+        
+        for (i = 0; i < 1+2*this.taille+2; i++) {
+            carte += "=";
+        }
+        carte += "\n";
+        
+        for (i = 0; i < this.taille; i++) {
+            carte += "|";
+            for (j = 0; j < this.taille; j++) {
+                carte += " ";
+                c = this.grille_creatures[i][j];
+                o = this.grille_objets[i][j];
+                if (c != null) {
+                    if (c instanceof Archer) {
+                        carte += "A";
+                    } else if (c instanceof Guerrier) {
+                        carte += "G";
+                    } else if (c instanceof Paysan) {
+                        carte += "p";
+                    } else if (c instanceof Lapin) {
+                        carte += "l";
+                    } else if (c instanceof Loup) {
+                        carte += "L";
+                    } 
+                } else if (o != null) {
+                    if (o instanceof Epee) {
+                        carte += "E";
+                    } else if (o instanceof PotionSoin) {
+                        carte += "S";
+                    }
+                } else {
+                    carte += ".";
+                }
+            }
+            carte += " |\n";
+        }
+        
+        for (i = 0; i < 1+2*this.taille+2; i++) {
+            carte += "=";
+        }
+        carte += "\n";
+        
+        System.out.print(carte);
     }
 
     /**

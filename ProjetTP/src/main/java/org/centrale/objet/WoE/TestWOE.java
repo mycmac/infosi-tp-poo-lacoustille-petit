@@ -10,6 +10,7 @@ public class TestWOE {
 
     public static void main(String[] args) {
         World WoE;
+        /*
         WoE = new World(50);
         long debut = System.nanoTime();
         WoE.creeMondeAlea();
@@ -19,6 +20,11 @@ public class TestWOE {
         //System.out.println(creature[5][5]);
         //creature[6][3].affiche();
         
+        WoE.afficheWorld();
+        */
+        
+        /*
+        // Test de la génération aléatoire d'entites
         Iterator<Creature> creatureP = WoE.getCreatures().iterator();
         int[] crea_crees = {0, 0, 0, 0, 0};
         Creature c;
@@ -57,6 +63,7 @@ public class TestWOE {
         System.out.print("Il contient aussi "
                 +obj_crees[0]+" Epees et "
                 +obj_crees[1]+" PotionSoins !\n");
+        */
         
         /*
         System.out.println("Nombre de créatures : "+WoE.getCreatures().size());
