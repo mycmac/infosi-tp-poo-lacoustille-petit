@@ -56,7 +56,7 @@ public class Creature extends Entite {
      * @param p créature à copier
      */
     public Creature(Creature p) {
-        super(p.pos, true);
+        super(p.pos);
         this.ptVieMax = p.getPtVie();
         this.ptVie = this.ptVieMax;
         this.degAtt = p.getDegAtt();
@@ -78,7 +78,7 @@ public class Creature extends Entite {
      * @param p position
      */
     public Creature(int pV, int dA, int pPar, int paAtt, int paPar, int dAtkMax, Point2D p) {
-        super(p, true);
+        super(p);
         this.ptVieMax = pV;
         this.ptVie = this.ptVieMax;
         this.degAtt = dA;
@@ -95,7 +95,7 @@ public class Creature extends Entite {
      * @param y ordonnée
      */
     public Creature(int x, int y) {
-        super(x, y, true);
+        super(x, y);
         this.ptVieMax = getRandom(ptVieBaseMax - ptVieBaseMin + 1) + ptVieBaseMin;
         this.ptVie = this.ptVieMax;
         this.degAtt = getRandom(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
@@ -111,7 +111,7 @@ public class Creature extends Entite {
      * @param p point
      */
     public Creature(Point2D p) {
-        super(p, true);
+        super(p);
         this.ptVieMax = getRandom(ptVieBaseMax - ptVieBaseMin + 1) + ptVieBaseMin;
         this.ptVie = this.ptVieMax;
         this.degAtt = getRandom(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
@@ -126,7 +126,7 @@ public class Creature extends Entite {
      * des limites fixées dans Point2D
      */
     public Creature() {
-        super(new Point2D(), true);
+        super(new Point2D());
         this.ptVieMax = getRandom(ptVieBaseMax - ptVieBaseMin + 1) + ptVieBaseMin;
         this.ptVie = this.ptVieMax;
         this.degAtt = getRandom(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;

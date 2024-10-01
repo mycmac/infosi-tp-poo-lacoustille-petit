@@ -13,11 +13,6 @@ public abstract class Entite {
      */
     protected Point2D pos;
     /**
-     * Décrit si l'Entite empêche un déplacement sur sa position <br>
-     * Permet d'éviter la présence de 2 créatures sur la même case
-     */
-    private boolean bloquant;
-    /**
      * Générateur aléatoire liée à l'Entite
      */
     private final Random r = new Random();
@@ -28,37 +23,30 @@ public abstract class Entite {
      */
     public Entite(Entite e) {
         this.pos = new Point2D(e.getPos());
-        this.bloquant = e.isBloquant();
     }
     
     /**
      * Initialise une Entite à partir d'attributs donnés
      * @param pt Position
-     * @param blq Bloquant ou non
      */
-    public Entite(Point2D pt, boolean blq) {
+    public Entite(Point2D pt) {
         this.pos = new Point2D(pt);
-        this.bloquant = blq;
     }
     
     /**
      * Initialise une Entite à partir d'attributs donnés
      * @param x abscisse
      * @param y ordonnée
-     * @param blq Bloquant ou non
      */
-    public Entite(int x, int y, boolean blq) {
+    public Entite(int x, int y) {
         this.pos = new Point2D(x, y);
-        this.bloquant = blq;
     }
     
     /**
-     * Initialise une Entite à une position aléatoire, sachant seulement si elle est bloquante ou non
-     * @param blq Bloquant ou non
+     * Initialise une Entite à une position aléatoire
      */
-    public Entite(boolean blq) {
+    public Entite() {
         this.pos = new Point2D();
-        this.bloquant = blq;
     }
     
     /**
@@ -100,22 +88,6 @@ public abstract class Entite {
 
     public void setY(int y) {
         this.pos.setY(y);
-    }
-    
-    /**
-     * Vérifie si l'Entite est bloquante
-     * @return 
-     */
-    public boolean isBloquant() {
-        return this.bloquant;
-    }
-    
-    /**
-     * Redéfinit si l'Entite est bloquante
-     * @param bloquant 
-     */
-    public void setBloquant(boolean bloquant) {
-        this.bloquant = bloquant;
     }
 
     /**

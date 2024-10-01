@@ -13,7 +13,7 @@ public abstract class Objet extends Entite {
      * @param o 
      */
     public Objet(Objet o) {
-        super(o.getPos(), false);
+        super(o.getPos());
     }
     
     /**
@@ -23,7 +23,7 @@ public abstract class Objet extends Entite {
      * @param y ordonnée
      */
     public Objet(int x, int y) {
-        super(x, y, false);
+        super(x, y);
     }
     
     /**
@@ -32,14 +32,14 @@ public abstract class Objet extends Entite {
      * @param pos point
      */
     public Objet(Point2D pos) {
-        super(pos, false);
+        super(pos);
     }
     
     /**
      * Génère un Objet aléatoire
      */
     public Objet() {
-        super(new Point2D(), false);
+        super(new Point2D());
     }
 
     /**
