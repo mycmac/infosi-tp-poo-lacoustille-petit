@@ -262,18 +262,39 @@ public class Creature extends Entite {
     
     
     /**
-     * TODO : n'actualise pas le monde
      * Déplace la créature de manière déterminée.
      *
-     * @param dx
-     * @param dy
+     * @param grille
+     * @param p
      */
-    public void deplace(int dx, int dy) {
-        this.pos.translate(dx, dy);
+    public void deplace(Creature[][] grille, Point2D p) {
+        if (grille[this.getX() + p.getX()][this.getY() + p.getY()] == null) {
+            grille[this.getX()][this.getY()] = null;
+            this.pos.translate(p);
+            grille[this.getX()][this.getY()] = this;
+        } else {
+            System.out.println("Il y a déjà une Creature ici. Celle-ci reste donc à sa place");
+        }
     }
     
     /**
-     * TODO : n'actualise pas le monde
+     * Déplace la créature de manière déterminée.
+     *
+     * @param grille
+     * @param dx
+     * @param dy
+     */
+    public void deplace(Creature[][] grille, int dx, int dy) {
+        if (grille[this.getX() + dx][this.getY() + dy] == null) {
+            grille[this.getX()][this.getY()] = null;
+            this.pos.translate(dx, dy);
+            grille[this.getX()][this.getY()] = this;
+        } else {
+            System.out.println("Il y a déjà une Creature ici. Celle-ci reste donc à sa place");
+        }
+    }
+    
+    /**
      * Déplace aléatoirement selon l'une des 8 directions, en tenant compte des
      * autres créatures présentes.
      *   7   0   1
@@ -287,26 +308,27 @@ public class Creature extends Entite {
      * /!\ PAS DE MOYEN DE TESTER LA PRÉSENCE EFFECTIVE DE LA CREATURE DANS CE MONDE
      */
     public void deplace(Creature[][] grille) {
-        ArrayList<int[]> deplacementsPossibles = new ArrayList<>();
+        ArrayList<Point2D> deplacementsPossibles = new ArrayList<>();
         for (int i = -1; i<2; i++) {
             for (int j = -1; j<2; j++) {
                 int ix = this.getX() + i;
                 int jy = this.getY() + j;
                 if (ix >= 0 && jy >= 0 && ix < grille.length && jy < grille.length) {
                     if(grille[ix][jy] == null) {
-                        deplacementsPossibles.add(new int[] {i, j});
+                        deplacementsPossibles.add(new Point2D(i, j));
                     }
                 }
             }
         }
         
-        int dir = getRandom(deplacementsPossibles.size());
-        if (dir != 0) {
-            this.pos.translate(deplacementsPossibles.get(dir)[0], deplacementsPossibles.get(dir)[1]);
+        int sz = deplacementsPossibles.size();
+        if (sz != 0) {
+            int dir = this.getRandom(sz);
+            Point2D p = deplacementsPossibles.get(dir);
+            deplace(grille, p);
         } else {
             System.out.println("Cette créature n'a nulle part où aller ! Elle reste donc à sa position initiale.");
         }
-        
     }
 
     /**
