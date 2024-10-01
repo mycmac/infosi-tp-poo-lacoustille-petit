@@ -25,37 +25,46 @@ public class TestWOE {
         */
         
         WoE = new World(5);
+        System.out.println("Ajout d'un Archer, d'un Lapin, d'une Epee et d'une PotionSoin :");
         WoE.addCreature(new Archer(), 0, 0);
         WoE.addCreature(new Lapin(), 0, 1);
         WoE.addObjet(new Epee(), 1, 0);
         WoE.addObjet(new PotionSoin(), 1, 1);
         WoE.afficheWorld();
         
+        System.out.println("Ajout d'un Guerrier sur la case de l'Archer :");
         WoE.addCreature(new Guerrier(), 0, 0);
         WoE.afficheWorld();
         
+        System.out.println("Ajout d'un Guerrier sur la case de l'Epee :");
         WoE.addCreature(new Guerrier(), 1, 0);
         WoE.afficheWorld();
         
+        System.out.println("Ajout d'un Loup sur la case du Lapin :");
         WoE.addCreature(new Loup(), 0, 1);
         WoE.afficheWorld();
         
+        System.out.println("Ajout d'un Loup sur la case de la PotionSoin :");
         WoE.addCreature(new Loup(), 1, 1);
         WoE.afficheWorld();
         
-        WoE.grille_creatures[1][1].deplace(WoE.grille_creatures);
+        System.out.println("Déplacement du Loup :");
+        WoE.deplace(1, 1, 1, 0);
         // TODO : 'L' ne s'est pas déplacé
         WoE.afficheWorld();
         
+        System.out.println("Ajout d'une Epee sur la case de la PotionSoin :");
         WoE.addObjet(new Epee(), 1, 1);
         WoE.afficheWorld();
         
+        System.out.println("Ajout d'une Epee sur la case de l'Archer :");
         WoE.addObjet(new Epee(), 0, 0);
         WoE.afficheWorld();
         
+        System.out.println("Ajout d'une Epee sur la case du Loup et déplacement du Loup :");
         WoE.addObjet(new Epee(), 2, 1);
         WoE.afficheWorld();
-        WoE.grille_creatures[2][1].deplace(WoE.grille_creatures);
+        WoE.deplace(2, 1, 0, 1);
         // TODO : 'L' ne s'est pas déplacé
         WoE.afficheWorld();
         
