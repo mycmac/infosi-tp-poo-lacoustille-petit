@@ -121,6 +121,16 @@ public class Point2D {
         this.x += dx;
         this.y += dy;
     }
+    
+    /**
+     * Effectue la translation du Point2D de vecteur de déplacement p
+     *
+     * @param p Point2D vecteur de déplacement
+     */
+    public void translate(Point2D p) {
+        this.x += p.getX();
+        this.y += p.getY();
+    }
 
     /**
      * Transcrit le Point2D en une chaîne de caractères
