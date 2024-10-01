@@ -171,7 +171,7 @@ public class World {
     }
 
     /**
-     * Affichage du monde : TODO
+     * Affichage du monde
      * ===========
      * | . O . M |
      * | M . . O |
@@ -281,9 +281,20 @@ public class World {
         return objets;
     }
     
+    // AJOUT ENTITE -----------------------------------------------------------------------------------------------------------------------------------
+    
+    /**
+     * Ajoute une créature au monde, sachant que sa position vaut (x, y)
+     * 
+     * @param c Creature à ajouter
+     * @param x abscisse
+     * @param y ordonnée
+     */
     private void addCreature_aux(Creature c, int x, int y) {
         Objet o = this.grille_objets[x][y];
-        if (this.grille_creatures[x][y] != null) {
+        if (x < 0 || y < 0 || x >= this.taille || y >= this.taille) {
+            System.out.println("Une créature apparaît hors du monde et tombe dans le néant ! !");
+        } else if (this.grille_creatures[x][y] != null) {
             System.out.println("Une créature se trouve déjà ici. Tu n'as pas le droit d'apparaître !");
         } else if (o != null && c instanceof Personnage) {
             o.recuperer((Personnage) c);
@@ -296,23 +307,44 @@ public class World {
         } else {
             this.grille_creatures[x][y] = c;
             this.creatures.add(c);
-}
+        }
     }
     
+    /**
+     * Ajoute une créature au monde à la position (x, y)
+     * 
+     * @param c Créature à ajouter
+     * @param x abscisse
+     * @param y ordonnée
+     */
     public void addCreature(Creature c, int x, int y) {
         c.setPos(x, y);
         addCreature_aux(c, x, y);
     }
     
+    /**
+     * Ajoute une créature au monde à sa position
+     * 
+     * @param c Créature à ajouter
+     */
     public void addCreature(Creature c) {
         int x = c.getX();
         int y = c.getY();
         addCreature_aux(c, x, y);
     }
     
+    /**
+     * Ajoute un objet au monde, sachant que sa position vaut (x, y)
+     * 
+     * @param o Objet à ajouter
+     * @param x abscisse
+     * @param y ordonnée
+     */
     private void addObjet_aux(Objet o, int x, int y) {
         Creature c = this.grille_creatures[x][y];
-        if (this.grille_objets[x][y] != null) {
+        if (x < 0 || y < 0 || x >= this.taille || y >= this.taille) {
+            System.out.println("Un objet apparaît hors du monde et tombe dans le néant ! !");
+        } else if (this.grille_objets[x][y] != null) {
             System.out.println("Un objet se trouve déjà ici. Tu n'as pas le droit d'apparaître !");
         } else if (c != null && c instanceof Personnage) {
             o.recuperer((Personnage) c);
@@ -325,14 +357,95 @@ public class World {
         }
     }
     
+    /**
+     * Ajoute un objet au monde à la position (x, y)
+     * 
+     * @param o Objet à ajouter
+     * @param x abscisse
+     * @param y ordonnée
+     */
     public void addObjet(Objet o, int x, int y) {
         o.setPos(x, y);
         addObjet_aux(o, x, y);
     }
     
+    /**
+     * Ajoute un objet au monde à sa position
+     * 
+     * @param o Objet à ajouter
+     */
     public void addObjet(Objet o) {
         int x = o.getX();
         int y = o.getY();
         addObjet_aux(o, x, y);
     }
+    
+    // FIN AJOUT ENTITE --------------------------------------------------------------------------------------------------------------------------------
+    
+    // DEPLACEMENT CREATURE ----------------------------------------------------------------------------------------------------------------------------
+    
+    /**
+     * Déplace la créature présente à la position (x, y) de (dx, dy)
+     * 
+     * @param x abscisse
+     * @param y ordonnée
+     * @param dx déplacement abscisse
+     * @param dy déplacement ordonnée
+     */
+    public void deplace(int x, int y, int dx, int dy){
+        this.grille_creatures[x][y].deplace(this.grille_creatures, dx, dy);
+    }
+    
+    /**
+     * Déplace la créature présente à la position (x, y) du vecteur p
+     * 
+     * @param x abscisse
+     * @param y ordonnée
+     * @param p vecteur de déplacement
+     */
+    public void deplace(int x, int y, Point2D p){
+        this.grille_creatures[x][y].deplace(this.grille_creatures, p);
+    }
+    
+    /**
+     * Déplace la créature présente à la position (x, y)
+     * 
+     * @param x abscisse
+     * @param y ordonnée
+     */
+    public void deplace(int x, int y){
+        this.grille_creatures[x][y].deplace(this.grille_creatures);
+    }
+    
+    /**
+     * Déplace la créature c de (dx, dy)
+     * 
+     * @param c Créature à déplacer
+     * @param dx déplacement abscisse
+     * @param dy déplacement ordonnée
+     */
+    public void deplace(Creature c, int dx, int dy){
+        this.grille_creatures[c.getX()][c.getY()].deplace(this.grille_creatures, dx, dy);
+    }
+    
+    /**
+     * Déplace la créature c du vecteur p
+     * 
+     * @param c Créature à déplacer
+     * @param p vecteur de déplacement
+     */
+    public void deplace(Creature c, Point2D p){
+        this.grille_creatures[c.getX()][c.getY()].deplace(this.grille_creatures, p);
+    }
+    
+    /**
+     * Déplace la créature c
+     * 
+     * @param c Créature à déplacer
+     */
+    public void deplace(Creature c){
+        this.grille_creatures[c.getX()][c.getY()].deplace(this.grille_creatures);
+    }
+    
+    // FIN DEPLACEMENT CREATURE ------------------------------------------------------------------------------------------------------------------------
 }
