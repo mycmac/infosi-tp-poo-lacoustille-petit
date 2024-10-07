@@ -48,7 +48,6 @@ public class TestWOE {
         
         System.out.println("Déplacement du Loup :");
         WoE.deplace(1, 1, 1, 0);
-        // TODO : 'L' ne s'est pas déplacé
         WoE.afficheWorld();
         
         System.out.println("Ajout d'une Epee sur la case de la PotionSoin :");
@@ -63,7 +62,6 @@ public class TestWOE {
         WoE.addObjet(new Epee(), 2, 1);
         WoE.afficheWorld();
         WoE.deplace(2, 1, 0, 1);
-        // TODO : 'L' ne s'est pas déplacé
         WoE.afficheWorld();
         
         /*

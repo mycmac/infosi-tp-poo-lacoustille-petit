@@ -150,7 +150,6 @@ public class World {
             }
             o1.setPos(p);
             this.grille_objets[p.getX()][p.getY()] = o1;
-            // o1.affiche(); TODO
         }
 
     }
