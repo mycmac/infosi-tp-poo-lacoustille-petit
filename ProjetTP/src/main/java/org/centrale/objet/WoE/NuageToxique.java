@@ -28,12 +28,6 @@ public class NuageToxique extends Objet implements Deplacable, Combatif {
     public void setToxicite(int toxicite) {
         this.toxicite = toxicite;
     }
-    
-    
-    @Override
-    public void recuperer(Personnage p) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     @Override
     public void deplace(Creature[][] grille) {

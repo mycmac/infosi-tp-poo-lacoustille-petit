@@ -4,7 +4,7 @@ package org.centrale.objet.WoE;
  * Objet permettant de soigner des points de vie
  * @author timot
  */
-public class PotionSoin extends Objet {
+public class PotionSoin extends Objet implements Recuperable {
 
     /**
      * Points de vie de départ : entre 1 et 99
