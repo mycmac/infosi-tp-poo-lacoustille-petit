@@ -24,7 +24,7 @@ public class TestWOE {
         WoE.afficheWorld();
         */
         
-        WoE = new World(5);
+        /* WoE = new World(5);
         System.out.println("Ajout d'un Archer, d'un Lapin, d'une Epee et d'une PotionSoin :");
         WoE.addCreature(new Archer(), 0, 0);
         WoE.addCreature(new Lapin(), 0, 1);
@@ -64,7 +64,7 @@ public class TestWOE {
         WoE.addObjet(new Epee(), 2, 1);
         WoE.afficheWorld();
         WoE.deplace(2, 1, 0, 1);
-        WoE.afficheWorld();
+        WoE.afficheWorld(); */
         
         /*
         // Test de la génération aléatoire d'entites
