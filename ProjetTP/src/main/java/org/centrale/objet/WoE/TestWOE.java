@@ -73,7 +73,7 @@ public class TestWOE {
         System.out.println("Test déplacement joueur :");
         Clavier.Initialize();
         for (int i = 1; i < 50; i++) {
-            WoE.getJoueur().deplacePerso(WoE.getGrille_creatures());
+            WoE.getJoueur().actionDeplacement(WoE.getGrille_creatures(), WoE.getGrille_objets());
             WoE.afficheWorld();
         }
 
