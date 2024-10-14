@@ -25,19 +25,20 @@ public class Joueur {
         //    System.out.println(" • " + i + " - " + classesJouables[i-1].getc);
         //}
     }
-    
+
     public void actionDeplacement(World monde) {
-    for (int i=0;i<perso.getVitesse();i++){
-        deplacePerso(monde.getGrille_creatures());
-        Objet o = monde.getGrille_objets()[perso.getX()][perso.getY()];
-        if (o != null){
-            o.recuperer(perso);
-            monde.cleanEntites(monde.getObjets());
+        for (int i = 0; i < perso.getVitesse(); i++) {
+            deplacePerso(monde.getGrille_creatures());
+            Objet o = monde.getGrille_objets()[perso.getX()][perso.getY()];
+            if (o != null) {
+                o.recuperer(perso);
+                monde.getGrille_objets()[perso.getX()][perso.getY()] = null;
+                monde.cleanEntites(monde.getObjets());
+            }
+            monde.afficheWorld();
         }
-        monde.afficheWorld();
     }
-    }
-    
+
     public void deplacePerso(Creature[][] grille) {
         while (!Fenetre.isPressed()) {
             try {
