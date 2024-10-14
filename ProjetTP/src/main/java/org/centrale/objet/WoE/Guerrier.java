@@ -5,7 +5,7 @@ package org.centrale.objet.WoE;
  * 
  * @author Ulysse, timot
  */
-public class Guerrier extends Personnage implements Combatif {
+public class Guerrier extends Personnage implements Combatif, Jouable {
 
     
     /**
