@@ -32,13 +32,14 @@ public class Joueur {
         Objet o = monde.getGrille_objets()[perso.getX()][perso.getY()];
         if (o != null){
             o.recuperer(perso);
+            monde.cleanEntites(monde.getObjets());
         }
         monde.afficheWorld();
     }
     }
     
     public void deplacePerso(Creature[][] grille) {
-        while (!Clavier.isPressed()) {
+        while (!Fenetre.isPressed()) {
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
@@ -47,7 +48,7 @@ public class Joueur {
         }
         int[] dep = deplacement();
         perso.deplace(grille, dep[0], dep[1]);
-        while (Clavier.isPressed()) {
+        while (Fenetre.isPressed()) {
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
@@ -57,7 +58,7 @@ public class Joueur {
     }
 
     public int[] deplacement() {
-        KeyEvent event = Clavier.pressedKey();
+        KeyEvent event = Fenetre.pressedKey();
         switch (event.getKeyCode()) {
             case KeyEvent.VK_UP:
                 return (new int[]{-1, 0});

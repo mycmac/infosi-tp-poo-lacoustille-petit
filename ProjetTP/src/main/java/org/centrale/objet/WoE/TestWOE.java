@@ -69,7 +69,7 @@ public class TestWOE {
         WoE.afficheWorld();
 
         System.out.println("Test déplacement joueur :");
-        Clavier.Initialize();
+        Fenetre.Initialize();
         for (int i = 1; i < 50; i++) {
             WoE.getJoueur().actionDeplacement(WoE);
             WoE.afficheWorld();
