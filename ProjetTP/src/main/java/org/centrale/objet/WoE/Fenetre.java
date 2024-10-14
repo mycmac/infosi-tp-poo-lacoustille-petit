@@ -44,7 +44,7 @@ public class Fenetre {
     public static void Initialize(int taille_monde) {
         frame = new JFrame("WoE - World of ECN");
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.setUndecorated(true);
+        // frame.setUndecorated(true); //Full Screen
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Créer un panneau de fond pour le style
         JPanel backgroundPanel = new JPanel();
