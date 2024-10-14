@@ -9,6 +9,9 @@ public class TestWOE {
 
     public static void main(String[] args) {
         World WoE;
+        /*Reflections reflections = new Reflections("firstdeveloper.examples.reflections");
+Set<Class<? extends Pet>> classes = reflections.getSubTypesOf(Pet.class);*/
+        
         /*
         WoE = new World(50);
         long debut = System.nanoTime();
