@@ -32,8 +32,8 @@ public class Joueur {
         Objet o = monde.getGrille_objets()[perso.getX()][perso.getY()];
         if (o != null){
             o.recuperer(perso);
-            monde.afficheWorld();
         }
+        monde.afficheWorld();
     }
     }
     
