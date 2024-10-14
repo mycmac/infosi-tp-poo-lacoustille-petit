@@ -4,7 +4,7 @@ package org.centrale.objet.WoE;
  * Classe générique pour les personnages humains
  * @author Ulysse
  */
-public class Personnage extends Creature {
+public abstract class Personnage extends Creature {
 
     private String nom;
     private final static String[] noms = new String[]{"Alphonse", "Clovis", "Aude", "Hubert", "Bertille", "Paulin", "Rainier", "Isaure", "Enguerrand", "Neven"};
