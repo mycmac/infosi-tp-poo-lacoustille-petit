@@ -9,9 +9,18 @@ public class TestWOE {
 
     public static void main(String[] args) {
         World WoE;
-        Joueur j = new Joueur();
-        
+
+        /**
+         * Test de l'initialisation du joueur, qui demande à l'utilisateur sa classe 
+        */
         /*
+        Joueur j = new Joueur();
+         */
+
+        /**
+         * Test du temps de création d'un monde de taille 50
+         */
+        /* 
         WoE = new World(50);
         long debut = System.nanoTime();
         WoE.creeMondeAlea();
@@ -24,7 +33,15 @@ public class TestWOE {
         WoE.afficheWorld();
         */
         
-        /* WoE = new World(5);
+        //_________________________________________________________________________________________________________
+
+        /**
+         * Test de l'ajout de créatures et d'objets au monde,
+         * ainsi que de World.deplace(int, int, int, int) qui simplifie l'écriture sachant que déplacer un objet requiert d'accéder à
+         * la grille du monde
+         */
+        /*
+        WoE = new World(5);
         System.out.println("Ajout d'un Archer, d'un Lapin, d'une Epee et d'une PotionSoin :");
         WoE.addCreature(new Archer(), 0, 0);
         WoE.addCreature(new Lapin(), 0, 1);
@@ -64,10 +81,15 @@ public class TestWOE {
         WoE.addObjet(new Epee(), 2, 1);
         WoE.afficheWorld();
         WoE.deplace(2, 1, 0, 1);
-        WoE.afficheWorld(); */
+        WoE.afficheWorld();
+        */
         
+        //_________________________________________________________________________________________________________
+        
+        /**
+         * Test de la génération aléatoire d'entites
+        */
         /*
-        // Test de la génération aléatoire d'entites
         Iterator<Creature> creatureP = WoE.getCreatures().iterator();
         int[] crea_crees = {0, 0, 0, 0, 0};
         Creature c;
@@ -107,9 +129,8 @@ public class TestWOE {
                 +obj_crees[0]+" Epees et "
                 +obj_crees[1]+" PotionSoins !\n");
         */
+
         /*
-        
-        
         System.out.println("Nombre de créatures : "+WoE.getCreatures().size());
         
         // Parcours par itérateurs
