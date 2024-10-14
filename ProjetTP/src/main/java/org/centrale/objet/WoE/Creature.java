@@ -290,12 +290,16 @@ public abstract class Creature extends Entite implements Deplacable{
      * @param dy
      */
     public void deplace(Creature[][] grille, int dx, int dy) {
+        try{
         if (grille[this.getX() + dx][this.getY() + dy] == null) {
             grille[this.getX()][this.getY()] = null;
             this.pos.translate(dx, dy);
             grille[this.getX()][this.getY()] = this;
         } else {
             Fenetre.addMessage("Il y a déjà une Creature ici. Celle-ci reste donc à sa place");
+        }}
+        catch (ArrayIndexOutOfBoundsException e ){
+            Fenetre.addMessage("Il s'agit d'un mur !");
         }
     }
     

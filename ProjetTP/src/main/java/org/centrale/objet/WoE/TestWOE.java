@@ -22,10 +22,15 @@ public class TestWOE {
         //creature[6][3].affiche();
         
         WoE.afficheWorld();
-        */
         
         WoE = new World(5);
         System.out.println("Ajout d'un Archer, d'un Lapin, d'une Epee et d'une PotionSoin :");
+        WoE = new World(15);
+        Fenetre.Initialize(15);
+        Fenetre.addMessage("Ajout d'un Archer, d'un Lapin, d'une Epee et d'une PotionSoin :");
+        Guerrier Gros = new Guerrier();
+        WoE.getJoueur().setPerso(Gros);
+        WoE.addCreature(Gros, 3, 3);
         WoE.addCreature(new Archer(), 0, 0);
         WoE.addCreature(new Lapin(), 0, 1);
         WoE.addObjet(new Epee(), 1, 0);
@@ -66,6 +71,10 @@ public class TestWOE {
         WoE.deplace(2, 1, 0, 1);
         WoE.afficheWorld();
         
+        for (int i = 1; i < 50; i++) {
+            WoE.tourDeJeu();
+            WoE.afficheWorld();
+        }
         /*
         // Test de la génération aléatoire d'entites
         Iterator<Creature> creatureP = WoE.getCreatures().iterator();
