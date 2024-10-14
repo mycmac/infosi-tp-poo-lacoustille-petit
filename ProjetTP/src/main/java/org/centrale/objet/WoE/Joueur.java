@@ -2,6 +2,7 @@ package org.centrale.objet.WoE;
 
 import java.awt.event.KeyEvent;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -16,28 +17,31 @@ public class Joueur {
     }
 
     public void deplacePerso() {
-        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-        System.out.println("Enter username");
-
-        String userName = myObj.nextLine();  // Read user input
-        System.out.println("Username is: " + userName);
+        while (!Clavier.isPressed()) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        int[] dep = deplacement(Clavier.pressedKey());
+        perso.deplace(dep[0], dep[1]);
     }
 
-    public int[] keyTyped(KeyEvent event) {
+    public int[] deplacement(KeyEvent event) {
         if (event.getKeyCode() == KeyEvent.VK_UP) {
-            return(new int[] {0,1});
+            return (new int[]{0, 1});
         }
         if (event.getKeyCode() == KeyEvent.VK_DOWN) {
-            return(new int[] {0,-1});
+            return (new int[]{0, -1});
         }
         if (event.getKeyCode() == KeyEvent.VK_RIGHT) {
-            return(new int[] {1,0});
+            return (new int[]{1, 0});
         }
         if (event.getKeyCode() == KeyEvent.VK_LEFT) {
-            return(new int[] {-1,0});
-        }
-        else{
-            return(new int[] {0,0});
+            return (new int[]{-1, 0});
+        } else {
+            return (new int[]{0, 0});
         }
     }
 }
