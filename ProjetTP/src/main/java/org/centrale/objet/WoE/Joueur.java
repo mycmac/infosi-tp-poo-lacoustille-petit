@@ -1,35 +1,81 @@
 package org.centrale.objet.WoE;
 
-//import java.util.ArrayList;
 import java.awt.event.KeyEvent;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.Integer;
 import java.util.Scanner;
+import org.reflections.Reflections;
 
 /**
  *
  * @author Ulysse
  */
 public class Joueur {
-    //private final Reflections reflections = new Reflections("org.centrale.objet.WoE");
-    //private final Set<Class<?>> classesJouables = ;
-    private Personnage perso;
+    private Jouable perso;
 
-    public void Joueur(Personnage p) {
+    public Joueur(Jouable p) {
         perso = p;
     }
     
-    public void Joueur() {
-        System.out.println("Quelle type de personnage veux-tu jouer ?");
-        //for (int i = 1; i<classesJouables.size(); i++) {
-        //    System.out.println(" • " + i + " - " + classesJouables[i-1].getc);
-        //}
-    }
-        
-    public void deplacePerso() {
-        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-        System.out.println("Enter username");
+    public Joueur() {
+        try {
+            int numClasseJoueur;
+            Class<? extends Jouable> classeJoueur = null;
 
-        String userName = myObj.nextLine();  // Read user input
-        System.out.println("Username is: " + userName);
+            Boolean satisfait = false;
+
+            Reflections reflections = new Reflections("org.centrale.objet.WoE");
+            Object[] classesJouables = reflections.getSubTypesOf(Jouable.class).toArray();
+            while (!satisfait) {
+                System.out.println("Quelle type de personnage veux-tu jouer ?");
+                for (int i = 0; i<classesJouables.length; i++) {
+                    System.out.println(" - " + ((int) i+1) + " - " + ((Class) classesJouables[i]).getSimpleName());
+                }
+
+                numClasseJoueur = getClavierInt();
+                while (numClasseJoueur <= 0 || numClasseJoueur > classesJouables.length) {
+                    System.out.println("Choisis un type de personnage valide !");
+                    numClasseJoueur = getClavierInt();
+                }
+                classeJoueur = (Class<? extends Jouable>) classesJouables[numClasseJoueur - 1];
+
+                System.out.println("Tu veux donc jouer un " + classeJoueur.getSimpleName() + " ? Si oui, tape \"Y\".");
+                
+                if (getClavier().equals("Y")) {
+                    satisfait = true;
+                }
+            }
+            perso = (classeJoueur.getDeclaredConstructor().newInstance());
+            
+        } catch (NoSuchMethodException|
+                InstantiationException|
+                IllegalAccessException|
+                IllegalArgumentException|
+                InvocationTargetException e) {
+        } 
+    }
+    
+    public final String getClavier() {
+        Scanner myObj = new Scanner(System.in);
+        return myObj.nextLine();
+    }
+    
+    public final Integer getClavierInt() {
+        Integer res = null;
+        while (res == null) {
+        
+            try {
+                res = Integer.valueOf(getClavier());  // Read user input
+            } catch(NumberFormatException ex) {
+                res = null;
+                System.out.println("Veuillez entrer un nombre entier inférieur à " + Integer.MAX_VALUE + "!");
+            }
+        }
+        return res;
+    }
+    
+    public void deplacePerso() {
+        
     }
 
     public int[] keyTyped(KeyEvent event) {

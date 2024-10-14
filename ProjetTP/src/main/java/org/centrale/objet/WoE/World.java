@@ -48,6 +48,8 @@ public class World {
      * Tableau donnant les positions des objets du monde, et null en l'absence d'objet
      */
     Objet[][] grille_objets;
+    
+    Joueur joueur;
 
     /**
      * Initialisation d'un monde vide de taille prédéfinie
@@ -59,6 +61,7 @@ public class World {
         this.taille = t;
         this.grille_creatures = new Creature[t][t];
         this.grille_objets = new Objet[t][t];
+        this.joueur = new Joueur();
     }
     
     /**
@@ -77,8 +80,6 @@ public class World {
      *
      */
     public void creeMondeAlea() {
-        Joueur joueur = new Joueur();
-        
         int t = this.taille;
         Point2D p;
         boolean pris;
