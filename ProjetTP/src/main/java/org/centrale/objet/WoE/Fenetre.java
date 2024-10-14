@@ -89,7 +89,6 @@ public class Fenetre {
         
         // Ajouter un JScrollPane pour faire défiler le JTextArea si nécessaire
         JScrollPane outputScrollPane = new JScrollPane(outputArea);
-        outputScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER); // Pas de barre de défilement verticale toujours visible
         outputScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // Pas de barre de défilement horizontale
         
         
