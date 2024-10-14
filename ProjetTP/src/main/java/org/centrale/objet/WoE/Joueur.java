@@ -25,7 +25,17 @@ public class Joueur {
         //    System.out.println(" • " + i + " - " + classesJouables[i-1].getc);
         //}
     }
-
+    
+    public void actionDeplacement(Creature[][] grille, Objet[][] objets) {
+    for (int i=0;i<perso.getVitesse();i++){
+        deplacePerso(grille);
+        Objet o = objets[perso.getX()][perso.getY()];
+        if (o != null){
+            o.recuperer(perso);
+        }
+    }
+    }
+    
     public void deplacePerso(Creature[][] grille) {
         while (!Clavier.isPressed()) {
             try {

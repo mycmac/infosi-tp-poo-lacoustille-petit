@@ -22,8 +22,8 @@ public class Archer extends Personnage implements Combatif, Jouable {
      * @param p position (Point2D)
      * @param nbFl nombre de flèches
      */
-    public Archer(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, Point2D p, int nbFl) {
-        super(n, pV, dA, pPar, paAtt, paPar, dMax, p);
+    public Archer(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, int vitesse, Point2D p, int nbFl) {
+        super(n, pV, dA, pPar, paAtt, paPar, dMax, vitesse, p);
         this.nbFleches = nbFl;
     }
 
