@@ -23,8 +23,8 @@ public class TestWOE {
         
         WoE.afficheWorld();
          */
-        WoE = new World(5);
-        Fenetre.Initialize(5);
+        WoE = new World(15);
+        Fenetre.Initialize(15);
         Fenetre.addMessage("Ajout d'un Archer, d'un Lapin, d'une Epee et d'une PotionSoin :");
         Guerrier Gros = new Guerrier();
         WoE.getJoueur().setPerso(Gros);
@@ -72,7 +72,7 @@ public class TestWOE {
         Fenetre.addMessage("Test déplacement joueur :");
         
         for (int i = 1; i < 50; i++) {
-            WoE.getJoueur().actionDeplacement(WoE);
+            WoE.tourDeJeu();
             WoE.afficheWorld();
         }
 

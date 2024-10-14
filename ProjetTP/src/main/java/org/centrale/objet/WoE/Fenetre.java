@@ -70,7 +70,7 @@ public class Fenetre {
         textPanel.setBackground(Color.DARK_GRAY);
         
         // Ajouter un JTextArea pour afficher les sorties
-        outputArea = new JTextArea(2*taille_monde, 3*taille_monde); // Ajustez le nombre de lignes et de colonnes
+        outputArea = new JTextArea(taille_monde+5, taille_monde*3); // Ajustez le nombre de lignes et de colonnes
         outputArea.setEditable(false); // Rendre la zone de texte non éditable
         outputArea.setBackground(Color.DARK_GRAY);
         outputArea.setForeground(Color.LIGHT_GRAY);
