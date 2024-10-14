@@ -12,6 +12,7 @@ package org.centrale.objet.WoE;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
+import javax.swing.JFrame;
 
 public class Clavier {
     private static volatile boolean isPressed = false;
@@ -28,7 +29,12 @@ public class Clavier {
         }
     }
 
-    public static void main(String[] args) {
+    public static void Initialize() {
+        JFrame frame = new JFrame("Keyboard Listener");
+        frame.setSize(400, 300);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
 
             @Override
