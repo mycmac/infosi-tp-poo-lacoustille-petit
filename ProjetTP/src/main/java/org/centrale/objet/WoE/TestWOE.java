@@ -1,5 +1,7 @@
 package org.centrale.objet.WoE;
 
+import java.util.Iterator;
+
 /**
  * Test de tout le package {@link org.centrale.objet.WoE} et plus spécifiquement
  * de {@link org.centrale.objet.WoE.World}
@@ -23,52 +25,48 @@ public class TestWOE {
         
         WoE.afficheWorld();
          */
-        WoE = new World(15);
-        Fenetre.Initialize(15);
-        Fenetre.addMessage("Ajout d'un Archer, d'un Lapin, d'une Epee et d'une PotionSoin :");
-        Guerrier Gros = new Guerrier();
-        WoE.getJoueur().setPerso(Gros);
-        WoE.addCreature(Gros, 3, 3);
-        WoE.addCreature(new Archer(), 0, 0);
-        WoE.addCreature(new Lapin(), 0, 1);
-        WoE.addObjet(new Epee(), 1, 0);
-        WoE.addObjet(new PotionSoin(), 1, 1);
-        WoE.afficheWorld();
-
-        Fenetre.addMessage("Ajout d'un Guerrier sur la case de l'Archer :");
-        WoE.addCreature(new Guerrier(), 0, 0);
-        WoE.afficheWorld();
-
-        Fenetre.addMessage("Ajout d'un Guerrier sur la case de l'Epee :");
-        WoE.addCreature(new Guerrier(), 1, 0);
-        WoE.afficheWorld();
-
-        Fenetre.addMessage("Ajout d'un Loup sur la case du Lapin :");
-        WoE.addCreature(new Loup(), 0, 1);
-        WoE.afficheWorld();
-
-        Fenetre.addMessage("Ajout d'un Loup sur la case de la PotionSoin :");
-        WoE.addCreature(new Loup(), 1, 1);
-        WoE.afficheWorld();
-
-        Fenetre.addMessage("Déplacement du Loup :");
-        WoE.deplace(1, 1, 1, 0);
-        WoE.afficheWorld();
-
-        Fenetre.addMessage("Ajout d'une Epee sur la case de la PotionSoin :");
-        WoE.addObjet(new Epee(), 1, 1);
-        WoE.afficheWorld();
-
-        Fenetre.addMessage("Ajout d'une Epee sur la case de l'Archer :");
-        WoE.addObjet(new Epee(), 0, 0);
-        WoE.afficheWorld();
-
-        Fenetre.addMessage("Ajout d'une Epee sur la case du Loup et déplacement du Loup :");
-        WoE.addObjet(new Epee(), 2, 1);
-        WoE.afficheWorld();
-        WoE.deplace(2, 1, 0, 1);
-        WoE.afficheWorld();
-
+        WoE = new World(25);
+        WoE.creeMondeAlea();
+        Iterator<Creature> creatureP = WoE.getCreatures().iterator();
+        int[] crea_crees = {0, 0, 0, 0, 0};
+        Creature c;
+        while (creatureP.hasNext()){
+            c = creatureP.next();
+            if (c instanceof Archer) {
+                crea_crees[0] ++;
+            } else if (c instanceof Guerrier) {
+                crea_crees[1] ++;
+            } else if (c instanceof Paysan) {
+                crea_crees[2] ++;
+            } else if (c instanceof Lapin) {
+                crea_crees[3] ++;
+            } else {
+                crea_crees[4] ++;
+            }
+        }
+        System.out.print("Le monde aléatoire a été créé avec "
+                +crea_crees[0]+" Archers, "
+                +crea_crees[1]+" Guerriers, "
+                +crea_crees[2]+" Paysans, "
+                +crea_crees[3]+" Lapins et "
+                +crea_crees[4]+" Loups !\n");
+        
+        Iterator<Objet> objetP = WoE.getObjets().iterator();
+        int[] obj_crees = {0, 0};
+        Objet o;
+        while (objetP.hasNext()){
+            o = objetP.next();
+            if (o instanceof Epee) {
+                obj_crees[0] ++;
+            } else {
+                obj_crees[1] ++;
+            }
+        }
+        System.out.print("Il contient aussi "
+                +obj_crees[0]+" Epees et "
+                +obj_crees[1]+" PotionSoins !\n");
+        Fenetre.Initialize(50);
+        
         Fenetre.addMessage("Test déplacement joueur :");
         
         for (int i = 1; i < 50; i++) {
