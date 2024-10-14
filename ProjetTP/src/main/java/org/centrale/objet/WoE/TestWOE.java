@@ -16,15 +16,16 @@ public class TestWOE {
         long debut = System.nanoTime();
         WoE.creeMondeAlea();
         long fin = System.nanoTime();
-        System.out.println("Temps de création : "+(fin-debut)+" ns");
+        Fenetre.addMessage("Temps de création : "+(fin-debut)+" ns");
         //Creature[][] creature = new Creature[12][12];
-        //System.out.println(creature[5][5]);
+        //Fenetre.addMessage(creature[5][5]);
         //creature[6][3].affiche();
         
         WoE.afficheWorld();
          */
         WoE = new World(5);
-        System.out.println("Ajout d'un Archer, d'un Lapin, d'une Epee et d'une PotionSoin :");
+        Fenetre.Initialize(5);
+        Fenetre.addMessage("Ajout d'un Archer, d'un Lapin, d'une Epee et d'une PotionSoin :");
         Guerrier Gros = new Guerrier();
         WoE.getJoueur().setPerso(Gros);
         WoE.addCreature(Gros, 3, 3);
@@ -34,42 +35,42 @@ public class TestWOE {
         WoE.addObjet(new PotionSoin(), 1, 1);
         WoE.afficheWorld();
 
-        System.out.println("Ajout d'un Guerrier sur la case de l'Archer :");
+        Fenetre.addMessage("Ajout d'un Guerrier sur la case de l'Archer :");
         WoE.addCreature(new Guerrier(), 0, 0);
         WoE.afficheWorld();
 
-        System.out.println("Ajout d'un Guerrier sur la case de l'Epee :");
+        Fenetre.addMessage("Ajout d'un Guerrier sur la case de l'Epee :");
         WoE.addCreature(new Guerrier(), 1, 0);
         WoE.afficheWorld();
 
-        System.out.println("Ajout d'un Loup sur la case du Lapin :");
+        Fenetre.addMessage("Ajout d'un Loup sur la case du Lapin :");
         WoE.addCreature(new Loup(), 0, 1);
         WoE.afficheWorld();
 
-        System.out.println("Ajout d'un Loup sur la case de la PotionSoin :");
+        Fenetre.addMessage("Ajout d'un Loup sur la case de la PotionSoin :");
         WoE.addCreature(new Loup(), 1, 1);
         WoE.afficheWorld();
 
-        System.out.println("Déplacement du Loup :");
+        Fenetre.addMessage("Déplacement du Loup :");
         WoE.deplace(1, 1, 1, 0);
         WoE.afficheWorld();
 
-        System.out.println("Ajout d'une Epee sur la case de la PotionSoin :");
+        Fenetre.addMessage("Ajout d'une Epee sur la case de la PotionSoin :");
         WoE.addObjet(new Epee(), 1, 1);
         WoE.afficheWorld();
 
-        System.out.println("Ajout d'une Epee sur la case de l'Archer :");
+        Fenetre.addMessage("Ajout d'une Epee sur la case de l'Archer :");
         WoE.addObjet(new Epee(), 0, 0);
         WoE.afficheWorld();
 
-        System.out.println("Ajout d'une Epee sur la case du Loup et déplacement du Loup :");
+        Fenetre.addMessage("Ajout d'une Epee sur la case du Loup et déplacement du Loup :");
         WoE.addObjet(new Epee(), 2, 1);
         WoE.afficheWorld();
         WoE.deplace(2, 1, 0, 1);
         WoE.afficheWorld();
 
-        System.out.println("Test déplacement joueur :");
-        Fenetre.Initialize();
+        Fenetre.addMessage("Test déplacement joueur :");
+        
         for (int i = 1; i < 50; i++) {
             WoE.getJoueur().actionDeplacement(WoE);
             WoE.afficheWorld();
@@ -119,7 +120,7 @@ public class TestWOE {
  /*
         
         
-        System.out.println("Nombre de créatures : "+WoE.getCreatures().size());
+        Fenetre.addMessage("Nombre de créatures : "+WoE.getCreatures().size());
         
         // Parcours par itérateurs
         int totalPV2 = 0;
@@ -129,7 +130,7 @@ public class TestWOE {
             totalPV2 += creatureP.next().getPtVie();
         }
         long finIt = System.nanoTime();
-        System.out.println("Total de PV "+totalPV2+" en "+(finIt-debutIt)+" nanosecondes par itérateur");
+        Fenetre.addMessage("Total de PV "+totalPV2+" en "+(finIt-debutIt)+" nanosecondes par itérateur");
         // Parcours de la liste de creatures par index
         int totalPV = 0;
         long debutIn = System.nanoTime();
@@ -137,7 +138,7 @@ public class TestWOE {
             totalPV += WoE.getCreatures().get(i).getPtVie();
         }
         long finIn = System.nanoTime();
-        System.out.println("Total de PV "+totalPV+" en "+(finIn-debutIn)+" nanosecondes par index");
+        Fenetre.addMessage("Total de PV "+totalPV+" en "+(finIn-debutIn)+" nanosecondes par index");
          */
     }
 }

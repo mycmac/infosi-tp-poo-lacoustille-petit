@@ -295,7 +295,7 @@ public abstract class Creature extends Entite implements Deplacable{
             this.pos.translate(dx, dy);
             grille[this.getX()][this.getY()] = this;
         } else {
-            System.out.println("Il y a déjà une Creature ici. Celle-ci reste donc à sa place");
+            Fenetre.addMessage("Il y a déjà une Creature ici. Celle-ci reste donc à sa place");
         }
     }
     
