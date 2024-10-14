@@ -19,8 +19,8 @@ public abstract class Monstre extends Creature {
      * @param dMax
      * @param p
      */
-    public Monstre(int pV, int dA, int pPar, int paAtt, int paPar, int dMax, Point2D p) {
-        super(pV, dA, pPar, paAtt, paPar, dMax, p);
+    public Monstre(int pV, int dA, int pPar, int paAtt, int paPar, int dMax, int vitesse, Point2D p) {
+        super(pV, dA, pPar, paAtt, paPar, dMax, vitesse, p);
     }
 
     /**

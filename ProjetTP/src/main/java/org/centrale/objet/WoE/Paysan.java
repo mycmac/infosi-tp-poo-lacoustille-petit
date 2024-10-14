@@ -18,8 +18,8 @@ public class Paysan extends Personnage {
      * @param dMax distance d'attaque maximale
      * @param pt point
      */
-    public Paysan(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, Point2D pt) {
-        super(n, pV, dA, pPar, paAtt, paPar, dMax, pt);
+    public Paysan(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, int vitesse, Point2D pt) {
+        super(n, pV, dA, pPar, paAtt, paPar, dMax, vitesse, pt);
     }
     
     /**

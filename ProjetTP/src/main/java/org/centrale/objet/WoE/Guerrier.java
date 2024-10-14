@@ -29,8 +29,8 @@ public class Guerrier extends Personnage implements Combatif, Jouable {
      * @param dMax distance d'attaque maximale
      * @param p position (Point2D)
      */
-    public Guerrier(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, Point2D p) {
-        super(n, pV, dA, pPar, paAtt, paPar, dMax, p);
+    public Guerrier(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, int vitesse, Point2D p) {
+        super(n, pV, dA, pPar, paAtt, paPar, dMax, vitesse,  p);
     }
     
     /**

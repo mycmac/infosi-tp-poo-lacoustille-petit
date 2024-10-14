@@ -33,8 +33,8 @@ public abstract class Personnage extends Creature {
      * @param dMax distance d'attaque maximale
      * @param pt point
      */
-    public Personnage(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, Point2D pt) {
-        super(pV, dA, pPar, paAtt, paPar, dMax, pt);
+    public Personnage(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, int vitesse, Point2D pt) {
+        super(pV, dA, pPar, paAtt, paPar, dMax, vitesse,  pt);
         this.nom = n;
     }
 

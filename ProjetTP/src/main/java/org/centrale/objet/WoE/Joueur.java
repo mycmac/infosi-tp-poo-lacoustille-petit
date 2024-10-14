@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.Integer;
 import java.util.Scanner;
 import org.reflections.Reflections;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -75,24 +76,61 @@ public class Joueur {
     }
     
     public void deplacePerso() {
-        
+    }
+    public void actionDeplacement(World monde) {
+        for (int i = 0; i < ((Personnage) perso).getVitesse(); i++) {
+            deplacePerso(monde.getGrille_creatures());
+            Objet o = monde.getGrille_objets()[((Personnage) perso).getX()][((Personnage) perso).getY()];
+            if (o != null) {
+                o.recuperer(((Personnage) perso));
+                monde.getGrille_objets()[((Personnage) perso).getX()][((Personnage) perso).getY()] = null;
+                monde.cleanEntites(monde.getObjets());
+            }
+            monde.afficheWorld();
+        }
     }
 
-    public int[] keyTyped(KeyEvent event) {
-        if (event.getKeyCode() == KeyEvent.VK_UP) {
-            return(new int[] {0,1});
+    public void deplacePerso(Creature[][] grille) {
+        while (!Fenetre.isPressed()) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         }
-        if (event.getKeyCode() == KeyEvent.VK_DOWN) {
-            return(new int[] {0,-1});
-        }
-        if (event.getKeyCode() == KeyEvent.VK_RIGHT) {
-            return(new int[] {1,0});
-        }
-        if (event.getKeyCode() == KeyEvent.VK_LEFT) {
-            return(new int[] {-1,0});
-        }
-        else{
-            return(new int[] {0,0});
+        int[] dep = deplacement();
+        ((Personnage) perso).deplace(grille, dep[0], dep[1]);
+        while (Fenetre.isPressed()) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         }
     }
+
+    public int[] deplacement() {
+        KeyEvent event = Fenetre.pressedKey();
+        switch (event.getKeyCode()) {
+            case KeyEvent.VK_UP:
+                return (new int[]{-1, 0});
+            case KeyEvent.VK_DOWN:
+                return (new int[]{1, 0});
+            case KeyEvent.VK_RIGHT:
+                return (new int[]{0, 1});
+            case KeyEvent.VK_LEFT:
+                return (new int[]{0, -1});
+            default:
+                return (new int[]{0, 0});
+        }
+    }
+
+    public Personnage getPerso() {
+        return ((Personnage) perso);
+    }
+
+    public void setPerso(Personnage perso) {
+        this.perso = (Jouable) perso;
+    }
+
 }

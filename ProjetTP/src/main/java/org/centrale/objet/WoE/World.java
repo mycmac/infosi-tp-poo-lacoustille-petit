@@ -6,10 +6,11 @@ import java.util.Random;
 
 /**
  * Un monde WoE
+ *
  * @author Ulysse
  */
 public class World {
-    
+
     /**
      * Taille de monde par défaut
      */
@@ -17,13 +18,12 @@ public class World {
     /**
      * Nombre de créature par défaut à la génération d'un monde
      */
-    private final int nbCreaturesBase = tailleBase*tailleBase/5;
+    private final int nbCreaturesBase = tailleBase * tailleBase / 5;
     /**
      * Nombre d'objets par défaut à la génération d'un monde
      */
     private final int nbObjetsBase = nbCreaturesBase;
-    
-    
+
     /**
      * Générateur de nombres aléatoires associé au monde
      */
@@ -41,15 +41,17 @@ public class World {
      */
     LinkedList<Objet> objets = new LinkedList<>();
     /**
-     * Tableau donnant les positions des créatures du monde, et null en l'absence de créature
+     * Tableau donnant les positions des créatures du monde, et null en
+     * l'absence de créature
      */
     Creature[][] grille_creatures;
     /**
-     * Tableau donnant les positions des objets du monde, et null en l'absence d'objet
+     * Tableau donnant les positions des objets du monde, et null en l'absence
+     * d'objet
      */
     Objet[][] grille_objets;
-    
-    Joueur joueur;
+
+    private Joueur joueur;
 
     /**
      * Initialisation d'un monde vide de taille prédéfinie
@@ -63,16 +65,17 @@ public class World {
         this.grille_objets = new Objet[t][t];
         this.joueur = new Joueur();
     }
-    
+
     /**
      * Initialisation d'un monde vide à la taille de base définie
-     * 
+     *
      */
     public World() {
         this.seed = new Random();
         this.taille = this.tailleBase;
         this.grille_creatures = new Creature[this.taille][this.taille];
         this.grille_objets = new Objet[this.taille][this.taille];
+        this.joueur = new Joueur();
     }
 
     /**
@@ -80,13 +83,14 @@ public class World {
      *
      */
     public void creeMondeAlea() {
+
         int t = this.taille;
         Point2D p;
         boolean pris;
-        
+
         // Création de nbCreaturesBase créatures dans le monde, réparties
         // aléatoirement entre les différents types existants
-        for (int i=0;i<this.nbCreaturesBase;i++){
+        for (int i = 0; i < this.nbCreaturesBase; i++) {
             switch (seed.nextInt(5)) {
                 case 0:
                     this.creatures.add(new Archer());
@@ -105,7 +109,7 @@ public class World {
                     break;
             }
         }
-        
+
         // Assignation des positions initiales de chaque créature, 
         // pour assurer leur unicité
         Iterator<Creature> CreaIt1 = this.creatures.iterator();
@@ -122,11 +126,10 @@ public class World {
             this.grille_creatures[p.getX()][p.getY()] = c1;
             //c1.affiche();
         }
-        
-        
+
         // Création de nbObjetsBase objets dans le monde, répartis
         // aléatoirement entre les différents types existants
-        for (int i=0;i<this.nbObjetsBase;i++){
+        for (int i = 0; i < this.nbObjetsBase; i++) {
             switch (seed.nextInt(2)) {
                 case 0:
                     this.objets.add(new Epee());
@@ -136,7 +139,7 @@ public class World {
                     break;
             }
         }
-        
+
         // Assignation des positions de chaque objet,
         // pour assurer qu'aucun objet n'est intialement sous une créature ou
         // avec un autre objet
@@ -164,22 +167,22 @@ public class World {
     public void tourDeJeu() {
         cleanEntites(creatures);
         cleanEntites(objets);
+        System.out.println("À votre tour :");
+        afficheWorld();
+        joueur.actionDeplacement(this);
+        afficheWorld();
         for (Creature creature : creatures) {
             System.out.println("C'est au tour de " + creature + " de jouer.");
             creature.deplace(this.grille_creatures);
             creature.affiche();
+            afficheWorld();
         }
         System.out.println("Fin du tour de jeu");
     }
 
     /**
-     * Affichage du monde
-     * ===========
-     * | . O . M |
-     * | M . . O |
-     * | . . . . |
-     * | . P . . |
-     * ===========
+     * Affichage du monde =========== | . O . M | | M . . O | | . . . . | | . P
+     * . . | ===========
      */
     public void afficheWorld() {
         String carte = new String();
@@ -187,12 +190,12 @@ public class World {
         int j;
         Creature c;
         Objet o;
-        
-        for (i = 0; i < 1+2*this.taille+2; i++) {
+
+        for (i = 0; i < 1 + 2 * this.taille + 2; i++) {
             carte += "=";
         }
         carte += "\n";
-        
+
         for (i = 0; i < this.taille; i++) {
             carte += "|";
             for (j = 0; j < this.taille; j++) {
@@ -210,7 +213,7 @@ public class World {
                         carte += "l";
                     } else if (c instanceof Loup) {
                         carte += "L";
-                    } 
+                    }
                 } else if (o != null) {
                     if (o instanceof Epee) {
                         carte += "E";
@@ -223,13 +226,14 @@ public class World {
             }
             carte += " |\n";
         }
-        
-        for (i = 0; i < 1+2*this.taille+2; i++) {
+
+        for (i = 0; i < 1 + 2 * this.taille + 2; i++) {
             carte += "=";
         }
         carte += "\n";
-        
+
         System.out.print(carte);
+        Fenetre.addOutput(carte);
     }
 
     /**
@@ -247,47 +251,50 @@ public class World {
             }
         }
     }
-    
+
     /**
      * Getter de grille_creatures
-     * @return 
+     *
+     * @return
      */
     public Creature[][] getGrille_creatures() {
         return grille_creatures;
     }
-    
+
     /**
      * Getter de grille_objets
-     * @return 
+     *
+     * @return
      */
     public Objet[][] getGrille_objets() {
         return grille_objets;
     }
-    
+
     /**
-     * Getter de creatures 
-     * @return 
+     * Getter de creatures
+     *
+     * @return
      */
     public LinkedList<Creature> getCreatures() {
         return creatures;
     }
-        
-        // Assignation des positions de chaque objet,
-        // pour assurer qu'aucun objet n'est intialement sous une créature ou
-        // avec un autre objet
+
+    // Assignation des positions de chaque objet,
+    // pour assurer qu'aucun objet n'est intialement sous une créature ou
+    // avec un autre objet
     /**
      * Getter de objets
-     * @return 
+     *
+     * @return
      */
     public LinkedList<Objet> getObjets() {
         return objets;
     }
-    
+
     // AJOUT ENTITE -----------------------------------------------------------------------------------------------------------------------------------
-    
     /**
      * Ajoute une créature au monde, sachant que sa position vaut (x, y)
-     * 
+     *
      * @param c Creature à ajouter
      * @param x abscisse
      * @param y ordonnée
@@ -301,7 +308,7 @@ public class World {
         } else if (o != null && c instanceof Personnage) {
             o.recuperer((Personnage) c);
             System.out.println("Oh ! Quel bel objet que voilà !");
-    
+
             this.objets.remove(o);
             this.grille_objets[x][y] = null;
             this.grille_creatures[x][y] = c;
@@ -311,10 +318,10 @@ public class World {
             this.creatures.add(c);
         }
     }
-    
+
     /**
      * Ajoute une créature au monde à la position (x, y)
-     * 
+     *
      * @param c Créature à ajouter
      * @param x abscisse
      * @param y ordonnée
@@ -323,10 +330,10 @@ public class World {
         c.setPos(x, y);
         addCreature_aux(c, x, y);
     }
-    
+
     /**
      * Ajoute une créature au monde à sa position
-     * 
+     *
      * @param c Créature à ajouter
      */
     public void addCreature(Creature c) {
@@ -334,10 +341,10 @@ public class World {
         int y = c.getY();
         addCreature_aux(c, x, y);
     }
-    
+
     /**
      * Ajoute un objet au monde, sachant que sa position vaut (x, y)
-     * 
+     *
      * @param o Objet à ajouter
      * @param x abscisse
      * @param y ordonnée
@@ -358,10 +365,10 @@ public class World {
             this.objets.add(o);
         }
     }
-    
+
     /**
      * Ajoute un objet au monde à la position (x, y)
-     * 
+     *
      * @param o Objet à ajouter
      * @param x abscisse
      * @param y ordonnée
@@ -370,10 +377,10 @@ public class World {
         o.setPos(x, y);
         addObjet_aux(o, x, y);
     }
-    
+
     /**
      * Ajoute un objet au monde à sa position
-     * 
+     *
      * @param o Objet à ajouter
      */
     public void addObjet(Objet o) {
@@ -381,73 +388,87 @@ public class World {
         int y = o.getY();
         addObjet_aux(o, x, y);
     }
-    
+
     // FIN AJOUT ENTITE --------------------------------------------------------------------------------------------------------------------------------
-    
     // DEPLACEMENT CREATURE ----------------------------------------------------------------------------------------------------------------------------
-    
     /**
      * Déplace la créature présente à la position (x, y) de (dx, dy)
-     * 
+     *
      * @param x abscisse
      * @param y ordonnée
      * @param dx déplacement abscisse
      * @param dy déplacement ordonnée
      */
-    public void deplace(int x, int y, int dx, int dy){
+    public void deplace(int x, int y, int dx, int dy) {
         this.grille_creatures[x][y].deplace(this.grille_creatures, dx, dy);
     }
-    
+
     /**
      * Déplace la créature présente à la position (x, y) du vecteur p
-     * 
+     *
      * @param x abscisse
      * @param y ordonnée
      * @param p vecteur de déplacement
      */
-    public void deplace(int x, int y, Point2D p){
+    public void deplace(int x, int y, Point2D p) {
         this.grille_creatures[x][y].deplace(this.grille_creatures, p);
     }
-    
+
     /**
      * Déplace la créature présente à la position (x, y)
-     * 
+     *
      * @param x abscisse
      * @param y ordonnée
      */
-    public void deplace(int x, int y){
+    public void deplace(int x, int y) {
         this.grille_creatures[x][y].deplace(this.grille_creatures);
     }
-    
+
     /**
      * Déplace la créature c de (dx, dy)
-     * 
+     *
      * @param c Créature à déplacer
      * @param dx déplacement abscisse
      * @param dy déplacement ordonnée
      */
-    public void deplace(Creature c, int dx, int dy){
+    public void deplace(Creature c, int dx, int dy) {
         this.grille_creatures[c.getX()][c.getY()].deplace(this.grille_creatures, dx, dy);
     }
-    
+
     /**
      * Déplace la créature c du vecteur p
-     * 
+     *
      * @param c Créature à déplacer
      * @param p vecteur de déplacement
      */
-    public void deplace(Creature c, Point2D p){
+    public void deplace(Creature c, Point2D p) {
         this.grille_creatures[c.getX()][c.getY()].deplace(this.grille_creatures, p);
     }
-    
+
     /**
      * Déplace la créature c
-     * 
+     *
      * @param c Créature à déplacer
      */
-    public void deplace(Creature c){
+    public void deplace(Creature c) {
         this.grille_creatures[c.getX()][c.getY()].deplace(this.grille_creatures);
     }
-    
+
     // FIN DEPLACEMENT CREATURE ------------------------------------------------------------------------------------------------------------------------
+    public int getTaille() {
+        return taille;
+    }
+
+    public void setTaille(int taille) {
+        this.taille = taille;
+    }
+
+    public Joueur getJoueur() {
+        return joueur;
+    }
+
+    public void setJoueur(Joueur joueur) {
+        this.joueur = joueur;
+    }
+
 }
