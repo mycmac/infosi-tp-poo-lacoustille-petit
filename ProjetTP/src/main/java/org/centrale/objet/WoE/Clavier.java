@@ -9,10 +9,15 @@
  */
 
 package org.centrale.objet.WoE;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class Clavier {
     private static volatile boolean isPressed = false;
@@ -31,9 +36,32 @@ public class Clavier {
     }
 
     public static void Initialize() {
-        frame = new JFrame("Keyboard Listener");
-        frame.setSize(400, 300);
+        frame = new JFrame("WoE - World of ECN");
+        frame.setSize(600, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Créer un panneau de fond pour le style
+        JPanel backgroundPanel = new JPanel();
+        backgroundPanel.setBackground(Color.BLACK); // Fond noir pour un effet dramatique
+        backgroundPanel.setLayout(new BorderLayout());
+        
+        // Ajouter une étiquette de titre pour le jeu
+        JLabel titleLabel = new JLabel("World of ECN", JLabel.CENTER);
+        titleLabel.setForeground(Color.WHITE);
+        titleLabel.setFont(new Font("Serif", Font.BOLD, 36));
+        backgroundPanel.add(titleLabel, BorderLayout.NORTH);
+        
+        // Ajouter un texte d'introduction ou des instructions au centre
+        JLabel introLabel = new JLabel("<html><center>Bienvenue dans World of ECN!<br>"
+                + "Utilisez les touches pour naviguer dans le monde.<br>"
+                +"</center></html>", JLabel.CENTER);
+        introLabel.setForeground(Color.LIGHT_GRAY);
+        introLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
+        backgroundPanel.add(introLabel, BorderLayout.CENTER);
+        
+        // Ajouter le panneau à la fenêtre
+        frame.add(backgroundPanel);
+        
+        // Rendre la fenêtre visible
         frame.setVisible(true);
         
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
@@ -57,7 +85,7 @@ public class Clavier {
         });
     }
     
-    public static void Close(){
+    public static void close(){
         if (frame!=null){
         frame.dispose();
         frame=null;
