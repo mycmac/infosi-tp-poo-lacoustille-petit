@@ -7,7 +7,7 @@ import java.util.ArrayList;
  *
  * @author Ulysse
  */
-public class Creature extends Entite implements Deplacable{
+public abstract class Creature extends Entite implements Deplacable{
 
     /**
      * Limites hautes et basses (incluses) des stats de départ des créatures
