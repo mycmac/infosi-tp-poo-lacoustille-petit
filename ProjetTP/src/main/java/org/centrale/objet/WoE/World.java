@@ -244,6 +244,7 @@ public class World {
      *
      * @param Liste
      */
+    @SuppressWarnings({ "rawtypes", "unchecked" }) // Tkt, c'est juste l'IDE qui pleure
     public void cleanEntites(LinkedList Liste) {
         Iterator<Entite> listIt = Liste.iterator();
 
@@ -308,8 +309,8 @@ public class World {
             System.out.println("Une créature apparaît hors du monde et tombe dans le néant ! !");
         } else if (this.grille_creatures[x][y] != null) {
             System.out.println("Une créature se trouve déjà ici. Tu n'as pas le droit d'apparaître !");
-        } else if (o != null && c instanceof Personnage) {
-            o.recuperer((Personnage) c);
+        } else if (o != null &&  o instanceof Recuperable && c instanceof Personnage) {
+            ((Recuperable) o).recuperer((Personnage) c);
             System.out.println("Oh ! Quel bel objet que voilà !");
 
             this.objets.remove(o);
@@ -358,8 +359,8 @@ public class World {
             System.out.println("Un objet apparaît hors du monde et tombe dans le néant ! !");
         } else if (this.grille_objets[x][y] != null) {
             System.out.println("Un objet se trouve déjà ici. Tu n'as pas le droit d'apparaître !");
-        } else if (c != null && c instanceof Personnage) {
-            o.recuperer((Personnage) c);
+        } else if (c != null && o instanceof Recuperable && c instanceof Personnage) {
+            ((Recuperable) o).recuperer((Personnage) c);
             System.out.println("Oh ! Quel bel objet que voilà !");
             this.grille_objets[x][y] = o;
             this.objets.add(o);
