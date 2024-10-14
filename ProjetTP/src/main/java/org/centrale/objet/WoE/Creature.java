@@ -76,9 +76,10 @@ public abstract class Creature extends Entite implements Deplacable{
      * @param paAtt probabilité de réussite d'une attaque
      * @param paPar probabilité de parer une attaque
      * @param dAtkMax Distance attaque max
+     * @param vitesse Vitesse perso
      * @param p position
      */
-    public Creature(int pV, int dA, int pPar, int paAtt, int paPar, int dAtkMax, Point2D p) {
+    public Creature(int pV, int dA, int pPar, int paAtt, int paPar, int dAtkMax, int vitesse, Point2D p) {
         super(p);
         this.ptVieMax = pV;
         this.ptVie = this.ptVieMax;
@@ -87,6 +88,7 @@ public abstract class Creature extends Entite implements Deplacable{
         this.pageAtt = paAtt;
         this.pagePar = paPar;
         this.distAttMax = dAtkMax;
+        this.vitesse = vitesse;
     }
     
     /**
@@ -119,6 +121,7 @@ public abstract class Creature extends Entite implements Deplacable{
         this.ptPar = getRandom(ptParBaseMax - ptParBaseMin + 1) + ptParBaseMin;
         this.pageAtt = getRandom(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
         this.pagePar = getRandom(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
+        this.vitesse = getRandom(5) + 1;
         this.distAttMax = 1;
     }
     
@@ -134,6 +137,7 @@ public abstract class Creature extends Entite implements Deplacable{
         this.ptPar = getRandom(ptParBaseMax - ptParBaseMin + 1) + ptParBaseMin;
         this.pageAtt = getRandom(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
         this.pagePar = getRandom(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
+        this.vitesse = getRandom(5) + 1;
         this.distAttMax = 1;
     }
 
