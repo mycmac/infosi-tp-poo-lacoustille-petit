@@ -5,7 +5,7 @@ package org.centrale.objet.WoE;
  *
  * @author Ulysse
  */
-public class Archer extends Personnage implements Combatif {
+public class Archer extends Personnage implements Combatif, Jouable {
 
     private int nbFleches;
 
