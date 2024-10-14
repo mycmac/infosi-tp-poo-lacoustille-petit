@@ -41,11 +41,4 @@ public abstract class Objet extends Entite {
     public Objet() {
         super(new Point2D());
     }
-
-    /**
-     * Comportement de l'objet lorsqu'il est récupéré par un personnage
-     * 
-     * @param p Personnage
-     */
-    public abstract void recuperer(Personnage p);
 }
