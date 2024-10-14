@@ -12,8 +12,6 @@ public class TestWOE {
 
     public static void main(String[] args) {
         World WoE;
-        /*Reflections reflections = new Reflections("firstdeveloper.examples.reflections");
-Set<Class<? extends Pet>> classes = reflections.getSubTypesOf(Pet.class);*/
 
  /*
         WoE = new World(50);
@@ -74,7 +72,7 @@ Set<Class<? extends Pet>> classes = reflections.getSubTypesOf(Pet.class);*/
 
         System.out.println("Test déplacement joueur :");
         Clavier.Initialize();
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i < 50; i++) {
             WoE.getJoueur().deplacePerso(WoE.getGrille_creatures());
             WoE.afficheWorld();
         }
