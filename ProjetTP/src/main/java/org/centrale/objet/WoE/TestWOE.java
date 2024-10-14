@@ -1,8 +1,11 @@
 package org.centrale.objet.WoE;
 
+import javax.swing.JFrame;
+
 /**
  * Test de tout le package {@link org.centrale.objet.WoE} et plus spécifiquement
  * de {@link org.centrale.objet.WoE.World}
+ *
  * @author Ulysse
  */
 public class TestWOE {
@@ -11,8 +14,8 @@ public class TestWOE {
         World WoE;
         /*Reflections reflections = new Reflections("firstdeveloper.examples.reflections");
 Set<Class<? extends Pet>> classes = reflections.getSubTypesOf(Pet.class);*/
-        
-        /*
+
+ /*
         WoE = new World(50);
         long debut = System.nanoTime();
         WoE.creeMondeAlea();
@@ -23,50 +26,59 @@ Set<Class<? extends Pet>> classes = reflections.getSubTypesOf(Pet.class);*/
         //creature[6][3].affiche();
         
         WoE.afficheWorld();
-        */
-        
+         */
         WoE = new World(5);
         System.out.println("Ajout d'un Archer, d'un Lapin, d'une Epee et d'une PotionSoin :");
+        Guerrier Gros = new Guerrier();
+        WoE.getJoueur().setPerso(Gros);
+        WoE.addCreature(Gros, 3, 3);
         WoE.addCreature(new Archer(), 0, 0);
         WoE.addCreature(new Lapin(), 0, 1);
         WoE.addObjet(new Epee(), 1, 0);
         WoE.addObjet(new PotionSoin(), 1, 1);
         WoE.afficheWorld();
-        
+
         System.out.println("Ajout d'un Guerrier sur la case de l'Archer :");
         WoE.addCreature(new Guerrier(), 0, 0);
         WoE.afficheWorld();
-        
+
         System.out.println("Ajout d'un Guerrier sur la case de l'Epee :");
         WoE.addCreature(new Guerrier(), 1, 0);
         WoE.afficheWorld();
-        
+
         System.out.println("Ajout d'un Loup sur la case du Lapin :");
         WoE.addCreature(new Loup(), 0, 1);
         WoE.afficheWorld();
-        
+
         System.out.println("Ajout d'un Loup sur la case de la PotionSoin :");
         WoE.addCreature(new Loup(), 1, 1);
         WoE.afficheWorld();
-        
+
         System.out.println("Déplacement du Loup :");
         WoE.deplace(1, 1, 1, 0);
         WoE.afficheWorld();
-        
+
         System.out.println("Ajout d'une Epee sur la case de la PotionSoin :");
         WoE.addObjet(new Epee(), 1, 1);
         WoE.afficheWorld();
-        
+
         System.out.println("Ajout d'une Epee sur la case de l'Archer :");
         WoE.addObjet(new Epee(), 0, 0);
         WoE.afficheWorld();
-        
+
         System.out.println("Ajout d'une Epee sur la case du Loup et déplacement du Loup :");
         WoE.addObjet(new Epee(), 2, 1);
         WoE.afficheWorld();
         WoE.deplace(2, 1, 0, 1);
         WoE.afficheWorld();
-        
+
+        System.out.println("Test déplacement joueur :");
+        Clavier.Initialize();
+        for (int i = 1; i < 10; i++) {
+            WoE.getJoueur().deplacePerso(WoE.getGrille_creatures());
+            WoE.afficheWorld();
+        }
+
         /*
         // Test de la génération aléatoire d'entites
         Iterator<Creature> creatureP = WoE.getCreatures().iterator();
@@ -107,8 +119,8 @@ Set<Class<? extends Pet>> classes = reflections.getSubTypesOf(Pet.class);*/
         System.out.print("Il contient aussi "
                 +obj_crees[0]+" Epees et "
                 +obj_crees[1]+" PotionSoins !\n");
-        */
-        /*
+         */
+ /*
         
         
         System.out.println("Nombre de créatures : "+WoE.getCreatures().size());
@@ -130,6 +142,6 @@ Set<Class<? extends Pet>> classes = reflections.getSubTypesOf(Pet.class);*/
         }
         long finIn = System.nanoTime();
         System.out.println("Total de PV "+totalPV+" en "+(finIn-debutIn)+" nanosecondes par index");
-        */
+         */
     }
 }
