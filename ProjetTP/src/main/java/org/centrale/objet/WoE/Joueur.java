@@ -44,19 +44,17 @@ public class Joueur {
     }
 
     public int[] deplacement(KeyEvent event) {
-        if (event.getKeyCode() == KeyEvent.VK_UP) {
-            return (new int[]{-1, 0});
-        }
-        if (event.getKeyCode() == KeyEvent.VK_DOWN) {
-            return (new int[]{1, 0});
-        }
-        if (event.getKeyCode() == KeyEvent.VK_RIGHT) {
-            return (new int[]{0, 1});
-        }
-        if (event.getKeyCode() == KeyEvent.VK_LEFT) {
-            return (new int[]{0, -1});
-        } else {
-            return (new int[]{0, 0});
+        switch (event.getKeyCode()) {
+            case KeyEvent.VK_UP:
+                return (new int[]{-1, 0});
+            case KeyEvent.VK_DOWN:
+                return (new int[]{1, 0});
+            case KeyEvent.VK_RIGHT:
+                return (new int[]{0, 1});
+            case KeyEvent.VK_LEFT:
+                return (new int[]{0, -1});
+            default:
+                return (new int[]{0, 0});
         }
     }
 
