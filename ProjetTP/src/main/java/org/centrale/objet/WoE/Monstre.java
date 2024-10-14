@@ -5,7 +5,7 @@ package org.centrale.objet.WoE;
  *
  * @author Ulysse
  */
-public class Monstre extends Creature {
+public abstract class Monstre extends Creature {
 
     /**
      * Créé un monstre à partir de paramètres donnés (voir
