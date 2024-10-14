@@ -34,7 +34,7 @@ public class Joueur {
                 Thread.currentThread().interrupt();
             }
         }
-        int[] dep = deplacement(Clavier.pressedKey());
+        int[] dep = deplacement();
         perso.deplace(grille, dep[0], dep[1]);
         while (Clavier.isPressed()) {
             try {
@@ -45,7 +45,8 @@ public class Joueur {
         }
     }
 
-    public int[] deplacement(KeyEvent event) {
+    public int[] deplacement() {
+        KeyEvent event = Clavier.pressedKey();
         switch (event.getKeyCode()) {
             case KeyEvent.VK_UP:
                 return (new int[]{-1, 0});
