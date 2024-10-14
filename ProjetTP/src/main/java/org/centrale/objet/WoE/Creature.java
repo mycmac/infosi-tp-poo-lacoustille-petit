@@ -49,7 +49,7 @@ public abstract class Creature extends Entite implements Deplacable{
     private int pageAtt; // Porcentage d'attaque
     private int pagePar; // Pourcentage de parade
     private int distAttMax; // Distance maximale d'attaque
-    
+    private int vitesse;
     /**
      * Initialise une créature en copiant les attributs d'une Creature donnée
      *
@@ -64,6 +64,7 @@ public abstract class Creature extends Entite implements Deplacable{
         this.pageAtt = p.getPageAtt();
         this.pagePar = p.getPagePar();
         this.distAttMax = p.getDistAttMax();
+        this.vitesse = p.getVitesse();
     }
 
     /**
@@ -299,7 +300,7 @@ public abstract class Creature extends Entite implements Deplacable{
      * autres créatures présentes.
      *   7   0   1
      *    \  |  / 
-     *     \ | / 
+     *     \ | /
      * 6---- + ----2 
      *     / | \ 
      *    /  |  \ 
@@ -346,4 +347,14 @@ public abstract class Creature extends Entite implements Deplacable{
     public boolean lanceDe(int pageReussite){
         return (this.getRandom(100)+1) <= pageReussite;
     }
+
+    public int getVitesse() {
+        return vitesse;
+    }
+
+    public void setVitesse(int vitesse) {
+        this.vitesse = vitesse;
+    }
+    
+    
 }
