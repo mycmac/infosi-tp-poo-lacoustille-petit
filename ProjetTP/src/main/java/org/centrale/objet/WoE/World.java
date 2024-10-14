@@ -168,12 +168,14 @@ public class World {
         cleanEntites(creatures);
         cleanEntites(objets);
         System.out.println("À votre tour :");
-        joueur.deplacement();
+        afficheWorld();
+        joueur.deplacePerso(grille_creatures);
+        afficheWorld();
         for (Creature creature : creatures) {
             System.out.println("C'est au tour de " + creature + " de jouer.");
             creature.deplace(this.grille_creatures);
             creature.affiche();
-            
+            afficheWorld();
         }
         System.out.println("Fin du tour de jeu");
     }
