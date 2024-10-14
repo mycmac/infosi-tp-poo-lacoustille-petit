@@ -36,10 +36,12 @@ public class Joueur {
         }
         int[] dep = deplacement(Clavier.pressedKey());
         perso.deplace(grille, dep[0], dep[1]);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+        while (Clavier.isPressed()) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         }
     }
 
