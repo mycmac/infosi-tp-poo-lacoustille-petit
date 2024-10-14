@@ -18,7 +18,7 @@ public class World {
     /**
      * Nombre de créature par défaut à la génération d'un monde
      */
-    private final int nbCreaturesBase = tailleBase * tailleBase / 5;
+    private final int nbCreaturesBase = tailleBase * tailleBase / 20;
     /**
      * Nombre d'objets par défaut à la génération d'un monde
      */
