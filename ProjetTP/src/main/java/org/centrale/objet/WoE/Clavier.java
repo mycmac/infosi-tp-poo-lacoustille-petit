@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 public class Clavier {
     private static volatile boolean isPressed = false;
     private static volatile KeyEvent pressedKey = null;
+    private static JFrame frame;
     public static KeyEvent pressedKey() {
         synchronized (Clavier.class) {
             return pressedKey;
@@ -30,7 +31,7 @@ public class Clavier {
     }
 
     public static void Initialize() {
-        JFrame frame = new JFrame("Keyboard Listener");
+        frame = new JFrame("Keyboard Listener");
         frame.setSize(400, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
@@ -54,5 +55,12 @@ public class Clavier {
                 }
             }
         });
+    }
+    
+    public static void Close(){
+        if (frame!=null){
+        frame.dispose();
+        frame=null;
+        }
     }
 }
