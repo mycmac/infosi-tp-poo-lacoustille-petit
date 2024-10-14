@@ -5,19 +5,29 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.Integer;
 import java.util.Scanner;
 import org.reflections.Reflections;
-import java.util.concurrent.TimeUnit;
 
 /**
- *
+ * Classe qui stocke le personnage joué par l'utilisateur avec ses attributs et actions spécifiques
  * @author Ulysse
  */
 public class Joueur {
+    /**
+     * Attribut contenant le personnage du joueur, qui descend de l'interface Jouable
+     */
     private Jouable perso;
 
+    /**
+     * Constructeur de Joueur avec un personnage prédéfini
+     * @param p Personnage choisi
+     */
     public Joueur(Jouable p) {
         perso = p;
     }
     
+    /**
+     * Constructeur de Joueur qui interagit avec l'utilisateur pour choisir le type de personnage et son nom notamment.
+     */
+    @SuppressWarnings({ "unchecked", "rawtypes" }) // Tkt, le code est correct mais sinon l'IDE fait chier
     public Joueur() {
         try {
             int numClasseJoueur;
@@ -56,17 +66,27 @@ public class Joueur {
         } 
     }
     
+    /**
+     * Récupère un input utilisateur finissant par la touche entrée
+     * @return Dernière ligne entrée par l'utilisateur dans le terminal
+     */
     public final String getClavier() {
         Scanner myObj = new Scanner(System.in);
-        return myObj.nextLine();
+        String res = myObj.nextLine();
+        myObj.close();
+        return res;
     }
     
+    /**
+     * En partant du principe que l'utilisateur doit entrer un nombre entier, récupère cet entier dans la console
+     * @return Entier tapé par l'utilisateur
+     */
     public final Integer getClavierInt() {
         Integer res = null;
         while (res == null) {
         
             try {
-                res = Integer.valueOf(getClavier());  // Read user input
+                res = Integer.valueOf(getClavier());
             } catch(NumberFormatException ex) {
                 res = null;
                 System.out.println("Veuillez entrer un nombre entier inférieur à " + Integer.MAX_VALUE + "!");
@@ -75,16 +95,31 @@ public class Joueur {
         return res;
     }
     
+    /** TODO
+     * Déplace le personnage du joueur
+     */
     public void deplacePerso() {
     }
+
+    /** 
+     * 
+     * 
+     * TODO : Généraliser à un non Personnage
+     * 
+     * @param monde
+     */
     public void actionDeplacement(World monde) {
-        for (int i = 0; i < ((Personnage) perso).getVitesse(); i++) {
+        Creature p = (Creature) perso;
+        for (int i = 0; i < p.getVitesse(); i++) {
             deplacePerso(monde.getGrille_creatures());
-            Objet o = monde.getGrille_objets()[((Personnage) perso).getX()][((Personnage) perso).getY()];
-            if (o != null) {
-                o.recuperer(((Personnage) perso));
-                monde.getGrille_objets()[((Personnage) perso).getX()][((Personnage) perso).getY()] = null;
-                monde.cleanEntites(monde.getObjets());
+            if (p instanceof Personnage) {
+                // TODO : Pour le moment, seul un personnage humain est capable d'utiliser des objets
+                Objet o = monde.getGrille_objets()[p.getX()][p.getY()];
+                if (o != null && o instanceof Recuperable) {// Autorisé car Java ne test pas la 2e condition d'un && si la première est fausse
+                    ((Recuperable) o).recuperer((Personnage) p);
+                    monde.getGrille_objets()[p.getX()][p.getY()] = null;
+                    monde.cleanEntites(monde.getObjets());
+                }
             }
             monde.afficheWorld();
         }
