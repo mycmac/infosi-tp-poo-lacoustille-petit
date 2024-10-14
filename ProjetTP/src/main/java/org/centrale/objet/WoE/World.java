@@ -77,6 +77,8 @@ public class World {
      *
      */
     public void creeMondeAlea() {
+        Joueur joueur = new Joueur();
+        
         int t = this.taille;
         Point2D p;
         boolean pris;
