@@ -169,7 +169,7 @@ public class World {
         cleanEntites(objets);
         System.out.println("À votre tour :");
         afficheWorld();
-        joueur.actionDeplacement(grille_creatures, grille_objets);
+        joueur.actionDeplacement(this);
         afficheWorld();
         for (Creature creature : creatures) {
             System.out.println("C'est au tour de " + creature + " de jouer.");

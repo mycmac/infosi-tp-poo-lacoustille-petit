@@ -26,12 +26,13 @@ public class Joueur {
         //}
     }
     
-    public void actionDeplacement(Creature[][] grille, Objet[][] objets) {
+    public void actionDeplacement(World monde) {
     for (int i=0;i<perso.getVitesse();i++){
-        deplacePerso(grille);
-        Objet o = objets[perso.getX()][perso.getY()];
+        deplacePerso(monde.getGrille_creatures());
+        Objet o = monde.getGrille_objets()[perso.getX()][perso.getY()];
         if (o != null){
             o.recuperer(perso);
+            monde.afficheWorld();
         }
     }
     }
