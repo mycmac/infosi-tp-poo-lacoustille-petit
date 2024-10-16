@@ -459,18 +459,35 @@ public class World {
     }
 
     // FIN DEPLACEMENT CREATURE ------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * 
+     * @return int taille : La taille du monde
+     */
     public int getTaille() {
         return taille;
     }
 
+    /**
+     *  Définis la taille du monde
+     * @param taille Nouvelle taille
+     */
     public void setTaille(int taille) {
         this.taille = taille;
     }
 
+    /**
+     *
+     * @return Joueur actif
+     */
     public Joueur getJoueur() {
         return joueur;
     }
 
+    /**
+     * Définis le joueur
+     * @param joueur Joueur
+     */
     public void setJoueur(Joueur joueur) {
         this.joueur = joueur;
     }
