@@ -15,6 +15,7 @@ public class Lapin extends Monstre {
      * @param pPar points de parade
      * @param paAtt probabilité de réussite d'une attaque
      * @param paPar probabilité de parer une attaque
+     * @param vitesse vitesse de déplacement
      * @param p position
      */
     public Lapin(int pV, int dA, int pPar, int paAtt, int paPar, int vitesse, Point2D p) {
@@ -63,8 +64,12 @@ public class Lapin extends Monstre {
         System.out.print("Et non, c'est un lapin.\n");
     }
     
+    /**
+     *
+     * @return "Lapin"
+     */
     @Override
-    public String toString() {
+    public final String toString() {
         return "Lapin";
     }
 }

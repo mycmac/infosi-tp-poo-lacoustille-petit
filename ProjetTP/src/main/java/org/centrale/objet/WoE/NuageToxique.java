@@ -11,20 +11,39 @@ package org.centrale.objet.WoE;
 public class NuageToxique extends Objet implements Deplacable, Combatif {
     private int toxicite;
 
+    /**
+     * Définit un nuage toxique avec une position donnée et une toxicité donnée
+     * @param toxicite Toxicité
+     * @param x Position X
+     * @param y Position Y
+     */
     public NuageToxique(int toxicite, int x, int y) {
         super(x, y);
         this.toxicite = toxicite;
     }
 
+    /**
+     * Définit un nuage toxique avec une position donnée et une toxicité donnée
+     * @param toxicite Toxicité
+     * @param pos Point2D de la position
+     */
     public NuageToxique(int toxicite, Point2D pos) {
         super(pos);
         this.toxicite = toxicite;
     }
 
+    /**
+     *
+     * @return Toxicité du nuage
+     */
     public int getToxicite() {
         return toxicite;
     }
 
+    /**
+     * Modifie la toxicité du nuage
+     * @param toxicite Nouvelle toxicité
+     */
     public void setToxicite(int toxicite) {
         this.toxicite = toxicite;
     }

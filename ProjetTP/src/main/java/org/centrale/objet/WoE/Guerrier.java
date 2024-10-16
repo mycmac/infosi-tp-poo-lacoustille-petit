@@ -27,6 +27,7 @@ public class Guerrier extends Personnage implements Combatif, Jouable {
      * @param paAtt probabilité de réussir une attaque
      * @param paPar probabilité de réussir une parade
      * @param dMax distance d'attaque maximale
+     * @param vitesse vitesse de déplacement
      * @param p position (Point2D)
      */
     public Guerrier(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, int vitesse, Point2D p) {

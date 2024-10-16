@@ -57,10 +57,18 @@ public abstract class Entite {
         return this.pos;
     }
 
+    /**
+     *
+     * @return Coordonée X
+     */
     public int getX() {
         return this.pos.getX();
     }
 
+    /**
+     *
+     * @return Coordonnée Y
+     */
     public int getY() {
         return this.pos.getY();
     }
@@ -82,10 +90,18 @@ public abstract class Entite {
         this.pos = new Point2D(x, y);
     }
 
+    /**
+     *
+     * @param x Coordonnée X
+     */
     public void setX(int x) {
         this.pos.setX(x);
     }
 
+    /**
+     *
+     * @param y Coordonnée Y
+     */
     public void setY(int y) {
         this.pos.setY(y);
     }

@@ -356,10 +356,18 @@ public abstract class Creature extends Entite implements Deplacable{
         return (this.getRandom(100)+1) <= pageReussite;
     }
 
+    /**
+     *
+     * @return Vitesse de la créature
+     */
     public int getVitesse() {
         return vitesse;
     }
 
+    /**
+     *  Définis la vitesse de la créature
+     * @param vitesse
+     */
     public void setVitesse(int vitesse) {
         this.vitesse = vitesse;
     }

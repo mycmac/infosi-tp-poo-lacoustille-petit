@@ -236,7 +236,7 @@ public class World {
         carte += "\n";
 
         System.out.print(carte);
-        Fenetre.addOutput(carte);
+        Fenetre.afficheMonde(carte);
     }
 
     /**

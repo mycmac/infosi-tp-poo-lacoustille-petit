@@ -16,6 +16,7 @@ public class Paysan extends Personnage {
      * @param paAtt pourcentage d'attaque
      * @param paPar pourcentage de parade
      * @param dMax distance d'attaque maximale
+     * @param vitesse vitesse de déplacement
      * @param pt point
      */
     public Paysan(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, int vitesse, Point2D pt) {

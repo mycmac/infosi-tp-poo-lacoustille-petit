@@ -14,6 +14,7 @@ public class Loup extends Monstre implements Combatif {
      * @param pPar points de parade
      * @param paAtt probabilité de réussite d'une attaque
      * @param paPar probabilité de parer une attaque
+     * @param vitesse vitesse de déplacement
      * @param p position
      */
     public Loup(int pV, int dA, int pPar, int paAtt, int paPar, int vitesse, Point2D p) {
@@ -85,8 +86,12 @@ public class Loup extends Monstre implements Combatif {
         System.out.print("C'est un loup terrifiant !\n");
     }
 
+    /**
+     *
+     * @return "Loup"
+     */
     @Override
-    public String toString() {
+    public final String toString() {
         return "Loup";
     }
 }

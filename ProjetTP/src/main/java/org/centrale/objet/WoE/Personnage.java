@@ -31,6 +31,7 @@ public abstract class Personnage extends Creature {
      * @param paAtt pourcentage d'attaque
      * @param paPar pourcentage de parade
      * @param dMax distance d'attaque maximale
+     * @param vitesse vitesse de déplacement
      * @param pt point
      */
     public Personnage(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, int vitesse, Point2D pt) {
@@ -59,6 +60,11 @@ public abstract class Personnage extends Creature {
         this.nom = noms[getRandom(9)];
     }
 
+    /**
+     * Initialise un Personnage aléatoire en un point donné
+     *
+     * @param p
+     */
     public Personnage(Point2D p) {
         super(p);
         this.nom = noms[getRandom(9)];

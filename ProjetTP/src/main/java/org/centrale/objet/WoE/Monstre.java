@@ -17,6 +17,7 @@ public abstract class Monstre extends Creature {
      * @param paAtt
      * @param paPar
      * @param dMax
+     * @param vitesse
      * @param p
      */
     public Monstre(int pV, int dA, int pPar, int paAtt, int paPar, int dMax, int vitesse, Point2D p) {

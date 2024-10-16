@@ -5,7 +5,8 @@
 
 /**
  *
- * @author hanss
+ * @author Ulysse, ChatGPT
+ * Pour la partie graphique, nous avons utilisé chatGPT pour aller plus vite car ce n'est pas l'objet du TP
  */
 
 package org.centrale.objet.WoE;
@@ -21,6 +22,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+/**
+ * Fenetre d'affichage graphique du jeu
+ * Sert aussi à récupérer les clics
+ * @author hanss
+ */
 public class Fenetre {
     private static volatile boolean isPressed = false;
     private static volatile KeyEvent pressedKey = null;
@@ -28,18 +34,30 @@ public class Fenetre {
     private static JTextArea outputArea;
     private static JTextArea messageArea;
     
+    /**
+     * Récupère la touche du clavier pressée
+     * @return KeyEvent correspondant à la touche
+     */
     public static KeyEvent pressedKey() {
         synchronized (Fenetre.class) {
             return pressedKey;
         }
     }
     
+    /**
+     * Vérifie si l'utilisateur appuie quelque part
+     * @return true si l'utilisateur appuie sur une touche
+     */
     public static boolean isPressed(){
          synchronized (Fenetre.class) {
             return isPressed;
         }
     }
 
+    /**
+     *  Crée une fenêtre
+     * @param taille_monde taille du monde dans cette fenêtre
+     */
     public static void Initialize(int taille_monde) {
         frame = new JFrame("WoE - World of ECN");
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -77,7 +95,7 @@ public class Fenetre {
 
         
         // Créer un deuxième JTextArea pour les messages
-        messageArea = new JTextArea(3, 60); // Laissez les dimensions par défaut
+        messageArea = new JTextArea(5, 60); 
         messageArea.setEditable(false); // Rendre la zone de texte non éditable
         messageArea.setBackground(Color.DARK_GRAY);
         messageArea.setForeground(Color.LIGHT_GRAY);
@@ -133,6 +151,9 @@ public class Fenetre {
         });
     }
     
+    /**
+     *  Ferme la fenêtre
+     */
     public static void close(){
         if (frame!=null){
         frame.dispose();
@@ -140,13 +161,20 @@ public class Fenetre {
         }
     }
     
-    public static void addOutput(String message) {
+    /**
+     *  Met à jour l'affichage du monde
+     * @param carte Chaine de caractères de la représentation du monde
+     */
+    public static void afficheMonde(String carte) {
     outputArea.setText(""); // Efface le contenu de la zone de texte
-    outputArea.append(message + "\n"); // Ajouter le message à la zone de texte
+    outputArea.append(carte + "\n"); // Ajouter le carte à la zone de texte
     outputArea.setCaretPosition(outputArea.getDocument().getLength()); // Faire défiler vers le bas
     }
-    
-    // Méthode pour ajouter un message à la zone de messages
+
+    /**
+     * Méthode pour ajouter un message à la zone de messages
+     * @param message Message à indiquer
+     */
     public static void addMessage(String message) {
         messageArea.append(message + "\n"); // Ajouter le message à la zone de messages
         messageArea.setCaretPosition(messageArea.getDocument().getLength()); // Faire défiler vers le bas
