@@ -9,6 +9,11 @@ package org.centrale.objet.WoE;
  * @author hanss
  */
 public class Nourriture extends Objet implements Utilisable, Recuperable {
+
+    /**
+     * Récupérer de la nourriture
+     * @param p
+     */
     @Override
     public void recuperer(Personnage p) {
         // p.ajoutInventaire();
