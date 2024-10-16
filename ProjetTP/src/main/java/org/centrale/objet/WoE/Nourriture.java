@@ -12,7 +12,7 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
 
     /**
      * Récupérer de la nourriture
-     * @param p
+     * @param p Le personnage ramassant
      */
     @Override
     public void recuperer(Personnage p) {
