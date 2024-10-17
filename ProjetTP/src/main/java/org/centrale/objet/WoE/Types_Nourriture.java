@@ -8,20 +8,76 @@ import java.util.Random;
 import org.centrale.objet.WoE.Creature.Carac;
 
 public enum Types_Nourriture {
-    EPINARD(new Nourriture("épinard", new Modificateur(2, Carac.DEGATS.getNom(), 3)));
+    EPINARD(
+        "épinard", 
+        new Modificateur(2, Carac.DEGATS.getNom(), 3)
+    ),
+
+    LAIT(
+        "lait", 
+        new Modificateur(10, Carac.PARADE.getNom(), 2),
+        new Modificateur[]{
+            new Modificateur(10, Carac.VITESSE.getNom(), -1),
+            new Modificateur(10, Carac.POURCENTAGE_PAR.getNom(), -.2),
+            new Modificateur(10, Carac.POURCENTAGE_ATK.getNom(), -.2)
+        }
+    ),
+
+    CAFE(
+        "café",
+        new Modificateur(5, Carac.VITESSE.getNom(), 1)
+    )
+    ;
+
 
     private static final List<Types_Nourriture> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
     private static final int SIZE = VALUES.size();
     private static final Random RANDOM = new Random();
 
-    private Nourriture nourriture;
+    private String nom;
+    private Modificateur bonus;
+    private Modificateur[] malus;
 
-    private Types_Nourriture(Nourriture nourriture) {
-        this.nourriture = nourriture;
+    private Types_Nourriture(String nom, Modificateur bonus, Modificateur[] malus) {
+        this.nom = nom;
+        this.bonus = bonus;
+        this.malus = malus;
     }
 
-    public Nourriture getNourriture() {
-        return this.nourriture;
+    private Types_Nourriture(String nom, Modificateur bonus) {
+        this.nom = nom;
+        this.bonus = bonus;
+        this.malus = null;
+    }
+
+    private Types_Nourriture(String nom, Modificateur[] malus) {
+        this.nom = nom;
+        this.bonus = null;
+        this.malus = malus;
+    }
+
+    public String getNom() {
+        return this.nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public Modificateur getBonus() {
+        return this.bonus;
+    }
+
+    public void setBonus(Modificateur bonus) {
+        this.bonus = bonus;
+    }
+
+    public Modificateur[] getMalus() {
+        return this.malus;
+    }
+
+    public void setMalus(Modificateur[] malus) {
+        this.malus = malus;
     }
 
     public static Types_Nourriture getRandom() {

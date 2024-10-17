@@ -56,7 +56,8 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
     }
     
     public static Nourriture RandomType() {
-        return Types_Nourriture.getRandom().getNourriture();
+        Types_Nourriture type = Types_Nourriture.getRandom();
+        return new Nourriture(type.getNom(), type.getBonus(), type.getMalus());
     }
 
     /**
