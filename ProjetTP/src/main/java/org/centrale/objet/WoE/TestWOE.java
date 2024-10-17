@@ -55,7 +55,8 @@ public class TestWOE {
         System.out.print("Il contient aussi "
                 + obj_crees[0] + " Epees et "
                 + obj_crees[1] + " PotionSoins !\n");
-        WoE.getJoueur().getPerso().setPageAtt(80);
+        WoE.getJoueur().getPerso().setPageAtt(100);
+        WoE.getJoueur().getPerso().setVitesse(5);
         Fenetre.Initialize(WoE.getTaille());
 
         Fenetre.addMessage("Test déplacement joueur :");
