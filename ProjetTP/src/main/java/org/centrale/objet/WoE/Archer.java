@@ -7,6 +7,13 @@ package org.centrale.objet.WoE;
  */
 public class Archer extends Personnage implements Combatif, Jouable {
     
+    private static final int NB_FLECHES_BASE_MOY = 20;
+    private static final int NB_FLECHES_BASE_VAR = 10;
+
+    private final int nbFlechesBaseRandom() {
+        return getRandom(2*NB_FLECHES_BASE_VAR+1) - NB_FLECHES_BASE_VAR + NB_FLECHES_BASE_MOY;
+    }
+
     private int nbFleches;
 
     /**
@@ -46,7 +53,7 @@ public class Archer extends Personnage implements Combatif, Jouable {
      */
     public Archer(int x, int y) {
         super(x, y);
-        this.nbFleches = getRandom(17);
+        this.nbFleches = nbFlechesBaseRandom();
     }
 
     /**
@@ -56,7 +63,7 @@ public class Archer extends Personnage implements Combatif, Jouable {
      */
     public Archer(Point2D p) {
         super(p);
-        this.nbFleches = getRandom(17);
+        this.nbFleches = nbFlechesBaseRandom();
     }
 
     /**
@@ -64,7 +71,7 @@ public class Archer extends Personnage implements Combatif, Jouable {
      */
     public Archer() {
         super();
-        this.nbFleches = getRandom(17);
+        this.nbFleches = nbFlechesBaseRandom();
     }
 
     /**
@@ -112,7 +119,7 @@ public class Archer extends Personnage implements Combatif, Jouable {
         int dgts; // dégats
         double d = this.distance(c);
         if (d <= 1) {
-            int pAtt = this.getDegAtt();
+            int pAtt = this.getPageAtt();
             Epee arme = this.getArme();
             
             if (arme != null) {

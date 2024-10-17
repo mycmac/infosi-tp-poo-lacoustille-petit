@@ -14,10 +14,8 @@ public class Point2D {
      * /!\ Ces valeurs ne sont pas (encore) testées comme conditions de
      * création
      */
-    private final int xmin = -25;
-    private final int xmax = 25;
-    private final int ymin = -25;
-    private final int ymax = 25;
+    private static final int XMAX = 25;
+    private static final int YMAX = 25;
 
     /**
      * Abscisse
@@ -56,12 +54,15 @@ public class Point2D {
     }
 
     /**
-     * Initialise un Point2D de manière aléatoire, au sein des limites fixées
+     * Initialise un Point2D vide
      */
     public Point2D() {
+    }
+
+    public void randomPoint2D() {
         Random r = new Random();
-        this.x = r.nextInt(xmax - xmin + 1) + xmin;
-        this.y = r.nextInt(ymax - ymin + 1) + ymin;
+        this.x = r.nextInt(XMAX);
+        this.y = r.nextInt(YMAX);
     }
 
     /**
