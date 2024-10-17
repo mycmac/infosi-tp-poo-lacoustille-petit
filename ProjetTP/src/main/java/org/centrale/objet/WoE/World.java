@@ -185,6 +185,10 @@ public class World {
             creature.deplace(this.grille_creatures);
             creature.affiche();
             afficheWorld();
+            if (creature.getPtVie()<=0){
+                this.grille_creatures[creature.getX()][creature.getY()] = null;
+                creature.mort();
+            }
         }
         System.out.println("Fin du tour de jeu");
         Fenetre.addMessage("Fin du tour de jeu");
