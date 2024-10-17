@@ -91,11 +91,18 @@ public class PotionSoin extends Objet implements Recuperable, Utilisable {
     /**
      * Comportement d'une PotionSoin lorsqu'elle est récupérée par le personnage
      * 
-     * @param p Personnage
+     * @param j Joueur
      */
     @Override
-    public void recuperer(Personnage p) {
-        p.setPtVie(Math.min(p.getPtVieMax(), p.getPtVie() + ptVie));
+    public void recuperer(Joueur j) {
+        j.addInventaire(this);
         this.pos = null;
     }
+
+    @Override
+    public String toString() {
+        return "PotionSoin : " + "+" + ptVie + " PV";
+    }
+    
+    
 }
