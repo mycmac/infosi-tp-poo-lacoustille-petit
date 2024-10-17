@@ -4,6 +4,8 @@
  */
 package org.centrale.objet.WoE;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author hanss
@@ -50,17 +52,36 @@ public class NuageToxique extends Objet implements Deplacable, Combatif {
 
     @Override
     public void deplace(Creature[][] grille) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        ArrayList<Point2D> deplacementsPossibles = new ArrayList<>();
+        for (int i = -1; i<2; i++) {
+            for (int j = -1; j<2; j++) {
+                int ix = this.getX() + i;
+                int jy = this.getY() + j;
+                if (ix >= 0 && jy >= 0 && ix < grille.length && jy < grille.length) {
+                    if(grille[ix][jy] == null) {
+                        deplacementsPossibles.add(new Point2D(i, j));
+                    }
+                }
+            }
+        }
+        
+        int sz = deplacementsPossibles.size();
+        if (sz != 0) {
+            int dir = this.getRandom(sz);
+            Point2D p = deplacementsPossibles.get(dir);
+            deplace(grille, p);
+        } else {
+            System.out.println("Il n'y a pas de vent, ce nuage ne bouge pas");
+        }}
 
     @Override
     public void deplace(Creature[][] grille, Point2D p) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.setPos(p);
     }
 
     @Override
     public void combattre(Creature c) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        c.setPtVie(c.getPtVie()-toxicite);
     }
     
 }
