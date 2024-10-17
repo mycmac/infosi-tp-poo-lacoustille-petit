@@ -95,7 +95,7 @@ public class Fenetre {
 
         
         // Créer un deuxième JTextArea pour les messages
-        messageArea = new JTextArea(5, 60); 
+        messageArea = new JTextArea(taille_monde, 60); 
         messageArea.setEditable(false); // Rendre la zone de texte non éditable
         messageArea.setBackground(Color.DARK_GRAY);
         messageArea.setForeground(Color.LIGHT_GRAY);
@@ -198,6 +198,7 @@ public class Fenetre {
      * @param message Message à indiquer
      */
     public static void afficheInventaire(String message) {
+        inventaireArea.setText("");
         inventaireArea.append(message + "\n"); // Ajouter le message à la zone de messages
         inventaireArea.setCaretPosition(inventaireArea.getDocument().getLength()); // Faire défiler vers le bas
     }
