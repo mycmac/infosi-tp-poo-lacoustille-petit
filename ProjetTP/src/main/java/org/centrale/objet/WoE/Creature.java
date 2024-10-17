@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Super-classe générique pour les créatures diverses de WoE
@@ -90,6 +91,7 @@ public abstract class Creature extends Entite implements Deplacable{
     }
 
     private Map<String, Integer> caracs = defCaracs();
+    private ArrayList<Modificateur> effets;
 
     /**
      * Initialise une créature en copiant les attributs d'une Creature donnée
@@ -325,6 +327,14 @@ public abstract class Creature extends Entite implements Deplacable{
         this.caracs = caracs;
     }
 
+
+    public ArrayList<Modificateur> getEffets() {
+        return this.effets;
+    }
+
+    public void setEffets(ArrayList<Modificateur> effets) {
+        this.effets = effets;
+    }
 
 
     /**
