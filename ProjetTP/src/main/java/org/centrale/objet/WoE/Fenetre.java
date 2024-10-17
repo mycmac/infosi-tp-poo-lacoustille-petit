@@ -77,6 +77,8 @@ public class Fenetre {
         // Ajouter un texte d'introduction ou des instructions au centre
         JLabel introLabel = new JLabel("<html><center>Bienvenue dans World of ECN!<br>"
                 + "Utilisez les touches pour naviguer dans le monde.<br>"
+                + "Combat à distance : Utiliser SHIFT pour sélectionner une cible avec le (+) et espace pour tirer"
+                + "Combat rapproché : Déplacez-vous sur la créature"
                 +"</center></html>", JLabel.CENTER);
         introLabel.setForeground(Color.LIGHT_GRAY);
         introLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
