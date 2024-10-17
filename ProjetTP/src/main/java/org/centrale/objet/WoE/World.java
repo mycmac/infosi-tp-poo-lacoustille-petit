@@ -65,7 +65,7 @@ public class World {
         this.grille_objets = new Objet[t][t];
         this.joueur = new Joueur();
         this.joueur.getPerso().setPos(t/2, t/2);
-        this.grille_creatures[0][0] = this.joueur.getPerso();
+        this.grille_creatures[taille/2][taille/2] = this.joueur.getPerso();
     }
 
     /**
@@ -79,7 +79,7 @@ public class World {
         this.grille_objets = new Objet[this.taille][this.taille];
         this.joueur = new Joueur();
         this.joueur.getPerso().setPos(this.taille/2, this.taille/2);
-        this.grille_creatures[0][0] = this.joueur.getPerso();
+        this.grille_creatures[taille/2][taille/2] = this.joueur.getPerso();
     }
 
     /**
