@@ -13,19 +13,6 @@ public class TestWOE {
 
     public static void main(String[] args) {
         World WoE;
-
-        /*
-        WoE = new World(50);
-        long debut = System.nanoTime();
-        WoE.creeMondeAlea();
-        long fin = System.nanoTime();
-        Fenetre.addMessage("Temps de création : "+(fin-debut)+" ns");
-        //Creature[][] creature = new Creature[12][12];
-        //Fenetre.addMessage(creature[5][5]);
-        //creature[6][3].affiche();
-        
-        WoE.afficheWorld();
-         */
         WoE = new World(20);
         WoE.creeMondeAlea();
         System.out.println("Monde créé!");
