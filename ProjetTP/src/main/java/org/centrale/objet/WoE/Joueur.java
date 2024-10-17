@@ -62,6 +62,7 @@ public class Joueur {
             }
             System.out.println("Personnage créé !");
             perso = (classeJoueur.getDeclaredConstructor().newInstance());
+            ((Creature)perso).setPos(0,0);
             
         } catch (NoSuchMethodException|
                 InstantiationException|
