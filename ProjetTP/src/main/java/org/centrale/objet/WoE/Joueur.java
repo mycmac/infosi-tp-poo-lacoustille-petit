@@ -16,12 +16,14 @@ import org.reflections.Reflections;
 public class Joueur {
 
     /**
-     * Attribut contenant le personnage du joueur, qui descend de l'interface
-     * Jouable
+     * Attribut contenant le personnage du joueur, qui descend de l'interface Jouable
      */
     private Jouable perso;
+    /**
+     * Inventaire du joueur, qui contient tous les éléments récupérables par le joueur et les stocke dans un tableau
+     */
     private ArrayList<Recuperable> inventaire = new ArrayList<>();
-    private ArrayList<Utilisable> effets;
+    
 
     /**
      * Constructeur de Joueur avec un personnage prédéfini

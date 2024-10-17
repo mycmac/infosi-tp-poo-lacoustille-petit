@@ -1,6 +1,10 @@
 package org.centrale.objet.WoE;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * Super-classe générique pour les créatures diverses de WoE
@@ -15,41 +19,80 @@ public abstract class Creature extends Entite implements Deplacable{
     /**
      * Points de vie de départ : entre 20 et 100
      */
-    private final int ptVieBaseMin = 20;
+    private static final int PT_VIE_BASE_MIN = 20;
     /**
-     * @see #ptVieBaseMin
+     * @see #PT_VIE_BASE_MIN
      */
-    private final int ptVieBaseMax = 100;
+    private static final int PT_VIE_BASE_MAX = 100;
     /**
      * Dégats d'attaque : entre 1 et 10
      */
-    private final int degAttBaseMin = 1;
-    private final int degAttBaseMax = 10;
+    private static final int DEG_ATT_BASE_MIN = 1;
+    private static final int DEG_ATT_BASE_MAX = 10;
     /**
      * Points de parade : entre 1 et 10
      */
-    private final int ptParBaseMin = 1;
-    private final int ptParBaseMax = 10;
+    private static final int PT_PAR_BASE_MIN = 1;
+    private static final int PT_PAR_BASE_MAX = 10;
     /**
      * Pourcentage de chance de réussite d'une attaque : entre 1 et 100 (%)
      */
-    private final int pageAttBaseMin = 1;
-    private final int pageAttBaseMax = 100;
+    private static final int PAGE_ATT_BASE_MIN = 1;
+    private static final int PAGE_ATT_BASE_MAX = 100;
     
     /**
      * Pourcentage de chance de réussite d'une parade : entre 1 et 100 (%)
      */
-    private final int pageParBaseMin = 1;
-    private final int pageParBaseMax = 100;
+    private static final int PAGE_PAR_BASE_MIN = 1;
+    private static final int PAGE_PAR_BASE_MAX = 100;
 
-    private int ptVie; // Points de vie
-    private int ptVieMax; // Maximum de points de vie
-    private int degAtt; // Dégats d'attaque
-    private int ptPar; // Points de parade
-    private int pageAtt; // Porcentage d'attaque
-    private int pagePar; // Pourcentage de parade
-    private int distAttMax; // Distance maximale d'attaque
-    private int vitesse;
+    /**
+     * Nomenclature du dictionnaire des caractéristiques
+     */
+    public enum Carac {
+        PV_MAX("Points de vie max"),
+        PV("Points de vie actuels"),
+        DEGATS("Degats d'attaque"),
+        PARADE("Points de parade"),
+        POURCENTAGE_ATK("Pourcentage d'attaque"),
+        POURCENTAGE_PAR("Pourcentage de parade"),
+        DIST_ATK_MAX("Distance d'attaque max"),
+        VITESSE("Vitesse de déplacement");
+
+        private String nom;
+
+        private Carac(String nom) {
+            this.nom = nom;
+        }
+
+        public String getNom() {
+            return this.nom;
+        }
+    }
+
+    /**
+     * Dictionnaire des caractéristiques d'une créature
+     * Le nombre d'entrées et les clés sont fixes, mais les valeurs sont modifiables
+     * @return Caractéristiques
+     */
+    private static final Map<String, Integer> defCaracs() {
+        Map<String, Integer> modifiableMap = new HashMap<>();
+
+        modifiableMap.put("Points de vie max", null);
+        modifiableMap.put("Points de vie actuels", null);
+        modifiableMap.put("Degats d'attaque", null);
+        modifiableMap.put("Points de parade", null);
+        modifiableMap.put("Pourcentage d'attaque", null);
+        modifiableMap.put("Pourcentage de parade", null);
+        modifiableMap.put("Distance d'attaque max", null);
+        modifiableMap.put("Vitesse de déplacement", null);
+
+        return Collections.unmodifiableMap(modifiableMap);
+    }
+
+    private Map<String, Integer> caracs = defCaracs();
+    private ArrayList<Modificateur> effets;
+
     /**
      * Initialise une créature en copiant les attributs d'une Creature donnée
      *
@@ -57,14 +100,8 @@ public abstract class Creature extends Entite implements Deplacable{
      */
     public Creature(Creature p) {
         super(p.pos);
-        this.ptVieMax = p.getPtVie();
-        this.ptVie = this.ptVieMax;
-        this.degAtt = p.getDegAtt();
-        this.ptPar = p.getPtPar();
-        this.pageAtt = p.getPageAtt();
-        this.pagePar = p.getPagePar();
-        this.distAttMax = p.getDistAttMax();
-        this.vitesse = p.getVitesse();
+        this.caracs = new HashMap<>(p.caracs);
+        this.caracs.put(Carac.PV.getNom(), this.caracs.get(Carac.PV_MAX.getNom()));
     }
 
     /**
@@ -77,18 +114,18 @@ public abstract class Creature extends Entite implements Deplacable{
      * @param paPar probabilité de parer une attaque
      * @param dAtkMax Distance attaque max
      * @param vitesse Vitesse perso
-     * @param p position
+     * @param pt position
      */
-    public Creature(int pV, int dA, int pPar, int paAtt, int paPar, int dAtkMax, int vitesse, Point2D p) {
-        super(p);
-        this.ptVieMax = pV;
-        this.ptVie = this.ptVieMax;
-        this.degAtt = dA;
-        this.ptPar = pPar;
-        this.pageAtt = paAtt;
-        this.pagePar = paPar;
-        this.distAttMax = dAtkMax;
-        this.vitesse = vitesse;
+    public Creature(int pV, int dA, int pPar, int paAtt, int paPar, int dAtkMax, int vitesse, Point2D pt) {
+        super(pt);
+        this.caracs.put(Carac.PV_MAX.getNom(), pV);
+        this.caracs.put(Carac.DEGATS.getNom(), dA);
+        this.caracs.put(Carac.PARADE.getNom(), pPar);
+        this.caracs.put(Carac.POURCENTAGE_ATK.getNom(), paAtt);
+        this.caracs.put(Carac.POURCENTAGE_PAR.getNom(), paPar);
+        this.caracs.put(Carac.DIST_ATK_MAX.getNom(), dAtkMax);
+        this.caracs.put(Carac.VITESSE.getNom(), vitesse);
+        this.caracs.put(Carac.PV.getNom(), this.caracs.get(Carac.PV_MAX.getNom()));
     }
     
     /**
@@ -99,13 +136,14 @@ public abstract class Creature extends Entite implements Deplacable{
      */
     public Creature(int x, int y) {
         super(x, y);
-        this.ptVieMax = getRandom(ptVieBaseMax - ptVieBaseMin + 1) + ptVieBaseMin;
-        this.ptVie = this.ptVieMax;
-        this.degAtt = getRandom(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
-        this.ptPar = getRandom(ptParBaseMax - ptParBaseMin + 1) + ptParBaseMin;
-        this.pageAtt = getRandom(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
-        this.pagePar = getRandom(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
-        this.distAttMax = 1;
+        this.caracs.put(Carac.PV_MAX.getNom(), getRandom(PT_VIE_BASE_MAX - PT_VIE_BASE_MIN + 1) + PT_VIE_BASE_MIN);
+        this.caracs.put(Carac.DEGATS.getNom(), getRandom(DEG_ATT_BASE_MAX - DEG_ATT_BASE_MIN + 1) + DEG_ATT_BASE_MIN);
+        this.caracs.put(Carac.PARADE.getNom(), getRandom(PT_PAR_BASE_MAX - PT_PAR_BASE_MIN + 1) + PT_PAR_BASE_MIN);
+        this.caracs.put(Carac.POURCENTAGE_ATK.getNom(), getRandom(PAGE_ATT_BASE_MAX - PAGE_ATT_BASE_MIN + 1) + PAGE_ATT_BASE_MIN);
+        this.caracs.put(Carac.POURCENTAGE_PAR.getNom(), getRandom(PAGE_PAR_BASE_MAX - PAGE_PAR_BASE_MIN + 1) + PAGE_PAR_BASE_MIN);
+        this.caracs.put(Carac.DIST_ATK_MAX.getNom(), 1);
+        this.caracs.put(Carac.VITESSE.getNom(), 1);
+        this.caracs.put(Carac.PV.getNom(), this.caracs.get(Carac.PV_MAX.getNom()));
     }
     
     /**
@@ -115,14 +153,14 @@ public abstract class Creature extends Entite implements Deplacable{
      */
     public Creature(Point2D p) {
         super(p);
-        this.ptVieMax = getRandom(ptVieBaseMax - ptVieBaseMin + 1) + ptVieBaseMin;
-        this.ptVie = this.ptVieMax;
-        this.degAtt = getRandom(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
-        this.ptPar = getRandom(ptParBaseMax - ptParBaseMin + 1) + ptParBaseMin;
-        this.pageAtt = getRandom(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
-        this.pagePar = getRandom(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
-        this.vitesse = getRandom(5) + 1;
-        this.distAttMax = 1;
+        this.caracs.put(Carac.PV_MAX.getNom(), getRandom(PT_VIE_BASE_MAX - PT_VIE_BASE_MIN + 1) + PT_VIE_BASE_MIN);
+        this.caracs.put(Carac.DEGATS.getNom(), getRandom(DEG_ATT_BASE_MAX - DEG_ATT_BASE_MIN + 1) + DEG_ATT_BASE_MIN);
+        this.caracs.put(Carac.PARADE.getNom(), getRandom(PT_PAR_BASE_MAX - PT_PAR_BASE_MIN + 1) + PT_PAR_BASE_MIN);
+        this.caracs.put(Carac.POURCENTAGE_ATK.getNom(), getRandom(PAGE_ATT_BASE_MAX - PAGE_ATT_BASE_MIN + 1) + PAGE_ATT_BASE_MIN);
+        this.caracs.put(Carac.POURCENTAGE_PAR.getNom(), getRandom(PAGE_PAR_BASE_MAX - PAGE_PAR_BASE_MIN + 1) + PAGE_PAR_BASE_MIN);
+        this.caracs.put(Carac.DIST_ATK_MAX.getNom(), 1);
+        this.caracs.put(Carac.VITESSE.getNom(), 1);
+        this.caracs.put(Carac.PV.getNom(), this.caracs.get(Carac.PV_MAX.getNom()));
     }
     
     /**
@@ -131,14 +169,14 @@ public abstract class Creature extends Entite implements Deplacable{
      */
     public Creature() {
         super(new Point2D());
-        this.ptVieMax = getRandom(ptVieBaseMax - ptVieBaseMin + 1) + ptVieBaseMin;
-        this.ptVie = this.ptVieMax;
-        this.degAtt = getRandom(degAttBaseMax - degAttBaseMin + 1) + degAttBaseMin;
-        this.ptPar = getRandom(ptParBaseMax - ptParBaseMin + 1) + ptParBaseMin;
-        this.pageAtt = getRandom(pageAttBaseMax - pageAttBaseMin + 1) + pageAttBaseMin;
-        this.pagePar = getRandom(pageParBaseMax - pageParBaseMin + 1) + pageParBaseMin;
-        this.vitesse = getRandom(5) + 1;
-        this.distAttMax = 1;
+        this.caracs.put(Carac.PV_MAX.getNom(), getRandom(PT_VIE_BASE_MAX - PT_VIE_BASE_MIN + 1) + PT_VIE_BASE_MIN);
+        this.caracs.put(Carac.DEGATS.getNom(), getRandom(DEG_ATT_BASE_MAX - DEG_ATT_BASE_MIN + 1) + DEG_ATT_BASE_MIN);
+        this.caracs.put(Carac.PARADE.getNom(), getRandom(PT_PAR_BASE_MAX - PT_PAR_BASE_MIN + 1) + PT_PAR_BASE_MIN);
+        this.caracs.put(Carac.POURCENTAGE_ATK.getNom(), getRandom(PAGE_ATT_BASE_MAX - PAGE_ATT_BASE_MIN + 1) + PAGE_ATT_BASE_MIN);
+        this.caracs.put(Carac.POURCENTAGE_PAR.getNom(), getRandom(PAGE_PAR_BASE_MAX - PAGE_PAR_BASE_MIN + 1) + PAGE_PAR_BASE_MIN);
+        this.caracs.put(Carac.DIST_ATK_MAX.getNom(), 1);
+        this.caracs.put(Carac.VITESSE.getNom(), 1);
+        this.caracs.put(Carac.PV.getNom(), this.caracs.get(Carac.PV_MAX.getNom()));
     }
 
     /**
@@ -147,7 +185,7 @@ public abstract class Creature extends Entite implements Deplacable{
      * @return Points de vie max
      */
     public int getPtVieMax() {
-        return this.ptVieMax;
+        return this.caracs.get(Carac.PV_MAX.getNom());
     }
 
     /**
@@ -156,7 +194,7 @@ public abstract class Creature extends Entite implements Deplacable{
      * @param ptVieMax
      */
     public void setPtVieMax(int ptVieMax) {
-        this.ptVieMax = ptVieMax;
+        this.caracs.put(Carac.PV_MAX.getNom(), ptVieMax);
     }
 
     /**
@@ -165,7 +203,7 @@ public abstract class Creature extends Entite implements Deplacable{
      * @return Points de vie
      */
     public int getPtVie() {
-        return this.ptVie;
+        return this.caracs.get(Carac.PV.getNom());
     }
 
     /**
@@ -174,7 +212,7 @@ public abstract class Creature extends Entite implements Deplacable{
      * @param ptVie Points de vie
      */
     public void setPtVie(int ptVie) {
-        this.ptVie = ptVie;
+        this.caracs.put(Carac.PV.getNom(), ptVie);
     }
 
     /**
@@ -183,7 +221,7 @@ public abstract class Creature extends Entite implements Deplacable{
      * @return Dégats d'attaque
      */
     public int getDegAtt() {
-        return this.degAtt;
+        return this.caracs.get(Carac.DEGATS.getNom());
     }
 
     /**
@@ -192,7 +230,7 @@ public abstract class Creature extends Entite implements Deplacable{
      * @param degAtt
      */
     public void setDegAtt(int degAtt) {
-        this.degAtt = degAtt;
+        this.caracs.put(Carac.DEGATS.getNom(), degAtt);
     }
 
     /**
@@ -201,7 +239,7 @@ public abstract class Creature extends Entite implements Deplacable{
      * @return Nombre de points de parade
      */
     public int getPtPar() {
-        return this.ptPar;
+        return this.caracs.get(Carac.PARADE.getNom());
     }
 
     /**
@@ -210,7 +248,7 @@ public abstract class Creature extends Entite implements Deplacable{
      * @param ptPar
      */
     public void setPtPar(int ptPar) {
-        this.ptPar = ptPar;
+        this.caracs.put(Carac.PARADE.getNom(), ptPar);
     }
 
     /**
@@ -219,7 +257,7 @@ public abstract class Creature extends Entite implements Deplacable{
      * @return Pourcentage de réussite d'attaque
      */
     public int getPageAtt() {
-        return this.pageAtt;
+        return this.caracs.get(Carac.POURCENTAGE_ATK.getNom());
     }
 
     /**
@@ -228,7 +266,7 @@ public abstract class Creature extends Entite implements Deplacable{
      * @param pageAtt
      */
     public void setPageAtt(int pageAtt) {
-        this.pageAtt = pageAtt;
+        this.caracs.put(Carac.POURCENTAGE_ATK.getNom(), pageAtt);
     }
 
     /**
@@ -237,7 +275,7 @@ public abstract class Creature extends Entite implements Deplacable{
      * @return pourcentage de parade
      */
     public int getPagePar() {
-        return this.pagePar;
+        return this.caracs.get(Carac.POURCENTAGE_PAR.getNom());
     }
 
     /**
@@ -246,7 +284,7 @@ public abstract class Creature extends Entite implements Deplacable{
      * @param pagePar
      */
     public void setPagePar(int pagePar) {
-        this.pagePar = pagePar;
+        this.caracs.put(Carac.POURCENTAGE_PAR.getNom(), pagePar);
     }
 
     /**
@@ -254,7 +292,7 @@ public abstract class Creature extends Entite implements Deplacable{
      * @return Distance d'attaque maximale
      */
     public int getDistAttMax() {
-        return distAttMax;
+        return caracs.get(Carac.DIST_ATK_MAX.getNom());
     }
 
     /**
@@ -262,10 +300,43 @@ public abstract class Creature extends Entite implements Deplacable{
      * @param distAttMax
      */
     public void setDistAttMax(int distAttMax) {
-        this.distAttMax = distAttMax;
+        this.caracs.put(Carac.DIST_ATK_MAX.getNom(), distAttMax);
     }
-    
-    
+
+    /**
+     * Renvoie la vitesse
+     * @return Vitesse
+     */
+    public int getVitesse() {
+        return caracs.get(Carac.VITESSE.getNom());
+    }
+
+    /**
+     * Redéfinit la vitesse
+     * @param vitesse
+     */
+    public void setVitesse(int vitesse) {
+        this.caracs.put(Carac.VITESSE.getNom(), vitesse);
+    }
+
+    public Map<String,Integer> getCaracs() {
+        return this.caracs;
+    }
+
+    public void setCaracs(Map<String,Integer> caracs) {
+        this.caracs = caracs;
+    }
+
+
+    public ArrayList<Modificateur> getEffets() {
+        return this.effets;
+    }
+
+    public void setEffets(ArrayList<Modificateur> effets) {
+        this.effets = effets;
+    }
+
+
     /**
      * Déplace la créature de manière déterminée.
      *
@@ -344,7 +415,7 @@ public abstract class Creature extends Entite implements Deplacable{
      * Affiche les détails de base de la créature (points de vie et position)
      */
     public void affiche() {
-        System.out.print("Cette créature a " + ptVie + " points de vie et se situe en " + pos + ". ");
+        System.out.print("Cette créature a " + this.getPtVie() + " points de vie sur " + this.getPtVieMax() + " et se situe en " + pos + ". ");
     }
     
     /**
@@ -355,22 +426,4 @@ public abstract class Creature extends Entite implements Deplacable{
     public boolean lanceDe(int pageReussite){
         return (this.getRandom(100)+1) <= pageReussite;
     }
-
-    /**
-     *
-     * @return Vitesse de la créature
-     */
-    public int getVitesse() {
-        return vitesse;
-    }
-
-    /**
-     *  Définis la vitesse de la créature
-     * @param vitesse
-     */
-    public void setVitesse(int vitesse) {
-        this.vitesse = vitesse;
-    }
-    
-    
 }

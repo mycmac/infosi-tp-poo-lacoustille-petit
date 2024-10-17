@@ -6,11 +6,6 @@ package org.centrale.objet.WoE;
  */
 public abstract class Personnage extends Creature {
 
-    // TODO : Enum / List Caracs d'un personnage
-    public enum caracs {
-        pointsVieMax, degatsAttaque, pointParade, pourcentageAttaque, pourcentageParade, distanceAttaqueMax, vitesse;
-    };
-
     private String nom;
     private final static String[] noms = new String[]{"Alphonse", "Clovis", "Aude", "Hubert", "Bertille", "Paulin", "Rainier", "Isaure", "Enguerrand", "Neven"};
     private Epee arme;

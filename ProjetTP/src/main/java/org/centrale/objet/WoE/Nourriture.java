@@ -17,7 +17,7 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
 
     public Nourriture() {
         this.nom = "Nourriture inutile";
-        this.bonus = new Modificateur(0,0,0,0);
+        this.bonus = new Modificateur(0, null, 0, 0);
     }
 
     public Nourriture(String nom, Modificateur bonus, Modificateur[] malus) {
@@ -56,7 +56,8 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
     }
     
     public static Nourriture RandomType() {
-        return Types_Nourriture.getRandom().getNourriture();
+        Types_Nourriture type = Types_Nourriture.getRandom();
+        return new Nourriture(type.getNom(), type.getBonus(), type.getMalus());
     }
 
     /**

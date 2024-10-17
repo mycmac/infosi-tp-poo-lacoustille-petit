@@ -1,5 +1,6 @@
 package org.centrale.objet.WoE;
 
+
 import java.util.Iterator;
 
 /**
@@ -75,7 +76,7 @@ public class TestWOE {
             WoE.tourDeJeu();
             WoE.afficheWorld();
         }
-
+ 
         /*
         // Test de la génération aléatoire d'entites
         Iterator<Creature> creatureP = WoE.getCreatures().iterator();
