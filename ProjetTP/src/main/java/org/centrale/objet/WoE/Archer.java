@@ -112,7 +112,7 @@ public class Archer extends Personnage implements Combatif, Jouable {
         int dgts; // dégats
         double d = this.distance(c);
         if (d <= 1) {
-            int pAtt = this.getDegAtt();
+            int pAtt = this.getPageAtt();
             Epee arme = this.getArme();
             
             if (arme != null) {
