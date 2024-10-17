@@ -48,7 +48,7 @@ public abstract class Creature extends Entite implements Deplacable{
     /**
      * Nomenclature du dictionnaire des caractéristiques
      */
-    private enum Carac {
+    public enum Carac {
         PV_MAX("Points de vie max"),
         PV("Points de vie actuels"),
         DEGATS("Degats d'attaque"),

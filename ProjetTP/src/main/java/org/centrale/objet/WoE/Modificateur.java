@@ -2,34 +2,33 @@ package org.centrale.objet.WoE;
 
 public class Modificateur {
     private int duree;
-    private int indexBonus; // TODO : Liste des caracs pour spécifier l'index
+    private String caracModif; // TODO : Liste des caracs pour spécifier l'index
     private int bonusFixe;
     private double bonusPourcent;
 
     public Modificateur() {
     }
 
-    public Modificateur(int duree, int indexBonus, int bonusFixe, double bonusPourcent) {
+    public Modificateur(int duree, String caracModif, int bonusFixe, double bonusPourcent) {
         this.duree = duree;
-        this.indexBonus = indexBonus;
+        this.caracModif = caracModif;
         this.bonusFixe = bonusFixe;
         this.bonusPourcent = bonusPourcent;
     }
 
-    public Modificateur(int duree, int indexBonus, int bonusFixe) {
+    public Modificateur(int duree, String caracModif, int bonusFixe) {
         this.duree = duree;
-        this.indexBonus = indexBonus;
+        this.caracModif = caracModif;
         this.bonusFixe = bonusFixe;
         this.bonusPourcent = 0;
     }
 
-    public Modificateur(int duree, int indexBonus, double bonusPourcent) {
+    public Modificateur(int duree, String caracModif, double bonusPourcent) {
         this.duree = duree;
-        this.indexBonus = indexBonus;
+        this.caracModif = caracModif;
         this.bonusFixe = 0;
         this.bonusPourcent = bonusPourcent;
     }
-
 
     public int getDuree() {
         return this.duree;
@@ -39,12 +38,12 @@ public class Modificateur {
         this.duree = duree;
     }
 
-    public int getIndexBonus() {
-        return this.indexBonus;
+    public String getCaracModif() {
+        return this.caracModif;
     }
 
-    public void setIndexBonus(int indexBonus) {
-        this.indexBonus = indexBonus;
+    public void setCaracModif(String caracModif) {
+        this.caracModif = caracModif;
     }
 
     public int getBonusFixe() {
@@ -61,6 +60,6 @@ public class Modificateur {
 
     public void setBonusPourcent(double bonusPourcent) {
         this.bonusPourcent = bonusPourcent;
-    }    
+    }
 
 }

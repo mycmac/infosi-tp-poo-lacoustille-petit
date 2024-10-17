@@ -5,8 +5,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import org.centrale.objet.WoE.Creature.Carac;
+
 public enum Types_Nourriture {
-    EPINARD(new Nourriture("épinard", new Modificateur(2, 1, 3)));
+    EPINARD(new Nourriture("épinard", new Modificateur(2, Carac.DEGATS.getNom(), 3)));
 
     private static final List<Types_Nourriture> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
     private static final int SIZE = VALUES.size();

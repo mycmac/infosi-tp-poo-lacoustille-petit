@@ -17,7 +17,7 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
 
     public Nourriture() {
         this.nom = "Nourriture inutile";
-        this.bonus = new Modificateur(0,0,0,0);
+        this.bonus = new Modificateur(0, null, 0, 0);
     }
 
     public Nourriture(String nom, Modificateur bonus, Modificateur[] malus) {
