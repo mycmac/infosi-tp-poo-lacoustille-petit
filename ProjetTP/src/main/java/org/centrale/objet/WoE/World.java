@@ -498,6 +498,4 @@ public class World {
         this.cible = cible;
     }
 
-
-
 }
