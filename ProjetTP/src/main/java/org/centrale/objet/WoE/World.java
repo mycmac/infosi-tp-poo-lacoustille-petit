@@ -182,7 +182,6 @@ public class World {
         afficheWorld();
         for (Creature creature : creatures) {
             System.out.println("C'est au tour de " + creature + " de jouer.");
-            Fenetre.addMessage("C'est au tour de " + creature + " de jouer.");
             creature.deplace(this.grille_creatures);
             creature.affiche();
             afficheWorld();
