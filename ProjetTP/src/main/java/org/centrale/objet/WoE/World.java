@@ -490,4 +490,8 @@ public class World {
         this.joueur = joueur;
     }
 
+    void setCible(Point2D p) {
+        this.cible = p;
+    }
+
 }
