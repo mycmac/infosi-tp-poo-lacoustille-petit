@@ -223,7 +223,7 @@ public class Epee extends Objet implements Recuperable {
      */
     @Override
     public void recuperer(Joueur j) {
-        j.getPerso().setArme(this);
+        j.addInventaire(this);
         this.pos = null;
     }
 
