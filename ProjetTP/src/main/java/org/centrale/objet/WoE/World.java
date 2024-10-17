@@ -176,6 +176,7 @@ public class World {
         System.out.println("À votre tour :");
         Fenetre.addMessage("À votre tour :");
         afficheWorld();
+        joueur.afficheInventaire();
         joueur.actionDeplacement(this);
         afficheWorld();
         for (Creature creature : creatures) {
