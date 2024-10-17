@@ -1,10 +1,17 @@
 package org.centrale.objet.WoE;
 
+import java.util.Dictionary;
+
 /**
  * Classe générique pour les personnages humains
  * @author Ulysse
  */
 public abstract class Personnage extends Creature {
+
+    // TODO : Enum / List Caracs d'un personnage
+    public enum caracs {
+        pointsVieMax, degatsAttaque, pointParade, pourcentageAttaque, pourcentageParade, distanceAttaqueMax, vitesse;
+    };
 
     private String nom;
     private final static String[] noms = new String[]{"Alphonse", "Clovis", "Aude", "Hubert", "Bertille", "Paulin", "Rainier", "Isaure", "Enguerrand", "Neven"};
