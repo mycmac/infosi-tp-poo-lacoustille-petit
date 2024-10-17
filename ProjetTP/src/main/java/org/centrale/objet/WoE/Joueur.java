@@ -153,8 +153,8 @@ public class Joueur {
             int[] dep = deplacement(event);
             if (grille[this.getPerso().getX() + dep[0]][this.getPerso().getY() + dep[1]] != null) {
                 ((Combatif) this.getPerso()).combattre(grille[this.getPerso().getX() + dep[0]][this.getPerso().getY() + dep[1]]);
-            }
-            (perso).deplace(grille, dep[0], dep[1]);
+            }else{
+            (perso).deplace(grille, dep[0], dep[1]);}
         } else if (event.getKeyCode() == KeyEvent.VK_SHIFT && this.getPerso().getDistAttMax() > 1.40) {
             monde.setCible(new Point2D(this.getPerso().getPos()));
             deplaceCible(monde);
