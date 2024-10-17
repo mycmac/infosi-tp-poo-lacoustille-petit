@@ -16,13 +16,13 @@ public class World {
      */
     private final int tailleBase = 100;
     /**
-     * Nombre de créature par défaut à la génération d'un monde
+     * Nombre de créature  à la génération d'un monde
      */
-    private final int nbCreaturesBase = tailleBase * tailleBase / 20;
+    private int nbCreaturesBase;
     /**
      * Nombre d'objets par défaut à la génération d'un monde
      */
-    private final int nbObjetsBase = nbCreaturesBase;
+    private int nbObjetsBase;
 
     /**
      * Générateur de nombres aléatoires associé au monde
@@ -85,6 +85,8 @@ public class World {
     public void creeMondeAlea() {
 
         int t = this.taille;
+        this.nbCreaturesBase = (t*t)/10;
+        this.nbObjetsBase = nbCreaturesBase;
         Point2D p;
         boolean pris;
 
