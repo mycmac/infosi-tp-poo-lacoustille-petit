@@ -16,7 +16,7 @@ public class World {
      */
     private final int tailleBase = 100;
     /**
-     * Nombre de créature  à la génération d'un monde
+     * Nombre de créature à la génération d'un monde
      */
     private int nbCreaturesBase;
     /**
@@ -52,6 +52,7 @@ public class World {
     Objet[][] grille_objets;
 
     private Joueur joueur;
+    private Point2D cible;
 
     /**
      * Initialisation d'un monde vide de taille prédéfinie
@@ -64,8 +65,8 @@ public class World {
         this.grille_creatures = new Creature[t][t];
         this.grille_objets = new Objet[t][t];
         this.joueur = new Joueur();
-        this.joueur.getPerso().setPos(t/2, t/2);
-        this.grille_creatures[taille/2][taille/2] = this.joueur.getPerso();
+        this.joueur.getPerso().setPos(t / 2, t / 2);
+        this.grille_creatures[taille / 2][taille / 2] = this.joueur.getPerso();
     }
 
     /**
@@ -78,8 +79,8 @@ public class World {
         this.grille_creatures = new Creature[this.taille][this.taille];
         this.grille_objets = new Objet[this.taille][this.taille];
         this.joueur = new Joueur();
-        this.joueur.getPerso().setPos(this.taille/2, this.taille/2);
-        this.grille_creatures[taille/2][taille/2] = this.joueur.getPerso();
+        this.joueur.getPerso().setPos(this.taille / 2, this.taille / 2);
+        this.grille_creatures[taille / 2][taille / 2] = this.joueur.getPerso();
     }
 
     /**
@@ -89,7 +90,7 @@ public class World {
     public void creeMondeAlea() {
 
         int t = this.taille;
-        this.nbCreaturesBase = (t*t)/10;
+        this.nbCreaturesBase = (t * t) / 10;
         this.nbObjetsBase = nbCreaturesBase;
         Point2D p;
         boolean pris;
@@ -212,7 +213,9 @@ public class World {
                 carte += " ";
                 c = this.grille_creatures[i][j];
                 o = this.grille_objets[i][j];
-                if (c != null) {
+                if (i == this.cible.getX() && j == this.cible.getY()) {
+                    carte += "+";
+                } else if (c != null) {
                     if (c instanceof Archer) {
                         carte += "A";
                     } else if (c instanceof Guerrier) {
@@ -251,7 +254,7 @@ public class World {
      *
      * @param Liste
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" }) // Tkt, c'est juste l'IDE qui pleure
+    @SuppressWarnings({"rawtypes", "unchecked"}) // Tkt, c'est juste l'IDE qui pleure
     public void cleanEntites(LinkedList Liste) {
         Iterator<Entite> listIt = Liste.iterator();
 
@@ -453,9 +456,8 @@ public class World {
     }
 
     // FIN DEPLACEMENT CREATURE ------------------------------------------------------------------------------------------------------------------------
-
     /**
-     * 
+     *
      * @return int taille : La taille du monde
      */
     public int getTaille() {
@@ -463,7 +465,8 @@ public class World {
     }
 
     /**
-     *  Définis la taille du monde
+     * Définis la taille du monde
+     *
      * @param taille Nouvelle taille
      */
     public void setTaille(int taille) {
@@ -480,6 +483,7 @@ public class World {
 
     /**
      * Définis le joueur
+     *
      * @param joueur Joueur
      */
     public void setJoueur(Joueur joueur) {
