@@ -70,8 +70,8 @@ public class Joueur {
             
             perso = (classeJoueur.getDeclaredConstructor().newInstance());
             ((Creature) perso).setPos(0, 0);
-
             System.out.println("Personnage créé !");
+
         } catch (NoSuchMethodException
                | InstantiationException
                | IllegalAccessException
