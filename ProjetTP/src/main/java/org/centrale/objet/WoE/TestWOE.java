@@ -1,7 +1,10 @@
 package org.centrale.objet.WoE;
 
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Test de tout le package {@link org.centrale.objet.WoE} et plus spécifiquement
@@ -13,6 +16,7 @@ public class TestWOE {
 
     public static void main(String[] args) {
         World WoE;
+        Guerrier gros = new Guerrier();
 
         /*
         WoE = new World(50);
@@ -26,7 +30,7 @@ public class TestWOE {
         
         WoE.afficheWorld();
          */
-        WoE = new World(20);
+       /*  WoE = new World(20);
         WoE.creeMondeAlea();
         System.out.println("Monde créé!");
         Iterator<Creature> creatureP = WoE.getCreatures().iterator();
@@ -75,7 +79,7 @@ public class TestWOE {
         for (int i = 1; i < 50; i++) {
             WoE.tourDeJeu();
             WoE.afficheWorld();
-        }
+        } */
  
         /*
         // Test de la génération aléatoire d'entites

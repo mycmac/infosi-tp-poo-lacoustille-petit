@@ -87,10 +87,11 @@ public abstract class Creature extends Entite implements Deplacable{
         modifiableMap.put("Distance d'attaque max", null);
         modifiableMap.put("Vitesse de déplacement", null);
 
-        return Collections.unmodifiableMap(modifiableMap);
+        return modifiableMap;
     }
 
     private Map<String, Integer> caracs = defCaracs();
+
     private ArrayList<Modificateur> effets;
 
     /**
