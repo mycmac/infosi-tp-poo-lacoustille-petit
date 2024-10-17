@@ -70,7 +70,7 @@ public class Guerrier extends Personnage implements Combatif, Jouable {
         String msg;
         int dgts;
         if (this.distance(c) <= 1) {
-            int pAtt = this.getDegAtt();
+            int pAtt = this.getPageAtt();
             Epee arme = this.getArme();
             
             if (arme != null) {
@@ -110,8 +110,9 @@ public class Guerrier extends Personnage implements Combatif, Jouable {
                     }
                 } else {
                     dgts = dAtt;
-                    msg = "Le coup touche et inflige " + dgts + " dégats !";
                     c.setPtVie(Math.max(0, c.getPtVie()-dgts));
+                    msg = "Le coup touche et inflige " + dgts + " dégats !"+"L'adversaire a encore "+c.getPtVie()+" PV";
+                    
                 }
             } else {
                 msg = "Le coup a raté.";
