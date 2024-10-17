@@ -1,7 +1,10 @@
 package org.centrale.objet.WoE;
 
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Test de tout le package {@link org.centrale.objet.WoE} et plus spécifiquement
@@ -62,7 +65,7 @@ public class TestWOE {
         for (int i = 1; i < 50; i++) {
             WoE.tourDeJeu();
             WoE.afficheWorld();
-        }
+        } */
  
         /*
         // Test de la génération aléatoire d'entites
