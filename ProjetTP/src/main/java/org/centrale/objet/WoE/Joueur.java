@@ -38,8 +38,8 @@ public class Joueur {
      * Constructeur de Joueur qui interagit avec l'utilisateur pour choisir le
      * type de personnage et son nom notamment.
      */
-    @SuppressWarnings({"unchecked", "rawtypes"}) // Tkt, le code est correct mais sinon l'IDE fait chier
-    public Joueur() {
+    //@SuppressWarnings({"unchecked", "rawtypes"}) // Tkt, le code est correct mais sinon l'IDE fait chier
+    public Joueur(){
         try {
             int numClasseJoueur;
             Class<? extends Jouable> classeJoueur = null;
@@ -67,15 +67,18 @@ public class Joueur {
                     satisfait = true;
                 }
             }
-            System.out.println("Personnage créé !");
+            
             perso = (classeJoueur.getDeclaredConstructor().newInstance());
             ((Creature) perso).setPos(0, 0);
+            System.out.println("Personnage créé !");
             
         } catch (NoSuchMethodException
-                | InstantiationException
-                | IllegalAccessException
-                | IllegalArgumentException
-                | InvocationTargetException e) {
+               | InstantiationException
+               | IllegalAccessException
+               | IllegalArgumentException
+               | InvocationTargetException e) {
+            System.out.println("Non"+e+"\n"+e.getLocalizedMessage()+"\n");
+            e.printStackTrace();
         }
     }
 
