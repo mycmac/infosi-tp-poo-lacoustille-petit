@@ -309,14 +309,6 @@ public class World {
             System.out.println("Une créature apparaît hors du monde et tombe dans le néant ! !");
         } else if (this.grille_creatures[x][y] != null) {
             System.out.println("Une créature se trouve déjà ici. Tu n'as pas le droit d'apparaître !");
-        } else if (o != null &&  o instanceof Recuperable && c instanceof Personnage) {
-            ((Recuperable) o).recuperer((Personnage) c);
-            System.out.println("Oh ! Quel bel objet que voilà !");
-
-            this.objets.remove(o);
-            this.grille_objets[x][y] = null;
-            this.grille_creatures[x][y] = c;
-            this.creatures.add(c);
         } else {
             this.grille_creatures[x][y] = c;
             this.creatures.add(c);
@@ -359,11 +351,6 @@ public class World {
             System.out.println("Un objet apparaît hors du monde et tombe dans le néant ! !");
         } else if (this.grille_objets[x][y] != null) {
             System.out.println("Un objet se trouve déjà ici. Tu n'as pas le droit d'apparaître !");
-        } else if (c != null && o instanceof Recuperable && c instanceof Personnage) {
-            ((Recuperable) o).recuperer((Personnage) c);
-            System.out.println("Oh ! Quel bel objet que voilà !");
-            this.grille_objets[x][y] = o;
-            this.objets.add(o);
         } else {
             this.grille_objets[x][y] = o;
             this.objets.add(o);
