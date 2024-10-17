@@ -33,7 +33,7 @@ public class Fenetre {
     private static JFrame frame;
     private static JTextArea outputArea;
     private static JTextArea messageArea;
-    
+    private static JTextArea inventaireArea;
     /**
      * Récupère la touche du clavier pressée
      * @return KeyEvent correspondant à la touche
@@ -102,6 +102,15 @@ public class Fenetre {
         messageArea.setFont(new Font("Monospaced", Font.PLAIN, 16));
         messageArea.setLineWrap(true); // Permettre le retour à la ligne automatique
         messageArea.setWrapStyleWord(true); // Envelopper le texte par mot
+        
+        // Créer un troisième JTextArea pour l'inventaire
+        inventaireArea = new JTextArea(20, 20); 
+        inventaireArea.setEditable(false); // Rendre la zone de texte non éditable
+        inventaireArea.setBackground(Color.DARK_GRAY);
+        inventaireArea.setForeground(Color.LIGHT_GRAY);
+        inventaireArea.setFont(new Font("Monospaced", Font.PLAIN, 16));
+        inventaireArea.setLineWrap(true); // Permettre le retour à la ligne automatique
+        inventaireArea.setWrapStyleWord(true); // Envelopper le texte par mot
 
         
         // Ajouter un JScrollPane pour faire défiler le JTextArea si nécessaire
@@ -114,7 +123,10 @@ public class Fenetre {
         messageScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER); // Pas de barre de défilement verticale toujours visible
         messageScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // Pas de barre de défilement horizontale
         
-        
+        // Ajouter un JScrollPane pour le troisième JTextArea
+        JScrollPane inventaireScrollPane = new JScrollPane(inventaireArea);
+        inventaireScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER); // Pas de barre de défilement verticale toujours visible
+        inventaireScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // Pas de barre de défilement horizontale
 
         
         // Ajouter le JScrollPane de sortie au panneau de texte
@@ -123,7 +135,7 @@ public class Fenetre {
         
         // Ajouter le panneau de texte au panneau de fond
         backgroundPanel.add(textPanel);
-        
+        backgroundPanel.add(inventaireScrollPane, BorderLayout.EAST);
         // Ajouter le panneau à la fenêtre
         frame.add(backgroundPanel);
         
@@ -178,5 +190,15 @@ public class Fenetre {
     public static void addMessage(String message) {
         messageArea.append(message + "\n"); // Ajouter le message à la zone de messages
         messageArea.setCaretPosition(messageArea.getDocument().getLength()); // Faire défiler vers le bas
+    }
+    
+    
+    /**
+     * Méthode pour ajouter un message à l'inventaire
+     * @param message Message à indiquer
+     */
+    public static void afficheInventaire(String message) {
+        inventaireArea.append(message + "\n"); // Ajouter le message à la zone de messages
+        inventaireArea.setCaretPosition(inventaireArea.getDocument().getLength()); // Faire défiler vers le bas
     }
 }
