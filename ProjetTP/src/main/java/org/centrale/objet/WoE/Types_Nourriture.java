@@ -25,7 +25,7 @@ public enum Types_Nourriture {
 
     CAFE(
         "café",
-        new Modificateur(5, Carac.VITESSE.getNom(), 1)
+        new Modificateur(5, Carac.VITESSE.getNom(), 1, .2)
     )
     ;
 
