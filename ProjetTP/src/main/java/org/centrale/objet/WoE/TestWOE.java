@@ -13,7 +13,7 @@ public class TestWOE {
     public static void main(String[] args) {
         World WoE;
 
- /*
+        /*
         WoE = new World(50);
         long debut = System.nanoTime();
         WoE.creeMondeAlea();
@@ -25,51 +25,51 @@ public class TestWOE {
         
         WoE.afficheWorld();
          */
-        WoE = new World(5);
+        WoE = new World(20);
         WoE.creeMondeAlea();
         System.out.println("Monde créé!");
         Iterator<Creature> creatureP = WoE.getCreatures().iterator();
         int[] crea_crees = {0, 0, 0, 0, 0};
         Creature c;
-        while (creatureP.hasNext()){
+        while (creatureP.hasNext()) {
             c = creatureP.next();
             if (c instanceof Archer) {
-                crea_crees[0] ++;
+                crea_crees[0]++;
             } else if (c instanceof Guerrier) {
-                crea_crees[1] ++;
+                crea_crees[1]++;
             } else if (c instanceof Paysan) {
-                crea_crees[2] ++;
+                crea_crees[2]++;
             } else if (c instanceof Lapin) {
-                crea_crees[3] ++;
+                crea_crees[3]++;
             } else {
-                crea_crees[4] ++;
+                crea_crees[4]++;
             }
         }
         System.out.print("Le monde aléatoire a été créé avec "
-                +crea_crees[0]+" Archers, "
-                +crea_crees[1]+" Guerriers, "
-                +crea_crees[2]+" Paysans, "
-                +crea_crees[3]+" Lapins et "
-                +crea_crees[4]+" Loups !\n");
-        
+                + crea_crees[0] + " Archers, "
+                + crea_crees[1] + " Guerriers, "
+                + crea_crees[2] + " Paysans, "
+                + crea_crees[3] + " Lapins et "
+                + crea_crees[4] + " Loups !\n");
+
         Iterator<Objet> objetP = WoE.getObjets().iterator();
         int[] obj_crees = {0, 0};
         Objet o;
-        while (objetP.hasNext()){
+        while (objetP.hasNext()) {
             o = objetP.next();
             if (o instanceof Epee) {
-                obj_crees[0] ++;
+                obj_crees[0]++;
             } else {
-                obj_crees[1] ++;
+                obj_crees[1]++;
             }
         }
         System.out.print("Il contient aussi "
-                +obj_crees[0]+" Epees et "
-                +obj_crees[1]+" PotionSoins !\n");
-        Fenetre.Initialize(15);
-        
+                + obj_crees[0] + " Epees et "
+                + obj_crees[1] + " PotionSoins !\n");
+        Fenetre.Initialize(WoE.getTaille());
+
         Fenetre.addMessage("Test déplacement joueur :");
-        
+
         for (int i = 1; i < 50; i++) {
             WoE.tourDeJeu();
             WoE.afficheWorld();
