@@ -2,7 +2,7 @@ package org.centrale.objet.WoE;
 
 import java.awt.event.KeyEvent;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.Integer;
+// import java.lang.Integer;
 import java.util.Collection;
 import java.util.Scanner;
 import org.reflections.Reflections;
@@ -17,6 +17,7 @@ public class Joueur {
      */
     private Jouable perso;
     private Collection<Utilisable> inventaire;
+    private Collection<Utilisable> effets;
 
     /**
      * Constructeur de Joueur avec un personnage prédéfini
@@ -114,15 +115,13 @@ public class Joueur {
         Creature p = (Creature) perso;
         for (int i = 0; i < p.getVitesse(); i++) {
             deplacePerso(monde.getGrille_creatures());
-            if (p instanceof Personnage) {
-                // TODO : Pour le moment, seul un personnage humain est capable d'utiliser des objets
-                Objet o = monde.getGrille_objets()[p.getX()][p.getY()];
+            Objet o = monde.getGrille_objets()[p.getX()][p.getY()];
                 if (o != null && o instanceof Recuperable) {// Autorisé car Java ne test pas la 2e condition d'un && si la première est fausse
-                    ((Recuperable) o).recuperer((Personnage) p);
+                    ((Recuperable) o).recuperer(this);
                     monde.getGrille_objets()[p.getX()][p.getY()] = null;
                     monde.cleanEntites(monde.getObjets());
                 }
-            }
+            
             monde.afficheWorld();
         }
     }
