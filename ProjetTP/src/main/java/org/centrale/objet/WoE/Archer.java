@@ -175,5 +175,6 @@ public class Archer extends Personnage implements Combatif, Jouable {
             msg = "La cible est trop loin.";
         }
         System.out.println(msg);
+        Fenetre.addMessage(msg);
     }
 }
