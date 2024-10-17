@@ -3,33 +3,40 @@ package org.centrale.objet.WoE;
 import java.awt.event.KeyEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.Integer;
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Scanner;
 import org.reflections.Reflections;
 
 /**
- * Classe qui stocke le personnage joué par l'utilisateur avec ses attributs et actions spécifiques
+ * Classe qui stocke le personnage joué par l'utilisateur avec ses attributs et
+ * actions spécifiques
+ *
  * @author Ulysse
  */
 public class Joueur {
+
     /**
-     * Attribut contenant le personnage du joueur, qui descend de l'interface Jouable
+     * Attribut contenant le personnage du joueur, qui descend de l'interface
+     * Jouable
      */
     private Jouable perso;
-    private Collection<Utilisable> inventaire;
+    private ArrayList<Recuperable> inventaire = new ArrayList<>();
+    private ArrayList<Utilisable> effets;
 
     /**
      * Constructeur de Joueur avec un personnage prédéfini
+     *
      * @param p Personnage choisi
      */
     public Joueur(Jouable p) {
         perso = p;
     }
-    
+
     /**
-     * Constructeur de Joueur qui interagit avec l'utilisateur pour choisir le type de personnage et son nom notamment.
+     * Constructeur de Joueur qui interagit avec l'utilisateur pour choisir le
+     * type de personnage et son nom notamment.
      */
-    @SuppressWarnings({ "unchecked", "rawtypes" }) // Tkt, le code est correct mais sinon l'IDE fait chier
+    @SuppressWarnings({"unchecked", "rawtypes"}) // Tkt, le code est correct mais sinon l'IDE fait chier
     public Joueur() {
         try {
             int numClasseJoueur;
@@ -41,8 +48,8 @@ public class Joueur {
             Object[] classesJouables = reflections.getSubTypesOf(Jouable.class).toArray();
             while (!satisfait) {
                 System.out.println("Quelle type de personnage veux-tu jouer ?");
-                for (int i = 0; i<classesJouables.length; i++) {
-                    System.out.println(" - " + ((int) i+1) + " - " + ((Class) classesJouables[i]).getSimpleName());
+                for (int i = 0; i < classesJouables.length; i++) {
+                    System.out.println(" - " + ((int) i + 1) + " - " + ((Class) classesJouables[i]).getSimpleName());
                 }
 
                 numClasseJoueur = getClavierInt();
@@ -53,80 +60,83 @@ public class Joueur {
                 classeJoueur = (Class<? extends Jouable>) classesJouables[numClasseJoueur - 1];
 
                 System.out.println("Tu veux donc jouer un " + classeJoueur.getSimpleName() + " ? Si oui, tape \"Y\".");
-                
+
                 if (getClavier().equals("Y")) {
                     satisfait = true;
                 }
             }
+            System.out.println("Personnage créé !");
             perso = (classeJoueur.getDeclaredConstructor().newInstance());
-            
-        } catch (NoSuchMethodException|
-                InstantiationException|
-                IllegalAccessException|
-                IllegalArgumentException|
-                InvocationTargetException e) {
-        } 
+            ((Creature) perso).setPos(0, 0);
+
+        } catch (NoSuchMethodException
+                | InstantiationException
+                | IllegalAccessException
+                | IllegalArgumentException
+                | InvocationTargetException e) {
+        }
     }
-    
+
     /**
      * Récupère un input utilisateur finissant par la touche entrée
+     *
      * @return Dernière ligne entrée par l'utilisateur dans le terminal
      */
     public final String getClavier() {
         Scanner myObj = new Scanner(System.in);
         return myObj.nextLine();
     }
-    
+
     /**
-     * En partant du principe que l'utilisateur doit entrer un nombre entier, récupère cet entier dans la console
+     * En partant du principe que l'utilisateur doit entrer un nombre entier,
+     * récupère cet entier dans la console
+     *
      * @return Entier tapé par l'utilisateur
      */
     public final Integer getClavierInt() {
         Integer res = null;
         while (res == null) {
-        
+
             try {
                 res = Integer.valueOf(getClavier());
-            } catch(NumberFormatException ex) {
+            } catch (NumberFormatException ex) {
                 res = null;
                 System.out.println("Veuillez entrer un nombre entier inférieur à " + Integer.MAX_VALUE + "!");
             }
         }
         return res;
     }
-    
-    /** TODO
-     * Déplace le personnage du joueur
+
+    /** TODO Déplace le personnage du joueur
      */
     public void deplacePerso() {
     }
 
-    /** 
-     * 
-     * 
+    /**
+     *
+     *
      * TODO : Généraliser à un non Personnage
-     * 
+     *
      * @param monde
      */
     public void actionDeplacement(World monde) {
         Creature p = (Creature) perso;
         for (int i = 0; i < p.getVitesse(); i++) {
             deplacePerso(monde.getGrille_creatures());
-            if (p instanceof Personnage) {
-                // TODO : Pour le moment, seul un personnage humain est capable d'utiliser des objets
-                Objet o = monde.getGrille_objets()[p.getX()][p.getY()];
-                if (o != null && o instanceof Recuperable) {// Autorisé car Java ne test pas la 2e condition d'un && si la première est fausse
-                    ((Recuperable) o).recuperer((Personnage) p);
-                    monde.getGrille_objets()[p.getX()][p.getY()] = null;
-                    monde.cleanEntites(monde.getObjets());
-                }
+            Objet o = monde.getGrille_objets()[p.getX()][p.getY()];
+            if (o != null && o instanceof Recuperable) {// Autorisé car Java ne test pas la 2e condition d'un && si la première est fausse
+                ((Recuperable) o).recuperer(this);
+                monde.getGrille_objets()[p.getX()][p.getY()] = null;
+                monde.cleanEntites(monde.getObjets());
             }
+
             monde.afficheWorld();
         }
     }
 
     /**
      * Déplace le personnage associé en utilsant le clavier
+     *
      * @param grille grille de déplacement
      */
     public void deplacePerso(Creature[][] grille) {
@@ -151,6 +161,7 @@ public class Joueur {
     /**
      * Transforme une touche de clavier en un tuple correspondant au déplacement
      * correspondant sur la carte
+     *
      * @return {dX, dY}
      */
     public int[] deplacement() {
@@ -179,10 +190,28 @@ public class Joueur {
 
     /**
      * Modifie le personnage associé au joueur
+     *
      * @param perso
      */
     public void setPerso(Personnage perso) {
         this.perso = (Jouable) perso;
     }
 
+    public void clearInventaire() {
+        this.inventaire = null;
+    }
+
+    public void addInventaire(Recuperable objet) {
+        inventaire.add(objet);
+    }
+
+    public void afficheInventaire() {
+        String inv = "";
+        for (int i = 0; i < inventaire.size(); i++) {
+            inv += i;
+            inv += inventaire.get(i);
+            inv += "\n";
+        }
+        Fenetre.afficheInventaire(inv);
+    }
 }

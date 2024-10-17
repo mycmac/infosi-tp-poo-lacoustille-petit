@@ -61,10 +61,10 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
 
     /**
      * Récupérer de la nourriture
-     * @param p Le personnage ramassant
+     * @param j Le joueur ramassant
      */
     @Override
-    public void recuperer(Personnage p) {
+    public void recuperer(Joueur j) {
         // p.ajoutInventaire();
         this.pos = null;
     }

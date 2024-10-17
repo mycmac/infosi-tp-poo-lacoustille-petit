@@ -217,14 +217,19 @@ public class Epee extends Objet implements Recuperable {
     }
 
     /**
-     * Comportement d'une épée récupérée par un personnage
+     * Comportement d'une épée récupérée par un joueur
      * 
-     * @param p Personnage
+     * @param j Joueur
      */
     @Override
-    public void recuperer(Personnage p) {
-        p.setArme(this);
+    public void recuperer(Joueur j) {
+        j.addInventaire(this);
         this.pos = null;
     }
 
+    @Override
+    public String toString() {
+        return "Epee : " + "degAtt=" + degAtt + ", ptPar=" + ptPar + ", Att +" + pageAtt + "%, Par +" + pagePar + "%";
+    }
+    
 }

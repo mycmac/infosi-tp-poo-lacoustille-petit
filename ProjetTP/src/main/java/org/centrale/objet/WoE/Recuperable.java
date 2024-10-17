@@ -6,5 +6,5 @@ public interface Recuperable {
      * 
      * @param p Personnage
      */
-    public abstract void recuperer(Personnage p);
+    public abstract void recuperer(Joueur j);
 }

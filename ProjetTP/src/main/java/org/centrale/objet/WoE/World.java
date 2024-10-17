@@ -16,13 +16,13 @@ public class World {
      */
     private final int tailleBase = 100;
     /**
-     * Nombre de créature par défaut à la génération d'un monde
+     * Nombre de créature  à la génération d'un monde
      */
-    private final int nbCreaturesBase = tailleBase * tailleBase / 20;
+    private int nbCreaturesBase;
     /**
      * Nombre d'objets par défaut à la génération d'un monde
      */
-    private final int nbObjetsBase = nbCreaturesBase;
+    private int nbObjetsBase;
 
     /**
      * Générateur de nombres aléatoires associé au monde
@@ -64,6 +64,8 @@ public class World {
         this.grille_creatures = new Creature[t][t];
         this.grille_objets = new Objet[t][t];
         this.joueur = new Joueur();
+        this.joueur.getPerso().setPos(t/2, t/2);
+        this.grille_creatures[taille/2][taille/2] = this.joueur.getPerso();
     }
 
     /**
@@ -76,6 +78,8 @@ public class World {
         this.grille_creatures = new Creature[this.taille][this.taille];
         this.grille_objets = new Objet[this.taille][this.taille];
         this.joueur = new Joueur();
+        this.joueur.getPerso().setPos(this.taille/2, this.taille/2);
+        this.grille_creatures[taille/2][taille/2] = this.joueur.getPerso();
     }
 
     /**
@@ -85,6 +89,8 @@ public class World {
     public void creeMondeAlea() {
 
         int t = this.taille;
+        this.nbCreaturesBase = (t*t)/10;
+        this.nbObjetsBase = nbCreaturesBase;
         Point2D p;
         boolean pris;
 
@@ -170,6 +176,7 @@ public class World {
         System.out.println("À votre tour :");
         Fenetre.addMessage("À votre tour :");
         afficheWorld();
+        joueur.afficheInventaire();
         joueur.actionDeplacement(this);
         afficheWorld();
         for (Creature creature : creatures) {
@@ -309,14 +316,6 @@ public class World {
             System.out.println("Une créature apparaît hors du monde et tombe dans le néant ! !");
         } else if (this.grille_creatures[x][y] != null) {
             System.out.println("Une créature se trouve déjà ici. Tu n'as pas le droit d'apparaître !");
-        } else if (o != null &&  o instanceof Recuperable && c instanceof Personnage) {
-            ((Recuperable) o).recuperer((Personnage) c);
-            System.out.println("Oh ! Quel bel objet que voilà !");
-
-            this.objets.remove(o);
-            this.grille_objets[x][y] = null;
-            this.grille_creatures[x][y] = c;
-            this.creatures.add(c);
         } else {
             this.grille_creatures[x][y] = c;
             this.creatures.add(c);
@@ -359,11 +358,6 @@ public class World {
             System.out.println("Un objet apparaît hors du monde et tombe dans le néant ! !");
         } else if (this.grille_objets[x][y] != null) {
             System.out.println("Un objet se trouve déjà ici. Tu n'as pas le droit d'apparaître !");
-        } else if (c != null && o instanceof Recuperable && c instanceof Personnage) {
-            ((Recuperable) o).recuperer((Personnage) c);
-            System.out.println("Oh ! Quel bel objet que voilà !");
-            this.grille_objets[x][y] = o;
-            this.objets.add(o);
         } else {
             this.grille_objets[x][y] = o;
             this.objets.add(o);

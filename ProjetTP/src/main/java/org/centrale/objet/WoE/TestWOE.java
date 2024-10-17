@@ -29,8 +29,9 @@ public class TestWOE {
         
         WoE.afficheWorld();
          */
-        /* WoE = new World(25);
+        WoE = new World(5);
         WoE.creeMondeAlea();
+        System.out.println("Monde créé!");
         Iterator<Creature> creatureP = WoE.getCreatures().iterator();
         int[] crea_crees = {0, 0, 0, 0, 0};
         Creature c;
@@ -69,7 +70,7 @@ public class TestWOE {
         System.out.print("Il contient aussi "
                 +obj_crees[0]+" Epees et "
                 +obj_crees[1]+" PotionSoins !\n");
-        Fenetre.Initialize(50);
+        Fenetre.Initialize(15);
         
         Fenetre.addMessage("Test déplacement joueur :");
         
