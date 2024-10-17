@@ -6,7 +6,7 @@ package org.centrale.objet.WoE;
  * @author Ulysse
  */
 public class Archer extends Personnage implements Combatif, Jouable {
-
+    
     private int nbFleches;
 
     /**
@@ -91,6 +91,7 @@ public class Archer extends Personnage implements Combatif, Jouable {
     public void affiche() {
         super.affiche();
         System.out.print(this.getNom() + " maîtrise l'archerie et a " + getNbFleches() + " flèches.\n");
+        Fenetre.addMessage("Cet archer a " + getNbFleches() + " flèches.");
     }
 
     /**
@@ -113,18 +114,18 @@ public class Archer extends Personnage implements Combatif, Jouable {
         if (d <= 1) {
             int pAtt = this.getDegAtt();
             Epee arme = this.getArme();
-
+            
             if (arme != null) {
                 pAtt += (int) (100 - pAtt) * arme.getPageAtt(); // Calcul des stats d'attaque avec arme
             }
-
+            
             if (this.lanceDe(pAtt)) {
                 int dAtt = this.getDegAtt();
-
+                
                 if (arme != null) {
                     dAtt *= (5 + arme.getDegAtt()) / 10.; // Calcul des dégats avec arme
                 }
-
+                
                 int pPar = c.getPagePar();
                 boolean cIsPerso = c instanceof Personnage;
                 if (cIsPerso) {
@@ -133,7 +134,7 @@ public class Archer extends Personnage implements Combatif, Jouable {
                         pPar += (int) (100 - pAtt) * this.getArme().getPagePar();
                     }
                 }
-
+                
                 if (c.lanceDe(pPar)) {
                     int dPar = c.getPtPar();
                     if (cIsPerso) {
