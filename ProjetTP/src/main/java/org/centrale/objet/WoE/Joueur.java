@@ -2,7 +2,7 @@ package org.centrale.objet.WoE;
 
 import java.awt.event.KeyEvent;
 import java.lang.reflect.InvocationTargetException;
-// import java.lang.Integer;
+import java.lang.Integer;
 import java.util.ArrayList;
 import java.util.Scanner;
 import org.reflections.Reflections;
@@ -55,10 +55,12 @@ public class Joueur {
 
                 System.out.println("Tu veux donc jouer un " + classeJoueur.getSimpleName() + " ? Si oui, tape \"Y\".");
                 
+
                 if (getClavier().equals("Y")) {
                     satisfait = true;
                 }
             }
+            System.out.println("Personnage créé !");
             perso = (classeJoueur.getDeclaredConstructor().newInstance());
             
         } catch (NoSuchMethodException|
@@ -75,9 +77,7 @@ public class Joueur {
      */
     public final String getClavier() {
         Scanner myObj = new Scanner(System.in);
-        String res = myObj.nextLine();
-        myObj.close();
-        return res;
+        return myObj.nextLine();
     }
     
     /**
