@@ -91,7 +91,7 @@ public class Archer extends Personnage implements Combatif, Jouable {
     public void affiche() {
         super.affiche();
         System.out.print(this.getNom() + " maîtrise l'archerie et a " + getNbFleches() + " flèches.\n");
-        Fenetre.addMessage("Cet archer a " + getNbFleches() + " flèches.");
+        // Fenetre.addMessage("Cet archer a " + getNbFleches() + " flèches.");
     }
 
     /**
