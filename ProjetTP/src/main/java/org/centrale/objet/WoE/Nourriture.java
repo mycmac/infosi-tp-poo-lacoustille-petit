@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package org.centrale.objet.WoE;
-import java.util.Objects;
 
 /**
  *
@@ -31,7 +30,34 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
         this.nom = nom;
         this.bonus = bonus;
     }
+
+    public String getNom() {
+        return this.nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public Modificateur getBonus() {
+        return this.bonus;
+    }
+
+    public void setBonus(Modificateur bonus) {
+        this.bonus = bonus;
+    }
+
+    public Modificateur[] getMalus() {
+        return this.malus;
+    }
+
+    public void setMalus(Modificateur[] malus) {
+        this.malus = malus;
+    }
     
+    public static Nourriture RandomType() {
+        return Types_Nourriture.getRandom().getNourriture();
+    }
 
     /**
      * Récupérer de la nourriture

@@ -1,7 +1,5 @@
 package org.centrale.objet.WoE;
 
-import java.util.Dictionary;
-
 /**
  * Classe générique pour les personnages humains
  * @author Ulysse
