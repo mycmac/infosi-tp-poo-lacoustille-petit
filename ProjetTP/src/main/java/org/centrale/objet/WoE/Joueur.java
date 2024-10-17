@@ -107,11 +107,6 @@ public class Joueur {
         return res;
     }
 
-    /** TODO Déplace le personnage du joueur
-     */
-    public void deplacePerso() {
-    }
-
     /**
      *
      *
