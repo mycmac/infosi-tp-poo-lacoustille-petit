@@ -3,7 +3,7 @@ package org.centrale.objet.WoE;
 import java.awt.event.KeyEvent;
 import java.lang.reflect.InvocationTargetException;
 // import java.lang.Integer;
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Scanner;
 import org.reflections.Reflections;
 
@@ -16,8 +16,8 @@ public class Joueur {
      * Attribut contenant le personnage du joueur, qui descend de l'interface Jouable
      */
     private Jouable perso;
-    private Collection<Utilisable> inventaire;
-    private Collection<Utilisable> effets;
+    private ArrayList<Recuperable> inventaire;
+    private ArrayList<Utilisable> effets;
 
     /**
      * Constructeur de Joueur avec un personnage prédéfini
@@ -185,5 +185,21 @@ public class Joueur {
     public void setPerso(Personnage perso) {
         this.perso = (Jouable) perso;
     }
-
+    public void clearInventaire() {
+        this.inventaire = null;
+    }
+    
+    public void addInventaire(Recuperable objet){
+        inventaire.add(objet);
+    }
+    
+    public void afficheInventaire(){
+        String inv = "";
+        for (int i = 0;i<inventaire.size();i++){
+            inv +=i;
+            inv += inventaire.get(i);
+            inv +="\n";
+        }
+        Fenetre.afficheInventaire(inv);
+    }
 }
