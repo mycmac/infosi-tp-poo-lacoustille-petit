@@ -425,4 +425,9 @@ public abstract class Creature extends Entite implements Deplacable{
     public boolean lanceDe(int pageReussite){
         return (this.getRandom(100)+1) <= pageReussite;
     }
+    
+    public void mort(){
+        this.pos = null;
+        Fenetre.addMessage("Mort");
+    }
 }
