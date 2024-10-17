@@ -74,9 +74,7 @@ public class Joueur {
      */
     public final String getClavier() {
         Scanner myObj = new Scanner(System.in);
-        String res = myObj.nextLine();
-        myObj.close();
-        return res;
+        return myObj.nextLine();
     }
     
     /**

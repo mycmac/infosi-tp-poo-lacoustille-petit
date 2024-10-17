@@ -1,5 +1,9 @@
 package org.centrale.objet.WoE;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 import java.util.Iterator;
 
 /**
@@ -12,7 +16,7 @@ public class TestWOE {
 
     public static void main(String[] args) {
         World WoE;
-
+        Joueur joueur = new Joueur();
  /*
         WoE = new World(50);
         long debut = System.nanoTime();
@@ -25,7 +29,7 @@ public class TestWOE {
         
         WoE.afficheWorld();
          */
-        WoE = new World(25);
+        /* WoE = new World(25);
         WoE.creeMondeAlea();
         Iterator<Creature> creatureP = WoE.getCreatures().iterator();
         int[] crea_crees = {0, 0, 0, 0, 0};
@@ -73,7 +77,7 @@ public class TestWOE {
             WoE.tourDeJeu();
             WoE.afficheWorld();
         }
-
+ */
         /*
         // Test de la génération aléatoire d'entites
         Iterator<Creature> creatureP = WoE.getCreatures().iterator();
