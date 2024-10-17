@@ -213,7 +213,7 @@ public class World {
                 carte += " ";
                 c = this.grille_creatures[i][j];
                 o = this.grille_objets[i][j];
-                if (i == this.cible.getX() && j == this.cible.getY()) {
+                if (cible != null && i == this.cible.getX() && j == this.cible.getY()) {
                     carte += "+";
                 } else if (c != null) {
                     if (c instanceof Archer) {
@@ -490,8 +490,14 @@ public class World {
         this.joueur = joueur;
     }
 
-    void setCible(Point2D p) {
-        this.cible = p;
+    public Point2D getCible() {
+        return cible;
     }
+
+    public void setCible(Point2D cible) {
+        this.cible = cible;
+    }
+
+
 
 }
