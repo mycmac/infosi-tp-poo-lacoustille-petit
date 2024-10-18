@@ -169,11 +169,20 @@ public class Joueur {
                 (perso).deplace(grille, dep[0], dep[1]);
                 Fenetre.addMessage("On se déplace");
             }
-        } else if (event.getKeyChar() == KeyEvent.CHAR_UNDEFINED) {
-            while (Fenetre.isPressed()) {
-                this.wait(100);
+        } else if (estChiffre(event.getKeyChar())) {
+            int i = Character.getNumericValue(event.getKeyChar());
+            Recuperable r = inventaire.get(i);
+            if (r instanceof Utilisable) {
+                Utilisable u = (Utilisable) r;
+                Recuperable result = u.utiliser(this);
+                if (result != null){
+                    this.addInventaire(result);
+                }
             }
         }
+        while (Fenetre.isPressed()) {
+                this.wait(100);
+            }
     }
 
     /**
