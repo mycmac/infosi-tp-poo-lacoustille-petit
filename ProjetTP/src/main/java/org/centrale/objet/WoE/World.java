@@ -236,7 +236,7 @@ public class World {
             if (objet instanceof Deplacable) {
                 ((Deplacable) objet).deplace(this.grille_objets);
             }
-
+            // System.out.println(objet.toString()+objet.getPos()); //DEBUG
             Creature c = grille_creatures[objet.getX()][objet.getY()];
             if (objet instanceof Combatif && c != null) {
                 ((Combatif) objet).combattre(c);
