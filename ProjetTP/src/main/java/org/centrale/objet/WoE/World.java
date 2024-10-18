@@ -188,7 +188,7 @@ public class World {
         joueur.actionDeplacement(this);
         afficheWorld();
         for (Creature creature : creatures) {
-            if (creature.getPtVie()<=0){
+            if (creature.getPtVie() <= 0) {
                 this.grille_creatures[creature.getX()][creature.getY()] = null;
                 creature.mort();
             } else {
@@ -196,42 +196,47 @@ public class World {
                 creature.deplace(this.grille_creatures);
                 creature.affiche();
                 afficheWorld();
+                if (creature instanceof Combatif) {
+                    int d = creature.getDistAttMax();
+                    int x = creature.getX();
+                    int y = creature.getY();
+                    int xi;
+                    int yj;
+                    Creature c;
+                    ArrayList<Creature> creatures_possibles = new ArrayList<>();
+                    for (int i = -d; i <= d; i++) {
+                        for (int j = -d; j <= d; j++) {
+                            xi = x + i;
+                            yj = y + j;
+                            if (!(i == 0 && j == 0)
+                                    && xi >= 0
+                                    && yj >= 0
+                                    && xi < this.getTaille()
+                                    && yj < this.getTaille()) {
+                                c = grille_creatures[xi][yj];
 
-                int d = creature.getDistAttMax();
-                int x = creature.getX();
-                int y = creature.getY();
-                int xi;
-                int yj;
-                Creature c;
-                ArrayList<Creature> creatures_possibles = new ArrayList<>();
-                for (int i = -d; i <= d; i++) {
-                    for (int j = -d; j <= d; j++) {
-                        xi = x + i;
-                        yj = y + j;
-                        c = grille_creatures[xi][yj];
-                        if (!(i == 0 && j == 0) 
-                        && xi >= 0 
-                        && yj >= 0 
-                        && xi < this.getTaille()
-                        && yj < this.getTaille()
-                        && c != null) {
-                            creatures_possibles.add(c);
+                                if (c != null) {
+                                    creatures_possibles.add(c);
+                                }
+                            }
                         }
                     }
-                }
 
-                Random r = new Random();
-                c = creatures_possibles.get(r.nextInt(creatures_possibles.size()));
-                ((Combatif)creature).combattre(c);
+                    int cre = creatures_possibles.size();
+                    if (cre > 0) {
+                        Random r = new Random();
+                        c = creatures_possibles.get(r.nextInt(cre));
+                        ((Combatif) creature).combattre(c);
+                    }
+                }
             }
         }
 
-        
         for (Objet objet : objets) {
             if (objet instanceof Deplacable) {
                 ((Deplacable) objet).deplace(this.grille_objets);
             }
-
+            // System.out.println(objet.toString()+objet.getPos()); //DEBUG
             Creature c = grille_creatures[objet.getX()][objet.getY()];
             if (objet instanceof Combatif && c != null) {
                 ((Combatif) objet).combattre(c);

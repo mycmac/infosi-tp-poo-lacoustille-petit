@@ -14,7 +14,6 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
     private Modificateur bonus;
     private Modificateur[] malus;
 
-
     public Nourriture() {
         this.nom = "Nourriture inutile";
         this.bonus = new Modificateur(0, null, 0, 0);
@@ -54,7 +53,7 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
     public void setMalus(Modificateur[] malus) {
         this.malus = malus;
     }
-    
+
     public static Nourriture RandomType() {
         Types_Nourriture type = Types_Nourriture.getRandom();
         return new Nourriture(type.getNom(), type.getBonus(), type.getMalus());
@@ -62,6 +61,7 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
 
     /**
      * Récupérer de la nourriture
+     *
      * @param j Le joueur ramassant
      */
     @Override
