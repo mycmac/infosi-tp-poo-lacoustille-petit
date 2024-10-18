@@ -79,4 +79,16 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+        String n = nom + ": bonus : " + bonus.getBonusPourcent() + "% de" + bonus.getCaracModif();
+        if (malus != null) {
+            n += ", malus :";
+            for (Modificateur modif : malus) {
+                n += " " + modif.getBonusPourcent() + "% de" + modif.getCaracModif() + " ";
+            }
+        }
+        return n;
+    }
 }
