@@ -484,6 +484,9 @@ public abstract class Creature extends Entite implements Deplacable {
         return (this.getRandom(100) + 1) <= pageReussite;
     }
 
+    /**
+     * Gère la mort de la créature
+     */
     public void mort() {
         this.pos = null;
         Fenetre.addMessage("Mort");
