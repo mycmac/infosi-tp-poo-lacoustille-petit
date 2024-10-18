@@ -62,7 +62,7 @@ public class Guerrier extends Personnage implements Combatif, Jouable {
 
     /**
      * Combattre une créature désignée
-     *
+     * TODO : diviser la fonction
      * @param c Créature désignée
      */
     @Override
@@ -124,6 +124,9 @@ public class Guerrier extends Personnage implements Combatif, Jouable {
         Fenetre.addMessage(msg);
     }
 
+    /**
+     * Affiche le guerrier en console
+     */
     @Override
     public void affiche() {
         super.affiche();
