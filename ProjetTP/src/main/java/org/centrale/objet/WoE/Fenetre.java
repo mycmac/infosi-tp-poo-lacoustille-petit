@@ -99,6 +99,7 @@ public class Fenetre {
                 + "Combat à distance : Utiliser SHIFT pour sélectionner une cible avec le (+) et espace pour tirer<br>"
                 + "Combat rapproché : Déplacez-vous sur la créature<br>"
                 + "Utilisez les chiffres pour utiliser les éléments de l'inventaire<br>"
+                + "Aidez-vous des potions de soin (S), des armes (E) et de la nourriture (o), mais attention aux nuages toxiques (x)"
                 +"</center></html>", JLabel.CENTER);
         introLabel.setForeground(Color.LIGHT_GRAY);
         introLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
