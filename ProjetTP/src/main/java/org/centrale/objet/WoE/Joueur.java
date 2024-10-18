@@ -156,6 +156,7 @@ public class Joueur {
             }else{
             (perso).deplace(grille, dep[0], dep[1]);}
         } else if (event.getKeyCode() == KeyEvent.VK_SHIFT && this.getPerso().getDistAttMax() > 1.40) {
+            Fenetre.addMessage("Choisissez votre cible.");
             monde.setCible(new Point2D(this.getPerso().getPos()));
             deplaceCible(monde);
             if (grille[monde.getCible().getX()][monde.getCible().getY()] != null) {
@@ -174,6 +175,7 @@ public class Joueur {
     
     public void deplaceCible(World monde) {
         boolean shot = false;
+        Fenetre.addMessage("Appuyez sur les fleches.");
         while (!shot) {
             while (!Fenetre.isPressed()) {
                 try {
@@ -185,10 +187,12 @@ public class Joueur {
             KeyEvent event = Fenetre.pressedKey();
             if (event.getKeyCode() == KeyEvent.VK_SPACE && (this.getPerso().getPos().distance(new Point2D(monde.getCible().getX(), monde.getCible().getY())) + 0.01) <= this.getPerso().getDistAttMax()) {
                 shot = true;
+                Fenetre.addMessage("Pfiouu.");
             } else if (event.getKeyCode() == KeyEvent.VK_SPACE) {
                 Fenetre.addMessage("Hors de portée");
             } else if (event.getKeyCode() == KeyEvent.VK_SHIFT) {
                 monde.setCible(this.getPerso().getPos());
+                Fenetre.addMessage("Reset cible.");
             } else {
                 int[] dep = deplacement(event);
                 monde.getCible().translate(dep[0], dep[1]);
