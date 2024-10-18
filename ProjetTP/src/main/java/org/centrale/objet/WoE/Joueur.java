@@ -142,35 +142,33 @@ public class Joueur {
     public void deplacePerso(World monde) {
         Creature[][] grille = monde.getGrille_creatures();
         while (!Fenetre.isPressed()) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+            this.wait(100);
         }
         KeyEvent event = Fenetre.pressedKey();
         if (event.getKeyCode() == KeyEvent.VK_SHIFT && this.getPerso().getDistAttMax() > 1.40) {
             Fenetre.addMessage("Choisissez votre cible.");
             monde.setCible(new Point2D(this.getPerso().getPos()));
             deplaceCible(monde);
-            if (grille[monde.getCible().getX()][monde.getCible().getY()] != null) {
+            if (grille[monde.getCible().getX()][monde.getCible().getY()] != null && grille[monde.getCible().getX()][monde.getCible().getY()] != this.getPerso()) {
                 ((Combatif) this.getPerso()).combattre(grille[monde.getCible().getX()][monde.getCible().getY()]);
             }
+            Fenetre.addMessage("Combat effectué");
+            monde.setCible(null);
+            monde.afficheWorld();
         }
         else if (event.getKeyChar() == KeyEvent.CHAR_UNDEFINED) {
+            
             int[] dep = deplacement(event);
-            if (grille[this.getPerso().getX() + dep[0]][this.getPerso().getY() + dep[1]] != null) {
+            if (grille[this.getPerso().getX() + dep[0]][this.getPerso().getY() + dep[1]] != null && grille[this.getPerso().getX() + dep[0]][this.getPerso().getY() + dep[1]] != this.getPerso()) {
                 ((Combatif) this.getPerso()).combattre(grille[this.getPerso().getX() + dep[0]][this.getPerso().getY() + dep[1]]);
+            Fenetre.addMessage("Combat rapproché");
             }else{
-            (perso).deplace(grille, dep[0], dep[1]);}
+            (perso).deplace(grille, dep[0], dep[1]);
+            Fenetre.addMessage("On se déplace");}
         }
         
         while (Fenetre.isPressed()) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+            this.wait(100);
         }
     }
     
@@ -179,33 +177,27 @@ public class Joueur {
         Fenetre.addMessage("Appuyez sur les fleches.");
         while (!shot) {
             while (!Fenetre.isPressed()) {
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
+                this.wait(100);
             }
             KeyEvent event = Fenetre.pressedKey();
-            if (event.getKeyCode() == KeyEvent.VK_SPACE && (this.getPerso().getPos().distance(new Point2D(monde.getCible().getX(), monde.getCible().getY())) + 0.01) <= this.getPerso().getDistAttMax()) {
+            if (event.getKeyCode() == KeyEvent.VK_SPACE && (this.getPerso().getPos().distance(new Point2D(monde.getCible().getX(), monde.getCible().getY()))) <= this.getPerso().getDistAttMax()+ 0.01) {
                 shot = true;
                 Fenetre.addMessage("Pfiouu.");
             } else if (event.getKeyCode() == KeyEvent.VK_SPACE) {
-                Fenetre.addMessage("Hors de portée");
+                Fenetre.addMessage("Hors de portée : "+this.getPerso().getPos().distance(new Point2D(monde.getCible().getX(), monde.getCible().getY())));
             } else if (event.getKeyCode() == KeyEvent.VK_SHIFT) {
-                monde.setCible(this.getPerso().getPos());
+                monde.setCible(new Point2D(this.getPerso().getPos()));
                 Fenetre.addMessage("Reset cible.");
             } else {
                 int[] dep = deplacement(event);
                 monde.getCible().translate(dep[0], dep[1]);
             }
+            monde.afficheWorld();
+            this.wait(100);
         }
         
         while (Fenetre.isPressed()) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+            this.wait(100);
         }
         
     }
@@ -260,11 +252,22 @@ public class Joueur {
     
     public void afficheInventaire() {
         String inv = "";
+        inv += "PV= "+getPerso().getPtVie();
+        inv += "\nDistAttMax = "+getPerso().getDistAttMax();
+        inv += "\n";
         for (int i = 0; i < inventaire.size(); i++) {
             inv += i;
             inv += inventaire.get(i);
             inv += "\n";
         }
         Fenetre.afficheInventaire(inv);
+    }
+    
+    public void wait(int i) {
+    try {
+                    Thread.sleep(i);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
     }
 }
