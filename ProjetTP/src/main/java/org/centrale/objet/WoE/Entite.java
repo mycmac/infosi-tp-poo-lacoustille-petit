@@ -47,6 +47,7 @@ public abstract class Entite {
      */
     public Entite() {
         this.pos = new Point2D();
+        this.pos.randomPoint2D();
     }
     
     /**
