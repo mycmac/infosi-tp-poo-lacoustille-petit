@@ -67,11 +67,11 @@ public class Guerrier extends Personnage implements Combatif, Jouable {
      */
     @Override
     public void combattre(Creature c) {
+        // TODO : Tenir compte des effets de nourriture
         String msg;
         int dgts;
         if (this.distance(c) <= 1) {
             int pAtt = this.getPageAtt();
-
             Epee arme = this.getArme();
             
             if (arme != null) {

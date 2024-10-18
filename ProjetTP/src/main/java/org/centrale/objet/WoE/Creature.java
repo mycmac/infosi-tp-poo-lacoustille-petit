@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Iterator;
+
 import java.lang.Math;
 
 /**
@@ -550,5 +552,16 @@ public abstract class Creature extends Entite implements Deplacable {
         }
 
         return nouv_caracs;
+    }
+
+    public void actualiseEffets() {
+        Iterator<Modificateur> effetit = effets.iterator();
+        while (effetit.hasNext()) {
+            Modificateur mod = effetit.next();
+            mod.setDuree(mod.getDuree()-1);
+            if (mod.getDuree() <= 0) {
+                effetit.remove();
+            }
+        }
     }
 }

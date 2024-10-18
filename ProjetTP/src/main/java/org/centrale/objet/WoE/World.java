@@ -188,6 +188,7 @@ public class World {
         joueur.actionDeplacement(this);
         afficheWorld();
         for (Creature creature : creatures) {
+            creature.actualiseEffets();
             if (creature.getPtVie() <= 0) {
                 this.grille_creatures[creature.getX()][creature.getY()] = null;
                 creature.mort();
