@@ -74,8 +74,10 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
     public Recuperable utiliser(Joueur j) {
         Creature c = (Creature) j.getPerso();
         c.addEffets(this.getBonus());
-        for (Modificateur mal : this.getMalus()) {
-            c.addEffets(mal);
+        if (this.getMalus() != null) {
+            for (Modificateur mal : this.getMalus()) {
+                c.addEffets(mal);
+            }
         }
         return null;
     }
