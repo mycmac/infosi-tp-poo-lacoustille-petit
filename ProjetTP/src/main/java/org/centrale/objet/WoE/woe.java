@@ -14,7 +14,7 @@ public class woe {
         int taille;
         try{
             taille = Integer.parseInt(args[0]);
-        }catch (NullPointerException | NumberFormatException e){
+        }catch (NullPointerException | ArrayIndexOutOfBoundsException e){
             taille = 20;
         }
         World WoE;
