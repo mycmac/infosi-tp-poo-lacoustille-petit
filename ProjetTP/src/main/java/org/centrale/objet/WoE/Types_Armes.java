@@ -15,8 +15,17 @@ public enum Types_Armes {
     EPEE_LONGUE(10, 20, 2, 15),
     POLOCHON(0, 30, 5, 30);
 
+    /**
+     * Liste non modifiable des types d'arme
+     */
     private static final List<Types_Armes> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
+    /**
+     * Taille de la liste des types d'arme
+     */
     private static final int SIZE = VALUES.size();
+    /**
+     * Générateur de nombres aléatoires
+     */
     private static final Random RANDOM = new Random();
 
     /**
@@ -82,6 +91,10 @@ public enum Types_Armes {
         return this.pagePar;
     }
 
+    /**
+     * Donne un type d'arme aléatoire
+     * @return Type d'arme aléatoire
+     */
     public Types_Armes getRandom() {
         return VALUES.get(RANDOM.nextInt(SIZE));
     }
