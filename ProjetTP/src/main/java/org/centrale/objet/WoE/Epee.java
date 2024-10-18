@@ -227,9 +227,20 @@ public class Epee extends Objet implements Recuperable {
         this.pos = null;
     }
 
+    /** */
+    public void equiper(Joueur j) {
+        j.getPerso().setArme(this);
+        this.pos = null;
+    }
+
     @Override
     public String toString() {
         return "Epee : " + "degAtt=" + degAtt + ", ptPar=" + ptPar + ", Att +" + pageAtt + "%, Par +" + pagePar + "%";
+    }
+
+    public static Epee RandomType() {
+        Types_Armes type = Types_Armes.getRandom();
+        return new Epee(type.getDegAtt(), type.getPtPar(), type.getPageAtt(), type.getPagePar());
     }
     
 }

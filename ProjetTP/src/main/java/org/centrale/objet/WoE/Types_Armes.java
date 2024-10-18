@@ -95,7 +95,7 @@ public enum Types_Armes {
      * Donne un type d'arme aléatoire
      * @return Type d'arme aléatoire
      */
-    public Types_Armes getRandom() {
+    public static Types_Armes getRandom() {
         return VALUES.get(RANDOM.nextInt(SIZE));
     }
 }
