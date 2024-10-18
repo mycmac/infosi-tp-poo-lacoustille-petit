@@ -85,7 +85,7 @@ public class NuageToxique extends Objet implements Deplacable, Combatif {
                 int jy = this.getY() + j;
                 if (ix >= 0 && jy >= 0 && ix < grille.length && jy < grille.length) {
                     if (grille[ix][jy] == null) {
-                        deplacementsPossibles.add(new Point2D(i, j));
+                        deplacementsPossibles.add(new Point2D(ix, jy));
                     }
                 }
             }
