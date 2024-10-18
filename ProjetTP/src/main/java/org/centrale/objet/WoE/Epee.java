@@ -67,7 +67,6 @@ public class Epee extends Objet implements Recuperable, Utilisable {
      * @param e Epee initiale
      */
     public Epee(Epee e) {
-        super(e);
         this.degAtt = e.getDegAtt();
         this.ptPar = e.getPtPar();
         this.pageAtt = e.getPageAtt();
@@ -261,6 +260,7 @@ public class Epee extends Objet implements Recuperable, Utilisable {
         Epee res = null;
         if (j.getPerso().getArme() != null){
             res = new Epee(j.getPerso().getArme());
+            Fenetre.addMessage("Épée équipée");
         }
         equiper(j);
         return res;
