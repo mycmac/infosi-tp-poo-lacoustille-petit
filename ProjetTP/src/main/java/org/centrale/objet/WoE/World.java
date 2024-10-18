@@ -188,7 +188,7 @@ public class World {
         joueur.actionDeplacement(this);
         afficheWorld();
         for (Creature creature : creatures) {
-            if (creature.getPtVie()<=0){
+            if (creature.getPtVie() <= 0) {
                 this.grille_creatures[creature.getX()][creature.getY()] = null;
                 creature.mort();
             } else {
@@ -209,24 +209,26 @@ public class World {
                         xi = x + i;
                         yj = y + j;
                         c = grille_creatures[xi][yj];
-                        if (!(i == 0 && j == 0) 
-                        && xi >= 0 
-                        && yj >= 0 
-                        && xi < this.getTaille()
-                        && yj < this.getTaille()
-                        && c != null) {
+                        if (!(i == 0 && j == 0)
+                                && xi >= 0
+                                && yj >= 0
+                                && xi < this.getTaille()
+                                && yj < this.getTaille()
+                                && c != null) {
                             creatures_possibles.add(c);
                         }
                     }
                 }
 
-                Random r = new Random();
-                c = creatures_possibles.get(r.nextInt(creatures_possibles.size()));
-                ((Combatif)creature).combattre(c);
+                int cre = creatures_possibles.size();
+                if (cre > 0) {
+                    Random r = new Random();
+                    c = creatures_possibles.get(r.nextInt(cre));
+                    ((Combatif) creature).combattre(c);
+                }
             }
         }
 
-        
         for (Objet objet : objets) {
             if (objet instanceof Deplacable) {
                 ((Deplacable) objet).deplace(this.grille_objets);
