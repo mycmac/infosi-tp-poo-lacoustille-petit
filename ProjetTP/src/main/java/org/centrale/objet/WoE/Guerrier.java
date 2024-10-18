@@ -71,6 +71,7 @@ public class Guerrier extends Personnage implements Combatif, Jouable {
         int dgts;
         if (this.distance(c) <= 1) {
             int pAtt = this.getPageAtt();
+
             Epee arme = this.getArme();
             
             if (arme != null) {
