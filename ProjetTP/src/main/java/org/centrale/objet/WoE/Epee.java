@@ -286,7 +286,7 @@ public class Epee extends Objet implements Recuperable, Utilisable {
      */
     @Override
     public String toString() {
-        return "TYPE_EPEE : " + "degAtt=" + degAtt + ", ptPar=" + ptPar + ", Att +" + pageAtt + "%, Par +" + pagePar + "%";
+        return type + "degAtt=" + degAtt + ", ptPar=" + ptPar + ", Att +" + pageAtt + "%, Par +" + pagePar + "%";
     }
 
     /**
