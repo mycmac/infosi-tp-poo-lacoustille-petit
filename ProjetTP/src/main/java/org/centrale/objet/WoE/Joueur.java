@@ -162,7 +162,9 @@ public class Joueur {
         } else if (event.getKeyChar() == KeyEvent.CHAR_UNDEFINED) {
 
             int[] dep = deplacement(event);
-            if ((this.getPerso().getX() + dep[0]) < monde.taille && (this.getPerso().getY() + dep[1]) < monde.taille && grille[this.getPerso().getX() + dep[0]][this.getPerso().getY() + dep[1]] != null && grille[this.getPerso().getX() + dep[0]][this.getPerso().getY() + dep[1]] != this.getPerso()) {
+            int nx = (this.getPerso().getX() + dep[0]); // New X
+            int ny = (this.getPerso().getY() + dep[1]); // New Y
+            if ( nx>=0 && ny>=0 && nx< monde.taille &&  ny< monde.taille && grille[nx][ny] != null && grille[nx][ny] != this.getPerso()) {
                 ((Combatif) this.getPerso()).combattre(grille[this.getPerso().getX() + dep[0]][this.getPerso().getY() + dep[1]]);
                 Fenetre.addMessage("Combat rapproché");
             } else {
