@@ -111,5 +111,4 @@ public class Modificateur {
     public void setBonusPourcent(double bonusPourcent) {
         this.bonusPourcent = bonusPourcent;
     }
-
 }

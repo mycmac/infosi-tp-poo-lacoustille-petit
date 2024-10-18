@@ -72,8 +72,11 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
 
     @Override
     public Recuperable utiliser(Joueur j) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Creature c = (Creature) j.getPerso();
+        c.addEffets(this.getBonus());
+        for (Modificateur mal : this.getMalus()) {
+            c.addEffets(mal);
+        }
+        return null;
     }
-
-    
 }

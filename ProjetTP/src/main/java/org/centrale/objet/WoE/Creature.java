@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.lang.Math;
 
 /**
  * Super-classe générique pour les créatures diverses de WoE
@@ -369,7 +370,6 @@ public abstract class Creature extends Entite implements Deplacable {
      */
     public void setCaracs(Map<String, Integer> caracs) {
         this.caracs.putAll(caracs);
-        ;
     }
 
     /**
@@ -389,8 +389,12 @@ public abstract class Creature extends Entite implements Deplacable {
     public void setEffets(LinkedList<Modificateur> effets) {
         this.effets.clear();
         for (Modificateur mod : effets) {
-            this.effets.add(new Modificateur(mod));
+            this.addEffets(mod);
         }
+    }
+
+    public void addEffets(Modificateur mod) {
+        this.effets.add(new Modificateur(mod));
     }
 
     /**
@@ -488,5 +492,62 @@ public abstract class Creature extends Entite implements Deplacable {
     public void mort() {
         this.pos = null;
         Fenetre.addMessage("Mort de la créature.");
+    }
+
+    public Map<String, Integer> caracEffets() {
+
+        Map<String, Integer> nouv_caracs = new HashMap<>();
+        nouv_caracs.putAll(this.caracs);
+
+        String s;
+
+        for (Modificateur mod : effets) {
+            s = mod.getCaracModif();
+            switch (s) {
+                case "Pourcentage d'attaque":
+                    nouv_caracs.put(s, Math.max(mod.getBonusFixe() + nouv_caracs.get(s), 100));
+                    break;
+
+                case "Pourcentage de parade":
+                    nouv_caracs.put(s, Math.max(mod.getBonusFixe() + nouv_caracs.get(s), 100));
+                    break;
+            
+                default:
+                    break;
+            }
+        }
+
+        for (Modificateur mod : effets) {
+            s = mod.getCaracModif();
+            switch (s) {
+                case "Pourcentage d'attaque":
+                    nouv_caracs.put(s, (int) (1+ ((100 -nouv_caracs.get(s))*mod.getBonusPourcent()/10000))*nouv_caracs.get(s));
+                    break;
+
+                case "Pourcentage de parade":
+                    nouv_caracs.put(s, (int) (1+ ((100 -nouv_caracs.get(s))*mod.getBonusPourcent()/10000))*nouv_caracs.get(s));
+                    break;
+                
+                case "Degats d'attaque":
+                    nouv_caracs.put(s, (int) (1+mod.getBonusPourcent()/100)*nouv_caracs.get(s));
+                    break;
+                case "Points de vie max":
+                    nouv_caracs.put(s, (int) (1+mod.getBonusPourcent()/100)*nouv_caracs.get(s));
+                    break;
+                case "Points de parade":
+                    nouv_caracs.put(s, (int) (1+mod.getBonusPourcent()/100)*nouv_caracs.get(s));
+                    break;
+                case "Distance d'attaque max":
+                    nouv_caracs.put(s, (int) (1+mod.getBonusPourcent()/100)*nouv_caracs.get(s));
+                    break;
+                case "Vitesse de déplacement":
+                    nouv_caracs.put(s, (int) (1+mod.getBonusPourcent()/100)*nouv_caracs.get(s));
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return nouv_caracs;
     }
 }
