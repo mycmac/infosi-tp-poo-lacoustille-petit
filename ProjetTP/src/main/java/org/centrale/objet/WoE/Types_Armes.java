@@ -9,11 +9,11 @@ import java.util.Random;
  * Enumeration des différentes armes qui existent
  */
 public enum Types_Armes {
-    DAGUE(6, 5, 0, 5),
-    GOURDIN(6, 5, 1, 5),
-    EPEE_COURTE(8, 20, 1, 5),
-    EPEE_LONGUE(10, 20, 2, 15),
-    POLOCHON(0, 30, 5, 30);
+    DAGUE("dague", 6, 5, 0, 5),
+    GOURDIN("gourdin", 6, 5, 1, 5),
+    EPEE_COURTE("épée courte", 8, 20, 1, 5),
+    EPEE_LONGUE("épée longue", 10, 20, 2, 15),
+    POLOCHON("polochon", 0, 30, 5, 30);
 
     /**
      * Liste non modifiable des types d'arme
@@ -28,6 +28,10 @@ public enum Types_Armes {
      */
     private static final Random RANDOM = new Random();
 
+    /**
+     * Nom de type d'arme
+     */
+    private String nom;
     /**
      * Dégâts d'attaque
      */
@@ -47,12 +51,14 @@ public enum Types_Armes {
 
     /**
      * Constructeur de Types_Armes avec tous les attributs
+     * @param nom
      * @param degAtt
      * @param ptPar
      * @param pageAtt
      * @param pagePar
      */
-    private Types_Armes(int degAtt, int ptPar, int pageAtt, int pagePar) {
+    private Types_Armes(String nom, int degAtt, int ptPar, int pageAtt, int pagePar) {
+        this.nom = nom;
         this.degAtt = degAtt;
         this.ptPar = ptPar;
         this.pageAtt = pageAtt;
@@ -89,6 +95,14 @@ public enum Types_Armes {
      */
     public int getPagePar() {
         return this.pagePar;
+    }
+
+    /**
+     * Renvoie le nom de l'arme
+     * @return nom
+     */
+    public String getNom() {
+        return this.nom;
     }
 
     /**
