@@ -60,24 +60,12 @@ public enum Types_Nourriture {
         return this.nom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
     public Modificateur getBonus() {
         return this.bonus;
     }
 
-    public void setBonus(Modificateur bonus) {
-        this.bonus = bonus;
-    }
-
     public Modificateur[] getMalus() {
         return this.malus;
-    }
-
-    public void setMalus(Modificateur[] malus) {
-        this.malus = malus;
     }
 
     public static Types_Nourriture getRandom() {
