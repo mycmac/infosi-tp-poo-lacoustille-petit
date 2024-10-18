@@ -162,7 +162,7 @@ public class Joueur {
         } else if (event.getKeyChar() == KeyEvent.CHAR_UNDEFINED) {
 
             int[] dep = deplacement(event);
-            if (grille[this.getPerso().getX() + dep[0]][this.getPerso().getY() + dep[1]] != null && grille[this.getPerso().getX() + dep[0]][this.getPerso().getY() + dep[1]] != this.getPerso()) {
+            if ((this.getPerso().getX() + dep[0]) < monde.taille && (this.getPerso().getY() + dep[1]) < monde.taille && grille[this.getPerso().getX() + dep[0]][this.getPerso().getY() + dep[1]] != null && grille[this.getPerso().getX() + dep[0]][this.getPerso().getY() + dep[1]] != this.getPerso()) {
                 ((Combatif) this.getPerso()).combattre(grille[this.getPerso().getX() + dep[0]][this.getPerso().getY() + dep[1]]);
                 Fenetre.addMessage("Combat rapproché");
             } else {
@@ -175,15 +175,15 @@ public class Joueur {
             if (r instanceof Utilisable) {
                 Utilisable u = (Utilisable) r;
                 Recuperable result = u.utiliser(this);
-                if (result != null){
+                if (result != null) {
                     this.addInventaire(result);
                 }
                 inventaire.remove(i);
             }
         }
         while (Fenetre.isPressed()) {
-                this.wait(100);
-            }
+            this.wait(100);
+        }
     }
 
     /**
@@ -307,4 +307,4 @@ public class Joueur {
     public static boolean estChiffre(char chr) {
         return Character.getNumericValue(chr) > 0;
     }
-    }
+}
