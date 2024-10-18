@@ -227,17 +227,30 @@ public class Epee extends Objet implements Recuperable {
         this.pos = null;
     }
 
-    /** */
+    /**
+     * Comportement d'une Epee qui sera équipée au personnage du joueur
+     * 
+     * @param j Joueur
+     */
     public void equiper(Joueur j) {
         j.getPerso().setArme(this);
         this.pos = null;
     }
 
+    /**
+     * Comportement du cast vers un String
+     * 
+     * @return Epee : dgts, par, %dgts, %par
+     */
     @Override
     public String toString() {
         return "Epee : " + "degAtt=" + degAtt + ", ptPar=" + ptPar + ", Att +" + pageAtt + "%, Par +" + pagePar + "%";
     }
 
+    /**
+     * Crée une instance d'Epee à partir d'un type d'arme
+     * @return
+     */
     public static Epee RandomType() {
         Types_Armes type = Types_Armes.getRandom();
         return new Epee(type.getDegAtt(), type.getPtPar(), type.getPageAtt(), type.getPagePar());
