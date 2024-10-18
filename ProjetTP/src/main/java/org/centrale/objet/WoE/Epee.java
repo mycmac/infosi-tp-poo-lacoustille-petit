@@ -60,6 +60,10 @@ public class Epee extends Objet implements Recuperable, Utilisable {
      * Pourcentage de parade
      */
     private int pagePar;
+    /**
+     * Type de l'arme
+     */
+    private String type;
     
     /**
      * Copie une épée e
@@ -67,10 +71,28 @@ public class Epee extends Objet implements Recuperable, Utilisable {
      * @param e Epee initiale
      */
     public Epee(Epee e) {
+        this.type = e.getType();
         this.degAtt = e.getDegAtt();
         this.ptPar = e.getPtPar();
         this.pageAtt = e.getPageAtt();
         this.pagePar = e.getPagePar();
+    }
+
+    /**
+     * Initialise une épée avec les attributs suivants :
+     * @param dA dégats d'attaque supplémentaires
+     * @param pPar points d'attaque supplémentaires
+     * @param paAtt pourcentage d'attaque supplémentaires
+     * @param paPar pourcentage de parade supplémentaires
+     * @param pos position de l'épée
+     */
+    public Epee(String type, int dA, int pPar, int paAtt, int paPar, Point2D pos) {
+        super(pos);
+        this.type = type;
+        this.degAtt = dA;
+        this.ptPar = pPar;
+        this.pageAtt = paAtt;
+        this.pagePar = paPar;
     }
 
     /**
@@ -97,8 +119,9 @@ public class Epee extends Objet implements Recuperable, Utilisable {
      * @param paPar
      * @see #Epee(int, int, int, int, org.centrale.objet.WoE.Point2D)
      */
-    public Epee(int dA, int pPar, int paAtt, int paPar) {
+    public Epee(String type, int dA, int pPar, int paAtt, int paPar) {
         super();
+        this.type = type;
         this.degAtt = dA;
         this.ptPar = pPar;
         this.pageAtt = paAtt;
@@ -216,6 +239,25 @@ public class Epee extends Objet implements Recuperable, Utilisable {
     }
 
     /**
+     * Récupère le type d'arme
+     *
+     * @return type
+     */
+    public String getType() {
+        return this.type;
+    }
+
+    /**
+     * Redéfinit le type d'arme
+     *
+     * @param type
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
+
+
+    /**
      * Comportement d'une épée récupérée par un joueur
      * 
      * @param j Joueur
@@ -243,7 +285,7 @@ public class Epee extends Objet implements Recuperable, Utilisable {
      */
     @Override
     public String toString() {
-        return "TYPE_EPEE : " + "degAtt=" + degAtt + ", ptPar=" + ptPar + ", Att +" + pageAtt + "%, Par +" + pagePar + "%";
+        return type + "degAtt=" + degAtt + ", ptPar=" + ptPar + ", Att +" + pageAtt + "%, Par +" + pagePar + "%";
     }
 
     /**
@@ -252,7 +294,7 @@ public class Epee extends Objet implements Recuperable, Utilisable {
      */
     public static Epee RandomType() {
         Types_Armes type = Types_Armes.getRandom();
-        return new Epee(type.getDegAtt(), type.getPtPar(), type.getPageAtt(), type.getPagePar());
+        return new Epee(type.getNom(), type.getDegAtt(), type.getPtPar(), type.getPageAtt(), type.getPagePar());
     }
 
     @Override

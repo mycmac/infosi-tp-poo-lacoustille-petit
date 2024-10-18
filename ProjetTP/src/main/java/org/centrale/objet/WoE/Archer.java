@@ -203,4 +203,16 @@ public class Archer extends Personnage implements Combatif, Jouable {
         System.out.println(msg);
         Fenetre.addMessage(msg);
     }
+
+    /**
+     * TODO: OSKOUR C MOCHE
+     */
+    public void deplace(Objet[][] grille) {
+    }
+
+    /**
+     * TODO: OSKOUR C MOCHE
+     */
+    public void deplace(Objet[][] grille, Point2D p) {
+    }
 }

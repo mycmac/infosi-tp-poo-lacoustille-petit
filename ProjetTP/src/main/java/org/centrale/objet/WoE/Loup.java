@@ -97,4 +97,15 @@ public class Loup extends Monstre implements Combatif {
     public final String toString() {
         return "Loup";
     }
+    /**
+     * TODO: OSKOUR C MOCHE
+     */
+    public void deplace(Objet[][] grille) {
+    }
+
+    /**
+     * TODO: OSKOUR C MOCHE
+     */
+    public void deplace(Objet[][] grille, Point2D p) {
+    }
 }

@@ -1,5 +1,6 @@
 package org.centrale.objet.WoE;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
@@ -137,12 +138,18 @@ public class World {
         // Création de nbObjetsBase objets dans le monde, répartis
         // aléatoirement entre les différents types existants
         for (int i = 0; i < this.nbObjetsBase; i++) {
-            switch (seed.nextInt(2)) {
+            switch (seed.nextInt(4)) {
                 case 0:
-                    this.objets.add(new Epee());
+                    this.objets.add(Epee.RandomType());
                     break;
                 case 1:
                     this.objets.add(new PotionSoin());
+                    break;
+                case 2:
+                    this.objets.add(Nourriture.RandomType());
+                    break;
+                case 3:
+                    this.objets.add(new NuageToxique());
                     break;
             }
         }
@@ -181,15 +188,56 @@ public class World {
         joueur.actionDeplacement(this);
         afficheWorld();
         for (Creature creature : creatures) {
-            System.out.println("C'est au tour de " + creature + " de jouer.");
-            creature.deplace(this.grille_creatures);
-            creature.affiche();
-            afficheWorld();
             if (creature.getPtVie()<=0){
                 this.grille_creatures[creature.getX()][creature.getY()] = null;
                 creature.mort();
+            } else {
+                System.out.println("C'est au tour de " + creature + " de jouer.");
+                creature.deplace(this.grille_creatures);
+                creature.affiche();
+                afficheWorld();
+
+                int d = creature.getDistAttMax();
+                int x = creature.getX();
+                int y = creature.getY();
+                int xi;
+                int yj;
+                Creature c;
+                ArrayList<Creature> creatures_possibles = new ArrayList<>();
+                for (int i = -d; i <= d; i++) {
+                    for (int j = -d; j <= d; j++) {
+                        xi = x + i;
+                        yj = y + j;
+                        c = grille_creatures[xi][yj];
+                        if (!(i == 0 && j == 0) 
+                        && xi >= 0 
+                        && yj >= 0 
+                        && xi < this.getTaille()
+                        && yj < this.getTaille()
+                        && c != null) {
+                            creatures_possibles.add(c);
+                        }
+                    }
+                }
+
+                Random r = new Random();
+                c = creatures_possibles.get(r.nextInt(creatures_possibles.size()));
+                ((Combatif)creature).combattre(c);
             }
         }
+
+        
+        for (Objet objet : objets) {
+            if (objet instanceof Deplacable) {
+                ((Deplacable) objet).deplace(this.grille_objets);
+            }
+
+            Creature c = grille_creatures[objet.getX()][objet.getY()];
+            if (objet instanceof Combatif && c != null) {
+                ((Combatif) objet).combattre(c);
+            }
+        }
+
         System.out.println("Fin du tour de jeu");
         Fenetre.addMessage("Fin du tour de jeu");
     }
