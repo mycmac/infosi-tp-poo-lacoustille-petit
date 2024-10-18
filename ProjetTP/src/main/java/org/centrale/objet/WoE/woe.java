@@ -14,6 +14,7 @@ public class woe {
         World WoE;
         WoE = new World(20);
         WoE.creeMondeAlea();
+        Fenetre.addMessage("Bienvenue dans World Of ECN !");
         while (true) {
             WoE.tourDeJeu();
             WoE.afficheWorld();
