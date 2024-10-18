@@ -103,6 +103,12 @@ public class PotionSoin extends Objet implements Recuperable, Utilisable {
     public String toString() {
         return "PotionSoin : " + "+" + ptVie + " PV";
     }
+
+    @Override
+    public Recuperable utiliser(Joueur j) {
+        j.getPerso().setPtVie(Math.min(j.getPerso().getPtVieMax(), j.getPerso().getPtVie()+this.ptVie));
+        return null;
+    }
     
     
 }
