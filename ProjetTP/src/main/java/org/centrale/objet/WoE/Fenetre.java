@@ -28,12 +28,31 @@ import javax.swing.JTextArea;
  * @author hanss
  */
 public class Fenetre {
+    /**
+     * Booleen déterminent si une touche du clavier est pressée
+     */
     private static volatile boolean isPressed = false;
+    /**
+     * Evenement qui récupère la touche du clavier pressée
+     */
     private static volatile KeyEvent pressedKey = null;
+    /**
+     * Cadre de la fenêtre
+     */
     private static JFrame frame;
+    /**
+     * Zone d'affichage des outputs, notamment de la carte
+     */
     private static JTextArea outputArea;
+    /**
+     * Zone d'affichage des messages
+     */
     private static JTextArea messageArea;
+    /**
+     * Zone d'affichage de l'inventaire
+     */
     private static JTextArea inventaireArea;
+    
     /**
      * Récupère la touche du clavier pressée
      * @return KeyEvent correspondant à la touche
