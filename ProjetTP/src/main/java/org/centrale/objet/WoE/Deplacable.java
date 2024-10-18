@@ -1,7 +1,7 @@
 package org.centrale.objet.WoE;
 
 /**
- *
+ * Interface régissant le comportement des elements de jeu qui peuvent se déplacer
  * @author Ulysse
  */
 public interface Deplacable {
