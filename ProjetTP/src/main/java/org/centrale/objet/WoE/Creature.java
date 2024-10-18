@@ -2,10 +2,8 @@ package org.centrale.objet.WoE;
 
 import java.util.LinkedList;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * Super-classe générique pour les créatures diverses de WoE
