@@ -116,7 +116,7 @@ public abstract class Creature extends Entite implements Deplacable {
      * 
      * @see Modificateur
      */
-    private LinkedList<Modificateur> effets;
+    private LinkedList<Modificateur> effets = new LinkedList<>();
 
     /**
      * Initialise une créature en copiant les attributs d'une Creature donnée
@@ -394,6 +394,7 @@ public abstract class Creature extends Entite implements Deplacable {
     }
 
     public void addEffets(Modificateur mod) {
+        System.out.println(mod);
         this.effets.add(new Modificateur(mod));
     }
 
