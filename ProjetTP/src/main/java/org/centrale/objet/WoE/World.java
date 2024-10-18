@@ -178,7 +178,7 @@ public class World {
      * Gestion d'un tour de jeu : on affiche le nom ou le type de la créature
      * qui joue, la déplace puis l'affiche à nouveau.
      */
-    public void tourDeJeu() {
+    public boolean tourDeJeu() {
         cleanEntites(creatures);
         cleanEntites(objets);
         System.out.println("À votre tour :");
@@ -245,6 +245,7 @@ public class World {
 
         System.out.println("Fin du tour de jeu");
         Fenetre.addMessage("Fin du tour de jeu");
+        return joueur.getPerso().getPtVie()>0;
     }
 
     /**
@@ -288,6 +289,10 @@ public class World {
                         carte += "E";
                     } else if (o instanceof PotionSoin) {
                         carte += "S";
+                    }else if (o instanceof NuageToxique){
+                        carte += "x";
+                    }else if (o instanceof Nourriture){
+                        carte += "o";
                     }
                 } else {
                     carte += ".";
