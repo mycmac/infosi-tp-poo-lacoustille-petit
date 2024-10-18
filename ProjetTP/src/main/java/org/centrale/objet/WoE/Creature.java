@@ -1,5 +1,6 @@
 package org.centrale.objet.WoE;
 
+import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -28,22 +29,34 @@ public abstract class Creature extends Entite implements Deplacable{
      * Dégats d'attaque : entre 1 et 10
      */
     private static final int DEG_ATT_BASE_MIN = 1;
+    /**
+     * @see #DEG_ATT_BASE_MIN
+     */
     private static final int DEG_ATT_BASE_MAX = 10;
     /**
      * Points de parade : entre 1 et 10
      */
     private static final int PT_PAR_BASE_MIN = 1;
+    /**
+     * @see #PT_PAR_BASE_MIN
+     */
     private static final int PT_PAR_BASE_MAX = 10;
     /**
      * Pourcentage de chance de réussite d'une attaque : entre 1 et 100 (%)
      */
     private static final int PAGE_ATT_BASE_MIN = 1;
+    /**
+     * @see #PAGE_ATT_BASE_MIN
+     */
     private static final int PAGE_ATT_BASE_MAX = 100;
     
     /**
      * Pourcentage de chance de réussite d'une parade : entre 1 et 100 (%)
      */
     private static final int PAGE_PAR_BASE_MIN = 1;
+    /**
+     * @see #PAGE_PAR_BASE_MIN
+     */
     private static final int PAGE_PAR_BASE_MAX = 100;
 
     /**
@@ -71,8 +84,7 @@ public abstract class Creature extends Entite implements Deplacable{
 
     /**
      * Dictionnaire des caractéristiques d'une créature
-     * Le nombre d'entrées et les clés sont fixes, mais les valeurs sont modifiables
-     * @return Caractéristiques
+     * @return Caractéristiques d'une créature
      */
     private static final Map<String, Integer> defCaracs() {
         Map<String, Integer> modifiableMap = new HashMap<>();
@@ -88,9 +100,21 @@ public abstract class Creature extends Entite implements Deplacable{
         return modifiableMap;
     }
 
+    /**
+     * Points de vie actuels d'une créature
+     */
     private Integer pV;
+    /**
+     * Caractéristiques d'une créature, stockées par clés dans une map
+     * @see #defCaracs()
+     * @see Carac
+     */
     private Map<String, Integer> caracs = defCaracs();
-    private ArrayList<Modificateur> effets;
+    /**
+     * Modificateurs actifs sur la créature
+     * @see Modificateur
+     */
+    private LinkedList<Modificateur> effets;
 
     /**
      * Initialise une créature en copiant les attributs d'une Creature donnée
@@ -318,21 +342,39 @@ public abstract class Creature extends Entite implements Deplacable{
         this.caracs.put(Carac.VITESSE.getNom(), vitesse);
     }
 
+    /**
+     * Renvoie le dictionnaire des caractéristiques
+     * @return Caractéristiques
+     */
     public Map<String,Integer> getCaracs() {
         return this.caracs;
     }
 
+    /**
+     * Redéfinit le dictionnaire des caractéristiques comme copie d'un autre
+     * @param caracs
+     */
     public void setCaracs(Map<String,Integer> caracs) {
-        this.caracs = caracs;
+        this.caracs.putAll(caracs);;
     }
 
-
-    public ArrayList<Modificateur> getEffets() {
+    /**
+     * Renvoie la liste des effets actifs
+     * @return Effets
+     */
+    public LinkedList<Modificateur> getEffets() {
         return this.effets;
     }
 
-    public void setEffets(ArrayList<Modificateur> effets) {
-        this.effets = effets;
+    /**
+     * Redéfinit la liste des effets comme copie d'une autre
+     * @param effets
+     */
+    public void setEffets(LinkedList<Modificateur> effets) {
+        this.effets.clear();
+        for (Modificateur mod : effets) {
+            this.effets.add(new Modificateur(mod));
+        }
     }
 
 
