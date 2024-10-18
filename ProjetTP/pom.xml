@@ -35,7 +35,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>org.centrale.objet.WoE.woe.java</mainClass>
+                            <mainClass>org.centrale.objet.WoE.woe</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
