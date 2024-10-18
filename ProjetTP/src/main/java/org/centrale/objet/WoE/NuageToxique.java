@@ -11,6 +11,9 @@ import java.util.ArrayList;
  * @author hanss
  */
 public class NuageToxique extends Objet implements Deplacable, Combatif {
+    private static final int TOX_MOY = 10;
+    private static final int TOX_VAR = 2;
+
     private int toxicite;
 
     /**
@@ -34,6 +37,11 @@ public class NuageToxique extends Objet implements Deplacable, Combatif {
         this.toxicite = toxicite;
     }
 
+    public NuageToxique() {
+        super();
+        this.toxicite = TOX_MOY + getRandom(2*TOX_VAR + 1) - TOX_VAR;
+    }
+
     /**
      *
      * @return Toxicité du nuage
@@ -50,21 +58,39 @@ public class NuageToxique extends Objet implements Deplacable, Combatif {
         this.toxicite = toxicite;
     }
 
-    @Override
-    public void deplace(Creature[][] grille) {
+    public void deplace(Objet[][] grille, Point2D p) {
+        this.setPos(p);
+    }
+
+    /**
+     * Déplace aléatoirement selon l'une des 8 directions, en tenant compte des
+     * autres objets présents
+     * 7 0 1
+     * \ | /
+     * \ | /
+     * 6---- + ----2
+     * / | \
+     * / | \
+     * 5 4 3
+     * 
+     * @param grille Grille des objets du monde concerné
+     *               /!\ PAS DE MOYEN DE TESTER LA PRÉSENCE EFFECTIVE DE LA CREATURE
+     *               DANS CE MONDE
+     */
+    public void deplace(Objet[][] grille) {
         ArrayList<Point2D> deplacementsPossibles = new ArrayList<>();
-        for (int i = -1; i<2; i++) {
-            for (int j = -1; j<2; j++) {
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
                 int ix = this.getX() + i;
                 int jy = this.getY() + j;
                 if (ix >= 0 && jy >= 0 && ix < grille.length && jy < grille.length) {
-                    if(grille[ix][jy] == null) {
+                    if (grille[ix][jy] == null) {
                         deplacementsPossibles.add(new Point2D(i, j));
                     }
                 }
             }
         }
-        
+
         int sz = deplacementsPossibles.size();
         if (sz != 0) {
             int dir = this.getRandom(sz);
@@ -72,11 +98,7 @@ public class NuageToxique extends Objet implements Deplacable, Combatif {
             deplace(grille, p);
         } else {
             System.out.println("Il n'y a pas de vent, ce nuage ne bouge pas");
-        }}
-
-    @Override
-    public void deplace(Creature[][] grille, Point2D p) {
-        this.setPos(p);
+        }
     }
 
     @Override
@@ -84,4 +106,15 @@ public class NuageToxique extends Objet implements Deplacable, Combatif {
         c.setPtVie(c.getPtVie()-toxicite);
     }
     
+    /**
+     * TODO: OSKOUR C MOCHE
+     */
+    public void deplace(Creature[][] grille) {
+    }
+
+    /**
+     * TODO: OSKOUR C MOCHE
+     */
+    public void deplace(Creature[][] grille, Point2D p) {
+    }
 }

@@ -131,5 +131,17 @@ public class Guerrier extends Personnage implements Combatif, Jouable {
     public void affiche() {
         super.affiche();
         System.out.print("\n");
-    }   
+    }
+    
+    /**
+     * TODO: OSKOUR C MOCHE
+     */
+    public void deplace(Objet[][] grille) {
+    }
+
+    /**
+     * TODO: OSKOUR C MOCHE
+     */
+    public void deplace(Objet[][] grille, Point2D p) {
+    }
 }
