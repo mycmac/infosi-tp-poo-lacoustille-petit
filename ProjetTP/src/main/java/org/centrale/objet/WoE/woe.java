@@ -11,9 +11,16 @@ package org.centrale.objet.WoE;
 public class woe {
 
     public static void main(String[] args) {
+        int taille;
+        try{
+            taille = Integer.parseInt(args[0]);
+        }catch (NullPointerException | NumberFormatException e){
+            taille = 20;
+        }
         World WoE;
-        WoE = new World(20);
+        WoE = new World(taille);
         WoE.creeMondeAlea();
+        Fenetre.Initialize(WoE.getTaille());
         Fenetre.addMessage("Bienvenue dans World Of ECN !");
         while (true) {
             WoE.tourDeJeu();
