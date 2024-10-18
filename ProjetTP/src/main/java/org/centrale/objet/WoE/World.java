@@ -196,35 +196,36 @@ public class World {
                 creature.deplace(this.grille_creatures);
                 creature.affiche();
                 afficheWorld();
-
-                int d = creature.getDistAttMax();
-                int x = creature.getX();
-                int y = creature.getY();
-                int xi;
-                int yj;
-                Creature c;
-                ArrayList<Creature> creatures_possibles = new ArrayList<>();
-                for (int i = -d; i <= d; i++) {
-                    for (int j = -d; j <= d; j++) {
-                        xi = x + i;
-                        yj = y + j;
-                        c = grille_creatures[xi][yj];
-                        if (!(i == 0 && j == 0)
-                                && xi >= 0
-                                && yj >= 0
-                                && xi < this.getTaille()
-                                && yj < this.getTaille()
-                                && c != null) {
-                            creatures_possibles.add(c);
+                if (creature instanceof Combatif) {
+                    int d = creature.getDistAttMax();
+                    int x = creature.getX();
+                    int y = creature.getY();
+                    int xi;
+                    int yj;
+                    Creature c;
+                    ArrayList<Creature> creatures_possibles = new ArrayList<>();
+                    for (int i = -d; i <= d; i++) {
+                        for (int j = -d; j <= d; j++) {
+                            xi = x + i;
+                            yj = y + j;
+                            c = grille_creatures[xi][yj];
+                            if (!(i == 0 && j == 0)
+                                    && xi >= 0
+                                    && yj >= 0
+                                    && xi < this.getTaille()
+                                    && yj < this.getTaille()
+                                    && c != null) {
+                                creatures_possibles.add(c);
+                            }
                         }
                     }
-                }
 
-                int cre = creatures_possibles.size();
-                if (cre > 0) {
-                    Random r = new Random();
-                    c = creatures_possibles.get(r.nextInt(cre));
-                    ((Combatif) creature).combattre(c);
+                    int cre = creatures_possibles.size();
+                    if (cre > 0) {
+                        Random r = new Random();
+                        c = creatures_possibles.get(r.nextInt(cre));
+                        ((Combatif) creature).combattre(c);
+                    }
                 }
             }
         }
