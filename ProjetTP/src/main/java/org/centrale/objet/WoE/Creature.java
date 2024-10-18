@@ -428,6 +428,6 @@ public abstract class Creature extends Entite implements Deplacable{
     
     public void mort(){
         this.pos = null;
-        Fenetre.addMessage("Mort");
+        Fenetre.addMessage("Mort de la créature.");
     }
 }
