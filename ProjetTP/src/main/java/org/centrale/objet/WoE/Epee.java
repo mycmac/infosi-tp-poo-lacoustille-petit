@@ -4,7 +4,7 @@ package org.centrale.objet.WoE;
  * Objet de combat
  * @author timot
  */
-public class Epee extends Objet implements Recuperable {
+public class Epee extends Objet implements Recuperable, Utilisable {
 
     // TODO : Modifier bases aléatoires
     /**
@@ -244,7 +244,7 @@ public class Epee extends Objet implements Recuperable {
      */
     @Override
     public String toString() {
-        return "Epee : " + "degAtt=" + degAtt + ", ptPar=" + ptPar + ", Att +" + pageAtt + "%, Par +" + pagePar + "%";
+        return "TYPE_EPEE : " + "degAtt=" + degAtt + ", ptPar=" + ptPar + ", Att +" + pageAtt + "%, Par +" + pagePar + "%";
     }
 
     /**
@@ -254,6 +254,16 @@ public class Epee extends Objet implements Recuperable {
     public static Epee RandomType() {
         Types_Armes type = Types_Armes.getRandom();
         return new Epee(type.getDegAtt(), type.getPtPar(), type.getPageAtt(), type.getPagePar());
+    }
+
+    @Override
+    public Recuperable utiliser(Joueur j) {
+        Epee res = null;
+        if (j.getPerso().getArme() != null){
+            res = new Epee(j.getPerso().getArme());
+        }
+        equiper(j);
+        return res;
     }
     
 }

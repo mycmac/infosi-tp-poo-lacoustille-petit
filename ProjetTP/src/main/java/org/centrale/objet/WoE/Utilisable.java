@@ -9,5 +9,5 @@ package org.centrale.objet.WoE;
  * @author hanss
  */
 public interface Utilisable {
-    public void utiliser(Joueur j);
+    public Recuperable utiliser(Joueur j);
 }

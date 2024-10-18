@@ -16,14 +16,15 @@ import org.reflections.Reflections;
 public class Joueur {
 
     /**
-     * Attribut contenant le personnage du joueur, qui descend de l'interface Jouable
+     * Attribut contenant le personnage du joueur, qui descend de l'interface
+     * Jouable
      */
     private Jouable perso;
     /**
-     * Inventaire du joueur, qui contient tous les éléments récupérables par le joueur et les stocke dans un tableau
+     * Inventaire du joueur, qui contient tous les éléments récupérables par le
+     * joueur et les stocke dans un tableau
      */
     private ArrayList<Recuperable> inventaire = new ArrayList<>();
-    
 
     /**
      * Constructeur de Joueur avec un personnage prédéfini
@@ -39,13 +40,13 @@ public class Joueur {
      * type de personnage et son nom notamment.
      */
     //@SuppressWarnings({"unchecked", "rawtypes"}) // Tkt, le code est correct mais sinon l'IDE fait chier
-    public Joueur(){
+    public Joueur() {
         try {
             int numClasseJoueur;
             Class<? extends Jouable> classeJoueur = null;
-            
+
             Boolean satisfait = false;
-            
+
             Reflections reflections = new Reflections("org.centrale.objet.WoE");
             Object[] classesJouables = reflections.getSubTypesOf(Jouable.class).toArray();
             while (!satisfait) {
@@ -53,38 +54,39 @@ public class Joueur {
                 for (int i = 0; i < classesJouables.length; i++) {
                     System.out.println(" - " + ((int) i + 1) + " - " + ((Class) classesJouables[i]).getSimpleName());
                 }
-                
+
                 numClasseJoueur = getClavierInt();
                 while (numClasseJoueur <= 0 || numClasseJoueur > classesJouables.length) {
                     System.out.println("Choisis un type de personnage valide !");
                     numClasseJoueur = getClavierInt();
                 }
                 classeJoueur = (Class<? extends Jouable>) classesJouables[numClasseJoueur - 1];
-                
+
                 System.out.println("Tu veux donc jouer un " + classeJoueur.getSimpleName() + " ? Si oui, tape \"Y\".");
-                
+
                 if (getClavier().equals("Y")) {
                     satisfait = true;
                 }
             }
-            
+
             perso = (classeJoueur.getDeclaredConstructor().newInstance());
             ((Creature) perso).setPos(0, 0);
             System.out.println("Personnage créé !");
-            
+
         } catch (NoSuchMethodException
-               | InstantiationException
-               | IllegalAccessException
-               | IllegalArgumentException
-               | InvocationTargetException e) {
-            System.out.println("Non"+e+"\n"+e.getLocalizedMessage()+"\n");
+                | InstantiationException
+                | IllegalAccessException
+                | IllegalArgumentException
+                | InvocationTargetException e) {
+            System.out.println("Non" + e + "\n" + e.getLocalizedMessage() + "\n");
             e.printStackTrace();
         }
     }
 
     /**
-     * Récupère un input utilisateur finissant par la touche entrée
-     * TODO : Bug lorsque l'on ferme le Scanner, mais il faudrait trouver un moyen
+     * Récupère un input utilisateur finissant par la touche entrée TODO : Bug
+     * lorsque l'on ferme le Scanner, mais il faudrait trouver un moyen
+     *
      * @return Dernière ligne entrée par l'utilisateur dans le terminal
      */
     public final String getClavier() {
@@ -101,7 +103,7 @@ public class Joueur {
     public final Integer getClavierInt() {
         Integer res = null;
         while (res == null) {
-            
+
             try {
                 res = Integer.valueOf(getClavier());
             } catch (NumberFormatException ex) {
@@ -113,9 +115,8 @@ public class Joueur {
     }
 
     /**
-     * Déplace le personnage du joueur dans le monde
-     * Gère le ramassage d'objets en passant dessus
-     * TODO : Diviser la fonction
+     * Déplace le personnage du joueur dans le monde Gère le ramassage d'objets
+     * en passant dessus TODO : Diviser la fonction
      *
      * @param monde
      */
@@ -131,14 +132,15 @@ public class Joueur {
                 monde.getGrille_objets()[p.getX()][p.getY()] = null;
                 monde.cleanEntites(monde.getObjets());
             }
-            
+
             monde.afficheWorld();
         }
     }
 
     /**
-     * Déplace le personnage associé au joueur en utilisant le clavier
-     * TODO: Diviser la fonction
+     * Déplace le personnage associé au joueur en utilisant le clavier TODO:
+     * Diviser la fonction
+     *
      * @param monde monde de déplacement
      */
     public void deplacePerso(World monde) {
@@ -157,26 +159,36 @@ public class Joueur {
             Fenetre.addMessage("Combat effectué");
             monde.setCible(null);
             monde.afficheWorld();
-        }
-        else if (event.getKeyChar() == KeyEvent.CHAR_UNDEFINED) {
-            
+        } else if (event.getKeyChar() == KeyEvent.CHAR_UNDEFINED) {
+
             int[] dep = deplacement(event);
             if (grille[this.getPerso().getX() + dep[0]][this.getPerso().getY() + dep[1]] != null && grille[this.getPerso().getX() + dep[0]][this.getPerso().getY() + dep[1]] != this.getPerso()) {
                 ((Combatif) this.getPerso()).combattre(grille[this.getPerso().getX() + dep[0]][this.getPerso().getY() + dep[1]]);
-            Fenetre.addMessage("Combat rapproché");
-            }else{
-            (perso).deplace(grille, dep[0], dep[1]);
-            Fenetre.addMessage("On se déplace");}
+                Fenetre.addMessage("Combat rapproché");
+            } else {
+                (perso).deplace(grille, dep[0], dep[1]);
+                Fenetre.addMessage("On se déplace");
+            }
+        } else if (estChiffre(event.getKeyChar())) {
+            int i = Character.getNumericValue(event.getKeyChar());
+            Recuperable r = inventaire.get(i);
+            if (r instanceof Utilisable) {
+                Utilisable u = (Utilisable) r;
+                Recuperable result = u.utiliser(this);
+                if (result != null){
+                    this.addInventaire(result);
+                }
+            }
         }
-        
         while (Fenetre.isPressed()) {
-            this.wait(100);
-        }
+                this.wait(100);
+            }
     }
-    
+
     /**
      * Déplace une cible sur l'écran pour viser avec les attaques à distance
      * TODO: Diviser la fonction
+     *
      * @param monde
      */
     public void deplaceCible(World monde) {
@@ -187,11 +199,11 @@ public class Joueur {
                 this.wait(100);
             }
             KeyEvent event = Fenetre.pressedKey();
-            if (event.getKeyCode() == KeyEvent.VK_SPACE && (this.getPerso().getPos().distance(new Point2D(monde.getCible().getX(), monde.getCible().getY()))) <= this.getPerso().getDistAttMax()+ 0.01) {
+            if (event.getKeyCode() == KeyEvent.VK_SPACE && (this.getPerso().getPos().distance(new Point2D(monde.getCible().getX(), monde.getCible().getY()))) <= this.getPerso().getDistAttMax() + 0.01) {
                 shot = true;
                 Fenetre.addMessage("Pfiouu.");
             } else if (event.getKeyCode() == KeyEvent.VK_SPACE) {
-                Fenetre.addMessage("Hors de portée : "+this.getPerso().getPos().distance(new Point2D(monde.getCible().getX(), monde.getCible().getY())));
+                Fenetre.addMessage("Hors de portée : " + this.getPerso().getPos().distance(new Point2D(monde.getCible().getX(), monde.getCible().getY())));
             } else if (event.getKeyCode() == KeyEvent.VK_SHIFT) {
                 monde.setCible(new Point2D(this.getPerso().getPos()));
                 Fenetre.addMessage("Reset cible.");
@@ -202,11 +214,11 @@ public class Joueur {
             monde.afficheWorld();
             this.wait(100);
         }
-        
+
         while (Fenetre.isPressed()) {
             this.wait(100);
         }
-        
+
     }
 
     /**
@@ -217,7 +229,7 @@ public class Joueur {
      * @return {dX, dY} déplacament X, Y
      */
     public int[] deplacement(KeyEvent event) {
-        
+
         switch (event.getKeyCode()) {
             case KeyEvent.VK_UP:
                 return (new int[]{-1, 0});
@@ -234,6 +246,7 @@ public class Joueur {
 
     /**
      * Renvoie le personnage du joueur
+     *
      * @return Personnage associé au joueur
      */
     public Personnage getPerso() {
@@ -241,36 +254,38 @@ public class Joueur {
     }
 
     /**
-     * Modifie le personnage associé au joueur
-     * TODO: C'est pas propre comme copie ca (:
+     * Modifie le personnage associé au joueur TODO: C'est pas propre comme
+     * copie ca (:
+     *
      * @param perso
      */
     public void setPerso(Personnage perso) {
         this.perso = (Jouable) perso;
     }
-    
+
     /**
      * Vide l'inventaire du joueur
      */
     public void clearInventaire() {
         this.inventaire = null;
     }
-    
+
     /**
      * Ajoute un objet à l'inventaire du joueur
+     *
      * @param objet
      */
     public void addInventaire(Recuperable objet) {
         inventaire.add(objet);
     }
-    
+
     /**
      * Affiche l'inventaire du joueur
      */
     public void afficheInventaire() {
         String inv = "";
-        inv += "PV= "+getPerso().getPtVie();
-        inv += "\nDistAttMax = "+getPerso().getDistAttMax();
+        inv += "PV= " + getPerso().getPtVie();
+        inv += "\nDistAttMax = " + getPerso().getDistAttMax();
         inv += "\n";
         for (int i = 0; i < inventaire.size(); i++) {
             inv += i;
@@ -279,12 +294,16 @@ public class Joueur {
         }
         Fenetre.afficheInventaire(inv);
     }
-    
+
     public void wait(int i) {
-    try {
-                    Thread.sleep(i);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
+        try {
+            Thread.sleep(i);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
-}
+
+    public static boolean estChiffre(char chr) {
+        return Character.getNumericValue(chr) > 0;
+    }
+    }
