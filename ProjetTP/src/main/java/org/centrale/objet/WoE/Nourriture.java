@@ -75,5 +75,14 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @Override
+    public String toString() {
+        String n = nom + ": bonus : +" + bonus.getBonusPourcent() +"% de"+ bonus.getCaracModif() + ", malus :";
+        for (Modificateur modif : malus){
+        n += " -"+modif.getBonusPourcent() +"% de"+ modif.getCaracModif()+" ";
+        }
+        return n;
+    }
+
     
 }
