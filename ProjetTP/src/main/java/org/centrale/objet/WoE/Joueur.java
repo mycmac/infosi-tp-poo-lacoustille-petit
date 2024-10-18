@@ -178,6 +178,7 @@ public class Joueur {
                 if (result != null){
                     this.addInventaire(result);
                 }
+                inventaire.remove(i);
             }
         }
         while (Fenetre.isPressed()) {
