@@ -75,4 +75,15 @@ public class Lapin extends Monstre {
     public final String toString() {
         return "Lapin";
     }
+    /**
+     * TODO: OSKOUR C MOCHE
+     */
+    public void deplace(Objet[][] grille) {
+    }
+
+    /**
+     * TODO: OSKOUR C MOCHE
+     */
+    public void deplace(Objet[][] grille, Point2D p) {
+    }
 }

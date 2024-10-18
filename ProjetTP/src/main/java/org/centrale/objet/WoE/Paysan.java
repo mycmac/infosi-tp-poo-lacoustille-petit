@@ -66,4 +66,16 @@ public class Paysan extends Personnage {
         super.affiche();
         System.out.print(this.getNom() + " travaille dans sa ferme.\n");
     }
+
+    /**
+     * TODO: OSKOUR C MOCHE
+     */
+    public void deplace(Objet[][] grille) {
+    }
+
+    /**
+     * TODO: OSKOUR C MOCHE
+     */
+    public void deplace(Objet[][] grille, Point2D p) {
+    }
 }
