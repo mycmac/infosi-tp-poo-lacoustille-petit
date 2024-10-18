@@ -84,7 +84,7 @@ public class Joueur {
 
     /**
      * Récupère un input utilisateur finissant par la touche entrée
-     *
+     * TODO : Bug lorsque l'on ferme le Scanner, mais il faudrait trouver un moyen
      * @return Dernière ligne entrée par l'utilisateur dans le terminal
      */
     public final String getClavier() {
@@ -113,18 +113,20 @@ public class Joueur {
     }
 
     /**
-     *
-     *
-     * TODO : Généraliser à un non Personnage
+     * Déplace le personnage du joueur dans le monde
+     * Gère le ramassage d'objets en passant dessus
+     * TODO : Diviser la fonction
      *
      * @param monde
      */
     public void actionDeplacement(World monde) {
-        Creature p = (Creature) perso;
+        Creature p = (Creature) this.getPerso();
         for (int i = 0; i < p.getVitesse(); i++) {
             deplacePerso(monde);
             Objet o = monde.getGrille_objets()[p.getX()][p.getY()];
-            if (o != null && o instanceof Recuperable) {// Autorisé car Java ne test pas la 2e condition d'un && si la première est fausse
+
+            // Autorisé car Java ne test pas la 2e condition d'un && si la première est fausse
+            if (o != null && o instanceof Recuperable) {
                 ((Recuperable) o).recuperer(this);
                 monde.getGrille_objets()[p.getX()][p.getY()] = null;
                 monde.cleanEntites(monde.getObjets());
@@ -135,8 +137,8 @@ public class Joueur {
     }
 
     /**
-     * Déplace le personnage associé en utilsant le clavier
-     *
+     * Déplace le personnage associé au joueur en utilisant le clavier
+     * TODO: Diviser la fonction
      * @param monde monde de déplacement
      */
     public void deplacePerso(World monde) {
@@ -172,6 +174,11 @@ public class Joueur {
         }
     }
     
+    /**
+     * Déplace une cible sur l'écran pour viser avec les attaques à distance
+     * TODO: Diviser la fonction
+     * @param monde
+     */
     public void deplaceCible(World monde) {
         boolean shot = false;
         Fenetre.addMessage("Appuyez sur les fleches.");
@@ -226,7 +233,7 @@ public class Joueur {
     }
 
     /**
-     *
+     * Renvoie le personnage du joueur
      * @return Personnage associé au joueur
      */
     public Personnage getPerso() {
@@ -235,21 +242,31 @@ public class Joueur {
 
     /**
      * Modifie le personnage associé au joueur
-     *
+     * TODO: C'est pas propre comme copie ca (:
      * @param perso
      */
     public void setPerso(Personnage perso) {
         this.perso = (Jouable) perso;
     }
     
+    /**
+     * Vide l'inventaire du joueur
+     */
     public void clearInventaire() {
         this.inventaire = null;
     }
     
+    /**
+     * Ajoute un objet à l'inventaire du joueur
+     * @param objet
+     */
     public void addInventaire(Recuperable objet) {
         inventaire.add(objet);
     }
     
+    /**
+     * Affiche l'inventaire du joueur
+     */
     public void afficheInventaire() {
         String inv = "";
         inv += "PV= "+getPerso().getPtVie();

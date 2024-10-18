@@ -1,17 +1,16 @@
 package org.centrale.objet.WoE;
 
+import java.util.LinkedList;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * Super-classe générique pour les créatures diverses de WoE
  *
  * @author Ulysse
  */
-public abstract class Creature extends Entite implements Deplacable{
+public abstract class Creature extends Entite implements Deplacable {
 
     /**
      * Limites hautes et basses (incluses) des stats de départ des créatures
@@ -28,22 +27,34 @@ public abstract class Creature extends Entite implements Deplacable{
      * Dégats d'attaque : entre 1 et 10
      */
     private static final int DEG_ATT_BASE_MIN = 1;
+    /**
+     * @see #DEG_ATT_BASE_MIN
+     */
     private static final int DEG_ATT_BASE_MAX = 10;
     /**
      * Points de parade : entre 1 et 10
      */
     private static final int PT_PAR_BASE_MIN = 1;
+    /**
+     * @see #PT_PAR_BASE_MIN
+     */
     private static final int PT_PAR_BASE_MAX = 10;
     /**
      * Pourcentage de chance de réussite d'une attaque : entre 1 et 100 (%)
      */
     private static final int PAGE_ATT_BASE_MIN = 1;
+    /**
+     * @see #PAGE_ATT_BASE_MIN
+     */
     private static final int PAGE_ATT_BASE_MAX = 100;
-    
+
     /**
      * Pourcentage de chance de réussite d'une parade : entre 1 et 100 (%)
      */
     private static final int PAGE_PAR_BASE_MIN = 1;
+    /**
+     * @see #PAGE_PAR_BASE_MIN
+     */
     private static final int PAGE_PAR_BASE_MAX = 100;
 
     /**
@@ -71,8 +82,8 @@ public abstract class Creature extends Entite implements Deplacable{
 
     /**
      * Dictionnaire des caractéristiques d'une créature
-     * Le nombre d'entrées et les clés sont fixes, mais les valeurs sont modifiables
-     * @return Caractéristiques
+     * 
+     * @return Caractéristiques d'une créature
      */
     private static final Map<String, Integer> defCaracs() {
         Map<String, Integer> modifiableMap = new HashMap<>();
@@ -88,9 +99,23 @@ public abstract class Creature extends Entite implements Deplacable{
         return modifiableMap;
     }
 
+    /**
+     * Points de vie actuels d'une créature
+     */
     private Integer pV;
+    /**
+     * Caractéristiques d'une créature, stockées par clés dans une map
+     * 
+     * @see #defCaracs()
+     * @see Carac
+     */
     private Map<String, Integer> caracs = defCaracs();
-    private ArrayList<Modificateur> effets;
+    /**
+     * Modificateurs actifs sur la créature
+     * 
+     * @see Modificateur
+     */
+    private LinkedList<Modificateur> effets;
 
     /**
      * Initialise une créature en copiant les attributs d'une Creature donnée
@@ -106,14 +131,14 @@ public abstract class Creature extends Entite implements Deplacable{
     /**
      * Initialise une Creature à partir d'attributs spécifiés
      *
-     * @param pV points de vie
-     * @param dA dégats d'attaque
-     * @param pPar points de parade
-     * @param paAtt probabilité de réussite d'une attaque
-     * @param paPar probabilité de parer une attaque
+     * @param pV      points de vie
+     * @param dA      dégats d'attaque
+     * @param pPar    points de parade
+     * @param paAtt   probabilité de réussite d'une attaque
+     * @param paPar   probabilité de parer une attaque
      * @param dAtkMax Distance attaque max
      * @param vitesse Vitesse perso
-     * @param pt position
+     * @param pt      position
      */
     public Creature(int pV, int dA, int pPar, int paAtt, int paPar, int dAtkMax, int vitesse, Point2D pt) {
         super(pt);
@@ -126,7 +151,7 @@ public abstract class Creature extends Entite implements Deplacable{
         this.caracs.put(Carac.VITESSE.getNom(), vitesse);
         this.pV = this.getPtVieMax();
     }
-    
+
     /**
      * Initialise une Creature aléatoire en un point donné
      * 
@@ -138,13 +163,15 @@ public abstract class Creature extends Entite implements Deplacable{
         this.caracs.put(Carac.PV_MAX.getNom(), getRandom(PT_VIE_BASE_MAX - PT_VIE_BASE_MIN + 1) + PT_VIE_BASE_MIN);
         this.caracs.put(Carac.DEGATS.getNom(), getRandom(DEG_ATT_BASE_MAX - DEG_ATT_BASE_MIN + 1) + DEG_ATT_BASE_MIN);
         this.caracs.put(Carac.PARADE.getNom(), getRandom(PT_PAR_BASE_MAX - PT_PAR_BASE_MIN + 1) + PT_PAR_BASE_MIN);
-        this.caracs.put(Carac.POURCENTAGE_ATK.getNom(), getRandom(PAGE_ATT_BASE_MAX - PAGE_ATT_BASE_MIN + 1) + PAGE_ATT_BASE_MIN);
-        this.caracs.put(Carac.POURCENTAGE_PAR.getNom(), getRandom(PAGE_PAR_BASE_MAX - PAGE_PAR_BASE_MIN + 1) + PAGE_PAR_BASE_MIN);
+        this.caracs.put(Carac.POURCENTAGE_ATK.getNom(),
+                getRandom(PAGE_ATT_BASE_MAX - PAGE_ATT_BASE_MIN + 1) + PAGE_ATT_BASE_MIN);
+        this.caracs.put(Carac.POURCENTAGE_PAR.getNom(),
+                getRandom(PAGE_PAR_BASE_MAX - PAGE_PAR_BASE_MIN + 1) + PAGE_PAR_BASE_MIN);
         this.caracs.put(Carac.DIST_ATK_MAX.getNom(), 1);
         this.caracs.put(Carac.VITESSE.getNom(), 1);
         this.pV = this.getPtVieMax();
     }
-    
+
     /**
      * Initialise une Creature aléatoire en un point donné
      * 
@@ -155,13 +182,15 @@ public abstract class Creature extends Entite implements Deplacable{
         this.caracs.put(Carac.PV_MAX.getNom(), getRandom(PT_VIE_BASE_MAX - PT_VIE_BASE_MIN + 1) + PT_VIE_BASE_MIN);
         this.caracs.put(Carac.DEGATS.getNom(), getRandom(DEG_ATT_BASE_MAX - DEG_ATT_BASE_MIN + 1) + DEG_ATT_BASE_MIN);
         this.caracs.put(Carac.PARADE.getNom(), getRandom(PT_PAR_BASE_MAX - PT_PAR_BASE_MIN + 1) + PT_PAR_BASE_MIN);
-        this.caracs.put(Carac.POURCENTAGE_ATK.getNom(), getRandom(PAGE_ATT_BASE_MAX - PAGE_ATT_BASE_MIN + 1) + PAGE_ATT_BASE_MIN);
-        this.caracs.put(Carac.POURCENTAGE_PAR.getNom(), getRandom(PAGE_PAR_BASE_MAX - PAGE_PAR_BASE_MIN + 1) + PAGE_PAR_BASE_MIN);
+        this.caracs.put(Carac.POURCENTAGE_ATK.getNom(),
+                getRandom(PAGE_ATT_BASE_MAX - PAGE_ATT_BASE_MIN + 1) + PAGE_ATT_BASE_MIN);
+        this.caracs.put(Carac.POURCENTAGE_PAR.getNom(),
+                getRandom(PAGE_PAR_BASE_MAX - PAGE_PAR_BASE_MIN + 1) + PAGE_PAR_BASE_MIN);
         this.caracs.put(Carac.DIST_ATK_MAX.getNom(), 1);
         this.caracs.put(Carac.VITESSE.getNom(), 1);
         this.pV = this.getPtVieMax();
     }
-    
+
     /**
      * Initialise une Créature aléatoire avec des attributs aléatoires, au sein
      * des limites fixées dans Point2D
@@ -171,8 +200,10 @@ public abstract class Creature extends Entite implements Deplacable{
         this.caracs.put(Carac.PV_MAX.getNom(), getRandom(PT_VIE_BASE_MAX - PT_VIE_BASE_MIN + 1) + PT_VIE_BASE_MIN);
         this.caracs.put(Carac.DEGATS.getNom(), getRandom(DEG_ATT_BASE_MAX - DEG_ATT_BASE_MIN + 1) + DEG_ATT_BASE_MIN);
         this.caracs.put(Carac.PARADE.getNom(), getRandom(PT_PAR_BASE_MAX - PT_PAR_BASE_MIN + 1) + PT_PAR_BASE_MIN);
-        this.caracs.put(Carac.POURCENTAGE_ATK.getNom(), getRandom(PAGE_ATT_BASE_MAX - PAGE_ATT_BASE_MIN + 1) + PAGE_ATT_BASE_MIN);
-        this.caracs.put(Carac.POURCENTAGE_PAR.getNom(), getRandom(PAGE_PAR_BASE_MAX - PAGE_PAR_BASE_MIN + 1) + PAGE_PAR_BASE_MIN);
+        this.caracs.put(Carac.POURCENTAGE_ATK.getNom(),
+                getRandom(PAGE_ATT_BASE_MAX - PAGE_ATT_BASE_MIN + 1) + PAGE_ATT_BASE_MIN);
+        this.caracs.put(Carac.POURCENTAGE_PAR.getNom(),
+                getRandom(PAGE_PAR_BASE_MAX - PAGE_PAR_BASE_MIN + 1) + PAGE_PAR_BASE_MIN);
         this.caracs.put(Carac.DIST_ATK_MAX.getNom(), 1);
         this.caracs.put(Carac.VITESSE.getNom(), 1);
         this.pV = this.getPtVieMax();
@@ -288,6 +319,7 @@ public abstract class Creature extends Entite implements Deplacable{
 
     /**
      * Renvoie la distance d'attaque maximale
+     * 
      * @return Distance d'attaque maximale
      */
     public int getDistAttMax() {
@@ -296,6 +328,7 @@ public abstract class Creature extends Entite implements Deplacable{
 
     /**
      * Redéfinit la distance d'attaque maximale
+     * 
      * @param distAttMax
      */
     public void setDistAttMax(int distAttMax) {
@@ -304,6 +337,7 @@ public abstract class Creature extends Entite implements Deplacable{
 
     /**
      * Renvoie la vitesse
+     * 
      * @return Vitesse
      */
     public int getVitesse() {
@@ -312,94 +346,113 @@ public abstract class Creature extends Entite implements Deplacable{
 
     /**
      * Redéfinit la vitesse
+     * 
      * @param vitesse
      */
     public void setVitesse(int vitesse) {
         this.caracs.put(Carac.VITESSE.getNom(), vitesse);
     }
 
-    public Map<String,Integer> getCaracs() {
+    /**
+     * Renvoie le dictionnaire des caractéristiques
+     * 
+     * @return Caractéristiques
+     */
+    public Map<String, Integer> getCaracs() {
         return this.caracs;
     }
 
-    public void setCaracs(Map<String,Integer> caracs) {
-        this.caracs = caracs;
+    /**
+     * Redéfinit le dictionnaire des caractéristiques comme copie d'un autre
+     * 
+     * @param caracs
+     */
+    public void setCaracs(Map<String, Integer> caracs) {
+        this.caracs.putAll(caracs);
+        ;
     }
 
-
-    public ArrayList<Modificateur> getEffets() {
+    /**
+     * Renvoie la liste des effets actifs
+     * 
+     * @return Effets
+     */
+    public LinkedList<Modificateur> getEffets() {
         return this.effets;
     }
 
-    public void setEffets(ArrayList<Modificateur> effets) {
-        this.effets = effets;
-    }
-
-
     /**
-     * Déplace la créature de manière déterminée.
-     *
-     * @param grille
-     * @param p
+     * Redéfinit la liste des effets comme copie d'une autre
+     * 
+     * @param effets
      */
-    public void deplace(Creature[][] grille, Point2D p) {
-        if (grille[this.getX() + p.getX()][this.getY() + p.getY()] == null) {
-            grille[this.getX()][this.getY()] = null;
-            this.pos.translate(p);
-            grille[this.getX()][this.getY()] = this;
-        } else {
-            System.out.println("Il y a déjà une Creature ici. Celle-ci reste donc à sa place");
+    public void setEffets(LinkedList<Modificateur> effets) {
+        this.effets.clear();
+        for (Modificateur mod : effets) {
+            this.effets.add(new Modificateur(mod));
         }
     }
-    
+
     /**
-     * Déplace la créature de manière déterminée.
+     * Déplacement relatif de la créature de manière déterminée.
      *
      * @param grille
      * @param dx
      * @param dy
      */
     public void deplace(Creature[][] grille, int dx, int dy) {
-        try{
-        if (grille[this.getX() + dx][this.getY() + dy] == null) {
-            grille[this.getX()][this.getY()] = null;
-            this.pos.translate(dx, dy);
-            grille[this.getX()][this.getY()] = this;
-        } else {
-            Fenetre.addMessage("Il y a déjà une Creature ici. Celle-ci reste donc à sa place");
-        }}
-        catch (ArrayIndexOutOfBoundsException e ){
+        try {
+            if (grille[this.getX() + dx][this.getY() + dy] == null) {
+                grille[this.getX()][this.getY()] = null;
+                this.pos.translate(dx, dy);
+                grille[this.getX()][this.getY()] = this;
+            } else {
+                Fenetre.addMessage("Il y a déjà une Creature ici. Celle-ci reste donc à sa place");
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
             Fenetre.addMessage("Il s'agit d'un mur !");
         }
     }
-    
+
+    /**
+     * Déplacement relatif de la créature de manière déterminée.
+     *
+     * @param grille
+     * @param p
+     */
+    public void deplace(Creature[][] grille, Point2D p) {
+        deplace(grille, p.getX(), p.getY());
+    }
+
     /**
      * Déplace aléatoirement selon l'une des 8 directions, en tenant compte des
      * autres créatures présentes.
-     *   7   0   1
-     *    \  |  / 
-     *     \ | /
-     * 6---- + ----2 
-     *     / | \ 
-     *    /  |  \ 
-     *   5   4   3
+     * 7 0 1
+     * \ | /
+     * \ | /
+     * 6---- + ----2
+     * / | \
+     * / | \
+     * 5 4 3
+     * 
      * @param grille Grille des créatures du monde concerné
-     * /!\ PAS DE MOYEN DE TESTER LA PRÉSENCE EFFECTIVE DE LA CREATURE DANS CE MONDE
+     *               /!\ PAS DE MOYEN DE TESTER LA PRÉSENCE EFFECTIVE DE LA CREATURE
+     *               DANS CE MONDE
      */
     public void deplace(Creature[][] grille) {
         ArrayList<Point2D> deplacementsPossibles = new ArrayList<>();
-        for (int i = -1; i<2; i++) {
-            for (int j = -1; j<2; j++) {
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
                 int ix = this.getX() + i;
                 int jy = this.getY() + j;
                 if (ix >= 0 && jy >= 0 && ix < grille.length && jy < grille.length) {
-                    if(grille[ix][jy] == null) {
+                    if (grille[ix][jy] == null) {
                         deplacementsPossibles.add(new Point2D(i, j));
                     }
                 }
             }
         }
-        
+
         int sz = deplacementsPossibles.size();
         if (sz != 0) {
             int dir = this.getRandom(sz);
@@ -414,19 +467,25 @@ public abstract class Creature extends Entite implements Deplacable{
      * Affiche les détails de base de la créature (points de vie et position)
      */
     public void affiche() {
-        System.out.print("Cette créature a " + this.getPtVie() + " points de vie sur " + this.getPtVieMax() + " et se situe en " + pos + ". ");
+        System.out.print("Cette créature a " + this.getPtVie() + " points de vie sur " + this.getPtVieMax()
+                + " et se situe en " + pos + ". ");
     }
-    
+
     /**
-     * Effectue le lancé d'un dé de 100 pour le comparer à un pourcentage de réussite
+     * Effectue le lancé d'un dé de 100 pour le comparer à un pourcentage de
+     * réussite
+     * 
      * @param pageReussite Pourcentage de réussite
      * @return Lancé réussi ou non
      */
-    public boolean lanceDe(int pageReussite){
-        return (this.getRandom(100)+1) <= pageReussite;
+    public boolean lanceDe(int pageReussite) {
+        return (this.getRandom(100) + 1) <= pageReussite;
     }
-    
-    public void mort(){
+
+    /**
+     * Gère la mort de la créature
+     */
+    public void mort() {
         this.pos = null;
         Fenetre.addMessage("Mort de la créature.");
     }

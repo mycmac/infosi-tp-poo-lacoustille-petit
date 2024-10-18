@@ -4,6 +4,20 @@ import java.util.Random;
 
 /**
  * Implémente un point sur une grille en 2 dimensions
+ * 
+ * Exemple : P(x = 3, y = 5)
+ * 
+ *     y
+ *     0 1 2 3 4 5 6 ...
+ * x 0
+ *   1
+ *   2
+ *   3           P
+ *   4
+ *   .
+ *   .
+ *   .
+ * 
  * @author Ulysse
  */
 public class Point2D {

@@ -7,13 +7,27 @@ package org.centrale.objet.WoE;
  */
 public class Archer extends Personnage implements Combatif, Jouable {
     
+    /**
+     * Nombre moyen de flèches de base en cas de génération aléatoire
+     */
     private static final int NB_FLECHES_BASE_MOY = 20;
+    /**
+     * Variabilité du nombre de flèche de base en cas de génération aléatoire
+     * Tq MOY-VAR <= nbFleches <= MOY+VAR
+     */
     private static final int NB_FLECHES_BASE_VAR = 10;
 
+    /**
+     * Génération aléatoire du nombre de flèches
+     * @return nbFlèches random
+     */
     private final int nbFlechesBaseRandom() {
         return getRandom(2*NB_FLECHES_BASE_VAR+1) - NB_FLECHES_BASE_VAR + NB_FLECHES_BASE_MOY;
     }
 
+    /**
+     * Nombre de flèches possédées par l'Archer
+     */
     private int nbFleches;
 
     /**

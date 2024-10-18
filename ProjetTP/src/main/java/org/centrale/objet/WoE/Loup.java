@@ -80,6 +80,9 @@ public class Loup extends Monstre implements Combatif {
         }
     }
 
+    /**
+     * Affiche Loup en console
+     */
     @Override
     public void affiche() {
         super.affiche();
@@ -87,7 +90,7 @@ public class Loup extends Monstre implements Combatif {
     }
 
     /**
-     *
+     * Cast Loup en String
      * @return "Loup"
      */
     @Override

@@ -58,6 +58,9 @@ public class Lapin extends Monstre {
         super();
     }
 
+    /**
+     * Affiche un Lapin en console
+     */
     @Override
     public void affiche() {
         super.affiche();
@@ -65,7 +68,7 @@ public class Lapin extends Monstre {
     }
     
     /**
-     *
+     * Cast Lapin en String
      * @return "Lapin"
      */
     @Override

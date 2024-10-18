@@ -47,6 +47,7 @@ public abstract class Entite {
      */
     public Entite() {
         this.pos = new Point2D();
+        this.pos.randomPoint2D();
     }
     
     /**
@@ -58,7 +59,7 @@ public abstract class Entite {
     }
 
     /**
-     *
+     * Renvoie l'abscisse de l'entité
      * @return Coordonée X
      */
     public int getX() {
@@ -66,7 +67,7 @@ public abstract class Entite {
     }
 
     /**
-     *
+     * Renvoie l'ordonnée de l'entité
      * @return Coordonnée Y
      */
     public int getY() {
@@ -91,7 +92,7 @@ public abstract class Entite {
     }
 
     /**
-     *
+     * Redéfinit l'abscisse de l'entité
      * @param x Coordonnée X
      */
     public void setX(int x) {
@@ -99,7 +100,7 @@ public abstract class Entite {
     }
 
     /**
-     *
+     * Redéfinit l'ordonnée de l'entité
      * @param y Coordonnée Y
      */
     public void setY(int y) {
