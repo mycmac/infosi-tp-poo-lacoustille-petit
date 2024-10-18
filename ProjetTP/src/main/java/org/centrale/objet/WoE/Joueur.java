@@ -149,19 +149,20 @@ public class Joueur {
             }
         }
         KeyEvent event = Fenetre.pressedKey();
-        if (event.getKeyChar() == KeyEvent.CHAR_UNDEFINED) {
-            int[] dep = deplacement(event);
-            if (grille[this.getPerso().getX() + dep[0]][this.getPerso().getY() + dep[1]] != null) {
-                ((Combatif) this.getPerso()).combattre(grille[this.getPerso().getX() + dep[0]][this.getPerso().getY() + dep[1]]);
-            }else{
-            (perso).deplace(grille, dep[0], dep[1]);}
-        } else if (event.getKeyCode() == KeyEvent.VK_SHIFT && this.getPerso().getDistAttMax() > 1.40) {
+        if (event.getKeyCode() == KeyEvent.VK_SHIFT && this.getPerso().getDistAttMax() > 1.40) {
             Fenetre.addMessage("Choisissez votre cible.");
             monde.setCible(new Point2D(this.getPerso().getPos()));
             deplaceCible(monde);
             if (grille[monde.getCible().getX()][monde.getCible().getY()] != null) {
                 ((Combatif) this.getPerso()).combattre(grille[monde.getCible().getX()][monde.getCible().getY()]);
             }
+        }
+        else if (event.getKeyChar() == KeyEvent.CHAR_UNDEFINED) {
+            int[] dep = deplacement(event);
+            if (grille[this.getPerso().getX() + dep[0]][this.getPerso().getY() + dep[1]] != null) {
+                ((Combatif) this.getPerso()).combattre(grille[this.getPerso().getX() + dep[0]][this.getPerso().getY() + dep[1]]);
+            }else{
+            (perso).deplace(grille, dep[0], dep[1]);}
         }
         
         while (Fenetre.isPressed()) {
