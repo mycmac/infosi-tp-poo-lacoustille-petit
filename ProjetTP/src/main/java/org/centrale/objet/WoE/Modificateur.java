@@ -9,6 +9,13 @@ public class Modificateur {
     public Modificateur() {
     }
 
+    public Modificateur(Modificateur mod) {
+        this.duree = mod.getDuree();
+        this.caracModif = mod.getCaracModif();
+        this.bonusFixe = mod.getBonusFixe();
+        this.bonusPourcent = mod.getBonusPourcent();
+    }
+
     public Modificateur(int duree, String caracModif, int bonusFixe, double bonusPourcent) {
         this.duree = duree;
         this.caracModif = caracModif;
