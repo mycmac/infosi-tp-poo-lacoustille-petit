@@ -371,7 +371,6 @@ public class World {
      * @param y ordonnée
      */
     private void addCreature_aux(Creature c, int x, int y) {
-        Objet o = this.grille_objets[x][y];
         if (x < 0 || y < 0 || x >= this.taille || y >= this.taille) {
             System.out.println("Une créature apparaît hors du monde et tombe dans le néant ! !");
         } else if (this.grille_creatures[x][y] != null) {
@@ -413,7 +412,6 @@ public class World {
      * @param y ordonnée
      */
     private void addObjet_aux(Objet o, int x, int y) {
-        Creature c = this.grille_creatures[x][y];
         if (x < 0 || y < 0 || x >= this.taille || y >= this.taille) {
             System.out.println("Un objet apparaît hors du monde et tombe dans le néant ! !");
         } else if (this.grille_objets[x][y] != null) {
