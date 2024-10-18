@@ -164,7 +164,7 @@ public class Joueur {
             int[] dep = deplacement(event);
             int nx = (this.getPerso().getX() + dep[0]); // New X
             int ny = (this.getPerso().getY() + dep[1]); // New Y
-            if ( nx>=0 && ny>=0 && nx< monde.taille &&  ny< monde.taille && grille[nx][ny] != null && grille[nx][ny] != this.getPerso()) {
+            if (nx >= 0 && ny >= 0 && nx < monde.taille && ny < monde.taille && grille[nx][ny] != null && grille[nx][ny] != this.getPerso()) {
                 ((Combatif) this.getPerso()).combattre(grille[this.getPerso().getX() + dep[0]][this.getPerso().getY() + dep[1]]);
                 Fenetre.addMessage("Combat rapproché");
             } else {
@@ -173,14 +173,16 @@ public class Joueur {
             }
         } else if (estChiffre(event.getKeyChar())) {
             int i = Character.getNumericValue(event.getKeyChar());
-            Recuperable r = inventaire.get(i);
-            if (r instanceof Utilisable) {
-                Utilisable u = (Utilisable) r;
-                Recuperable result = u.utiliser(this);
-                if (result != null) {
-                    this.addInventaire(result);
+            if (inventaire !=null && inventaire.size() > i) {
+                Recuperable r = inventaire.get(i);
+                if (r instanceof Utilisable) {
+                    Utilisable u = (Utilisable) r;
+                    Recuperable result = u.utiliser(this);
+                    if (result != null) {
+                        this.addInventaire(result);
+                    }
+                    inventaire.remove(i);
                 }
-                inventaire.remove(i);
             }
         }
         while (Fenetre.isPressed()) {
@@ -307,6 +309,6 @@ public class Joueur {
     }
 
     public static boolean estChiffre(char chr) {
-        return Character.getNumericValue(chr) > 0;
+        return Character.getNumericValue(chr) >= 0;
     }
 }
