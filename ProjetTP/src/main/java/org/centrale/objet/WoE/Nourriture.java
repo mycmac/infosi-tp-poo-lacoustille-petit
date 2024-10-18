@@ -66,7 +66,9 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
      */
     @Override
     public void recuperer(Joueur j) {
-        // p.ajoutInventaire();
+        j.addInventaire(this);
         this.pos = null;
     }
+
+    
 }
