@@ -43,6 +43,7 @@ public class Archer extends Personnage implements Combatif, Jouable {
     public Archer(Archer a) {
         super(a);
         this.nbFleches = a.getNbFleches();
+        this.setDistAttMax(this.getRandom(4)+1);
     }
 
     /**
@@ -54,6 +55,7 @@ public class Archer extends Personnage implements Combatif, Jouable {
     public Archer(int x, int y) {
         super(x, y);
         this.nbFleches = nbFlechesBaseRandom();
+        this.setDistAttMax(this.getRandom(4)+1);
     }
 
     /**
@@ -64,6 +66,7 @@ public class Archer extends Personnage implements Combatif, Jouable {
     public Archer(Point2D p) {
         super(p);
         this.nbFleches = nbFlechesBaseRandom();
+        this.setDistAttMax(this.getRandom(4)+1);
     }
 
     /**
@@ -72,6 +75,7 @@ public class Archer extends Personnage implements Combatif, Jouable {
     public Archer() {
         super();
         this.nbFleches = nbFlechesBaseRandom();
+        this.setDistAttMax(this.getRandom(4)+1);
     }
 
     /**
