@@ -208,14 +208,16 @@ public class World {
                         for (int j = -d; j <= d; j++) {
                             xi = x + i;
                             yj = y + j;
-                            c = grille_creatures[xi][yj];
                             if (!(i == 0 && j == 0)
                                     && xi >= 0
                                     && yj >= 0
                                     && xi < this.getTaille()
-                                    && yj < this.getTaille()
-                                    && c != null) {
-                                creatures_possibles.add(c);
+                                    && yj < this.getTaille()) {
+                                c = grille_creatures[xi][yj];
+
+                                if (c != null) {
+                                    creatures_possibles.add(c);
+                                }
                             }
                         }
                     }
