@@ -34,11 +34,11 @@ public class Point2D {
     /**
      * Abscisse
      */
-    int x;
+    private int x;
     /**
      * Ordonnée
      */
-    int y;
+    private int y;
     
     /**
      * Initialise un Point2D en copiant les coordonnées d'un Point2D donné
