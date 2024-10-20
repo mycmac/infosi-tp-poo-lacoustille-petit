@@ -8,29 +8,27 @@ import java.util.Random;
 import org.centrale.objet.WoE.Creature.Carac;
 
 /**
- * Enumeration des types de nourriture prédéterminés
+ * Enumeration des types de nourriture prédéterminés au format nom, bonus, [liste de malus]
  */
 public enum Types_Nourriture {
+
     EPINARD(
-        "épinard", 
-        new Modificateur(2, Carac.DEGATS.getNom(), 3)
+            "épinard",
+            new Modificateur(2, Carac.DEGATS.getNom(), 3)
     ),
-
     LAIT(
-        "lait", 
-        new Modificateur(10, Carac.PARADE.getNom(), 2),
-        new Modificateur[]{
-            new Modificateur(10, Carac.VITESSE.getNom(), -1),
-            new Modificateur(10, Carac.POURCENTAGE_PAR.getNom(), -.2),
-            new Modificateur(10, Carac.POURCENTAGE_ATK.getNom(), -.2)
-        }
+            "lait",
+            new Modificateur(10, Carac.PARADE.getNom(), 2),
+            new Modificateur[]{
+                new Modificateur(10, Carac.VITESSE.getNom(), -1),
+                new Modificateur(10, Carac.POURCENTAGE_PAR.getNom(), -.2),
+                new Modificateur(10, Carac.POURCENTAGE_ATK.getNom(), -.2)
+            }
     ),
-
     CAFE(
-        "café",
-        new Modificateur(5, Carac.VITESSE.getNom(), 1, .2)
-    )
-    ;
+            "café",
+            new Modificateur(5, Carac.VITESSE.getNom(), 1, .2)
+    );
 
     /**
      * Liste non modifiable des types d'arme
@@ -44,7 +42,7 @@ public enum Types_Nourriture {
      * Générateur de nombres aléatoires
      */
     private static final Random RANDOM = new Random();
-    
+
     /**
      * Nom de la nourriture
      */
@@ -57,9 +55,10 @@ public enum Types_Nourriture {
      * Malus associés à la nourriture
      */
     private Modificateur[] malus;
-    
+
     /**
      * Constructeur de Types_Nourriture avec tous les attributs
+     *
      * @param nom
      * @param bonus
      * @param malus
@@ -72,6 +71,7 @@ public enum Types_Nourriture {
 
     /**
      * Constructeur de Types_Nourriture
+     *
      * @param nom
      * @param bonus
      */
@@ -83,6 +83,7 @@ public enum Types_Nourriture {
 
     /**
      * Constructeur de Types_Nourriture
+     *
      * @param nom
      * @param malus
      */
@@ -94,6 +95,7 @@ public enum Types_Nourriture {
 
     /**
      * Renvoie le nom d'un type de nourriture
+     *
      * @return nom
      */
     public String getNom() {
@@ -102,6 +104,7 @@ public enum Types_Nourriture {
 
     /**
      * Renvoie le bonus associé au type de nourriture
+     *
      * @return bonus
      */
     public Modificateur getBonus() {
@@ -110,6 +113,7 @@ public enum Types_Nourriture {
 
     /**
      * Renvoie les malus associés au type de nourriture
+     *
      * @return malus
      */
     public Modificateur[] getMalus() {
@@ -118,6 +122,7 @@ public enum Types_Nourriture {
 
     /**
      * Donne un type de nourriture aléatoire
+     *
      * @return Type de nourriture aléatoire
      */
     public static Types_Nourriture getRandom() {
