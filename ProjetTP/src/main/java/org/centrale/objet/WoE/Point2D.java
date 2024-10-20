@@ -61,6 +61,10 @@ public class Point2D {
         this.y = y;
     }
     
+    /**
+     * Initialise un Point2D aléatoire entre {0,0} et {t-1,t-1}
+     * @param t
+     */
     public Point2D(int t) {
         Random r = new Random();
         this.x = r.nextInt(t);
@@ -73,6 +77,9 @@ public class Point2D {
     public Point2D() {
     }
 
+    /**
+     * Initialise un point2D aléatoire 
+     */
     public void randomPoint2D() {
         Random r = new Random();
         this.x = r.nextInt(XMAX);
