@@ -7,6 +7,8 @@ import java.util.Random;
 
 /**
  * Enumeration des différentes armes qui existent
+ *
+ * @author Timothée
  */
 public enum Types_Armes {
     DAGUE("dague", 6, 5, 0, 5),
@@ -51,11 +53,12 @@ public enum Types_Armes {
 
     /**
      * Constructeur de Types_Armes avec tous les attributs
-     * @param nom
-     * @param degAtt
-     * @param ptPar
-     * @param pageAtt
-     * @param pagePar
+     *
+     * @param nom nom de l'arme
+     * @param degAtt dégats d'attaque
+     * @param ptPar points de parade
+     * @param pageAtt pourcentage d'attaque
+     * @param pagePar pourcentage de parade
      */
     private Types_Armes(String nom, int degAtt, int ptPar, int pageAtt, int pagePar) {
         this.nom = nom;
@@ -67,6 +70,7 @@ public enum Types_Armes {
 
     /**
      * Renvoie les dégats d'attaque d'une arme
+     *
      * @return DegAtt
      */
     public int getDegAtt() {
@@ -75,6 +79,7 @@ public enum Types_Armes {
 
     /**
      * Renvoie les points de parade de l'arme
+     *
      * @return ptPar
      */
     public int getPtPar() {
@@ -83,6 +88,7 @@ public enum Types_Armes {
 
     /**
      * Renvoie le pourcentage d'attaque de l'arme
+     *
      * @return pageAtt
      */
     public int getPageAtt() {
@@ -91,6 +97,7 @@ public enum Types_Armes {
 
     /**
      * Renvoie le pourcentage de parade de l'arme
+     *
      * @return pagePar
      */
     public int getPagePar() {
@@ -99,6 +106,7 @@ public enum Types_Armes {
 
     /**
      * Renvoie le nom de l'arme
+     *
      * @return nom
      */
     public String getNom() {
@@ -107,6 +115,7 @@ public enum Types_Armes {
 
     /**
      * Donne un type d'arme aléatoire
+     *
      * @return Type d'arme aléatoire
      */
     public static Types_Armes getRandom() {
