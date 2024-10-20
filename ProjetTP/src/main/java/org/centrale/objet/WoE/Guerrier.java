@@ -7,7 +7,6 @@ package org.centrale.objet.WoE;
  */
 public class Guerrier extends Personnage implements Combatif, Jouable {
 
-    
     /**
      * Crée un guerrier identique au guerrier p
      *
@@ -16,24 +15,24 @@ public class Guerrier extends Personnage implements Combatif, Jouable {
     public Guerrier(Guerrier p) {
         super(p);
     }
-    
+
     /**
      * Initialise un guerrier
      *
-     * @param n nom
-     * @param pV points de vie
-     * @param dA distance d'attaque
-     * @param pPar points de parade
-     * @param paAtt probabilité de réussir une attaque
-     * @param paPar probabilité de réussir une parade
-     * @param dMax distance d'attaque maximale
+     * @param n       nom
+     * @param pV      points de vie
+     * @param dA      distance d'attaque
+     * @param pPar    points de parade
+     * @param paAtt   probabilité de réussir une attaque
+     * @param paPar   probabilité de réussir une parade
+     * @param dMax    distance d'attaque maximale
      * @param vitesse vitesse de déplacement
-     * @param p position (Point2D)
+     * @param p       position (Point2D)
      */
     public Guerrier(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, int vitesse, Point2D p) {
-        super(n, pV, dA, pPar, paAtt, paPar, dMax, vitesse,  p);
+        super(n, pV, dA, pPar, paAtt, paPar, dMax, vitesse, p);
     }
-    
+
     /**
      * Génère un guerrier au point (x, y)
      * 
@@ -43,7 +42,7 @@ public class Guerrier extends Personnage implements Combatif, Jouable {
     public Guerrier(int x, int y) {
         super(x, y);
     }
-    
+
     /**
      * Génère un guerrier au point p
      * 
@@ -52,7 +51,7 @@ public class Guerrier extends Personnage implements Combatif, Jouable {
     public Guerrier(Point2D p) {
         super(p);
     }
-    
+
     /**
      * Génère un guerrier aléatoire
      */
@@ -62,58 +61,60 @@ public class Guerrier extends Personnage implements Combatif, Jouable {
 
     /**
      * Combattre une créature désignée
-     * TODO : diviser la fonction
+     * TODO : Subdiviser la fonction
+     * TODO : Tenir compte des effets de nourriture
+     * 
      * @param c Créature désignée
      */
     @Override
     public void combattre(Creature c) {
-        // TODO : Tenir compte des effets de nourriture
         String msg;
         int dgts;
         if (this.distance(c) <= 1) {
             int pAtt = this.getPageAtt();
             Epee arme = this.getArme();
-            
+
             if (arme != null) {
-                pAtt += (int) (100-pAtt)*arme.getPageAtt(); // Calcul des stats d'attaque avec arme
+                pAtt += (int) (100 - pAtt) * arme.getPageAtt(); // Calcul des stats d'attaque avec arme
             }
-            
+
             if (this.lanceDe(pAtt)) {
                 int dAtt = this.getDegAtt();
-                
+
                 if (arme != null) {
-                    dAtt *= (5+arme.getDegAtt())/10.;
+                    dAtt *= (5 + arme.getDegAtt()) / 10.;
                 }
-                
+
                 int pPar = c.getPagePar();
                 boolean cIsPerso = c instanceof Personnage;
                 if (cIsPerso) {
                     Epee cArme = ((Personnage) c).getArme();
                     if (cArme != null) {
-                        pPar += (int) (100-pAtt)*this.getArme().getPagePar();
+                        pPar += (int) (100 - pAtt) * this.getArme().getPagePar();
                     }
                 }
-                
+
                 if (c.lanceDe(pPar)) {
                     int dPar = c.getPtPar();
                     if (cIsPerso) {
                         Epee cArme = ((Personnage) c).getArme();
                         if (cArme != null) {
-                            dPar *= (5+cArme.getPtPar())/10.;
+                            dPar *= (5 + cArme.getPtPar()) / 10.;
                         }
                     }
-                    dgts = Math.max(0, dAtt-dPar);
+                    dgts = Math.max(0, dAtt - dPar);
                     if (dgts == 0) {
                         msg = "Le coup atteint sa cible mais est complètement bloqué.";
                     } else {
                         msg = "Le coup est bloqué mais inflige tout de même " + dgts + " dégats !";
-                        c.setPtVie(Math.max(0, c.getPtVie()-dgts));
+                        c.setPtVie(Math.max(0, c.getPtVie() - dgts));
                     }
                 } else {
                     dgts = dAtt;
-                    c.setPtVie(Math.max(0, c.getPtVie()-dgts));
-                    msg = "Le coup touche et inflige " + dgts + " dégats !"+"L'adversaire a encore "+c.getPtVie()+" PV";
-                    
+                    c.setPtVie(Math.max(0, c.getPtVie() - dgts));
+                    msg = "Le coup touche et inflige " + dgts + " dégats !" + "L'adversaire a encore " + c.getPtVie()
+                            + " PV";
+
                 }
             } else {
                 msg = "Le coup a raté.";
@@ -133,7 +134,7 @@ public class Guerrier extends Personnage implements Combatif, Jouable {
         super.affiche();
         System.out.print("\n");
     }
-    
+
     /**
      * TODO: OSKOUR C MOCHE
      */
