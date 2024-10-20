@@ -1,13 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package org.centrale.objet.WoE;
 
 /**
  *
- * @author hanss
+ * @author Ulysse
  */
 public interface Utilisable {
+
+    /**
+     * Comportement de l'objet quand il est utilisé
+     *
+     * @param j Joueur utilisant l'objet
+     * @return Potentiel objet ajouté à l'inventaire du joueur
+     */
     public Recuperable utiliser(Joueur j);
 }
