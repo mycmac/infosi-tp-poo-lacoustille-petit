@@ -1,20 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.centrale.objet.WoE;
 
 /**
  *
- * @author hanss
+ * @author Ulysse
  */
 public class woe {
 
+    /**
+     * Fonction principale du jeu
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         int taille;
-        try{
+        try {
             taille = Integer.parseInt(args[0]);
-        }catch (NullPointerException | ArrayIndexOutOfBoundsException e){
+        } catch (NullPointerException | ArrayIndexOutOfBoundsException e) {
             taille = 20;
         }
         World WoE;
