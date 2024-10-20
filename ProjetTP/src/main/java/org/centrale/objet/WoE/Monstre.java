@@ -27,12 +27,12 @@ public abstract class Monstre extends Creature {
     /**
      * Initialise un Monstre comme copie d'un autre
      *
-     * @param m
+     * @param m Monstre de départ
      */
     public Monstre(Monstre m) {
         super(m);
     }
-    
+
     /**
      * Génère un Monstre au point (x, y)
      * 
@@ -42,7 +42,7 @@ public abstract class Monstre extends Creature {
     public Monstre(int x, int y) {
         super(x, y);
     }
-    
+
     /**
      * Génère un Monstre au point pt
      * 
@@ -51,7 +51,7 @@ public abstract class Monstre extends Creature {
     public Monstre(Point2D pt) {
         super(pt);
     }
-    
+
     /**
      * Génère aléatoirement un monstre (voir Creature)
      * 
@@ -59,8 +59,10 @@ public abstract class Monstre extends Creature {
     public Monstre() {
         super();
     }
-    
-    
+
+    /**
+     * Affichage en console
+     */
     @Override
     public void affiche() {
         super.affiche();
