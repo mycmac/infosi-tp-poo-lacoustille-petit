@@ -129,6 +129,8 @@ public class Archer extends Personnage implements Combatif, Jouable {
     /**
      * Combattre une créature désignée
      *
+     * TODO: Subdiviser la fonction
+     * 
      * @param c Créature désignée
      */
     @Override
