@@ -9,16 +9,16 @@ public class Paysan extends Personnage {
 
     /**
      * Initialise un Paysan à partir de tous ses attributs
-     *
-     * @param n nom
-     * @param pV points de vie
-     * @param dA dégâts d'attaque
-     * @param pPar points de parade
-     * @param paAtt pourcentage d'attaque
-     * @param paPar pourcentage de parade
-     * @param dMax distance d'attaque maximale
+     * 
+     * @param n       nom
+     * @param pV      points de vie
+     * @param dA      dégâts d'attaque
+     * @param pPar    points de parade
+     * @param paAtt   pourcentage d'attaque
+     * @param paPar   pourcentage de parade
+     * @param dMax    distance d'attaque maximale
      * @param vitesse vitesse de déplacement
-     * @param pt point
+     * @param pt      point
      */
     public Paysan(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, int vitesse, Point2D pt) {
         super(n, pV, dA, pPar, paAtt, paPar, dMax, vitesse, pt);
@@ -70,6 +70,8 @@ public class Paysan extends Personnage {
 
     /**
      * TODO: OSKOUR C MOCHE
+     * 
+     * @see Deplacable
      */
     @Override
     public void deplace(Objet[][] grille) {
@@ -77,6 +79,8 @@ public class Paysan extends Personnage {
 
     /**
      * TODO: OSKOUR C MOCHE
+     * 
+     * @see Deplacable
      */
     @Override
     public void deplace(Objet[][] grille, Point2D p) {

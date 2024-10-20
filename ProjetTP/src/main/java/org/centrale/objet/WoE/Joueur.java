@@ -39,7 +39,8 @@ public class Joueur {
      * Constructeur de Joueur qui interagit avec l'utilisateur pour choisir le
      * type de personnage et son nom notamment.
      */
-    //@SuppressWarnings({"unchecked", "rawtypes"}) // Tkt, le code est correct mais sinon l'IDE fait chier
+    // @SuppressWarnings({"unchecked", "rawtypes"}) // Tkt, le code est correct mais
+    // sinon l'IDE fait chier
     public Joueur() {
         try {
             int numClasseJoueur;
@@ -126,7 +127,8 @@ public class Joueur {
             deplacePerso(monde);
             Objet o = monde.getGrille_objets()[p.getX()][p.getY()];
 
-            // Autorisé car Java ne test pas la 2e condition d'un && si la première est fausse
+            // Autorisé car Java ne test pas la 2e condition d'un && si la première est
+            // fausse
             if (o != null && o instanceof Recuperable) {
                 ((Recuperable) o).recuperer(this);
                 monde.getGrille_objets()[p.getX()][p.getY()] = null;
@@ -153,7 +155,8 @@ public class Joueur {
             Fenetre.addMessage("Choisissez votre cible.");
             monde.setCible(new Point2D(this.getPerso().getPos()));
             deplaceCible(monde);
-            if (grille[monde.getCible().getX()][monde.getCible().getY()] != null && grille[monde.getCible().getX()][monde.getCible().getY()] != this.getPerso()) {
+            if (grille[monde.getCible().getX()][monde.getCible().getY()] != null
+                    && grille[monde.getCible().getX()][monde.getCible().getY()] != this.getPerso()) {
                 ((Combatif) this.getPerso()).combattre(grille[monde.getCible().getX()][monde.getCible().getY()]);
             }
             Fenetre.addMessage("Combat effectué");
@@ -164,8 +167,10 @@ public class Joueur {
             int[] dep = deplacement(event);
             int nx = (this.getPerso().getX() + dep[0]); // New X
             int ny = (this.getPerso().getY() + dep[1]); // New Y
-            if (nx >= 0 && ny >= 0 && nx < monde.taille && ny < monde.taille && grille[nx][ny] != null && grille[nx][ny] != this.getPerso()) {
-                ((Combatif) this.getPerso()).combattre(grille[this.getPerso().getX() + dep[0]][this.getPerso().getY() + dep[1]]);
+            if (nx >= 0 && ny >= 0 && nx < monde.taille && ny < monde.taille && grille[nx][ny] != null
+                    && grille[nx][ny] != this.getPerso()) {
+                ((Combatif) this.getPerso())
+                        .combattre(grille[this.getPerso().getX() + dep[0]][this.getPerso().getY() + dep[1]]);
                 Fenetre.addMessage("Combat rapproché");
             } else {
                 (perso).deplace(grille, dep[0], dep[1]);
@@ -173,7 +178,7 @@ public class Joueur {
             }
         } else if (estChiffre(event.getKeyChar())) {
             int i = Character.getNumericValue(event.getKeyChar());
-            if (inventaire !=null && inventaire.size() > i) {
+            if (inventaire != null && inventaire.size() > i) {
                 Recuperable r = inventaire.get(i);
                 if (r instanceof Utilisable) {
                     Utilisable u = (Utilisable) r;
@@ -204,11 +209,14 @@ public class Joueur {
                 this.wait(100);
             }
             KeyEvent event = Fenetre.pressedKey();
-            if (event.getKeyCode() == KeyEvent.VK_SPACE && (this.getPerso().getPos().distance(new Point2D(monde.getCible().getX(), monde.getCible().getY()))) <= this.getPerso().getDistAttMax() + 0.01) {
+            if (event.getKeyCode() == KeyEvent.VK_SPACE && (this.getPerso().getPos().distance(
+                    new Point2D(monde.getCible().getX(), monde.getCible().getY()))) <= this.getPerso().getDistAttMax()
+                            + 0.01) {
                 shot = true;
                 Fenetre.addMessage("Pfiouu.");
             } else if (event.getKeyCode() == KeyEvent.VK_SPACE) {
-                Fenetre.addMessage("Hors de portée : " + this.getPerso().getPos().distance(new Point2D(monde.getCible().getX(), monde.getCible().getY())));
+                Fenetre.addMessage("Hors de portée : " + this.getPerso().getPos()
+                        .distance(new Point2D(monde.getCible().getX(), monde.getCible().getY())));
             } else if (event.getKeyCode() == KeyEvent.VK_SHIFT) {
                 monde.setCible(new Point2D(this.getPerso().getPos()));
                 Fenetre.addMessage("Reset cible.");
@@ -237,15 +245,15 @@ public class Joueur {
 
         switch (event.getKeyCode()) {
             case KeyEvent.VK_UP:
-                return (new int[]{-1, 0});
+                return (new int[] { -1, 0 });
             case KeyEvent.VK_DOWN:
-                return (new int[]{1, 0});
+                return (new int[] { 1, 0 });
             case KeyEvent.VK_RIGHT:
-                return (new int[]{0, 1});
+                return (new int[] { 0, 1 });
             case KeyEvent.VK_LEFT:
-                return (new int[]{0, -1});
+                return (new int[] { 0, -1 });
             default:
-                return (new int[]{0, 0});
+                return (new int[] { 0, 0 });
         }
     }
 
@@ -259,8 +267,9 @@ public class Joueur {
     }
 
     /**
-     * Modifie le personnage associé au joueur TODO: C'est pas propre comme
-     * copie ca (:
+     * Modifie le personnage associé au joueur
+     * 
+     * TODO: C'est pas propre comme copie ca (:
      *
      * @param perso
      */
@@ -302,6 +311,7 @@ public class Joueur {
 
     /**
      * Attends un certain nombre de millisecondes
+     * 
      * @param i Temps d'attente (ms)
      */
     public void wait(int i) {
@@ -313,8 +323,9 @@ public class Joueur {
     }
 
     /**
-     *  Renvoie true si l'argument d'entrée est un chiffre
-     * @param chr caractère 
+     * Renvoie true si l'argument d'entrée est un chiffre
+     * 
+     * @param chr caractère
      * @return voir {@link java.lang.Character.getNumericValue}
      */
     public static boolean estChiffre(char chr) {

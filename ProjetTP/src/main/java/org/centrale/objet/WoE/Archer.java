@@ -6,7 +6,7 @@ package org.centrale.objet.WoE;
  * @author Ulysse
  */
 public class Archer extends Personnage implements Combatif, Jouable {
-    
+
     /**
      * Nombre moyen de flèches de base en cas de génération aléatoire
      */
@@ -19,10 +19,11 @@ public class Archer extends Personnage implements Combatif, Jouable {
 
     /**
      * Génération aléatoire du nombre de flèches
+     * 
      * @return nbFlèches random
      */
     private final int nbFlechesBaseRandom() {
-        return getRandom(2*NB_FLECHES_BASE_VAR+1) - NB_FLECHES_BASE_VAR + NB_FLECHES_BASE_MOY;
+        return getRandom(2 * NB_FLECHES_BASE_VAR + 1) - NB_FLECHES_BASE_VAR + NB_FLECHES_BASE_MOY;
     }
 
     /**
@@ -33,18 +34,19 @@ public class Archer extends Personnage implements Combatif, Jouable {
     /**
      * Initialise un archer
      *
-     * @param n nom
-     * @param pV points de vie
-     * @param dA distance d'attaque
-     * @param pPar points de parade
-     * @param paAtt probabilité de réussir une attaque
-     * @param paPar probabilité de réussir une parade
-     * @param dMax distance d'attaque maximale
+     * @param n       nom
+     * @param pV      points de vie
+     * @param dA      distance d'attaque
+     * @param pPar    points de parade
+     * @param paAtt   probabilité de réussir une attaque
+     * @param paPar   probabilité de réussir une parade
+     * @param dMax    distance d'attaque maximale
      * @param vitesse vitesse de déplacement
-     * @param p position (Point2D)
-     * @param nbFl nombre de flèches
+     * @param p       position (Point2D)
+     * @param nbFl    nombre de flèches
      */
-    public Archer(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, int vitesse, Point2D p, int nbFl) {
+    public Archer(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, int vitesse, Point2D p,
+            int nbFl) {
         super(n, pV, dA, pPar, paAtt, paPar, dMax, vitesse, p);
         this.nbFleches = nbFl;
     }
@@ -57,7 +59,7 @@ public class Archer extends Personnage implements Combatif, Jouable {
     public Archer(Archer a) {
         super(a);
         this.nbFleches = a.getNbFleches();
-        this.setDistAttMax(this.getRandom(4)+2);
+        this.setDistAttMax(this.getRandom(4) + 2);
     }
 
     /**
@@ -69,7 +71,7 @@ public class Archer extends Personnage implements Combatif, Jouable {
     public Archer(int x, int y) {
         super(x, y);
         this.nbFleches = nbFlechesBaseRandom();
-        this.setDistAttMax(this.getRandom(4)+2);
+        this.setDistAttMax(this.getRandom(4) + 2);
     }
 
     /**
@@ -80,7 +82,7 @@ public class Archer extends Personnage implements Combatif, Jouable {
     public Archer(Point2D p) {
         super(p);
         this.nbFleches = nbFlechesBaseRandom();
-        this.setDistAttMax(this.getRandom(4)+2);
+        this.setDistAttMax(this.getRandom(4) + 2);
     }
 
     /**
@@ -89,7 +91,7 @@ public class Archer extends Personnage implements Combatif, Jouable {
     public Archer() {
         super();
         this.nbFleches = nbFlechesBaseRandom();
-        this.setDistAttMax(this.getRandom(4)+2);
+        this.setDistAttMax(this.getRandom(4) + 2);
     }
 
     /**
@@ -135,24 +137,24 @@ public class Archer extends Personnage implements Combatif, Jouable {
      */
     @Override
     public void combattre(Creature c) {
-        String msg; //Message d'attaque
+        String msg; // Message d'attaque
         int dgts; // dégats
         double d = this.distance(c);
         if (d <= 1) {
             int pAtt = this.getPageAtt();
             Epee arme = this.getArme();
-            
+
             if (arme != null) {
                 pAtt += (int) (100 - pAtt) * arme.getPageAtt(); // Calcul des stats d'attaque avec arme
             }
-            
+
             if (this.lanceDe(pAtt)) {
                 int dAtt = this.getDegAtt();
-                
+
                 if (arme != null) {
                     dAtt *= (5 + arme.getDegAtt()) / 10.; // Calcul des dégats avec arme
                 }
-                
+
                 int pPar = c.getPagePar();
                 boolean cIsPerso = c instanceof Personnage;
                 if (cIsPerso) {
@@ -161,7 +163,7 @@ public class Archer extends Personnage implements Combatif, Jouable {
                         pPar += (int) (100 - pAtt) * this.getArme().getPagePar();
                     }
                 }
-                
+
                 if (c.lanceDe(pPar)) {
                     int dPar = c.getPtPar();
                     if (cIsPerso) {
@@ -208,12 +210,16 @@ public class Archer extends Personnage implements Combatif, Jouable {
 
     /**
      * TODO: OSKOUR C MOCHE
+     * 
+     * @see Deplacable
      */
     public void deplace(Objet[][] grille) {
     }
 
     /**
      * TODO: OSKOUR C MOCHE
+     * 
+     * @see Deplacable
      */
     public void deplace(Objet[][] grille, Point2D p) {
     }
