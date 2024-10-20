@@ -80,34 +80,68 @@ public class Modificateur {
         this.bonusPourcent = bonusPourcent;
     }
 
+    
+    /** 
+     * Getter de la durée d'une modification
+     * @return duree
+     */
     public int getDuree() {
         return this.duree;
     }
 
+    
+    /** 
+     * Setter de la durée d'une modification
+     * @param duree
+     */
     public void setDuree(int duree) {
         this.duree = duree;
     }
 
+    /**
+     * Getter de la caractéristique associée à un modificateur
+     * @return caracModif
+     */
     public String getCaracModif() {
         return this.caracModif;
     }
 
+    /**
+     * Setter de la caractéristique associée à un modificateur
+     * @param caracModif
+     */
     public void setCaracModif(String caracModif) {
         this.caracModif = caracModif;
     }
 
+    /**
+     * Getter du bonus fixe associée à un modificateur
+     * @return bonusFixe
+     */
     public int getBonusFixe() {
         return this.bonusFixe;
     }
 
+    /**
+     * Setter du bonus fixe associée à un modificateur
+     * @param bonusFixe
+     */
     public void setBonusFixe(int bonusFixe) {
         this.bonusFixe = bonusFixe;
     }
 
+    /**
+     * Getter du bonus en pourcentage associée à un modificateur
+     * @return bonusPourcent
+     */
     public double getBonusPourcent() {
         return this.bonusPourcent;
     }
 
+    /**
+     * Setter du bonus fixe associée à un modificateur
+     * @param bonusPourcent
+     */
     public void setBonusPourcent(double bonusPourcent) {
         this.bonusPourcent = bonusPourcent;
     }
