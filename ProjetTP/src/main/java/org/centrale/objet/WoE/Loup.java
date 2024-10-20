@@ -57,6 +57,12 @@ public class Loup extends Monstre implements Combatif {
         super();
     }
 
+    /**
+     * Combat face à une créature
+     * 
+     * TODO : Subdiviser la fonction
+     * @param c Créature combattue
+     */
     @Override
     public void combattre(Creature c) {
         if (distance(c) <= this.getDistAttMax()) {
