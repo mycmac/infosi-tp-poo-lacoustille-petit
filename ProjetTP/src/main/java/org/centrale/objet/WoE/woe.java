@@ -22,10 +22,12 @@ public class woe {
         WoE.creeMondeAlea();
         Fenetre.Initialize(WoE.getTaille());
         Fenetre.addMessage("Bienvenue dans World Of ECN !");
-        while (true) {
-            WoE.tourDeJeu();
+        boolean vivant = true;
+        while (vivant) {
+            vivant = WoE.tourDeJeu();
             WoE.afficheWorld();
         }
+        Fenetre.addMessage("\n\n\nVous êtes mort!\n");
 
     }
 }

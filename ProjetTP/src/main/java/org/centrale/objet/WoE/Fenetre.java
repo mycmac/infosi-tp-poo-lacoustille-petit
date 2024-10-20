@@ -223,6 +223,5 @@ public class Fenetre {
     public static void afficheInventaire(String message) {
         inventaireArea.setText("");
         inventaireArea.append(message + "\n"); // Ajouter le message à la zone de messages
-        inventaireArea.setCaretPosition(inventaireArea.getDocument().getLength()); // Faire défiler vers le bas
     }
 }
