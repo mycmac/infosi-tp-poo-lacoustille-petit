@@ -51,8 +51,13 @@ public class World {
      * d'objet
      */
     Objet[][] grille_objets;
-
+    /**
+     * Joueur actif dans le monde
+     */
     private Joueur joueur;
+    /**
+     * Cible du joueur (sert principalement à pouvoir l'afficher)
+     */
     private Point2D cible;
 
     /**
@@ -177,16 +182,22 @@ public class World {
     /**
      * Gestion d'un tour de jeu : on affiche le nom ou le type de la créature
      * qui joue, la déplace puis l'affiche à nouveau.
+     *
+     * @return true si le personnage du joueur est encore en vie
      */
     public boolean tourDeJeu() {
+        //Suppression des créatures mortes et des objets ramassés
         cleanEntites(creatures);
         cleanEntites(objets);
+        //Information du joueur
         System.out.println("À votre tour :");
         Fenetre.addMessage("À votre tour :");
         afficheWorld();
         joueur.afficheInventaire();
+        //Tour de jeu du joueur
         joueur.actionDeplacement(this);
         afficheWorld();
+        //Tour de jeu des entités non joueur : créatures
         for (Creature creature : creatures) {
             creature.actualiseEffets();
             if (creature.getPtVie() <= 0) {
@@ -232,7 +243,7 @@ public class World {
                 }
             }
         }
-
+        //Tour de jeu des entités non joueur : objets
         for (Objet objet : objets) {
             if (objet instanceof Deplacable) {
                 ((Deplacable) objet).deplace(this.grille_objets);
@@ -246,12 +257,27 @@ public class World {
 
         System.out.println("Fin du tour de jeu");
         Fenetre.addMessage("Fin du tour de jeu");
-        return joueur.getPerso().getPtVie()>0;
+        return joueur.getPerso().getPtVie() > 0;
     }
 
     /**
-     * Affichage du monde =========== | . O . M | | M . . O | | . . . . | | . P
-     * . . | ===========
+     * Affichage du monde au format suivant<br>
+     * =========== <br>
+     * | . L . E | <br>
+     * | S X . l | <br>
+     * | . + A . | <br>
+     * | o p . G | <br>
+     * =========== <br>
+     * Avec : <br>
+     * A <-> Archer <br>
+     * G <-> Guerrier <br>
+     * p <-> Paysan <br>
+     * l <-> Lapin <br>
+     * L <-> Loup <br>
+     * E <-> Epee <br>
+     * S <-> Potion de soin <br>
+     * x <-> Nuage toxique <br>
+     * o <-> Objet <br>
      */
     public void afficheWorld() {
         String carte = new String();
@@ -290,9 +316,9 @@ public class World {
                         carte += "E";
                     } else if (o instanceof PotionSoin) {
                         carte += "S";
-                    }else if (o instanceof NuageToxique){
+                    } else if (o instanceof NuageToxique) {
                         carte += "x";
-                    }else if (o instanceof Nourriture){
+                    } else if (o instanceof Nourriture) {
                         carte += "o";
                     }
                 } else {
@@ -316,7 +342,7 @@ public class World {
      *
      * @param Liste
      */
-    @SuppressWarnings({"rawtypes", "unchecked"}) // Tkt, c'est juste l'IDE qui pleure
+    @SuppressWarnings({"rawtypes", "unchecked"}) // Pour l'IDE
     public void cleanEntites(LinkedList Liste) {
         Iterator<Entite> listIt = Liste.iterator();
 
@@ -550,10 +576,20 @@ public class World {
         this.joueur = joueur;
     }
 
+    /**
+     * Getter pour la cible du joueur
+     *
+     * @return cible
+     */
     public Point2D getCible() {
         return cible;
     }
 
+    /**
+     * Setter pour la cible
+     *
+     * @param cible
+     */
     public void setCible(Point2D cible) {
         this.cible = cible;
     }
