@@ -2,6 +2,7 @@ package org.centrale.objet.WoE;
 
 /**
  * Classe générique pour les personnages humains
+ *
  * @author Ulysse
  */
 public abstract class Personnage extends Creature {
@@ -35,7 +36,7 @@ public abstract class Personnage extends Creature {
      * @param pt point
      */
     public Personnage(String n, int pV, int dA, int pPar, int paAtt, int paPar, int dMax, int vitesse, Point2D pt) {
-        super(pV, dA, pPar, paAtt, paPar, dMax, vitesse,  pt);
+        super(pV, dA, pPar, paAtt, paPar, dMax, vitesse, pt);
         this.nom = n;
     }
 
