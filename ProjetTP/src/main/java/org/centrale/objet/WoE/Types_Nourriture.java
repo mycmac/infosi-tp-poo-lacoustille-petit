@@ -9,6 +9,8 @@ import org.centrale.objet.WoE.Creature.Carac;
 
 /**
  * Enumeration des types de nourriture prédéterminés au format nom, bonus, [liste de malus]
+ * 
+ * @author Timothée
  */
 public enum Types_Nourriture {
 
