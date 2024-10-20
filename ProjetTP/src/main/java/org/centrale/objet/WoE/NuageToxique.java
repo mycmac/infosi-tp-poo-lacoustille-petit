@@ -107,13 +107,15 @@ public class NuageToxique extends Objet implements Deplacable, Combatif {
     }
     
     /**
-     * TODO: OSKOUR C MOCHE
+     * TODO: Modifier l'interface déplacement pour ne pas avoir à considérer le 
+     * déplacement d'un objet comme d'une créature et inversement
      */
     public void deplace(Creature[][] grille) {
     }
 
     /**
-     * TODO: OSKOUR C MOCHE
+     * TODO: Modifier l'interface déplacement pour ne pas avoir à considérer le 
+     * déplacement d'un objet comme d'une créature et inversement
      */
     public void deplace(Creature[][] grille, Point2D p) {
     }
