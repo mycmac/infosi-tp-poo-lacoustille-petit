@@ -300,6 +300,10 @@ public class Joueur {
         Fenetre.afficheInventaire(inv);
     }
 
+    /**
+     * Attends un certain nombre de millisecondes
+     * @param i Temps d'attente (ms)
+     */
     public void wait(int i) {
         try {
             Thread.sleep(i);
@@ -308,6 +312,11 @@ public class Joueur {
         }
     }
 
+    /**
+     *  Renvoie true si l'argument d'entrée est un chiffre
+     * @param chr caractère 
+     * @return voir {@link java.lang.Character.getNumericValue}
+     */
     public static boolean estChiffre(char chr) {
         return Character.getNumericValue(chr) >= 0;
     }

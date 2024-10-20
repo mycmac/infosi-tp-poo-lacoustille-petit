@@ -80,6 +80,7 @@ public class Epee extends Objet implements Recuperable, Utilisable {
 
     /**
      * Initialise une épée avec les attributs suivants :
+     * @param type type d'épée
      * @param dA dégats d'attaque supplémentaires
      * @param pPar points d'attaque supplémentaires
      * @param paAtt pourcentage d'attaque supplémentaires
@@ -113,6 +114,7 @@ public class Epee extends Objet implements Recuperable, Utilisable {
     
     /**
      * Créé une épée donnée à un endroit aléatoire
+     * @param type
      * @param dA
      * @param pPar
      * @param paAtt
@@ -297,6 +299,11 @@ public class Epee extends Objet implements Recuperable, Utilisable {
         return new Epee(type.getNom(), type.getDegAtt(), type.getPtPar(), type.getPageAtt(), type.getPagePar());
     }
 
+    /**
+     * Équipe l'épée sélectionnée et renvoie (si elle existe) celle qui était équipée
+     * @param j Joueur équipant l'épée
+     * @return Ancienne arme du joueur
+     */
     @Override
     public Recuperable utiliser(Joueur j) {
         Epee res = null;
