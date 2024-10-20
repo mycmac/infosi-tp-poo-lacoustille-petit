@@ -62,6 +62,10 @@ public abstract class Creature extends Entite implements Deplacable {
 
     /**
      * Nomenclature du dictionnaire des caractéristiques
+     * 
+     * Remarque : au final, cette implémentation permet dans Modificateur de définir
+     * la caractéristique associée facilement, mais elle rend l'implémentation de
+     * tout le reste beaucoup plus compliquée
      */
     public enum Carac {
         PV_MAX("Points de vie max"),
@@ -497,6 +501,13 @@ public abstract class Creature extends Entite implements Deplacable {
         Fenetre.addMessage("Mort de la créature.");
     }
 
+    /**
+     * Renvoie les caractéristiques modifiées par les effets actifs sur le personnage
+     * 
+     * TODO : Empêcher les caractéristiques négatives
+     * TODO : Changer switch en if else
+     * @return Caractéristiques modifiées
+     */
     public Map<String, Integer> caracEffets() {
 
         Map<String, Integer> nouv_caracs = new HashMap<>();
@@ -506,6 +517,9 @@ public abstract class Creature extends Entite implements Deplacable {
 
         for (Modificateur mod : effets) {
             s = mod.getCaracModif();
+
+            // Gère d'abord les modificateurs fixes
+            // Empêche de dépasser 100 pour les pourcentages
             switch (s) {
                 case "Pourcentage d'attaque":
                     nouv_caracs.put(s, Math.max(mod.getBonusFixe() + nouv_caracs.get(s), 100));
@@ -514,37 +528,40 @@ public abstract class Creature extends Entite implements Deplacable {
                 case "Pourcentage de parade":
                     nouv_caracs.put(s, Math.max(mod.getBonusFixe() + nouv_caracs.get(s), 100));
                     break;
-            
+
                 default:
                     break;
             }
         }
 
+        // Applique ensuite tous les pourcentages
         for (Modificateur mod : effets) {
             s = mod.getCaracModif();
             switch (s) {
                 case "Pourcentage d'attaque":
-                    nouv_caracs.put(s, (int) (1+ ((100 -nouv_caracs.get(s))*mod.getBonusPourcent()/10000))*nouv_caracs.get(s));
+                    nouv_caracs.put(s, (int) (1 + ((100 - nouv_caracs.get(s)) * mod.getBonusPourcent() / 10000))
+                            * nouv_caracs.get(s));
                     break;
 
                 case "Pourcentage de parade":
-                    nouv_caracs.put(s, (int) (1+ ((100 -nouv_caracs.get(s))*mod.getBonusPourcent()/10000))*nouv_caracs.get(s));
+                    nouv_caracs.put(s, (int) (1 + ((100 - nouv_caracs.get(s)) * mod.getBonusPourcent() / 10000))
+                            * nouv_caracs.get(s));
                     break;
-                
+
                 case "Degats d'attaque":
-                    nouv_caracs.put(s, (int) (1+mod.getBonusPourcent()/100)*nouv_caracs.get(s));
+                    nouv_caracs.put(s, (int) (1 + mod.getBonusPourcent() / 100) * nouv_caracs.get(s));
                     break;
                 case "Points de vie max":
-                    nouv_caracs.put(s, (int) (1+mod.getBonusPourcent()/100)*nouv_caracs.get(s));
+                    nouv_caracs.put(s, (int) (1 + mod.getBonusPourcent() / 100) * nouv_caracs.get(s));
                     break;
                 case "Points de parade":
-                    nouv_caracs.put(s, (int) (1+mod.getBonusPourcent()/100)*nouv_caracs.get(s));
+                    nouv_caracs.put(s, (int) (1 + mod.getBonusPourcent() / 100) * nouv_caracs.get(s));
                     break;
                 case "Distance d'attaque max":
-                    nouv_caracs.put(s, (int) (1+mod.getBonusPourcent()/100)*nouv_caracs.get(s));
+                    nouv_caracs.put(s, (int) (1 + mod.getBonusPourcent() / 100) * nouv_caracs.get(s));
                     break;
                 case "Vitesse de déplacement":
-                    nouv_caracs.put(s, (int) (1+mod.getBonusPourcent()/100)*nouv_caracs.get(s));
+                    nouv_caracs.put(s, (int) (1 + mod.getBonusPourcent() / 100) * nouv_caracs.get(s));
                     break;
                 default:
                     break;
@@ -554,11 +571,14 @@ public abstract class Creature extends Entite implements Deplacable {
         return nouv_caracs;
     }
 
+    /**
+     * Actualise la durée des effets et les supprime si elle atteint 0
+     */
     public void actualiseEffets() {
         Iterator<Modificateur> effetit = effets.iterator();
         while (effetit.hasNext()) {
             Modificateur mod = effetit.next();
-            mod.setDuree(mod.getDuree()-1);
+            mod.setDuree(mod.getDuree() - 1);
             if (mod.getDuree() <= 0) {
                 effetit.remove();
             }
