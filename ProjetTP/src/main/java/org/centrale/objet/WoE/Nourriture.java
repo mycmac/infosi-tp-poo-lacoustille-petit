@@ -5,23 +5,28 @@
 package org.centrale.objet.WoE;
 
 /**
- * Classe Nourriture, qui représente les objets offrant un bonus et/ou des malus au Joueur qui les consomme
+ * Classe Nourriture, qui représente les objets offrant un bonus et/ou des malus
+ * au Joueur qui les consomme
+ * 
  * @author hanss
  */
 public class Nourriture extends Objet implements Utilisable, Recuperable {
 
     /**
      * Nom de la nourriture, notamment si elle est d'un type spécifique
+     * 
      * @see Types_Nourriture
      */
     private String nom;
     /**
      * Bonus associé à la nourriture
+     * 
      * @see Modificateur
      */
     private Modificateur bonus;
     /**
      * Liste des malus associés à la nourriture
+     * 
      * @see Modificateur
      */
     private Modificateur[] malus;
@@ -36,6 +41,7 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
 
     /**
      * Constructeur avec tous les attributs
+     * 
      * @param nom
      * @param bonus
      * @param malus
@@ -48,6 +54,7 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
 
     /**
      * Constructeur sans malus
+     * 
      * @param nom
      * @param bonus
      */
@@ -58,6 +65,7 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
 
     /**
      * Getter du nom de la nourriture
+     * 
      * @return nom
      */
     public String getNom() {
@@ -66,6 +74,7 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
 
     /**
      * Setter du nom de la nourriture
+     * 
      * @param nom
      */
     public void setNom(String nom) {
@@ -74,6 +83,7 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
 
     /**
      * Getter du bonus de la nourriture
+     * 
      * @return bonus
      */
     public Modificateur getBonus() {
@@ -82,6 +92,7 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
 
     /**
      * Setter du bonus de la nourriture
+     * 
      * @param bonus
      */
     public void setBonus(Modificateur bonus) {
@@ -90,6 +101,7 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
 
     /**
      * Getter de la liste des malus de la nourriture
+     * 
      * @return malus
      */
     public Modificateur[] getMalus() {
@@ -98,6 +110,7 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
 
     /**
      * Setter de la liste des malus de la nourriture
+     * 
      * @param malus
      */
     public void setMalus(Modificateur[] malus) {
@@ -129,7 +142,7 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
     /**
      * Utiliser de la nourriture
      * 
-     *  @param j Le joueur qui utilise la nourriture
+     * @param j Le joueur qui utilise la nourriture
      */
     @Override
     public Recuperable utiliser(Joueur j) {
@@ -145,6 +158,7 @@ public class Nourriture extends Objet implements Utilisable, Recuperable {
 
     /**
      * Représentation en String d'une instance de Nourriture
+     * 
      * @return Représentation String
      */
     @Override
