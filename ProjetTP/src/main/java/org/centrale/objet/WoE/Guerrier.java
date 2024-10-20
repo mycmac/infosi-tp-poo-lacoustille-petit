@@ -137,12 +137,16 @@ public class Guerrier extends Personnage implements Combatif, Jouable {
 
     /**
      * TODO: OSKOUR C MOCHE
+     * 
+     * @see Deplacable
      */
     public void deplace(Objet[][] grille) {
     }
 
     /**
      * TODO: OSKOUR C MOCHE
+     * 
+     * @see Deplacable
      */
     public void deplace(Objet[][] grille, Point2D p) {
     }

@@ -2,6 +2,7 @@ package org.centrale.objet.WoE;
 
 /**
  * Un Loup (Monstre)
+ * 
  * @author hanss
  */
 public class Loup extends Monstre implements Combatif {
@@ -9,13 +10,13 @@ public class Loup extends Monstre implements Combatif {
     /**
      * Créé un loup
      *
-     * @param pV points de vie
-     * @param dA dégats d'attaque
-     * @param pPar points de parade
-     * @param paAtt probabilité de réussite d'une attaque
-     * @param paPar probabilité de parer une attaque
+     * @param pV      points de vie
+     * @param dA      dégats d'attaque
+     * @param pPar    points de parade
+     * @param paAtt   probabilité de réussite d'une attaque
+     * @param paPar   probabilité de parer une attaque
      * @param vitesse vitesse de déplacement
-     * @param p position
+     * @param p       position
      */
     public Loup(int pV, int dA, int pPar, int paAtt, int paPar, int vitesse, Point2D p) {
         super(pV, dA, pPar, paAtt, paPar, 1, vitesse, p);
@@ -29,7 +30,7 @@ public class Loup extends Monstre implements Combatif {
     public Loup(Monstre p) {
         super(p);
     }
-    
+
     /**
      * Génère un Loup au point (x, y)
      * 
@@ -39,7 +40,7 @@ public class Loup extends Monstre implements Combatif {
     public Loup(int x, int y) {
         super(x, y);
     }
-    
+
     /**
      * Génère un Loup au point pt
      * 
@@ -63,10 +64,10 @@ public class Loup extends Monstre implements Combatif {
                 if (c.lanceDe(c.getPagePar())) {
                     int pertes = Math.max(0, this.getDegAtt() - c.getPtPar());
                     c.setPtVie(c.getPtVie() - pertes);
-                    System.out.println("Le loup attaque "+c+" qui pare son attaque!");
+                    System.out.println("Le loup attaque " + c + " qui pare son attaque!");
                 } else {
                     c.setPtVie(c.getPtVie() - this.getDegAtt());
-                    System.out.println("Le loup attaque "+c+" qui ne parvient pas à parer !");
+                    System.out.println("Le loup attaque " + c + " qui ne parvient pas à parer !");
                 }
                 if (c.getPtVie() <= 0) {
                     c.setPtVie(0);
@@ -91,20 +92,26 @@ public class Loup extends Monstre implements Combatif {
 
     /**
      * Cast Loup en String
+     * 
      * @return "Loup"
      */
     @Override
     public final String toString() {
         return "Loup";
     }
+
     /**
      * TODO: OSKOUR C MOCHE
+     * 
+     * @see Deplacable
      */
     public void deplace(Objet[][] grille) {
     }
 
     /**
      * TODO: OSKOUR C MOCHE
+     * 
+     * @see Deplacable
      */
     public void deplace(Objet[][] grille, Point2D p) {
     }

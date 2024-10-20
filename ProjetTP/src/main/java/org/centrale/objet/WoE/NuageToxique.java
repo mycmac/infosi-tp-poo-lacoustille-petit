@@ -18,9 +18,10 @@ public class NuageToxique extends Objet implements Deplacable, Combatif {
 
     /**
      * Définit un nuage toxique avec une position donnée et une toxicité donnée
+     * 
      * @param toxicite Toxicité
-     * @param x Position X
-     * @param y Position Y
+     * @param x        Position X
+     * @param y        Position Y
      */
     public NuageToxique(int toxicite, int x, int y) {
         super(x, y);
@@ -29,8 +30,9 @@ public class NuageToxique extends Objet implements Deplacable, Combatif {
 
     /**
      * Définit un nuage toxique avec une position donnée et une toxicité donnée
+     * 
      * @param toxicite Toxicité
-     * @param pos Point2D de la position
+     * @param pos      Point2D de la position
      */
     public NuageToxique(int toxicite, Point2D pos) {
         super(pos);
@@ -39,7 +41,7 @@ public class NuageToxique extends Objet implements Deplacable, Combatif {
 
     public NuageToxique() {
         super();
-        this.toxicite = TOX_MOY + getRandom(2*TOX_VAR + 1) - TOX_VAR;
+        this.toxicite = TOX_MOY + getRandom(2 * TOX_VAR + 1) - TOX_VAR;
     }
 
     /**
@@ -52,6 +54,7 @@ public class NuageToxique extends Objet implements Deplacable, Combatif {
 
     /**
      * Modifie la toxicité du nuage
+     * 
      * @param toxicite Nouvelle toxicité
      */
     public void setToxicite(int toxicite) {
@@ -103,17 +106,21 @@ public class NuageToxique extends Objet implements Deplacable, Combatif {
 
     @Override
     public void combattre(Creature c) {
-        c.setPtVie(c.getPtVie()-toxicite);
+        c.setPtVie(c.getPtVie() - toxicite);
     }
-    
+
     /**
      * TODO: OSKOUR C MOCHE
+     * 
+     * @see Deplacable
      */
     public void deplace(Creature[][] grille) {
     }
 
     /**
      * TODO: OSKOUR C MOCHE
+     * 
+     * @see Deplacable
      */
     public void deplace(Creature[][] grille, Point2D p) {
     }
